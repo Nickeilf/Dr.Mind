@@ -13,14 +13,16 @@ public class SinGraph {
 
 	private Paint paint;
 	private Canvas canvas;
-	
-	public SinGraph(Canvas c){
-		paint=new Paint();
-		this.canvas=c;
+
+	public SinGraph(Canvas c) {
+		paint = new Paint();
+		this.canvas = c;
 	}
-	
-	public void drawSinGraph(){
-		
+
+	public void drawSinGraph() {
+		for (int i = 0; i < 200; i++) {
+			canvas.drawPoint((float) i, (float) Math.sin(i*180/Math.PI), paint);
+		}
 	}
-	
+
 }
