@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Dr.Mind</string>
     <string name="hello">Hello World, MindActivity!</string>
+    <string name="_0">0</string>
 </resources>
