@@ -1,6 +1,7 @@
 package view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -16,11 +17,11 @@ public class DViewGroup extends ViewGroup {
 
 	public DViewGroup(Context context) {
 		super(context);
-
 	}
 
 	public DViewGroup(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		myAddView();
 	}
 
 	public DViewGroup(Context context, AttributeSet attrs, int defStyle) {
@@ -33,6 +34,11 @@ public class DViewGroup extends ViewGroup {
 	public void myAddView() {
 		TextView mIcon = new TextView(this.getContext());
 		mIcon.setText("aaaaaaaaaa");
+
+		mIcon.setX(0);
+		mIcon.setY(0);
+		mIcon.setTextColor(Color.BLACK);
+		mIcon.setVisibility(VISIBLE);
 		addView(mIcon);
 	}
 
@@ -61,7 +67,8 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		// TODO Auto-generated method stub
+		View a = getChildAt(0);
+		a.layout(300-l, t, r, b);
 	}
 
 }
