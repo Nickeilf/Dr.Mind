@@ -5,14 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
-import android.text.Layout;
 import android.view.View;
-import android.widget.TextView;
 
 /*
  * @auther:Liu 
  * @date:2016.7.8
- * @description:»­³öÁ¬½Ó½ÚµãµÄÇúÏß£ºsinÎªÖ÷Ìå£¬ºó½ÓÒ»¶ÎÖ±Ïß
+ * @description:ç»˜åˆ¶sinæ›²çº¿éƒ¨åˆ†ï¼Œåæ¥ä¸€æ®µç›´çº¿
  */
 
 public class SinGraph extends View {
@@ -31,7 +29,6 @@ public class SinGraph extends View {
 		paint.setColor(Color.rgb(205, 243, 246));
 		setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 		mydraw(canvas);
-		layTextView(canvas);
 	}
 
 	private void mydraw(Canvas canvas) {
@@ -62,11 +59,5 @@ public class SinGraph extends View {
 		canvas.drawLine(x, y3, width, y3, paint);
 		canvas.drawLine(x, y4, width, y4, paint);
 	}
-
-	private void layTextView(Canvas canvas){
-		TextView textView=new TextView(getContext());
-		textView.setX( 10);
-		textView.setY(10);
-		
-	}
+ 
 }

@@ -1,8 +1,8 @@
 package activity;
 
-import ui.SinGraph;
 import android.app.Activity;
 import android.os.Bundle;
+import cn.edu.cn.R;
 
 public class MindActivity extends Activity {
     /** Called when the activity is first created. */
@@ -10,6 +10,6 @@ public class MindActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.main);
-        setContentView(new SinGraph(this));
+        setContentView(R.layout.main);
     }
 }
