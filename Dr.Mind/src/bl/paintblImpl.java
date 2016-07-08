@@ -1,4 +1,4 @@
-package paint;
+package bl;
 
 public class paintblImpl {
 
