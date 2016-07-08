@@ -9,12 +9,7 @@ public class MindActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< Updated upstream
-        //setContentView(R.layout.main);
-        setContentView(R.layout.main);
-=======
         setContentView(R.layout.main);
 //        setContentView(new SinGraph(this));
->>>>>>> Stashed changes
     }
 }
