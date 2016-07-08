@@ -1,4 +1,4 @@
-package dr;
+package activity;
 
 import cn.edu.cn.R;
 import android.app.Activity;
