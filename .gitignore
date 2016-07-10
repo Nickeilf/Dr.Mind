@@ -12,3 +12,6 @@
 hs_err_pid*
 Dr.Mind/.classpath
 Dr.Mind/.project
+
+.idea/
+out/
