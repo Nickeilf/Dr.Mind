@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,10 @@ public class DViewGroup extends ViewGroup {
 	 */
 	public void myAddView() {
 		TextView mIcon = new TextView(this.getContext());
-		mIcon.setText("aaaaaaaaaa");
-
-		mIcon.setX(0);
-		mIcon.setY(0);
+		mIcon.setText("a");
 		mIcon.setTextColor(Color.BLACK);
 		mIcon.setVisibility(VISIBLE);
+		mIcon.setGravity(Gravity.CENTER);
 		addView(mIcon);
 	}
 
@@ -69,7 +68,7 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		View a = getChildAt(0);
-		a.layout(300-l, t, r, b);
+		a.layout(300 - l, t, r, b);
 	}
 
 }
