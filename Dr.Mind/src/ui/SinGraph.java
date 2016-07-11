@@ -8,7 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 
-/*
+/**
  * @auther:Liu 
  * @date:2016.7.8
  * @description:绘制sin曲线部分，后接一段直线

@@ -9,15 +9,17 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import cn.edu.cn.R;
 import ui.SinGraph;
+import view.DViewGroup;
 
 public class MindActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.main);
-		setContentView(new SinGraph(this,7));
-//		init();
+
+		setContentView(R.layout.main);
+		// setContentView(new SinGraph(this,6));
+		init();
 	}
 
 	/**
@@ -27,9 +29,15 @@ public class MindActivity extends Activity {
 		WindowManager wm = this.getWindowManager();
 		int width = wm.getDefaultDisplay().getWidth();
 		int height = wm.getDefaultDisplay().getHeight();
+		DViewGroup dView = (DViewGroup) findViewById(R.id.viewgroup);
 		LinearLayout.LayoutParams lay = (LayoutParams) findViewById(R.id.viewgroup).getLayoutParams();
+
+		System.out.println(width * 3 + " " + height * 3);
 		lay.height = 3 * height;
 		lay.width = 3 * width;
+
+		dView.setScreenWidth(width);
+		dView.setScreenHeight(height);
 		findViewById(R.id.viewgroup).setX(0);
 		findViewById(R.id.viewgroup).setY(-height);
 		findViewById(R.id.viewgroup).setLayoutParams(lay);
