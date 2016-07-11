@@ -5,9 +5,9 @@ import android.graphics.Typeface;
 
 public class TextType {
 
-	Typeface fontType;//字体类型
-	int textsize;//字体大小
-	int textColor;//字体颜色
+	Typeface fontType;//瀛椾綋
+	int textsize;//澶у皬
+	int textColor;//棰滆壊
 	
 	public TextType(){
 		//fontType=Typeface.DEFAULT;

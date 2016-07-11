@@ -4,13 +4,13 @@ import android.graphics.Bitmap;
 
 public class Node {
 
-	Node leftChild=null;//×ó×ÓÅ®£¬¶ş²æÊ÷
-	Node rightChild=null;//ÓÒĞÖµÜ£¬¶ş²æÊ÷
-	Node parent=null;//¸¸½áµã,¶à²æÊ÷½á¹¹ÖĞµÄ¸¸½áµã
-	String textValue=null;//½áµãÎÄ×Ö
-	int textLength=0;//½áµãÎÄ×Ö³¤¶È
-	TextType font;//½áµãÎÄ×ÖÀàĞÍ
-	Bitmap bmp;//½áµãÍ¼Æ¬
+	Node leftChild=null;//å·¦å­å¥³
+	Node rightChild=null;//å³å…„å¼Ÿ
+	Node parent=null;//çˆ¶ç»“ç‚¹ï¼Œå¤šå‰æ ‘
+	String textValue=null;//æ–‡æœ¬
+	int textLength=0;//æ–‡æœ¬é•¿åº¦
+	TextType font;//å­—ä½“ç±»å‹
+	Bitmap bmp;//å›¾ç‰‡
 	
 	public Node(){
 		leftChild=null;
@@ -41,7 +41,7 @@ public Bitmap getBmp() {
 		this.bmp = bmp;
 	}
 
-//ÉèÖÃ½áµãÎÄ±¾
+
 public void setTextValue(String text){
 	this.textValue=text;
 }

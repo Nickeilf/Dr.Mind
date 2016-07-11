@@ -9,19 +9,19 @@ import vo.paintInfoVo;
 
 public class paintblImpl implements paintService{
 
-	//´´½¨»­²¼
+	//æ–°å»ºç”»æ¿
 	public paintInfoVo createPaint(){
 		System.out.println("create");
 		return new paintInfoVo();
 	}
 	
-	//ĞÂ½¨½áµã
+	//æ’å…¥å­ç»“ç‚¹
 	public Node InsertNode(Node node){
 		Node inNode=new Node();
 		inNode.setParent(node);
 		if(node.getLeftChild()==null){
 			node.setLeftChild(inNode);
-		}//Èç¹û×ó×ÓÅ®Îª¿Õ£¬Ôò²åÈëÔÚ½áµãµÄ×ó×ÓÅ®
+		}//
 		else{
 			node=node.getLeftChild();
 			for(;;){
@@ -31,14 +31,14 @@ public class paintblImpl implements paintService{
             	   break;
                }
                node=node.getRightChild();
-			}//Èç¹û×ó×ÓÅ®´æÔÚ£¬½«Æä²åÈëÔÚ×ó×ÓÅ®µÄÓÒĞÖµÜµÄ×îºóÒ»¸ö
+			}
 			
 		}
 		
 		return inNode;
 	}
 	
-	//ÊäÈë½áµãÎÄ×Ö
+	//
 	public Node InputText(Node node,String text,TextType font){
 		node.setTextValue(text);
 		node.setTextLength(text.length());
@@ -46,7 +46,7 @@ public class paintblImpl implements paintService{
 		return node;
 	}
 	
-	//¼ÆËãµ±Ç°½áµãµÄ×Ó½áµã¸öÊı
+	//
 	public int countNode(Node node){
 		int num=0;
 		System.out.println("count");
@@ -67,18 +67,18 @@ public class paintblImpl implements paintService{
 		
 	}
 
-	//ÊäÈë½áµãÍ¼Æ¬
+	//
 	public Node InputImage(Node node, Bitmap bmp) {
 		// TODO Auto-generated method stub
 		node.setBmp(bmp);
 		return node;
 	}
 
-	//É¾³ı½áµãÖ®É¾³ı×ÔÉí¼°ÆäËùÓĞ×Ó½áµã
+	
 	public Boolean DeleteAllChild(Node node) {
 		// TODO Auto-generated method stub
-		node.setLeftChild(null);//É¾³ı×ó×ÓÅ®
-		//É¾³ıµ±Ç°½áµã
+		node.setLeftChild(null);//
+	
 		if(node.getParent()==null){
 			System.out.println("error in delete root node!");
 			return false;
@@ -97,7 +97,7 @@ public class paintblImpl implements paintService{
 		return true;
 	}
 
-	//É¾³ı½áµãÇÒºÏ²¢×Ó½áµã
+
 	public Boolean DeleteAndMerge(Node node) {
 		// TODO Auto-generated method stub
 		if(node.getLeftChild()==null){
@@ -123,7 +123,7 @@ public class paintblImpl implements paintService{
 			for(;;){
 				if(node.getRightChild()==null) break;
 				else {
-					node.setParent(parent);//¸Ä±ä×Ó½áµãµÄ¸¸Ä¸
+					node.setParent(parent);//æ”¹å˜å­ç»“ç‚¹çš„çˆ¶ç»“ç‚¹
 					node=node.getRightChild();
 				}
 			}
