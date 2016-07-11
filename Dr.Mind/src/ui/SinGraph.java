@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
+import android.view.ViewGroup;
 
 /*
  * @auther:Liu 
@@ -18,7 +19,9 @@ public class SinGraph extends View {
 
     private Paint paint;
     private int sum;
-    private int singleRec = 20;
+    private int singleRec = 20;//每相邻两个文本垂直方向上的距离
+    float x_start = 50;//起始像素点
+    float y_start = 200;
 
     public SinGraph(Context context) {
         super(context);
@@ -31,12 +34,19 @@ public class SinGraph extends View {
         this.sum = sum;
     }
 
+//    @Override
+//        protected void onLayout(boolean changed, int l, int t, int r, int b) {
+//
+//    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(Color.rgb(131, 175, 155));
         paint = new Paint();
         paint.setColor(Color.rgb(205, 243, 246));
+        paint.setStrokeWidth(2);
+        paint.setAntiAlias(true);
         setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mydraw(canvas);
     }
@@ -67,8 +77,6 @@ public class SinGraph extends View {
     private void mydraw(Canvas canvas) {
 
         int type = sum % 2;
-        float x_start = 50;//起始像素点
-        float y_start = 200;
 
         switch (type) {
             case 0:
