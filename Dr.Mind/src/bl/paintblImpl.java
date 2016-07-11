@@ -147,27 +147,20 @@ public class paintblImpl implements paintService {
 
 	// 前序遍历结点
 	public int Preorder(Node node, int n) {
-		if (node.getRightChild() == null) {
-			return 0;
-		}
-
-		if (node.getLeftChild() == null) {
+		if (node.getRightChild() == null && node.getLeftChild()==null) {
 			return 1;
 		}
-		n += Preorder(node.getLeftChild(), n);
-		n += Preorder(node.getRightChild(), n);
+
+		if(node.getLeftChild()!=null) {
+			n += Preorder(node.getLeftChild(), n);
+		}
+		if(node.getRightChild()!=null) {
+			n += Preorder(node.getRightChild(), n);
+		}
 		System.out.println("n=" + n);
 		return n;
 
-		// System.out.println("return="+n);
-		// if(node.getLeftChild()==null){
-		// return 1;
-		// }else{
-		// n+=Preorder(node.getLeftChild(), n);
-		// n+=Preorder(node.getRightChild(), n);
-		// }
-		// System.out.println("nn="+n);
-		// return n;
+
 
 	}
 
