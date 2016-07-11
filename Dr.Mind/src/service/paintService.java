@@ -9,18 +9,18 @@ public interface paintService {
     
 	 //paintInfoVo getPaintInfo(Node root);
 	 
-	 paintInfoVo createPaint();//新建画布
+	 paintInfoVo createPaint();//鏂板缓鐢绘澘
 	 
-	 Node InsertNode(Node node);//添加子结点
+	 Node InsertNode(Node node);//鎻掑叆缁撶偣
 	 
-	 Node InputText(Node node,String text,TextType font);//输入结点文字
+	 Node InputText(Node node,String text,TextType font);//杈撳叆缁撶偣鏂囧瓧
 	 
-	 int countNode(Node node);//统计当前结点下子结点个数
+	 int countNode(Node node);//璁＄畻褰撳墠缁撶偣涓嬪瓙缁撶偣涓暟锛屽鍙夋爲
 	 
-	 Node InputImage(Node node,Bitmap bmp);//输入结点图片
+	 Node InputImage(Node node,Bitmap bmp);//杈撳叆缁撶偣鍥剧墖
 	 
-	 Boolean DeleteAllChild(Node node);//删除结点之删除自身及其所有子结点
+	 Boolean DeleteAllChild(Node node);//鍒犻櫎鎵�鏈夊瓙缁撶偣
 	 
-	 Boolean DeleteAndMerge(Node node);//删除结点且合并子结点
+	 Boolean DeleteAndMerge(Node node);//鍒犻櫎褰掑苟
 	 	 	 
 }

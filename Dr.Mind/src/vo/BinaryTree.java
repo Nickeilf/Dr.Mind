@@ -4,16 +4,17 @@ import android.sax.RootElement;
 
 public class BinaryTree {
 
-	Node root;//¸ù½Úµã
+	Node root;//æ ¹ç»“ç‚¹
 	
 	public BinaryTree(){
 		root=new Node();
 	}
 	
-/*	//²åÈë×Ó½áµã
+
 	private void insert(Node node){
 			root.leftChild=node;
-	}*/
+	}
+	
 	
 	public Node getRoot(){
 		return root;
