@@ -15,7 +15,9 @@ public interface paintService {
 	 
 	 Node InputText(Node node,String text,TextType font);//输入结点文字
 	 
-	 int countNode(Node node);//计算当前结点下子结点个数，多叉树
+	 int countNode(Node node);//计算当前结点下子结点个数，多叉树，不要调用该方法，调用新的
+	 
+	 int numNode(Node node);//计算用于界面排版的子结点个数，多叉树，调用此方法
 	 
 	 Node InputImage(Node node,Bitmap bmp);//输入结点图片
 	 
