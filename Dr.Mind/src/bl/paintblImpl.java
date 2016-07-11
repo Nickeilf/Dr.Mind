@@ -139,7 +139,7 @@ public class paintblImpl implements paintService {
 			return 1;
 		else {
 			// int temp=countNode(node);
-			num = Preorder(node, 0);
+			num = Preorder(node.getLeftChild(), 0);
 			return num;
 		}
 
@@ -147,16 +147,17 @@ public class paintblImpl implements paintService {
 
 	// 前序遍历结点
 	public int Preorder(Node node, int n) {
-		if (node.getRightChild() == null && node.getLeftChild()==null) {
-			return 1;
-		}
 
-		if(node.getLeftChild()!=null) {
+		if  (node.getLeftChild() ==null) {
+			n++;
+		}else {
 			n += Preorder(node.getLeftChild(), n);
 		}
+
 		if(node.getRightChild()!=null) {
 			n += Preorder(node.getRightChild(), n);
 		}
+
 		System.out.println("n=" + n);
 		return n;
 
