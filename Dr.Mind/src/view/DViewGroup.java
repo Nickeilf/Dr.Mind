@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import ui.SinGraph;
+
 public class DViewGroup extends ViewGroup {
 
 	private float posX = this.getX();
@@ -34,6 +36,10 @@ public class DViewGroup extends ViewGroup {
 	 * 添加View的方法
 	 */
 	public void myAddView() {
+
+		SinGraph sin=new SinGraph(getContext(),6);
+		addView(sin);
+
 		TextView mIcon = new TextView(this.getContext());
 		mIcon.setText("a");
 		mIcon.setTextColor(Color.BLACK);

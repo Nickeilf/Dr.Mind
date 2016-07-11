@@ -11,14 +11,23 @@ import android.view.View;
  * @auther:Liu 
  * @date:2016.7.8
  * @description:绘制sin曲线部分，后接一段直线
+ * 重写View类的方法
  */
 
 public class SinGraph extends View {
 
 	private Paint paint;
+	private int sum;
 
 	public SinGraph(Context context) {
 		super(context);
+		this.sum=0;
+	}
+
+	//sum表示总分支数
+	public SinGraph(Context context,int sum){
+		super(context);
+		this.sum=sum;
 	}
 
 	@Override
@@ -31,7 +40,54 @@ public class SinGraph extends View {
 		mydraw(canvas);
 	}
 
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(),widthMeasureSpec),
+				getDefaultSize(getSuggestedMinimumHeight(),heightMeasureSpec));
+	}
+
+	public static int getDefaultSize(int size,int measureSpec){
+		int result=size;
+		int specMode=MeasureSpec.getMode(measureSpec);
+		int specSize=MeasureSpec.getSize(measureSpec);
+
+		switch (specMode){
+			case MeasureSpec.UNSPECIFIED:
+				result=size;
+				break;
+			case MeasureSpec.AT_MOST:
+			case MeasureSpec.EXACTLY:
+				result=specSize;
+				break;
+		}
+		return  result;
+	}
+
 	private void mydraw(Canvas canvas) {
+
+//		int type=sum%2;
+//		int T=180;//四分之一周期,角度制
+//		float x_start=100;//起始像素点
+//
+//		switch (type){
+//			case 0:
+//				System.out.println("case 0");
+//				for(int i=1;i<=sum;i++){
+//					float y_value;
+//					float Ai=(float)(Math.tan(i*Math.PI/4/(sum/2.0+1))*T/2.0);
+//					System.out.println("Ai="+Ai);
+//					for(int j=0;j<T;j++){
+//						y_value=(float)(Ai*Math.sin(Math.PI*T/180*Math.PI*j/180)+50);
+//						System.out.println("Math.sin(Math.PI*T/180*Math.PI*j/180)="+Math.sin(Math.PI*T/180*Math.PI*j/180));
+//						canvas.drawPoint(j, y_value, paint);
+//					}
+//				}
+//				break;
+//			case 1:
+//			default:break;
+//		}
+
+
 		int height = getHeight();
 		int width = getWidth();
 		float x = 0;

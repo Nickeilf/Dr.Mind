@@ -7,14 +7,16 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import cn.edu.cn.R;
+import ui.SinGraph;
 
 public class MindActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		init();
+//		setContentView(R.layout.main);
+		setContentView(new SinGraph(this,6));
+//		init();
 	}
 
 	/**
