@@ -15,7 +15,7 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.main);
-		setContentView(new SinGraph(this,6));
+		setContentView(new SinGraph(this,7));
 //		init();
 	}
 
