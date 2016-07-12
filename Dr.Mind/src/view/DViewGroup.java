@@ -15,6 +15,7 @@ import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,12 @@ public class DViewGroup extends ViewGroup {
 	private ScaleGestureDetector sGestureDetector;
 
 	private Paint paint;
+	private int x_start=0;
+	private int y_start=200;//绘图的起始坐标
+	private int y_bias=0;
+	int singleRec=20;
+
+
 	private float posX = this.getX();
 	private float posY = this.getY();
 	private float startX;
@@ -70,16 +77,8 @@ public class DViewGroup extends ViewGroup {
 	 * 添加View的方法
 	 */
 	public void myAddView() {
-
-		SinGraph sin = new SinGraph(this.getContext(), 6);
-		addView(sin);
-
-		TextView mIcon = new TextView(this.getContext());
-		mIcon.setText("a");
-		mIcon.setTextColor(Color.BLACK);
-		mIcon.setVisibility(VISIBLE);
-		mIcon.setGravity(Gravity.CENTER);
-		addView(mIcon);
+		EditText editText=new EditText(getContext());
+		addView(editText);
 	}
 
 	/*
@@ -120,10 +119,17 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		View a = getChildAt(0);
-		a.layout(0, 0, 500, 500);
-		// View ba = getChildAt(1);
-		// ba.layout(0, 0, 500, 500);
+		System.out.println("call back");
+		int viewCount=getChildCount();
+		System.out.println("count="+viewCount);
+//		View view=getChildAt(viewCount-1);
+//		view.layout(x_start+90,y_bias,x_start+190,y_bias+20);
+	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		measureChildren(widthMeasureSpec,heightMeasureSpec);
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
 	private class MyScaleGestureListener extends SimpleOnScaleGestureListener {
@@ -142,6 +148,73 @@ public class DViewGroup extends ViewGroup {
 		@Override
 		public void onScaleEnd(ScaleGestureDetector detector) {
 			Log.e("view-缩放", "onScaleEnd");
+		}
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		canvas.drawColor(Color.rgb(131, 175, 155));
+		paint = new Paint();
+		paint.setColor(Color.rgb(205, 243, 246));
+		paint.setStrokeWidth(2);
+		paint.setAntiAlias(true);
+		mydraw(canvas,7);
+	}
+
+	private void mydraw(Canvas canvas,int sum ) {
+
+		int type = sum % 2;
+
+		switch (type) {
+			case 0:
+				for (int i = 1; i <= sum; i++) {
+					float x_value = x_start;
+					float y_value = y_start;
+
+					for (int j = 0; j < 90; j++) {
+						x_value = x_value + 1;
+						float Ai;
+						if (i <= sum / 2) {
+							Ai = singleRec * i;
+							y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
+						} else {
+							Ai = singleRec * (i - sum / 2);
+							y_value = (float) (-Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start + Ai);
+						}
+						canvas.drawPoint(x_value, y_value, paint);
+					}
+					y_bias=(int)y_value;
+//					EditText editText=new EditText(getContext());
+//					addView(editText);
+					myAddView();
+				}
+				break;
+			case 1:
+				for (int i = 1; i <= sum; i++) {
+					float x_value = x_start;
+					float y_value = y_start;
+
+					for (int j = 0; j < 90; j++) {
+						x_value = x_value + 1;
+						float Ai;
+						if (i <= sum / 2) {
+							Ai = singleRec * i;
+							y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
+						} else if (i == (sum + 1) / 2) {
+							y_value = y_start;
+						} else {
+							Ai = singleRec * (i - (sum + 1) / 2);
+							y_value = (float) (-Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start + Ai);
+						}
+						canvas.drawPoint(x_value, y_value, paint);
+					}
+					y_bias=(int)y_value;
+//					EditText editText=new EditText(getContext());
+//					addView(editText);
+					myAddView();
+				}
+				break;
 		}
 	}
 }

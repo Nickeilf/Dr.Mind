@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 /**
  * @auther:Liu 
@@ -15,13 +16,13 @@ import android.view.ViewGroup;
  * 重写View类的方法
  */
 
-public class SinGraph extends View {
+public class SinGraph extends ViewGroup {
 
     private Paint paint;
     private int sum;
     private int singleRec = 20;//每相邻两个文本垂直方向上的距离
-    float x_start = 50;//起始像素点
-    float y_start = 200;
+    float x_start = 0;//起始像素点
+    float y_start = 50;
 
     public SinGraph(Context context) {
         super(context);
@@ -34,10 +35,10 @@ public class SinGraph extends View {
         this.sum = sum;
     }
 
-//    @Override
-//        protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//
-//    }
+    @Override
+        protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -51,11 +52,11 @@ public class SinGraph extends View {
         mydraw(canvas);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
-                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
-    }
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+//                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
+//    }
 
     public static int getDefaultSize(int size, int measureSpec) {
         int result = size;
