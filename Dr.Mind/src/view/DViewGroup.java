@@ -72,13 +72,14 @@ public class DViewGroup extends ViewGroup {
 		addView(editText);
 
 		SinGraph sin = new SinGraph(this.getContext());
+		sin.setSum(7);
 		addView(sin);
 
 		// TextView mIcon = new TextView(this.getContext());
 		// mIcon.setText("a");
 		// mIcon.setTextColor(Color.BLACK);
 		// mIcon.setVisibility(VISIBLE);
-		// mIcon.setGravity(Gravity.CENTER);
+		// mIcon.setGravity(Gravty.CENTER);
 		// mIcon.setOnTouchListener(new TextOnTouchListener());
 		// addView(mIcon);
 	}
@@ -121,23 +122,6 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		// // 循环所有子View
-		// for (int i = 0; i < getChildCount(); i++) {
-		// View child = getChildAt(i);
-		// // 取出当前子View长宽
-		// int width = child.getMeasuredWidth();
-		// int height = child.getMeasuredHeight();
-		//
-		// // 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
-		// int mLeft = (r - width) / 2;
-		// int mTop = (b - height) / 2;
-		//
-		// // 调用layout并传递计算过的参数为子view布局
-		// child.layout(mLeft, mTop, mLeft + width, mTop + height);
-		// System.out.println("hhhhhhhhhhhh");
-		// }
-		View ba = getChildAt(0);
-		ba.layout(0, 0, 500, 500);
 		View a = getChildAt(1);
 		a.layout(0, 0, 500, 500);
 	}

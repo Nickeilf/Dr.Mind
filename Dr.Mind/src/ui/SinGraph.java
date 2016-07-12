@@ -18,10 +18,12 @@ import android.view.ViewGroup;
 public class SinGraph extends View{
 
     private Paint paint;
+    private int sum;
     private int singleRec = 20;//每相邻两个文本垂直方向上的距离
 
     public SinGraph(Context context) {
         super(context);
+        sum=1;
     }
     
     @Override
@@ -32,10 +34,16 @@ public class SinGraph extends View{
         paint.setColor(Color.rgb(205, 243, 246));
         paint.setStrokeWidth(2);
         paint.setAntiAlias(true);
-        mydraw(canvas,8,0,200);
+        mydraw(canvas,300,200);
     }
 
-    private void mydraw(Canvas canvas,int sum,int x_start,int y_start) {
+    public void setSum(int s){
+        this.sum=s;
+        invalidate();
+    }
+
+
+    private void mydraw(Canvas canvas,int x_start,int y_start) {
         int type = sum % 2;
 
         switch (type) {
