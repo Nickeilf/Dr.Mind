@@ -150,12 +150,14 @@ public class paintblImpl implements paintService {
 
 		if  (node.getLeftChild() ==null) {
 			n++;
+			System.out.println("here"+n);
 		}else {
-			n += Preorder(node.getLeftChild(), n);
+			n = Preorder(node.getLeftChild(), n);
+			System.out.println("lala"+n);
 		}
 
 		if(node.getRightChild()!=null) {
-			n += Preorder(node.getRightChild(), n);
+			n = Preorder(node.getRightChild(), n);
 		}
 
 		System.out.println("n=" + n);
