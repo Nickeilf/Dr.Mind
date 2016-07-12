@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import cn.edu.cn.R;
 import ui.SinGraph;
+import util.Constant;
 import view.DViewGroup;
 
 public class MindActivity extends Activity {
@@ -16,6 +17,8 @@ public class MindActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// 全屏显示
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.main);
 		// setContentView(new SinGraph(this,6));
@@ -29,6 +32,9 @@ public class MindActivity extends Activity {
 		WindowManager wm = this.getWindowManager();
 		int width = wm.getDefaultDisplay().getWidth();
 		int height = wm.getDefaultDisplay().getHeight();
+		//设定常量
+		Constant.setScreenHeight(height);
+		Constant.setScreenWidth(width);
 		DViewGroup dView = (DViewGroup) findViewById(R.id.viewgroup);
 		LinearLayout.LayoutParams lay = (LayoutParams) findViewById(R.id.viewgroup).getLayoutParams();
 
