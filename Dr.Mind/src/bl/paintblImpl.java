@@ -34,8 +34,7 @@ public class paintblImpl implements paintService {
 			}
 
 		}
-
-		return node;//返回父结点
+		return node;// 返回父结点
 	}
 
 	//
@@ -46,7 +45,7 @@ public class paintblImpl implements paintService {
 		return node;
 	}
 
-	//统计儿子结点个数，不用于排版
+	// 统计儿子结点个数，不用于排版
 	public int countNode(Node node) {
 		int num = 0;
 		// System.out.println("count");
@@ -147,19 +146,19 @@ public class paintblImpl implements paintService {
 	// 前序遍历结点
 	public int Preorder(Node node, int n) {
 
-		if  (node.getLeftChild() ==null) {
+		if (node.getLeftChild() == null) {
 			n++;
-		//	System.out.println("here"+n);
-		}else {
+			// System.out.println("here"+n);
+		} else {
 			n = Preorder(node.getLeftChild(), n);
-	    //		System.out.println("lala"+n);
+			// System.out.println("lala"+n);
 		}
 
-		if(node.getRightChild()!=null) {
+		if (node.getRightChild() != null) {
 			n = Preorder(node.getRightChild(), n);
 		}
 
-		//System.out.println("n=" + n);
+		// System.out.println("n=" + n);
 		return n;
 
 	}

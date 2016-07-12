@@ -6,26 +6,43 @@ import java.util.List;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.GestureDetector.OnDoubleTapListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
+import bl.paintblImpl;
+import service.paintService;
+import view.DEditTextView;
 
 public class TextOnTouchListener implements OnTouchListener {
 	// 存储时间的数组
 	private GestureDetector mGesture;
+	private gestureListener gl;
+	private doubleTapListener dtl;
+	private paintService paintService;
 
 	public TextOnTouchListener() {
-		mGesture = new GestureDetector(new gestureListener());
-		mGesture.setOnDoubleTapListener(new doubleTapListener());
+		gl = new gestureListener();
+		dtl = new doubleTapListener();
+		mGesture = new GestureDetector(gl);
+		mGesture.setOnDoubleTapListener(dtl);
+		paintService = new paintblImpl();
 	}
 
 	public boolean onTouch(View v, MotionEvent event) {
+		gl.setV(v);
+		dtl.setV(v);
 		mGesture.onTouchEvent(event);
 		return true;
 	}
 
 	private class gestureListener implements GestureDetector.OnGestureListener {
+		private View v;
+
+		public void setV(View v) {
+			this.v = v;
+		}
 
 		public boolean onDown(MotionEvent e) {
 			Log.i("MyGesture", "onDown");
@@ -58,6 +75,11 @@ public class TextOnTouchListener implements OnTouchListener {
 
 	// OnDoubleTapListener监听
 	private class doubleTapListener implements GestureDetector.OnDoubleTapListener {
+		private View v;
+
+		public void setV(View v) {
+			this.v = v;
+		}
 
 		public boolean onSingleTapConfirmed(MotionEvent e) {
 			Log.i("MyGesture", "onSingleTapConfirmed");
@@ -67,6 +89,9 @@ public class TextOnTouchListener implements OnTouchListener {
 		public boolean onDoubleTap(MotionEvent e) {
 			Log.i("MyGesture", "onDoubleTap");
 			System.out.println("双击产生");
+			DEditTextView editText = (DEditTextView) v;
+			paintService.InsertNode(editText.getNode());
+			
 			return true;
 		}
 

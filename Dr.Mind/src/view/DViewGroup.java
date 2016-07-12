@@ -1,9 +1,6 @@
 package view;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -12,15 +9,17 @@ import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import ui.SinGraph;
+import bl.paintblImpl;
+import service.paintService;
+import util.TextOnTouchListener;
+import vo.BinaryTree;
+import vo.Node;
+import vo.paintInfoVo;
 
 public class DViewGroup extends ViewGroup {
+	private paintService paintService;
+	private paintInfoVo paintInfo;
 	private ScaleGestureDetector sGestureDetector;
-	private boolean changed = true;
-
-	private Paint paint;
-	private int y_bias = 0;
-	int singleRec = 20;
 
 	private float posX = this.getX();
 	private float posY = this.getY();
@@ -56,6 +55,10 @@ public class DViewGroup extends ViewGroup {
 
 	public DViewGroup(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		paintService = new paintblImpl();
+		paintInfo = paintService.createPaint();
+		init(paintInfo.getbTreeRoot());
+
 		myAddView();// Test
 		sGestureDetector = new ScaleGestureDetector(this.getContext(), new MyScaleGestureListener());
 	}
@@ -64,24 +67,19 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs, defStyle);
 	}
 
+	public void init(BinaryTree tree) {
+		Node root = tree.getRoot();
+	}
+
 	/**
 	 * 添加View的方法
 	 */
 	public void myAddView() {
-		EditText editText = new EditText(getContext());
+		DEditTextView editText = new DEditTextView(getContext());
+		editText.setNode(paintInfo.getbTreeRoot().getRoot());
+		editText.setOnTouchListener(new TextOnTouchListener());
 		addView(editText);
 
-		SinGraph sin = new SinGraph(this.getContext());
-		sin.setSum(7);
-		addView(sin);
-
-		// TextView mIcon = new TextView(this.getContext());
-		// mIcon.setText("a");
-		// mIcon.setTextColor(Color.BLACK);
-		// mIcon.setVisibility(VISIBLE);
-		// mIcon.setGravity(Gravty.CENTER);
-		// mIcon.setOnTouchListener(new TextOnTouchListener());
-		// addView(mIcon);
 	}
 
 	/*
@@ -122,7 +120,7 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		View a = getChildAt(1);
+		View a = getChildAt(0);
 		a.layout(0, 0, 500, 500);
 	}
 
