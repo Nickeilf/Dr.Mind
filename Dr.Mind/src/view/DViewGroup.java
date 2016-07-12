@@ -1,12 +1,9 @@
 package view;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -16,7 +13,6 @@ import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import ui.SinGraph;
@@ -26,8 +22,6 @@ public class DViewGroup extends ViewGroup {
 	private ScaleGestureDetector sGestureDetector;
 
 	private Paint paint;
-	private int x_start = 0;
-	private int y_start = 200;// 绘图的起始坐标
 	private int y_bias = 0;
 	int singleRec = 20;
 
@@ -130,20 +124,20 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		// 循环所有子View
-		for (int i = 0; i < getChildCount(); i++) {
-			View child = getChildAt(i);
-			// 取出当前子View长宽
-			int width = child.getMeasuredWidth();
-			int height = child.getMeasuredHeight();
-
-			// 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
-			int mLeft = (r - width) / 2;
-			int mTop = (b - height) / 2;
-
-			// 调用layout并传递计算过的参数为子view布局
-			child.layout(mLeft, mTop, mLeft + width, mTop + height);
-		}
+//		// 循环所有子View
+//		for (int i = 0; i < getChildCount(); i++) {
+//			View child = getChildAt(i);
+//			// 取出当前子View长宽
+//			int width = child.getMeasuredWidth();
+//			int height = child.getMeasuredHeight();
+//
+//			// 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
+//			int mLeft = (r - width) / 2;
+//			int mTop = (b - height) / 2;
+//
+//			// 调用layout并传递计算过的参数为子view布局
+//			child.layout(mLeft, mTop, mLeft + width, mTop + height);
+//		}
 	}
 
 	@Override
@@ -180,10 +174,12 @@ public class DViewGroup extends ViewGroup {
 		paint.setColor(Color.rgb(205, 243, 246));
 		paint.setStrokeWidth(2);
 		paint.setAntiAlias(true);
-		mydraw(canvas, 7);
+		mydraw(canvas, 7, 0, 200);
+		invalidate();
+		System.out.println("here!");
 	}
 
-	private void mydraw(Canvas canvas, int sum) {
+	private void mydraw(Canvas canvas, int sum,int x_start,int y_start) {
 
 		int type = sum % 2;
 
@@ -197,6 +193,9 @@ public class DViewGroup extends ViewGroup {
 					x_value = x_value + 1;
 					float Ai;
 					if (i <= sum / 2) {
+						if (i==1) i=1;
+						if (i==2) i=2;
+						if (i==3) i=1;
 						Ai = singleRec * i;
 						y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
 					} else {
@@ -220,6 +219,9 @@ public class DViewGroup extends ViewGroup {
 					x_value = x_value + 1;
 					float Ai;
 					if (i <= sum / 2) {
+						if (i==1) i=1;
+						if (i==2) i=2;
+						if (i==3) i=1;
 						Ai = singleRec * i;
 						y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
 					} else if (i == (sum + 1) / 2) {
