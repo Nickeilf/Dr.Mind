@@ -20,6 +20,7 @@ import util.TextOnTouchListener;
 
 public class DViewGroup extends ViewGroup {
 	private ScaleGestureDetector sGestureDetector;
+	private boolean changed = true;
 
 	private Paint paint;
 	private int y_bias = 0;
@@ -74,16 +75,16 @@ public class DViewGroup extends ViewGroup {
 		EditText editText = new EditText(getContext());
 		addView(editText);
 
-		SinGraph sin = new SinGraph(this.getContext(), 6);
-		addView(sin);
+		// SinGraph sin = new SinGraph(this.getContext(), 6);
+		// addView(sin);
 
-		TextView mIcon = new TextView(this.getContext());
-		mIcon.setText("a");
-		mIcon.setTextColor(Color.BLACK);
-		mIcon.setVisibility(VISIBLE);
-		mIcon.setGravity(Gravity.CENTER);
-		mIcon.setOnTouchListener(new TextOnTouchListener());
-		addView(mIcon);
+		// TextView mIcon = new TextView(this.getContext());
+		// mIcon.setText("a");
+		// mIcon.setTextColor(Color.BLACK);
+		// mIcon.setVisibility(VISIBLE);
+		// mIcon.setGravity(Gravity.CENTER);
+		// mIcon.setOnTouchListener(new TextOnTouchListener());
+		// addView(mIcon);
 	}
 
 	/*
@@ -124,20 +125,21 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//		// 循环所有子View
-//		for (int i = 0; i < getChildCount(); i++) {
-//			View child = getChildAt(i);
-//			// 取出当前子View长宽
-//			int width = child.getMeasuredWidth();
-//			int height = child.getMeasuredHeight();
-//
-//			// 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
-//			int mLeft = (r - width) / 2;
-//			int mTop = (b - height) / 2;
-//
-//			// 调用layout并传递计算过的参数为子view布局
-//			child.layout(mLeft, mTop, mLeft + width, mTop + height);
-//		}
+		// 循环所有子View
+		for (int i = 0; i < getChildCount(); i++) {
+			View child = getChildAt(i);
+			// 取出当前子View长宽
+			int width = child.getMeasuredWidth();
+			int height = child.getMeasuredHeight();
+
+			// 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
+			int mLeft = (r - width) / 2;
+			int mTop = (b - height) / 2;
+
+			// 调用layout并传递计算过的参数为子view布局
+			child.layout(mLeft, mTop, mLeft + width, mTop + height);
+			System.out.println("hhhhhhhhhhhh");
+		}
 	}
 
 	@Override
@@ -150,7 +152,7 @@ public class DViewGroup extends ViewGroup {
 		@Override
 		public boolean onScale(ScaleGestureDetector detector) {
 			Log.e("view-缩放", "onScale，" + detector.getScaleFactor());
-			//缩放待实现，已检测到
+			// 缩放待实现，已检测到
 			return super.onScale(detector);
 		}
 
@@ -169,17 +171,21 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		canvas.drawColor(Color.rgb(131, 175, 155));
-		paint = new Paint();
-		paint.setColor(Color.rgb(205, 243, 246));
-		paint.setStrokeWidth(2);
-		paint.setAntiAlias(true);
-		mydraw(canvas, 7, 0, 200);
-		invalidate();
-		System.out.println("here!");
+		if (changed) {
+			canvas.drawColor(Color.rgb(131, 175, 155));
+			paint = new Paint();
+			paint.setColor(Color.rgb(205, 243, 246));
+			paint.setStrokeWidth(2);
+			paint.setAntiAlias(true);
+			canvas.drawLine(0, 0, 500, 500, paint);
+//			mydraw(canvas, 7, 0, 200);
+			System.out.println("here!");
+//			changed = false;
+		}
+		myAddView();
 	}
 
-	private void mydraw(Canvas canvas, int sum,int x_start,int y_start) {
+	private void mydraw(Canvas canvas, int sum, int x_start, int y_start) {
 
 		int type = sum % 2;
 
@@ -193,10 +199,14 @@ public class DViewGroup extends ViewGroup {
 					x_value = x_value + 1;
 					float Ai;
 					if (i <= sum / 2) {
-						if (i==1) i=1;
-						if (i==2) i=2;
-						if (i==3) i=1;
-						Ai = singleRec * i;
+						int weight = 0;
+						if (i == 1)
+							weight = 1;
+						if (i == 2)
+							weight = 2;
+						if (i == 3)
+							weight = 5;
+						Ai = singleRec * weight;
 						y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
 					} else {
 						Ai = singleRec * (i - sum / 2);
@@ -219,10 +229,14 @@ public class DViewGroup extends ViewGroup {
 					x_value = x_value + 1;
 					float Ai;
 					if (i <= sum / 2) {
-						if (i==1) i=1;
-						if (i==2) i=2;
-						if (i==3) i=1;
-						Ai = singleRec * i;
+						int weight = 0;
+						if (i == 1)
+							weight = 1;
+						if (i == 2)
+							weight = 2;
+						if (i == 3)
+							weight = 5;
+						Ai = singleRec * weight;
 						y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
 					} else if (i == (sum + 1) / 2) {
 						y_value = y_start;
