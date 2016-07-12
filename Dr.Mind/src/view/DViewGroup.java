@@ -121,24 +121,24 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//		// 循环所有子View
-//		for (int i = 0; i < getChildCount(); i++) {
-//			View child = getChildAt(i);
-//			// 取出当前子View长宽
-//			int width = child.getMeasuredWidth();
-//			int height = child.getMeasuredHeight();
-//
-//			// 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
-//			int mLeft = (r - width) / 2;
-//			int mTop = (b - height) / 2;
-//
-//			// 调用layout并传递计算过的参数为子view布局
-//			child.layout(mLeft, mTop, mLeft + width, mTop + height);
-//			System.out.println("hhhhhhhhhhhh");
-//		}
-		View ba=getChildAt(0);
+		// // 循环所有子View
+		// for (int i = 0; i < getChildCount(); i++) {
+		// View child = getChildAt(i);
+		// // 取出当前子View长宽
+		// int width = child.getMeasuredWidth();
+		// int height = child.getMeasuredHeight();
+		//
+		// // 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
+		// int mLeft = (r - width) / 2;
+		// int mTop = (b - height) / 2;
+		//
+		// // 调用layout并传递计算过的参数为子view布局
+		// child.layout(mLeft, mTop, mLeft + width, mTop + height);
+		// System.out.println("hhhhhhhhhhhh");
+		// }
+		View ba = getChildAt(0);
 		ba.layout(0, 0, 500, 500);
-		View a= getChildAt(1);
+		View a = getChildAt(1);
 		a.layout(0, 0, 500, 500);
 	}
 
@@ -165,87 +165,6 @@ public class DViewGroup extends ViewGroup {
 		@Override
 		public void onScaleEnd(ScaleGestureDetector detector) {
 			Log.e("view-缩放", "onScaleEnd");
-		}
-	}
-
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		canvas.drawColor(Color.rgb(131, 175, 155));
-		paint = new Paint();
-		paint.setColor(Color.rgb(205, 243, 246));
-		paint.setStrokeWidth(2);
-		paint.setAntiAlias(true);
-		canvas.drawLine(0, 0, 500, 500, paint);
-	}
-
-	private void mydraw(Canvas canvas, int sum, int x_start, int y_start) {
-
-		int type = sum % 2;
-
-		switch (type) {
-		case 0:
-			for (int i = 1; i <= sum; i++) {
-				float x_value = x_start;
-				float y_value = y_start;
-
-				for (int j = 0; j < 90; j++) {
-					x_value = x_value + 1;
-					float Ai;
-					if (i <= sum / 2) {
-						int weight = 0;
-						if (i == 1)
-							weight = 1;
-						if (i == 2)
-							weight = 2;
-						if (i == 3)
-							weight = 5;
-						Ai = singleRec * weight;
-						y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
-					} else {
-						Ai = singleRec * (i - sum / 2);
-						y_value = (float) (-Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start + Ai);
-					}
-					canvas.drawPoint(x_value, y_value, paint);
-				}
-				y_bias = (int) y_value;
-				// EditText editText=new EditText(getContext());
-				// addView(editText);
-				myAddView();
-			}
-			break;
-		case 1:
-			for (int i = 1; i <= sum; i++) {
-				float x_value = x_start;
-				float y_value = y_start;
-
-				for (int j = 0; j < 90; j++) {
-					x_value = x_value + 1;
-					float Ai;
-					if (i <= sum / 2) {
-						int weight = 0;
-						if (i == 1)
-							weight = 1;
-						if (i == 2)
-							weight = 2;
-						if (i == 3)
-							weight = 5;
-						Ai = singleRec * weight;
-						y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
-					} else if (i == (sum + 1) / 2) {
-						y_value = y_start;
-					} else {
-						Ai = singleRec * (i - (sum + 1) / 2);
-						y_value = (float) (-Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start + Ai);
-					}
-					canvas.drawPoint(x_value, y_value, paint);
-				}
-				y_bias = (int) y_value;
-				// EditText editText=new EditText(getContext());
-				// addView(editText);
-				myAddView();
-			}
-			break;
 		}
 	}
 }
