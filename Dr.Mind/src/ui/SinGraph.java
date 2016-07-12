@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
  * 重写View类的方法
  */
 
-public class SinGraph extends ViewGroup {
+public class SinGraph extends View{
 
     private Paint paint;
     private int singleRec = 20;//每相邻两个文本垂直方向上的距离
@@ -22,13 +23,7 @@ public class SinGraph extends ViewGroup {
     public SinGraph(Context context) {
         super(context);
     }
-
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
-    }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

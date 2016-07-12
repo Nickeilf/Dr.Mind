@@ -21,7 +21,6 @@ public class MindActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.main);
-		// setContentView(new SinGraph(this,6));
 		init();
 	}
 
