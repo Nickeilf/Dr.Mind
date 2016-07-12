@@ -119,11 +119,20 @@ public class DViewGroup extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		System.out.println("call back");
-		int viewCount=getChildCount();
-		System.out.println("count="+viewCount);
-//		View view=getChildAt(viewCount-1);
-//		view.layout(x_start+90,y_bias,x_start+190,y_bias+20);
+		// 循环所有子View
+		for (int i=0; i<getChildCount(); i++) {
+			View child = getChildAt(i);
+			// 取出当前子View长宽
+			int width = child.getMeasuredWidth();
+			int height = child.getMeasuredHeight();
+
+			// 计算当前的mLeft和mTop值（r,b为传递进来的父View的mRight和mBottom值）
+			int mLeft = (r - width) / 2;
+			int mTop = (b - height) / 2;
+
+			// 调用layout并传递计算过的参数为子view布局
+			child.layout(mLeft, mTop, mLeft + width, mTop + height);
+		}
 	}
 
 	@Override
