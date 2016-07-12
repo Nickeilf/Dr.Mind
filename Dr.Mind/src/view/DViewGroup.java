@@ -6,17 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import ui.SinGraph;
-import util.TextOnTouchListener;
 
 public class DViewGroup extends ViewGroup {
 	private ScaleGestureDetector sGestureDetector;
@@ -171,18 +166,12 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		if (changed) {
-			canvas.drawColor(Color.rgb(131, 175, 155));
-			paint = new Paint();
-			paint.setColor(Color.rgb(205, 243, 246));
-			paint.setStrokeWidth(2);
-			paint.setAntiAlias(true);
-			canvas.drawLine(0, 0, 500, 500, paint);
-//			mydraw(canvas, 7, 0, 200);
-			System.out.println("here!");
-//			changed = false;
-		}
-		myAddView();
+		canvas.drawColor(Color.rgb(131, 175, 155));
+		paint = new Paint();
+		paint.setColor(Color.rgb(205, 243, 246));
+		paint.setStrokeWidth(2);
+		paint.setAntiAlias(true);
+		canvas.drawLine(0, 0, 500, 500, paint);
 	}
 
 	private void mydraw(Canvas canvas, int sum, int x_start, int y_start) {

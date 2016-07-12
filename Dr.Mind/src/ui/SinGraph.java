@@ -5,9 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 /**
  * @auther:Liu 
@@ -19,24 +17,15 @@ import android.widget.EditText;
 public class SinGraph extends ViewGroup {
 
     private Paint paint;
-    private int sum;
     private int singleRec = 20;//每相邻两个文本垂直方向上的距离
-    float x_start = 0;//起始像素点
-    float y_start = 50;
 
     public SinGraph(Context context) {
         super(context);
-        this.sum = 0;
     }
 
-    //sum表示总分支数
-    public SinGraph(Context context, int sum) {
-        super(context);
-        this.sum = sum;
-    }
 
     @Override
-        protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
     }
 
@@ -48,35 +37,10 @@ public class SinGraph extends ViewGroup {
         paint.setColor(Color.rgb(205, 243, 246));
         paint.setStrokeWidth(2);
         paint.setAntiAlias(true);
-        setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mydraw(canvas);
+        mydraw(canvas,8,0,200);
     }
 
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
-//                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
-//    }
-
-    public static int getDefaultSize(int size, int measureSpec) {
-        int result = size;
-        int specMode = MeasureSpec.getMode(measureSpec);
-        int specSize = MeasureSpec.getSize(measureSpec);
-
-        switch (specMode) {
-            case MeasureSpec.UNSPECIFIED:
-                result = size;
-                break;
-            case MeasureSpec.AT_MOST:
-            case MeasureSpec.EXACTLY:
-                result = specSize;
-                break;
-        }
-        return result;
-    }
-
-    private void mydraw(Canvas canvas) {
-
+    private void mydraw(Canvas canvas,int sum,int x_start,int y_start) {
         int type = sum % 2;
 
         switch (type) {
@@ -89,7 +53,14 @@ public class SinGraph extends ViewGroup {
                         x_value = x_value + 1;
                         float Ai;
                         if (i <= sum / 2) {
-                            Ai = singleRec * i;
+                            int weight = 0;
+                            if (i == 1)
+                                weight = 1;
+                            if (i == 2)
+                                weight = 2;
+                            if (i == 3)
+                                weight = 5;
+                            Ai = singleRec * weight;
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
                         } else {
                             Ai = singleRec * (i - sum / 2);
@@ -108,7 +79,14 @@ public class SinGraph extends ViewGroup {
                         x_value = x_value + 1;
                         float Ai;
                         if (i <= sum / 2) {
-                            Ai = singleRec * i;
+                            int weight = 0;
+                            if (i == 1)
+                                weight = 1;
+                            if (i == 2)
+                                weight = 2;
+                            if (i == 3)
+                                weight = 5;
+                            Ai = singleRec * weight;
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
                         } else if (i == (sum + 1) / 2) {
                             y_value = y_start;
