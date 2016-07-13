@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @auther:Liu 
  * @date:2016.7.8
- * @description:绘制sin曲线部分，后接一段直线
+ * @description:绘制sin曲线部分
  * 重写View类的方法
  */
 

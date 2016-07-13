@@ -9,11 +9,12 @@ import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import bl.paintblImpl;
 import service.paintService;
 import ui.SinGraph;
 import util.TextOnTouchListener;
-import vo.BinaryTree;
 import vo.Node;
 import vo.paintInfoVo;
 
@@ -84,10 +85,16 @@ public class DViewGroup extends ViewGroup {
 		editText.setOnTouchListener(new TextOnTouchListener());
 		addView(editText);
 
-//		SinGraph sin = new SinGraph(getContext());
-//		sin.setSum(7);
-//		addView(sin);
-
+		ArrayList<Integer> listOfWeight=new ArrayList<>();
+		listOfWeight.add(1);
+		listOfWeight.add(2);
+		listOfWeight.add(3);
+		listOfWeight.add(4);
+		listOfWeight.add(5);
+		listOfWeight.add(6);
+		listOfWeight.add(7);
+		SinGraph sin = new SinGraph(getContext(),listOfWeight,300,300);
+		addView(sin);
 	}
 
 	/*
