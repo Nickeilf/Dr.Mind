@@ -8,6 +8,7 @@ package util;
 public class Constant {
 	private static int screenWidth;
 	private static int screenHeight;
+	private static int singleRec;
 
 	public static int getScreenWidth() {
 		return screenWidth;
@@ -24,5 +25,10 @@ public class Constant {
 	public static void setScreenHeight(int height) {
 		screenHeight = height;
 	}
+
+	public static int getSingleRec(){
+		return screenWidth/15;
+	}
+
 
 }

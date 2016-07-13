@@ -9,6 +9,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.Constant;
+
 /**
  * @auther:Liu 
  * @date:2016.7.8
@@ -20,7 +22,7 @@ public class SinGraph extends View{
 
     private Paint paint;
     private int sum;
-    private int singleRec = 20;//每相邻两个文本垂直方向上的距离
+    private int singleRec = Constant.getSingleRec();//每相邻两个文本垂直方向上的距离
     private int x_start;
     private int y_start;
     private List<Integer> weightList;
@@ -71,6 +73,10 @@ public class SinGraph extends View{
         }
         height*=singleRec;
         return height;
+    }
+
+    public int getSinWeight(){
+        return 200;
     }
 
 
