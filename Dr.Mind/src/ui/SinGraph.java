@@ -4,9 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * @auther:Liu 

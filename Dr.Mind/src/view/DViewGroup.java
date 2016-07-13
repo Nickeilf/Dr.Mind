@@ -8,7 +8,7 @@ import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+
 import bl.paintblImpl;
 import service.paintService;
 import util.TextOnTouchListener;
