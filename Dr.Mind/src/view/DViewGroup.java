@@ -121,7 +121,7 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		View a = getChildAt(0);
-		a.layout(0, 0, 500, 500);
+		a.layout(0, 0, 200, 60);
 	}
 
 	@Override
