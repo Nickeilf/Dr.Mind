@@ -57,7 +57,7 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-		init(paintInfo.getbTreeRoot());
+		refresh();
 
 		myAddView();// Test
 		sGestureDetector = new ScaleGestureDetector(this.getContext(), new MyScaleGestureListener());
@@ -67,8 +67,11 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs, defStyle);
 	}
 
-	public void init(BinaryTree tree) {
-		Node root = tree.getRoot();
+	public void refresh() {
+		Node root = paintInfo.getbTreeRoot().getRoot();
+		System.out.println("s刷新重新建图");
+
+		// 根据树形结构画图
 	}
 
 	/**
@@ -121,7 +124,10 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		View a = getChildAt(0);
-		a.layout(0, 0, 500, 500);
+		System.out.println(a.getMeasuredHeight());
+		int s_x = 3 * screenWidth / 2 - a.getMeasuredWidth() / 2;
+		int s_y = 3 * screenHeight / 2 - a.getMeasuredHeight() / 2;
+		a.layout(s_x, s_y, s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight());
 	}
 
 	@Override
