@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import bl.paintblImpl;
 import service.paintService;
@@ -72,8 +73,23 @@ public class DViewGroup extends ViewGroup {
 	public void refresh() {
 		Node root = paintInfo.getbTreeRoot().getRoot();
 		System.out.println("s刷新重新建图");
-
 		// 根据树形结构画图
+		drawTree(root);
+
+	}
+
+	private void drawTree(Node node) {
+		// 如果没有儿子就结束
+		if (node.getLeftChild() == null) {
+			return;
+		} else {
+			Node p = node.getLeftChild();
+			List<Node> nodeList = new ArrayList<Node>();
+			while (p.getRightChild() != null) {
+				nodeList.add(p);
+				p = p.getRightChild();
+			}
+		}
 	}
 
 	/**
@@ -93,7 +109,7 @@ public class DViewGroup extends ViewGroup {
 		listOfWeight.add(5);
 		listOfWeight.add(6);
 		listOfWeight.add(7);
-		SinGraph sin = new SinGraph(getContext(), listOfWeight, 300, 300);
+		SinGraph sin = new SinGraph(getContext(), listOfWeight, 0, 200);
 		addView(sin);
 	}
 
