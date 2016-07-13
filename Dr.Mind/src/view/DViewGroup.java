@@ -85,7 +85,7 @@ public class DViewGroup extends ViewGroup {
 		editText.setOnTouchListener(new TextOnTouchListener());
 		addView(editText);
 
-		ArrayList<Integer> listOfWeight=new ArrayList<>();
+		ArrayList<Integer> listOfWeight = new ArrayList<Integer>();
 		listOfWeight.add(1);
 		listOfWeight.add(2);
 		listOfWeight.add(3);
@@ -93,7 +93,7 @@ public class DViewGroup extends ViewGroup {
 		listOfWeight.add(5);
 		listOfWeight.add(6);
 		listOfWeight.add(7);
-		SinGraph sin = new SinGraph(getContext(),listOfWeight,300,300);
+		SinGraph sin = new SinGraph(getContext(), listOfWeight, 300, 300);
 		addView(sin);
 	}
 
@@ -139,9 +139,12 @@ public class DViewGroup extends ViewGroup {
 		int s_x = 3 * screenWidth / 2 - a.getMeasuredWidth() / 2;
 		int s_y = 3 * screenHeight / 2 - a.getMeasuredHeight() / 2;
 		a.layout(s_x, s_y, s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight());
-		View sin=getChildAt(1);
-		int w=sin.getMeasuredWidth();
-		System.out.println(w);
+		SinGraph sin = (SinGraph) getChildAt(1);
+
+		int sin_height = sin.getSinHeight();
+		int sin_width = 200;
+		sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() / 2 - sin_height / 2,
+				s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() / 2 + sin_height / 2);
 	}
 
 	@Override
