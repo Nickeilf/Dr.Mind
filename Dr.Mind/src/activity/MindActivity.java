@@ -2,13 +2,11 @@ package activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+
 import cn.edu.cn.R;
-import ui.SinGraph;
 import util.Constant;
 import view.DViewGroup;
 
