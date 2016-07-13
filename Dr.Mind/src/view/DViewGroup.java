@@ -84,9 +84,9 @@ public class DViewGroup extends ViewGroup {
 		editText.setOnTouchListener(new TextOnTouchListener());
 		addView(editText);
 
-		SinGraph sin = new SinGraph(getContext());
-		sin.setSum(7);
-		addView(sin);
+//		SinGraph sin = new SinGraph(getContext());
+//		sin.setSum(7);
+//		addView(sin);
 
 	}
 
