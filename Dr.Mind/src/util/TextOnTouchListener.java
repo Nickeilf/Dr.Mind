@@ -14,6 +14,7 @@ import android.widget.Toast;
 import bl.paintblImpl;
 import service.paintService;
 import view.DEditTextView;
+import view.DViewGroup;
 
 public class TextOnTouchListener implements OnTouchListener {
 	// 存储时间的数组
@@ -91,7 +92,8 @@ public class TextOnTouchListener implements OnTouchListener {
 			System.out.println("双击产生");
 			DEditTextView editText = (DEditTextView) v;
 			paintService.InsertNode(editText.getNode());
-			
+			DViewGroup parent = (DViewGroup) editText.getParent();
+			parent.refresh();
 			return true;
 		}
 

@@ -37,7 +37,6 @@ public class MindActivity extends Activity {
 		DViewGroup dView = (DViewGroup) findViewById(R.id.viewgroup);
 		LinearLayout.LayoutParams lay = (LayoutParams) findViewById(R.id.viewgroup).getLayoutParams();
 
-		System.out.println(width * 3 + " " + height * 3);
 		lay.height = 3 * height;
 		lay.width = 3 * width;
 
