@@ -112,21 +112,34 @@ public class SinGraph extends View{
                     float x_value = x_start;
                     float y_value = y_start;
 
-                    Integer weight =i;
+                    float Ai=0;
+                    float weight=0;
+                    if(i<sum/2){
+                        for (int k=i;k<sum/2;k++){
+                            weight+=weightList.get(k);
+                        }
+                        weight+=weightList.get(sum/2)/2;
+                        Ai = singleRec * weight;
+                    }else if(i==(sum-1)/2){
+
+                    }else{
+                        for (int k=sum/2;k<i;k++){
+                            weight+=weightList.get(k);
+                        }
+                        weight-=weightList.get(sum/2)/2;
+                        Ai = singleRec * weight;
+                    }
+                    System.out.println("singleRec="+singleRec);
+                    System.out.println("i="+i);
+                    System.out.println("weight="+weight);
+                    System.out.println("Ai="+Ai);
+
                     for (int j = 0; j < 180; j++) {
-                        float Ai;
-                        if (i <= sum / 2) {
-//                            int weight=0;
-//                            for (int k=i;k<sum/2;k++){
-//                                   weight+=weightList.get(k);
-//                            }
-//                            weight+=weightList.get(sum/2);
-                            Ai = singleRec * weight;
+                        if (i < sum / 2) {
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
-                        } else if (i == (sum + 1) / 2) {
+                        } else if (i == (sum - 1) / 2) {
                             y_value = y_start;
                         } else {
-                            Ai = singleRec * (i - (sum + 1) / 2);
                             y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
                         }
                         x_value = x_value + 1;

@@ -104,12 +104,10 @@ public class DViewGroup extends ViewGroup {
 
 		ArrayList<Integer> listOfWeight = new ArrayList<Integer>();
 		listOfWeight.add(1);
+		listOfWeight.add(1);
+		listOfWeight.add(1);
 		listOfWeight.add(2);
-		listOfWeight.add(3);
-		listOfWeight.add(4);
-		listOfWeight.add(5);
-		listOfWeight.add(6);
-		listOfWeight.add(7);
+		listOfWeight.add(1);
 		SinGraph sin = new SinGraph(getContext(), listOfWeight,new MyPoint(0,200));
 		addView(sin);
 	}
