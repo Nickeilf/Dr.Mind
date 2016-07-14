@@ -47,7 +47,7 @@ public class TextOnTouchListener implements OnTouchListener {
 
 		public boolean onDown(MotionEvent e) {
 			Log.i("MyGesture", "onDown");
-			return false;
+			return true;
 		}
 
 		public void onShowPress(MotionEvent e) {

@@ -26,6 +26,7 @@ public class DViewGroup extends ViewGroup {
 	private paintService paintService;
 	private paintInfoVo paintInfo;
 	private ScaleGestureDetector sGestureDetector;
+	private boolean first;
 
 	private float posX = this.getX();
 	private float posY = this.getY();
@@ -63,6 +64,7 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
+		first = true;
 		// refresh();
 
 		myAddView();// Test
@@ -76,13 +78,9 @@ public class DViewGroup extends ViewGroup {
 	public void refresh() {
 		Node root = paintInfo.getbTreeRoot().getRoot();
 
-		System.out.println("s刷新重新建图");
 		// 根据树形结构画图
-		for (int i = 1; i < getChildCount(); i++) {
-			View v = getChildAt(i);
-			removeViews(1, getChildCount() - 1);
-			System.out.println("删除节点" + i);
-		}
+		removeViews(1, getChildCount() - 1);
+		System.out.println("s刷新重新建图");
 
 		DEditTextView editText = (DEditTextView) getChildAt(0);
 		drawTree(editText, editText.getRight(), editText.getBottom() - editText.getMeasuredHeight() / 2);
@@ -102,15 +100,14 @@ public class DViewGroup extends ViewGroup {
 		Node node = view.getNode();
 		if (node.getLeftChild() == null) {
 			System.out.println("没有儿砸");
-			return;
 		} else {
 			Node p = node.getLeftChild();
 			// 找出一层所有子节点
 			List<Node> nodeList = new ArrayList<Node>();
 			nodeList.add(p);
 			while (p.getRightChild() != null) {
-				nodeList.add(p);
 				p = p.getRightChild();
+				nodeList.add(p);
 			}
 			List<Integer> weight = new ArrayList<Integer>();
 			for (Node nod : nodeList) {
@@ -125,7 +122,7 @@ public class DViewGroup extends ViewGroup {
 			// 添加一组DEditText
 			// TODO Node内容
 			List<MyPoint> points = sin.getPointList();
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa" + points.size());
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa" + nodeList.size());
 			for (int i = 0; i < nodeList.size(); i++) {
 				DEditTextView text = new DEditTextView(getContext());
 				MyPoint point = points.get(i);
@@ -205,8 +202,10 @@ public class DViewGroup extends ViewGroup {
 		a.setxPos(s_x);
 		a.setyPos(s_y);
 		a.layout(s_x, s_y, s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight());
-		refresh();
-
+		if (first) {
+			refresh();
+			first = false;
+		}
 		// int sin_height = sin.getSinHeight();
 		// int sin_width = sin.getSinWeight();
 		// sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
