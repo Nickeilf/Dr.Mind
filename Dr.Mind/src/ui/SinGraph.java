@@ -22,7 +22,6 @@ public class SinGraph extends View{
 
     private Paint paint;
     private int sum;
-    private int singleRec = Constant.getSingleRec();//每相邻两个文本垂直方向上的距离
     private int x_start;
     private int y_start;
     private List<Integer> weightList;
@@ -45,6 +44,7 @@ public class SinGraph extends View{
         pointList=new ArrayList<MyPoint>(sum);
         x_start=0;
         y_start=this.getSinHeight()/2;
+
     }
     
     @Override
@@ -69,11 +69,9 @@ public class SinGraph extends View{
         int height=0;
         for(int i=0;i<weightList.size();i++){
             height+=weightList.get(i);
-            System.out.println("height="+height);
         }
         height--;
-        height*=singleRec;
-        System.out.println("singleRec="+singleRec);
+        height*=Constant.getScreenWidth()/5;
         return height;
     }
 
@@ -84,6 +82,7 @@ public class SinGraph extends View{
 
     private void mydraw(Canvas canvas) {
         int type = sum % 2;
+        int singleRec=Constant.getScreenWidth()/5;
 
         switch (type) {
             case 0:
@@ -91,11 +90,11 @@ public class SinGraph extends View{
                     float x_value = x_start;
                     float y_value = y_start;
 
+                    Integer weight =i;
                     for (int j = 0; j < 90; j++) {
                         x_value = x_value + 1;
                         float Ai;
                         if (i <= sum / 2) {
-                            int weight =i;
                             Ai = singleRec * weight;
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
                         } else {
@@ -112,11 +111,11 @@ public class SinGraph extends View{
                     float x_value = x_start;
                     float y_value = y_start;
 
+                    Integer weight=i;
                     for (int j = 0; j < 90; j++) {
                         x_value = x_value + 1;
                         float Ai;
                         if (i <= sum / 2) {
-                            int weight =i;
                             Ai = singleRec * weight;
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
                         } else if (i == (sum + 1) / 2) {
