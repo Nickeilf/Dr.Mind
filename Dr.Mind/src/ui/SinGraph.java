@@ -56,6 +56,25 @@ public class SinGraph extends View {
     }
 
     public List getWeightList() {
+        return weightList;
+    }
+
+    //获取SinGragh的纵向高度
+    public int getSinHeight() {
+        int height = 0;
+        for (int i = 0; i < weightList.size(); i++) {
+            height += weightList.get(i);
+        }
+        height--;
+        height *= (Constant.getScreenWidth() / 5);
+        return height;
+    }
+
+    public int getSinWidth() {
+        return 180;
+    }
+
+    public List<MyPoint> getPointList() {
         int weightSum=0;
         for(int i=0;i<weightList.size();i++){
             weightSum+=weightList.get(i);
@@ -93,27 +112,6 @@ public class SinGraph extends View {
             }
             pointList.add(new MyPoint(x_value, y_value));
         }
-
-        return weightList;
-    }
-
-    //获取SinGragh的纵向高度
-    public int getSinHeight() {
-        int height = 0;
-        for (int i = 0; i < weightList.size(); i++) {
-            height += weightList.get(i);
-        }
-        height--;
-        height *= (Constant.getScreenWidth() / 5);
-        return height;
-    }
-
-    public int getSinWidth() {
-        return 180;
-    }
-
-    public List<MyPoint> getPointList() {
-
 
         return pointList;
     }
