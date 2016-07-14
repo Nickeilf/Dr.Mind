@@ -22,8 +22,6 @@ public class SinGraph extends View{
 
     private Paint paint;
     private int sum;
-    private int x_start;
-    private int y_start;
     private List<Integer> weightList;
     private List<MyPoint> pointList;
     private MyPoint start_point;
@@ -42,8 +40,6 @@ public class SinGraph extends View{
         paint.setStrokeWidth(2);
         paint.setAntiAlias(true);
         pointList=new ArrayList<MyPoint>(sum);
-        x_start=0;
-        y_start=this.getSinHeight()/2;
 
     }
     
@@ -79,10 +75,15 @@ public class SinGraph extends View{
         return 200;
     }
 
+    public List<MyPoint> getPointList(){
+        return pointList;
+    }
 
     private void mydraw(Canvas canvas) {
         int type = sum % 2;
         int singleRec=Constant.getScreenWidth()/5;
+        int x_start=0;
+        int y_start=this.getSinHeight()/2;
 
         switch (type) {
             case 0:
