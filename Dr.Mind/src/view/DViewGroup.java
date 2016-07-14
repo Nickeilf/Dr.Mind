@@ -126,17 +126,15 @@ public class DViewGroup extends ViewGroup {
 		editText.setOnTouchListener(new TextOnTouchListener());
 		addView(editText);
 
-		// ArrayList<Integer> listOfWeight = new ArrayList<Integer>();
-		// listOfWeight.add(1);
-		// listOfWeight.add(2);
-		// listOfWeight.add(3);
-		// listOfWeight.add(4);
-		// listOfWeight.add(5);
-		// listOfWeight.add(6);
-		// listOfWeight.add(7);
-		// SinGraph sin = new SinGraph(getContext(), listOfWeight, new
-		// MyPoint(0, 200));
-		// addView(sin);
+		 ArrayList<Integer> listOfWeight = new ArrayList<Integer>();
+		 listOfWeight.add(1);
+		 listOfWeight.add(2);
+		 listOfWeight.add(3);
+		 listOfWeight.add(4);
+
+		 SinGraph sin = new SinGraph(getContext(), listOfWeight, new
+		 MyPoint(0, 200));
+		 addView(sin);
 	}
 
 	/*
@@ -185,19 +183,20 @@ public class DViewGroup extends ViewGroup {
 		a.layout(s_x, s_y, s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight());
 		refresh();
 
-		// int sin_height = sin.getSinHeight();
-		// int sin_width = sin.getSinWeight();
-		// sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
-		// 2 - sin_height / 2,
-		// s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
-		// 2 + sin_height / 2);
-		// SinGraph sin = (SinGraph) getChildAt(1);
-		// int sin_height = sin.getSinHeight();
-		// int sin_width = 200;
-		// sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
-		// 2 - sin_height / 2,
-		// s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
-		// 2 + sin_height / 2);
+
+//		 int sin_height = sin.getSinHeight();
+//		 int sin_width = sin.getSinWeight();
+//		 sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
+//		 2 - sin_height / 2,
+//		 s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
+//		 2 + sin_height / 2);
+		 SinGraph sin = (SinGraph) getChildAt(1);
+		 int sin_height = sin.getSinHeight();
+		 int sin_width = sin.getSinWidth();
+		 sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
+		 2 - sin_height / 2,
+		 s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
+		 2 + sin_height / 2);
 	}
 
 	@Override
