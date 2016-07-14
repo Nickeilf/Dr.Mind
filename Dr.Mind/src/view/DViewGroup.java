@@ -75,15 +75,29 @@ public class DViewGroup extends ViewGroup {
 
 	public void refresh() {
 		Node root = paintInfo.getbTreeRoot().getRoot();
+
 		System.out.println("s刷新重新建图");
 		// 根据树形结构画图
+		for (int i = 1; i < getChildCount(); i++) {
+			View v = getChildAt(i);
+			removeViews(1, getChildCount() - 1);
+			System.out.println("删除节点" + i);
+		}
 
 		DEditTextView editText = (DEditTextView) getChildAt(0);
-		drawTree(editText);
+		drawTree(editText, editText.getRight(), editText.getBottom() - editText.getMeasuredHeight() / 2);
 
 	}
 
-	private void drawTree(DEditTextView view) {
+	/**
+	 * 
+	 * @param view
+	 * @param x
+	 *            是指组件最右边位置
+	 * @param y
+	 *            是指组件y轴中间位置
+	 */
+	private void drawTree(DEditTextView view, int x, int y) {
 		// 如果没有儿子就结束
 		Node node = view.getNode();
 		if (node.getLeftChild() == null) {
@@ -91,7 +105,6 @@ public class DViewGroup extends ViewGroup {
 			return;
 		} else {
 			Node p = node.getLeftChild();
-			System.out.println("有儿砸啦");
 			// 找出一层所有子节点
 			List<Node> nodeList = new ArrayList<Node>();
 			nodeList.add(p);
@@ -103,17 +116,28 @@ public class DViewGroup extends ViewGroup {
 			for (Node nod : nodeList) {
 				weight.add(paintService.numNode(nod));
 			}
-			System.out.println("?????" + weight.size());
 			// new SinGraph
-			int x = (int) (view.getxPos() + view.getMeasuredWidth());
-			System.out.println(x + "xxxxxxxxxxx");
 			HeightCompute cal = new HeightCompute(weight);
-			int y = (int) (view.getY() + view.getMeasuredHeight() / 2 - cal.computeHeight() / 2);
-			System.out.println(y + "yyyyyyyyyyyy");
-			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, y));
+			int ys = y - cal.computeHeight() / 2;
+			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys));
 			addView(sin);
-			sin.layout(0, 0, 1000, 1000);
-
+			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
+			// 添加一组DEditText
+			// TODO Node内容
+			List<MyPoint> points = sin.getPointList();
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa" + points.size());
+			for (int i = 0; i < nodeList.size(); i++) {
+				DEditTextView text = new DEditTextView(getContext());
+				MyPoint point = points.get(i);
+				text.setNode(nodeList.get(i));
+				text.setOnTouchListener(new TextOnTouchListener());
+				addView(text);
+				text.measure(0, 0);
+				int t_x = (int) (x + point.getX());
+				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight();
+				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
+				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight() / 2);
+			}
 		}
 	}
 
@@ -126,16 +150,15 @@ public class DViewGroup extends ViewGroup {
 		editText.setOnTouchListener(new TextOnTouchListener());
 		addView(editText);
 
-		 ArrayList<Integer> listOfWeight = new ArrayList<Integer>();
-		 listOfWeight.add(1);
-		 listOfWeight.add(2);
-		 listOfWeight.add(1);
-		 listOfWeight.add(1);
-		listOfWeight.add(1);
-
-		 SinGraph sin = new SinGraph(getContext(), listOfWeight, new
-		 MyPoint(0, 200));
-		 addView(sin);
+		// ArrayList<Integer> listOfWeight = new ArrayList<Integer>();
+		// listOfWeight.add(1);
+		// listOfWeight.add(2);
+		// listOfWeight.add(1);
+		// listOfWeight.add(1);
+		//
+		// SinGraph sin = new SinGraph(getContext(), listOfWeight, new
+		// MyPoint(0, 200));
+		// addView(sin);
 	}
 
 	/*
@@ -184,20 +207,19 @@ public class DViewGroup extends ViewGroup {
 		a.layout(s_x, s_y, s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight());
 		refresh();
 
-
-//		 int sin_height = sin.getSinHeight();
-//		 int sin_width = sin.getSinWeight();
-//		 sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
-//		 2 - sin_height / 2,
-//		 s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
-//		 2 + sin_height / 2);
-		 SinGraph sin = (SinGraph) getChildAt(1);
-		 int sin_height = sin.getSinHeight();
-		 int sin_width = sin.getSinWidth();
-		 sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
-		 2 - sin_height / 2,
-		 s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
-		 2 + sin_height / 2);
+		// int sin_height = sin.getSinHeight();
+		// int sin_width = sin.getSinWeight();
+		// sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
+		// 2 - sin_height / 2,
+		// s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
+		// 2 + sin_height / 2);
+		// SinGraph sin = (SinGraph) getChildAt(1);
+		// int sin_height = sin.getSinHeight();
+		// int sin_width = sin.getSinWidth();
+		// sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
+		// 2 - sin_height / 2,
+		// s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
+		// 2 + sin_height / 2);
 	}
 
 	@Override
