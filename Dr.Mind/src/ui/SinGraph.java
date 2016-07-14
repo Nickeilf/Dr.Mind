@@ -72,7 +72,7 @@ public class SinGraph extends View{
     }
 
     public int getSinWeight(){
-        return 200;
+        return 180;
     }
 
     public List<MyPoint> getPointList(){
@@ -92,15 +92,15 @@ public class SinGraph extends View{
                     float y_value = y_start;
 
                     Integer weight =i;
-                    for (int j = 0; j < 90; j++) {
+                    for (int j = 0; j < 180; j++) {
                         x_value = x_value + 1;
                         float Ai;
                         if (i <= sum / 2) {
                             Ai = singleRec * weight;
-                            y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
+                            y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
                         } else {
                             Ai = singleRec * (i - sum / 2);
-                            y_value = (float) (-Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start + Ai);
+                            y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
                         }
                         canvas.drawPoint(x_value, y_value, paint);
                     }
@@ -112,19 +112,18 @@ public class SinGraph extends View{
                     float x_value = x_start;
                     float y_value = y_start;
 
-                    Integer weight=i;
-                    for (int j = 0; j < 90; j++) {
-                        x_value = x_value + 1;
+                    for (int j = 0; j < 180; j++) {
                         float Ai;
                         if (i <= sum / 2) {
-                            Ai = singleRec * weight;
-                            y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
+//                            Ai = singleRec * weight;
+                            y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
                         } else if (i == (sum + 1) / 2) {
                             y_value = y_start;
                         } else {
-                            Ai = singleRec * (i - (sum + 1) / 2);
-                            y_value = (float) (-Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start + Ai);
+//                            Ai = singleRec * (i - (sum + 1) / 2);
+                            y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
                         }
+                        x_value = x_value + 1;
                         canvas.drawPoint(x_value, y_value, paint);
                     }
                     pointList.add(new MyPoint(x_value,y_value));

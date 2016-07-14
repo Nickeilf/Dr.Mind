@@ -159,7 +159,7 @@ public class DViewGroup extends ViewGroup {
 		SinGraph sin = (SinGraph) getChildAt(1);
 
 		int sin_height = sin.getSinHeight();
-		int sin_width = 200;
+		int sin_width = sin.getSinWeight();
 		sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() / 2 - sin_height / 2,
 				s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() / 2 + sin_height / 2);
 	}
