@@ -36,7 +36,7 @@ public class SinGraph extends View {
 
         paint = new Paint();
         paint.setColor(Color.rgb(205, 243, 246));
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(4);
         paint.setAntiAlias(true);
         pointList = new ArrayList<MyPoint>(sum);
 
@@ -66,7 +66,7 @@ public class SinGraph extends View {
             height += weightList.get(i);
         }
         height--;
-        height *= Constant.getScreenWidth() / 5;
+        height *= (Constant.getScreenWidth() / 5);
         return height;
     }
 
@@ -83,6 +83,10 @@ public class SinGraph extends View {
         int singleRec = Constant.getScreenWidth() /10;
         int x_start = 0;
         int y_start = this.getSinHeight() / 2;
+        int weightSum=0;
+        for(int i=0;i<weightList.size();i++){
+            weightSum+=weightList.get(i);
+        }
 
         switch (type) {
             case 0:
@@ -93,19 +97,30 @@ public class SinGraph extends View {
 
                     float Ai = 0;
                     float weight = 0;
-                    if (i < sum / 2) {
-                        weight+=weightList.get(i)/2.0;
-                        for (int k = i+1; k < sum / 2; k++) {
-                            weight += weightList.get(k);
-                        }
-                        Ai = singleRec * weight;
-                    } else {
-                        weight+=weightList.get(i)/2.0;
-                        for (int k = sum / 2; k < i; k++) {
-                            weight += weightList.get(k);
-                        }
-                        Ai = singleRec * weight;
+                    weight+=weightList.get(i)/2.0;
+                    for(int k=0;k<i;k++){
+                        weight+=weightList.get(k);
                     }
+                    if(i<sum/2) {
+                      weight=weightSum/2-weight;
+                    }else{
+                        weight=weight-weightSum/2;
+                    }
+                    Ai=weight*singleRec;
+
+//                    if (i < sum / 2) {
+//                        weight+=weightList.get(i)/2.0;
+//                        for (int k = i+1; k < sum / 2; k++) {
+//                            weight += weightList.get(k);
+//                        }
+//                        Ai = singleRec * weight;
+//                    } else {
+//                        weight+=weightList.get(i)/2.0;
+//                        for (int k = sum / 2; k < i; k++) {
+//                            weight += weightList.get(k);
+//                        }
+//                        Ai = singleRec * weight;
+//                    }
                     System.out.println("singleRec=" + singleRec);
                     System.out.println("i=" + i);
                     System.out.println("weight=" + weight);
@@ -119,8 +134,7 @@ public class SinGraph extends View {
                             y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
                             y_next_value = (float) (-Ai * Math.sin(Math.PI * (j +1+ 90) / 180) + y_start + Ai);
                         }
-                        canvas.drawPoint(x_value, y_value, paint);
-//                        canvas.drawLine(x_value,y_value,x_start+1,y_next_value,paint);
+                        canvas.drawLine(x_value,y_value,x_value+1,y_next_value,paint);
                         x_value = x_value + 1;
                     }
                     pointList.add(new MyPoint(x_value, y_value));
@@ -134,19 +148,31 @@ public class SinGraph extends View {
 
                     float Ai = 0;
                     float weight = 0;
-                    if (i < sum / 2) {
-                        for (int k = i; k < sum / 2; k++) {
-                            weight += weightList.get(k);
-                        }
-                        weight += weightList.get(sum / 2) / 2.0;
-                        Ai = singleRec * weight;
-                    } else {
-                        for (int k = sum / 2; k < i; k++) {
-                            weight += weightList.get(k);
-                        }
-                        weight -= weightList.get(sum / 2) / 2.0;
-                        Ai = singleRec * weight;
+                    weight+=weightList.get(i)/2.0;
+                    for(int k=0;k<i;k++){
+                        weight+=weightList.get(k);
                     }
+                    if(i<sum/2) {
+                        weight=weightSum/2-weight;
+                    }else{
+                        weight=weight-weightSum/2;
+                    }
+                    Ai=weight*singleRec;
+//                    float Ai = 0;
+//                    float weight = 0;
+//                    if (i < sum / 2) {
+//                        for (int k = i; k < sum / 2; k++) {
+//                            weight += weightList.get(k);
+//                        }
+//                        weight += weightList.get(sum / 2) / 2.0;
+//                        Ai = singleRec * weight;
+//                    } else {
+//                        for (int k = sum / 2; k < i; k++) {
+//                            weight += weightList.get(k);
+//                        }
+//                        weight -= weightList.get(sum / 2) / 2.0;
+//                        Ai = singleRec * weight;
+//                    }
                     System.out.println("singleRec=" + singleRec);
                     System.out.println("i=" + i);
                     System.out.println("weight=" + weight);
@@ -163,8 +189,7 @@ public class SinGraph extends View {
                             y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
                             y_next_value = (float) (-Ai * Math.sin(Math.PI * (j +1+ 90) / 180) + y_start + Ai);
                         }
-                        canvas.drawPoint(x_value, y_value, paint);
-//                        canvas.drawLine(x_value,y_value,x_value+1,y_next_value,paint);
+                        canvas.drawLine(x_value,y_value,x_value+1,y_next_value,paint);
                         x_value = x_value + 1;
                     }
                     pointList.add(new MyPoint(x_value, y_value));

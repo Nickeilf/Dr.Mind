@@ -131,6 +131,7 @@ public class DViewGroup extends ViewGroup {
 		 listOfWeight.add(2);
 		 listOfWeight.add(1);
 		 listOfWeight.add(1);
+		listOfWeight.add(1);
 
 		 SinGraph sin = new SinGraph(getContext(), listOfWeight, new
 		 MyPoint(0, 200));
