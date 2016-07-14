@@ -56,6 +56,44 @@ public class SinGraph extends View {
     }
 
     public List getWeightList() {
+        int weightSum=0;
+        for(int i=0;i<weightList.size();i++){
+            weightSum+=weightList.get(i);
+        }
+        int type = sum % 2;
+        int singleRec = Constant.getScreenWidth() /10;
+        int x_start = 0;
+        int y_start = this.getSinHeight() / 2;
+
+        for (int i = 0; i <sum; i++) {
+            float x_value = x_start;
+            float y_value = y_start;
+            float y_next_value=y_start;
+
+            float Ai = 0;
+            float weight = 0;
+            weight+=weightList.get(i)/2.0;
+            for(int k=0;k<i;k++){
+                weight+=weightList.get(k);
+            }
+            if (i<sum/2) {
+                weight=weightSum/(float)2-weight;
+            }else{
+                weight=weight-weightSum/(float)2;
+            }
+            Ai=weight*singleRec;
+
+            for (int j = 0; j < 180; j++) {
+                if (i < sum / 2) {
+                    y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
+                } else {
+                    y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
+                }
+                x_value = x_value + 1;
+            }
+            pointList.add(new MyPoint(x_value, y_value));
+        }
+
         return weightList;
     }
 
@@ -75,6 +113,8 @@ public class SinGraph extends View {
     }
 
     public List<MyPoint> getPointList() {
+
+
         return pointList;
     }
 
@@ -138,7 +178,7 @@ public class SinGraph extends View {
                         canvas.drawLine(x_value,y_value,x_value+1,y_next_value,paint);
                         x_value = x_value + 1;
                     }
-                    pointList.add(new MyPoint(x_value, y_value));
+//                    pointList.add(new MyPoint(x_value, y_value));
                 }
 //                break;
 //            case 1:
