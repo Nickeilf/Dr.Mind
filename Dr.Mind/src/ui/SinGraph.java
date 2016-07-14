@@ -79,14 +79,15 @@ public class SinGraph extends View {
     }
 
     private void mydraw(Canvas canvas) {
-        int type = sum % 2;
-        int singleRec = Constant.getScreenWidth() /10;
-        int x_start = 0;
-        int y_start = this.getSinHeight() / 2;
         int weightSum=0;
         for(int i=0;i<weightList.size();i++){
             weightSum+=weightList.get(i);
         }
+        int type = sum % 2;
+        int singleRec = Constant.getScreenWidth() /10;
+        int x_start = 0;
+        int y_start = this.getSinHeight() / 2;
+
 
         switch (type) {
             case 0:
@@ -101,7 +102,9 @@ public class SinGraph extends View {
                     for(int k=0;k<i;k++){
                         weight+=weightList.get(k);
                     }
-                    if(i<sum/2) {
+                    if(i==0 || i==sum-1){
+                        weight=(weightSum-1)/(float)2;
+                    }  else if (i<sum/2) {
                       weight=weightSum/2-weight;
                     }else{
                         weight=weight-weightSum/2;
@@ -152,7 +155,9 @@ public class SinGraph extends View {
                     for(int k=0;k<i;k++){
                         weight+=weightList.get(k);
                     }
-                    if(i<sum/2) {
+                    if(i==0 || i==sum-1){
+                        weight=(weightSum-1)/(float)2;
+                    }else if(i<sum/2) {
                         weight=weightSum/2-weight;
                     }else{
                         weight=weight-weightSum/2;
