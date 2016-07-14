@@ -108,19 +108,25 @@ public class SinGraph extends View{
                 }
                 break;
             case 1:
-                for (int i = 1; i <= sum; i++) {
+                for (int i = 0; i < sum; i++) {
                     float x_value = x_start;
                     float y_value = y_start;
 
+                    Integer weight =i;
                     for (int j = 0; j < 180; j++) {
                         float Ai;
                         if (i <= sum / 2) {
-//                            Ai = singleRec * weight;
+//                            int weight=0;
+//                            for (int k=i;k<sum/2;k++){
+//                                   weight+=weightList.get(k);
+//                            }
+//                            weight+=weightList.get(sum/2);
+                            Ai = singleRec * weight;
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
                         } else if (i == (sum + 1) / 2) {
                             y_value = y_start;
                         } else {
-//                            Ai = singleRec * (i - (sum + 1) / 2);
+                            Ai = singleRec * (i - (sum + 1) / 2);
                             y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
                         }
                         x_value = x_value + 1;
