@@ -66,6 +66,11 @@ public class SinGraph extends View {
             height += weightList.get(i);
         }
         height--;
+
+        if(height==0){
+            height=1;
+        }
+
         height *= (Constant.getScreenWidth() / 5);
         return height;
     }
