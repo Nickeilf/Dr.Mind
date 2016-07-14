@@ -89,8 +89,8 @@ public class SinGraph extends View {
         int y_start = this.getSinHeight() / 2;
 
 
-        switch (type) {
-            case 0:
+//        switch (type) {
+//            case 0:
                 for (int i = 0; i <sum; i++) {
                     float x_value = x_start;
                     float y_value = y_start;
@@ -102,12 +102,10 @@ public class SinGraph extends View {
                     for(int k=0;k<i;k++){
                         weight+=weightList.get(k);
                     }
-                    if(i==0 || i==sum-1){
-                        weight=(weightSum-1)/(float)2;
-                    }  else if (i<sum/2) {
-                      weight=weightSum/2-weight;
+                    if (i<sum/2) {
+                      weight=weightSum/(float)2-weight;
                     }else{
-                        weight=weight-weightSum/2;
+                        weight=weight-weightSum/(float)2;
                     }
                     Ai=weight*singleRec;
 
@@ -142,64 +140,62 @@ public class SinGraph extends View {
                     }
                     pointList.add(new MyPoint(x_value, y_value));
                 }
-                break;
-            case 1:
-                for (int i = 0; i < sum; i++) {
-                    float x_value = x_start;
-                    float y_value = y_start;
-                    float y_next_value=y_start;
-
-                    float Ai = 0;
-                    float weight = 0;
-                    weight+=weightList.get(i)/2.0;
-                    for(int k=0;k<i;k++){
-                        weight+=weightList.get(k);
-                    }
-                    if(i==0 || i==sum-1){
-                        weight=(weightSum-1)/(float)2;
-                    }else if(i<sum/2) {
-                        weight=weightSum/2-weight;
-                    }else{
-                        weight=weight-weightSum/2;
-                    }
-                    Ai=weight*singleRec;
+//                break;
+//            case 1:
+//                for (int i = 0; i < sum; i++) {
+//                    float x_value = x_start;
+//                    float y_value = y_start;
+//                    float y_next_value=y_start;
+//
 //                    float Ai = 0;
 //                    float weight = 0;
-//                    if (i < sum / 2) {
-//                        for (int k = i; k < sum / 2; k++) {
-//                            weight += weightList.get(k);
-//                        }
-//                        weight += weightList.get(sum / 2) / 2.0;
-//                        Ai = singleRec * weight;
-//                    } else {
-//                        for (int k = sum / 2; k < i; k++) {
-//                            weight += weightList.get(k);
-//                        }
-//                        weight -= weightList.get(sum / 2) / 2.0;
-//                        Ai = singleRec * weight;
+//                    weight+=weightList.get(i)/2.0;
+//                    for(int k=0;k<i;k++){
+//                        weight+=weightList.get(k);
 //                    }
-                    System.out.println("singleRec=" + singleRec);
-                    System.out.println("i=" + i);
-                    System.out.println("weight=" + weight);
-                    System.out.println("Ai=" + Ai);
-
-                    for (int j = 0; j < 180; j++) {
-                        if (i < sum / 2) {
-                            y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
-                            y_next_value = (float) (Ai * Math.sin(Math.PI * (j +1+ 90) / 180) + y_start - Ai);
-                        } else if (i == (sum - 1) / 2) {
-                            y_value = y_start;
-                            y_next_value=y_start;
-                        } else {
-                            y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
-                            y_next_value = (float) (-Ai * Math.sin(Math.PI * (j +1+ 90) / 180) + y_start + Ai);
-                        }
-                        canvas.drawLine(x_value,y_value,x_value+1,y_next_value,paint);
-                        x_value = x_value + 1;
-                    }
-                    pointList.add(new MyPoint(x_value, y_value));
-                }
-                break;
-        }
+//                    if(i<sum/2) {
+//                        weight=weightSum/(float)2-weight;
+//                    }else{
+//                        weight=weight-weightSum/(float)2;
+//                    }
+//                    Ai=weight*singleRec;
+////                    float Ai = 0;
+////                    float weight = 0;
+////                    if (i < sum / 2) {
+////                        for (int k = i; k < sum / 2; k++) {
+////                            weight += weightList.get(k);
+////                        }
+////                        weight += weightList.get(sum / 2) / 2.0;
+////                        Ai = singleRec * weight;
+////                    } else {
+////                        for (int k = sum / 2; k < i; k++) {
+////                            weight += weightList.get(k);
+////                        }
+////                        weight -= weightList.get(sum / 2) / 2.0;
+////                        Ai = singleRec * weight;
+////                    }
+//                    System.out.println("singleRec=" + singleRec);
+//                    System.out.println("i=" + i);
+//                    System.out.println("weight=" + weight);
+//                    System.out.println("Ai=" + Ai);
+//
+//                    for (int j = 0; j < 180; j++) {
+//                        if (i < sum / 2) {
+//                            y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
+//                            y_next_value = (float) (Ai * Math.sin(Math.PI * (j +1+ 90) / 180) + y_start - Ai);
+//                        } else if (i == (sum - 1) / 2) {
+//                            y_value = y_start;
+//                            y_next_value=y_start;
+//                        } else {
+//                            y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
+//                            y_next_value = (float) (-Ai * Math.sin(Math.PI * (j +1+ 90) / 180) + y_start + Ai);
+//                        }
+//                        canvas.drawLine(x_value,y_value,x_value+1,y_next_value,paint);
+//                        x_value = x_value + 1;
+//                    }
+//                    pointList.add(new MyPoint(x_value, y_value));
+//                }
+//                break;
+//        }
     }
 }
