@@ -14,6 +14,7 @@ import java.util.List;
 
 import bl.paintblImpl;
 import service.paintService;
+import ui.MyPoint;
 import ui.SinGraph;
 import util.TextOnTouchListener;
 import vo.Node;
@@ -109,7 +110,7 @@ public class DViewGroup extends ViewGroup {
 		listOfWeight.add(5);
 		listOfWeight.add(6);
 		listOfWeight.add(7);
-		SinGraph sin = new SinGraph(getContext(), listOfWeight, 0, 200);
+		SinGraph sin = new SinGraph(getContext(), listOfWeight,new MyPoint(0,200));
 		addView(sin);
 	}
 

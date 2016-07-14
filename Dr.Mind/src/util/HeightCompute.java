@@ -20,12 +20,9 @@ public class HeightCompute {
         int height=0;
         int singleRec=Constant.getSingleRec();
         for(int i=0;i<listOfWeight.size();i++){
-            int thisWeight=listOfWeight.get(i);
-            height+=thisWeight;
-            if(thisWeight%2 == 0){
-                height++;
-            }
+            height+=listOfWeight.get(i);
         }
+        height--;
         height*=singleRec;
         return height;
     }

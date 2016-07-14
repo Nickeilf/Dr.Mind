@@ -27,21 +27,24 @@ public class SinGraph extends View{
     private int y_start;
     private List<Integer> weightList;
     private List<MyPoint> pointList;
+    private MyPoint start_point;
 
 
     //构造方法
-    //@param:上下文，节点的权重列表,当前结点所在的x、y坐标
-    public SinGraph(Context context,List<Integer> weightList,int x_stat,int y_start) {
+    //@param:上下文，结点的权重列表,view放置的坐标
+    public SinGraph(Context context,List<Integer> weightList,MyPoint point) {
         super(context);
         this.weightList=weightList;
         this.sum=weightList.size();
-        this.x_start=x_stat;
-        this.y_start=y_start;
+        this.start_point=point;
+
         paint = new Paint();
         paint.setColor(Color.rgb(205, 243, 246));
         paint.setStrokeWidth(2);
         paint.setAntiAlias(true);
         pointList=new ArrayList<MyPoint>(sum);
+        x_start=0;
+        y_start=this.getSinHeight()/2;
     }
     
     @Override
@@ -65,13 +68,12 @@ public class SinGraph extends View{
     public int getSinHeight(){
         int height=0;
         for(int i=0;i<weightList.size();i++){
-            int thisWeight=weightList.get(i);
-            height+=thisWeight;
-            if(thisWeight%2 == 0){
-                 height++;
-             }
+            height+=weightList.get(i);
+            System.out.println("height="+height);
         }
+        height--;
         height*=singleRec;
+        System.out.println("singleRec="+singleRec);
         return height;
     }
 
@@ -93,13 +95,7 @@ public class SinGraph extends View{
                         x_value = x_value + 1;
                         float Ai;
                         if (i <= sum / 2) {
-                            int weight = 0;
-                            if (i == 1)
-                                weight = 1;
-                            if (i == 2)
-                                weight = 2;
-                            if (i == 3)
-                                weight = 5;
+                            int weight =i;
                             Ai = singleRec * weight;
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
                         } else {
@@ -120,13 +116,7 @@ public class SinGraph extends View{
                         x_value = x_value + 1;
                         float Ai;
                         if (i <= sum / 2) {
-                            int weight = 0;
-                            if (i == 1)
-                                weight = 1;
-                            if (i == 2)
-                                weight = 2;
-                            if (i == 3)
-                                weight = 5;
+                            int weight =i;
                             Ai = singleRec * weight;
                             y_value = (float) (Ai * Math.sin(Math.PI * (j + 45) / 90) + y_start - Ai);
                         } else if (i == (sum + 1) / 2) {
