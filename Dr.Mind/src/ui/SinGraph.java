@@ -12,12 +12,12 @@ import java.util.List;
 import util.Constant;
 
 /**
- * @auther:Liu 
+ * @auther:Liu
  * @date:2016.7.8
- * @description:绘制sin曲线部分
- * 重写View类的方法
+ * @description:绘制sin曲线部分 重写View类的方法
  */
 
+<<<<<<< Updated upstream
 public class SinGraph extends View{
 
     private Paint paint;
@@ -150,5 +150,125 @@ public class SinGraph extends View{
                 break;
         }
     }
+=======
+public class SinGraph extends View {
+
+	private Paint paint;
+	private int sum;
+	private List<Integer> weightList;
+	private List<MyPoint> pointList;
+	private MyPoint start_point;
+
+	// 构造方法
+	// @param:上下文，结点的权重列表,view放置的坐标
+	public SinGraph(Context context, List<Integer> weightList, MyPoint point) {
+		super(context);
+		this.weightList = weightList;
+		this.sum = weightList.size();
+		this.start_point = point;
+
+		paint = new Paint();
+		paint.setColor(Color.rgb(205, 243, 246));
+		paint.setStrokeWidth(2);
+		paint.setAntiAlias(true);
+		pointList = new ArrayList<MyPoint>(sum);
+
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		canvas.drawColor(Color.rgb(131, 175, 155));
+		mydraw(canvas);
+	}
+
+	public void setWeightList(List<Integer> weightList) {
+		this.weightList = weightList;
+		this.sum = weightList.size();
+		invalidate();
+	}
+
+	public List getWeightList() {
+		return weightList;
+	}
+
+	// 获取SinGragh的纵向高度
+	public int getSinHeight() {
+		int height = 0;
+		for (int i = 0; i < weightList.size(); i++) {
+			height += weightList.get(i);
+		}
+		height--;
+		height *= Constant.getScreenWidth() / 5;
+		return height;
+	}
+
+	public int getSinWeight() {
+		return 180;
+	}
+
+	public List<MyPoint> getPointList() {
+		return pointList;
+	}
+
+	private void mydraw(Canvas canvas) {
+		int type = sum % 2;
+		int singleRec = Constant.getScreenWidth() / 5;
+		int x_start = 0;
+		int y_start = this.getSinHeight() / 2;
+
+		switch (type) {
+		case 0:
+			for (int i = 1; i <= sum; i++) {
+				float x_value = x_start;
+				float y_value = y_start;
+
+				Integer weight = i;
+				for (int j = 0; j < 180; j++) {
+					x_value = x_value + 1;
+					float Ai;
+					if (i <= sum / 2) {
+						Ai = singleRec * weight;
+						y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
+					} else {
+						Ai = singleRec * (i - sum / 2);
+						y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
+					}
+					canvas.drawPoint(x_value, y_value, paint);
+				}
+				pointList.add(new MyPoint(x_value, y_value));
+			}
+			break;
+		case 1:
+			for (int i = 0; i < sum; i++) {
+				float x_value = x_start;
+				float y_value = y_start;
+
+				Integer weight = i;
+				for (int j = 0; j < 180; j++) {
+					float Ai;
+					if (i <= sum / 2) {
+						// int weight=0;
+						// for (int k=i;k<sum/2;k++){
+						// weight+=weightList.get(k);
+						// }
+						// weight+=weightList.get(sum/2);
+						Ai = singleRec * weight;
+						y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
+					} else if (i == (sum + 1) / 2) {
+						y_value = y_start;
+					} else {
+						Ai = singleRec * (i - (sum + 1) / 2);
+						y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
+					}
+					x_value = x_value + 1;
+					canvas.drawPoint(x_value, y_value, paint);
+				}
+				pointList.add(new MyPoint(x_value, y_value));
+			}
+			break;
+		}
+	}
+>>>>>>> Stashed changes
 
 }

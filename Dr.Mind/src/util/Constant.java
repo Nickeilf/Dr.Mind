@@ -16,7 +16,6 @@ public class Constant {
 
 	public static void setScreenWidth(int width) {
 		screenWidth = width;
-		singleRec=screenWidth/5;
 	}
 
 	public static int getScreenHeight() {
@@ -28,7 +27,7 @@ public class Constant {
 	}
 
 	public static int getSingleRec(){
-		return singleRec;
+		return screenWidth/5;
 	}
 
 
