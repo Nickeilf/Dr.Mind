@@ -3,6 +3,7 @@ package util;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -10,8 +11,10 @@ import android.view.GestureDetector.OnDoubleTapListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import bl.paintblImpl;
+import cn.edu.cn.R;
 import service.paintService;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -22,6 +25,9 @@ public class TextOnTouchListener implements OnTouchListener {
 	private gestureListener gl;
 	private doubleTapListener dtl;
 	private paintService paintService;
+	private int count = 0;
+	private long firClick;
+	private InputMethodManager imm;
 
 	public TextOnTouchListener() {
 		gl = new gestureListener();
@@ -35,8 +41,27 @@ public class TextOnTouchListener implements OnTouchListener {
 		gl.setV(v);
 		dtl.setV(v);
 		mGesture.onTouchEvent(event);
-		
-		
+		// if (MotionEvent.ACTION_DOWN == event.getAction()) {
+		// count++;
+		//
+		// if (count == 1) {
+		// firClick = System.currentTimeMillis();
+		//
+		// } else if (count == 2) {
+		// long secClick = System.currentTimeMillis();
+		// if (secClick - firClick < 1000) {
+		// System.out.println("双击啦啦啦啦啦啦");
+		// DEditTextView editText = (DEditTextView) v;
+		// paintService.InsertNode(editText.getNode());
+		// DViewGroup parent = (DViewGroup) editText.getParent();
+		// parent.refresh();
+		// }
+		// count = 0;
+		// firClick = 0;
+		// secClick = 0;
+		//
+		// }
+		// }
 		return true;
 	}
 

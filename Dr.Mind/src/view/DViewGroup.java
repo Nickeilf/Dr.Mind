@@ -114,9 +114,11 @@ public class DViewGroup extends ViewGroup {
 				weight.add(paintService.numNode(nod));
 			}
 			// new SinGraph
+			int level = nodeList.get(0).getLevel();
+			System.out.println("level is"+level);
 			HeightCompute cal = new HeightCompute(weight);
 			int ys = y - cal.computeHeight() / 2;
-			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys));
+			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
 			addView(sin);
 			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
 			// 添加一组DEditText
