@@ -193,7 +193,6 @@ public class SinGraph extends View {
 					y_next_value = (float) (-Ai * Math.sin(Math.PI * (j + 1 + 90) / 180) + y_start + Ai);
 				}
 				canvas.drawLine(x_value, y_value, x_value + 1, y_next_value, paint);
-//				canvas.drawPoint(x_value,y_value,paint);
 				x_value = x_value + 1;
 			}
 		}

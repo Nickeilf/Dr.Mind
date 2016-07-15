@@ -138,8 +138,6 @@ public class DViewGroup extends ViewGroup {
 				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight();
 				text.setxPos(t_x);
 				text.setyPos(t_y);
-				// text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y +
-				// text.getMeasuredHeight());
 				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
 			}
 		}
