@@ -35,11 +35,11 @@ public class paintblImpl implements paintService {
 
 		}
 		
-		if(node.getParent()==null){
-			node.setLevel(0);
+		if(inNode.getParent()==null){
+			inNode.setLevel(0);
 		}
 		else{
-			node.setLevel(node.getParent().getLevel()+1);
+			inNode.setLevel(inNode.getParent().getLevel()+1);
 		}
 		return inNode;// 返回子结点
 	}

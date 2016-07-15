@@ -1,4 +1,4 @@
-package ui;
+package activity;
 
 
 import android.app.Activity;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import cn.edu.cn.R;
+import ui.ColorPickerDialog;
 
 public class ColorPickerActivity extends Activity{
 	
@@ -21,7 +22,7 @@ public class ColorPickerActivity extends Activity{
 	    public void onCreate(Bundle savedInstanceState) {  
 	        context = this;  
 	        super.onCreate(savedInstanceState);  
-	        setContentView(R.layout.main);  
+	        setContentView(R.layout.colorpicker);  
 	        initViews();  
 	    }  
 	    /** 
