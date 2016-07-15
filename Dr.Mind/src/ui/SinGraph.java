@@ -24,6 +24,7 @@ public class SinGraph extends View {
 	private List<Integer> weightList;
 	private List<MyPoint> pointList;
 	private MyPoint start_point;
+	private static byte color_num;
 
 	// 构造方法
 	// @param:上下文，结点的权重列表,view放置的坐标
@@ -33,19 +34,52 @@ public class SinGraph extends View {
 		this.sum = weightList.size();
 		this.start_point = point;
 
+		color_num=0;
+
 		paint = new Paint();
-		paint.setColor(Color.rgb(205, 243, 246));
-		paint.setStrokeWidth(4);
+	    paint_color(color_num);
+		paint.setStrokeWidth(5);
 		paint.setAntiAlias(true);
 		pointList = new ArrayList<MyPoint>(sum);
+	}
 
+	private void paint_color(int index){
+		switch (index){
+			case 0:
+				paint.setColor(Color.rgb(3,22,52));
+				break;
+			case 1:
+				paint.setColor(Color.rgb(131, 175, 155));
+				break;
+			case 2:
+				paint.setColor(Color.rgb(118, 77, 57));
+				break;
+			case 3:
+				paint.setColor(Color.rgb(248, 147, 29));
+				break;
+			case 4:
+				paint.setColor(Color.rgb(56, 13, 49));
+				break;
+			case 5:
+				paint.setColor(Color.rgb(107, 194, 53));
+				break;
+			case 6:
+				paint.setColor(Color.rgb(137, 157, 192));
+				break;
+		}
+		color_num++;
+		if(color_num==6){
+			color_num=0;
+		}
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		canvas.drawColor(Color.rgb(131, 175, 155));
+//		canvas.drawColor(Color.rgb(131, 175, 155));
+		paint_color(color_num);
 		mydraw(canvas);
+		System.out.println("color_num"+color_num);
 	}
 
 	public void setWeightList(List<Integer> weightList) {

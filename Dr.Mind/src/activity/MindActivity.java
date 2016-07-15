@@ -1,6 +1,7 @@
 package activity;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -43,5 +44,13 @@ public class MindActivity extends Activity {
 		findViewById(R.id.viewgroup).setX(0);
 		findViewById(R.id.viewgroup).setY(-height);
 		findViewById(R.id.viewgroup).setLayoutParams(lay);
+	}
+
+	@Override
+	protected void onResume() {
+		if(getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+                  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
+		super.onResume();
 	}
 }
