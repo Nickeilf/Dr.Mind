@@ -9,13 +9,7 @@ public class BinaryTree {
 	public BinaryTree(){
 		root=new Node();
 	}
-	
-
-	private void insert(Node node){
-			root.leftChild=node;
-	}
-	
-	
+			
 	public Node getRoot(){
 		return root;
 	}

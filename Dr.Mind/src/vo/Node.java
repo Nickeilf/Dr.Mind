@@ -11,6 +11,7 @@ public class Node {
 	int textLength=0;//文本长度
 	TextType font;//字体类型
 	Bitmap bmp;//图片
+	int level;//结点层数
 	
 	public Node(){
 		leftChild=null;
@@ -20,9 +21,20 @@ public class Node {
 		textLength=0;
 	    font=null;
 	    bmp=null;
+	    level=0;
 	}
 
 	
+public int getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+
 public Node getParent() {
 		return parent;
 	}
@@ -37,7 +49,7 @@ public Bitmap getBmp() {
 		return bmp;
 	}
 
-	public void setBmp(Bitmap bmp) {
+public void setBmp(Bitmap bmp) {
 		this.bmp = bmp;
 	}
 

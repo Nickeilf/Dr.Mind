@@ -3,4 +3,5 @@
     <string name="app_name">Dr.Mind</string>
     <string name="hello">Hello World, MindActivity!</string>
     <string name="_0">0</string>
+    <string name="btn_color_picker">Color Picker</string>
 </resources>

@@ -34,6 +34,13 @@ public class paintblImpl implements paintService {
 			}
 
 		}
+		
+		if(node.getParent()==null){
+			node.setLevel(0);
+		}
+		else{
+			node.setLevel(node.getParent().getLevel()+1);
+		}
 		return inNode;// 返回子结点
 	}
 
@@ -121,11 +128,27 @@ public class paintblImpl implements paintService {
 				break;
 			else {
 				node.setParent(parent);// 改变子结点的父结点
+				//修改结点层级
+				if(node.getParent()==null){
+					node.setLevel(0);
+				}
+				else{
+					node.setLevel(node.getParent().getLevel()+1);
+				}
 				node = node.getRightChild();
 			}
+			
+			
 		}
 		node.setLeftChild(rNode);
 		rNode.setParent(node);
+		if(rNode.getParent()==null){
+			rNode.setLevel(0);
+		}
+		else{
+			rNode.setLevel(rNode.getParent().getLevel()+1);
+		}
+
 		return true;
 
 	}
