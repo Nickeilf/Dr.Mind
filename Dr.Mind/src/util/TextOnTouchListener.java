@@ -35,6 +35,8 @@ public class TextOnTouchListener implements OnTouchListener {
 		gl.setV(v);
 		dtl.setV(v);
 		mGesture.onTouchEvent(event);
+		
+		
 		return true;
 	}
 

@@ -34,52 +34,52 @@ public class SinGraph extends View {
 		this.sum = weightList.size();
 		this.start_point = point;
 
-		color_num=0;
+		color_num = 0;
 
 		paint = new Paint();
-	    paint_color(color_num);
+		paint_color(color_num);
 		paint.setStrokeWidth(5);
 		paint.setAntiAlias(true);
 		pointList = new ArrayList<MyPoint>(sum);
 	}
 
-	private void paint_color(int index){
-		switch (index){
-			case 0:
-				paint.setColor(Color.rgb(3,22,52));
-				break;
-			case 1:
-				paint.setColor(Color.rgb(131, 175, 155));
-				break;
-			case 2:
-				paint.setColor(Color.rgb(118, 77, 57));
-				break;
-			case 3:
-				paint.setColor(Color.rgb(248, 147, 29));
-				break;
-			case 4:
-				paint.setColor(Color.rgb(56, 13, 49));
-				break;
-			case 5:
-				paint.setColor(Color.rgb(107, 194, 53));
-				break;
-			case 6:
-				paint.setColor(Color.rgb(137, 157, 192));
-				break;
+	private void paint_color(int index) {
+		switch (index) {
+		case 0:
+			paint.setColor(Color.rgb(3, 22, 52));
+			break;
+		case 1:
+			paint.setColor(Color.rgb(131, 175, 155));
+			break;
+		case 2:
+			paint.setColor(Color.rgb(118, 77, 57));
+			break;
+		case 3:
+			paint.setColor(Color.rgb(248, 147, 29));
+			break;
+		case 4:
+			paint.setColor(Color.rgb(56, 13, 49));
+			break;
+		case 5:
+			paint.setColor(Color.rgb(107, 194, 53));
+			break;
+		case 6:
+			paint.setColor(Color.rgb(137, 157, 192));
+			break;
 		}
 		color_num++;
-		if(color_num==6){
-			color_num=0;
+		if (color_num == 6) {
+			color_num = 0;
 		}
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-//		canvas.drawColor(Color.rgb(131, 175, 155));
+		// canvas.drawColor(Color.rgb(131, 175, 155));
 		paint_color(color_num);
 		mydraw(canvas);
-		System.out.println("color_num"+color_num);
+		System.out.println("color_num" + color_num);
 	}
 
 	public void setWeightList(List<Integer> weightList) {
@@ -103,7 +103,7 @@ public class SinGraph extends View {
 		if (height == 0) {
 			height = 1;
 		}
-		
+
 		height *= (Constant.getScreenWidth() / 10);
 		return height;
 	}
@@ -118,7 +118,7 @@ public class SinGraph extends View {
 			weightSum += weightList.get(i);
 		}
 		int type = sum % 2;
-		int singleRec = Constant.getScreenWidth() / 10;
+		int singleRec = Constant.getScreenWidth() / 20;
 		int x_start = 0;
 		int y_start = this.getSinHeight() / 2;
 
@@ -197,10 +197,10 @@ public class SinGraph extends View {
 			// }
 			// Ai = singleRec * weight;
 			// }
-//			System.out.println("singleRec=" + singleRec);
-//			System.out.println("i=" + i);
-//			System.out.println("weight=" + weight);
-//			System.out.println("Ai=" + Ai);
+			// System.out.println("singleRec=" + singleRec);
+			// System.out.println("i=" + i);
+			// System.out.println("weight=" + weight);
+			// System.out.println("Ai=" + Ai);
 
 			for (int j = 0; j < 180; j++) {
 				if (i < sum / 2) {

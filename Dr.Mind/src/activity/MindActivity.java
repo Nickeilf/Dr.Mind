@@ -30,7 +30,7 @@ public class MindActivity extends Activity {
 		WindowManager wm = this.getWindowManager();
 		int width = wm.getDefaultDisplay().getWidth();
 		int height = wm.getDefaultDisplay().getHeight();
-		//设定常量
+		// 设定常量
 		Constant.setScreenHeight(height);
 		Constant.setScreenWidth(width);
 		DViewGroup dView = (DViewGroup) findViewById(R.id.viewgroup);
@@ -48,9 +48,10 @@ public class MindActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		if(getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
-                  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		}
+		// if(getRequestedOrientation() !=
+		// ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		// }
 		super.onResume();
 	}
 }
