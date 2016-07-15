@@ -107,7 +107,7 @@ public class SinGraph extends View {
 		}
 
 		height *= (Constant.getScreenWidth() / 10);
-		return height;
+		return height+10;
 	}
 
 	public int getSinWidth() {
@@ -150,7 +150,7 @@ public class SinGraph extends View {
 				}
 				x_value = x_value + 1;
 			}
-			pointList.add(new MyPoint(x_value, y_value));
+			pointList.add(new MyPoint(x_value, y_value+5));
 		}
 
 		return pointList;
@@ -186,13 +186,14 @@ public class SinGraph extends View {
 
 			for (int j = 0; j < 180; j++) {
 				if (i < sum / 2) {
-					y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai);
+					y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai)+5;
 					y_next_value = (float) (Ai * Math.sin(Math.PI * (j + 1 + 90) / 180) + y_start - Ai);
 				} else {
-					y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai);
+					y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai)+5;
 					y_next_value = (float) (-Ai * Math.sin(Math.PI * (j + 1 + 90) / 180) + y_start + Ai);
 				}
 				canvas.drawLine(x_value, y_value, x_value + 1, y_next_value, paint);
+//				canvas.drawPoint(x_value,y_value,paint);
 				x_value = x_value + 1;
 			}
 		}

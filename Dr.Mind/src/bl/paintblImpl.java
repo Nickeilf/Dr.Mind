@@ -41,6 +41,7 @@ public class paintblImpl implements paintService {
 		else{
 			inNode.setLevel(inNode.getParent().getLevel()+1);
 		}
+		System.out.print("innode="+inNode.getLevel());
 		return inNode;// 返回子结点
 	}
 

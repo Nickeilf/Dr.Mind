@@ -28,6 +28,6 @@ public class HeightCompute {
 			height=1;
 		}
 		height *= singleRec;
-		return height;
+		return height+10;
 	}
 }

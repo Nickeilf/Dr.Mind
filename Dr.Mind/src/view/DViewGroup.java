@@ -118,7 +118,7 @@ public class DViewGroup extends ViewGroup {
 			int level = nodeList.get(0).getLevel();
 			System.out.println("level is" + level);
 			HeightCompute cal = new HeightCompute(weight);
-			int ys = y - cal.computeHeight() / 2;
+			int ys = y - cal.computeHeight()/2-5;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
 			addView(sin);
 			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
