@@ -104,7 +104,7 @@ public class SinGraph extends View {
 			height = 1;
 		}
 		
-		height *= (Constant.getScreenWidth() / 5);
+		height *= (Constant.getScreenWidth() / 10);
 		return height;
 	}
 
@@ -160,7 +160,7 @@ public class SinGraph extends View {
 			weightSum += weightList.get(i);
 		}
 		int type = sum % 2;
-		int singleRec = Constant.getScreenWidth() / 10;
+		int singleRec = Constant.getScreenWidth() / 20;
 		int x_start = 0;
 		int y_start = this.getSinHeight() / 2;
 
