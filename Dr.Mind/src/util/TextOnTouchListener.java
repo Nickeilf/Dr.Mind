@@ -33,6 +33,9 @@ public class TextOnTouchListener implements OnTouchListener {
 	public boolean onTouch(View v, MotionEvent event) {
 		gl.setV(v);
 		dtl.setV(v);
+		v.setFocusable(true);
+		v.setFocusableInTouchMode(true);
+		v.requestFocus();
 		mGesture.onTouchEvent(event);
 		// if (MotionEvent.ACTION_DOWN == event.getAction()) {
 		// count++;
@@ -114,7 +117,7 @@ public class TextOnTouchListener implements OnTouchListener {
 			System.out.println("双击产生");
 			InputMethodManager imm = (InputMethodManager) MindActivity.a.getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-			
+
 			DEditTextView editText = (DEditTextView) v;
 			paintService.InsertNode(editText.getNode());
 			DViewGroup parent = (DViewGroup) editText.getParent();

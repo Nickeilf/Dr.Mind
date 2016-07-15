@@ -136,7 +136,10 @@ public class DViewGroup extends ViewGroup {
 				text.measure(0, 0);
 				int t_x = (int) (x + point.getX());
 				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight();
-				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
+				text.setxPos(t_x);
+				text.setyPos(t_y);
+				// text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y +
+				// text.getMeasuredHeight());
 				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
 			}
 		}
@@ -209,6 +212,15 @@ public class DViewGroup extends ViewGroup {
 		if (first) {
 			refresh();
 			first = false;
+		}
+		for (int i = 1; i < getChildCount(); i++) {
+			View ins = getChildAt(i);
+			if (ins instanceof DEditTextView) {
+				DEditTextView view = (DEditTextView) ins;
+				int x = view.getxPos();
+				int y = view.getyPos();
+				view.layout(x, y, x + view.getMeasuredWidth(), y + view.getMeasuredHeight());
+			}
 		}
 		// int sin_height = sin.getSinHeight();
 		// int sin_width = sin.getSinWeight();
