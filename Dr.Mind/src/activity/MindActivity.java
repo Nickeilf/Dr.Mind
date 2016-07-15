@@ -1,9 +1,11 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
@@ -12,15 +14,22 @@ import util.Constant;
 import view.DViewGroup;
 
 public class MindActivity extends Activity {
+	public static MindActivity a;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 		setContentView(R.layout.main);
 		init();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		a = this;
 	}
 
 	/**
@@ -54,4 +63,5 @@ public class MindActivity extends Activity {
 		// }
 		super.onResume();
 	}
+
 }

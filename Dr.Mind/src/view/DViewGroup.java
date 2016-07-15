@@ -8,6 +8,7 @@ import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,7 @@ public class DViewGroup extends ViewGroup {
 	 * @param x
 	 *            是指组件最右边位置
 	 * @param y
-	 *            是指组件y轴中间位置
+	 *            是指组件y轴最下面位置
 	 */
 	private void drawTree(DEditTextView view, int x, int y) {
 		// 如果没有儿子就结束
@@ -115,7 +116,7 @@ public class DViewGroup extends ViewGroup {
 			}
 			// new SinGraph
 			int level = nodeList.get(0).getLevel();
-			System.out.println("level is"+level);
+			System.out.println("level is" + level);
 			HeightCompute cal = new HeightCompute(weight);
 			int ys = y - cal.computeHeight() / 2;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
@@ -129,13 +130,14 @@ public class DViewGroup extends ViewGroup {
 				DEditTextView text = new DEditTextView(getContext());
 				MyPoint point = points.get(i);
 				text.setNode(nodeList.get(i));
+				text.setIncludeFontPadding(false);
 				text.setOnTouchListener(new TextOnTouchListener());
 				addView(text);
 				text.measure(0, 0);
 				int t_x = (int) (x + point.getX());
-				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight() / 2;
+				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight();
 				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
-				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight() / 2);
+				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
 			}
 		}
 	}

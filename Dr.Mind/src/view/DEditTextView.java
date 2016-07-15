@@ -33,17 +33,17 @@ public class DEditTextView extends EditText {
 
 	public DEditTextView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		this.getBackground().setAlpha(0);
+//		this.getBackground().setAlpha(0);
 	}
 
 	public DEditTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.getBackground().setAlpha(0);
+//		this.getBackground().setAlpha(0);
 	}
 
 	public DEditTextView(Context context) {
 		super(context);
-		this.getBackground().setAlpha(0);
+//		this.getBackground().setAlpha(0);
 	}
 
 	public Node getNode() {

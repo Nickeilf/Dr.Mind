@@ -1,20 +1,14 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import activity.MindActivity;
 import android.content.Context;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.GestureDetector.OnDoubleTapListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 import bl.paintblImpl;
-import cn.edu.cn.R;
 import service.paintService;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -27,7 +21,6 @@ public class TextOnTouchListener implements OnTouchListener {
 	private paintService paintService;
 	private int count = 0;
 	private long firClick;
-	private InputMethodManager imm;
 
 	public TextOnTouchListener() {
 		gl = new gestureListener();
@@ -83,6 +76,8 @@ public class TextOnTouchListener implements OnTouchListener {
 
 		public boolean onSingleTapUp(MotionEvent e) {
 			Log.i("MyGesture", "onSingleTapUp");
+			InputMethodManager imm = (InputMethodManager) MindActivity.a.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.showSoftInput(v, 0);
 			return true;
 		}
 
@@ -117,6 +112,9 @@ public class TextOnTouchListener implements OnTouchListener {
 		public boolean onDoubleTap(MotionEvent e) {
 			Log.i("MyGesture", "onDoubleTap");
 			System.out.println("双击产生");
+			InputMethodManager imm = (InputMethodManager) MindActivity.a.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+			
 			DEditTextView editText = (DEditTextView) v;
 			paintService.InsertNode(editText.getNode());
 			DViewGroup parent = (DViewGroup) editText.getParent();
