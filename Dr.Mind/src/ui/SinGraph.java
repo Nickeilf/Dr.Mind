@@ -24,10 +24,12 @@ public class SinGraph extends View {
 	private List<Integer> weightList;
 	private List<MyPoint> pointList;
 	private MyPoint start_point;
+	
+
 	private int level;
 
 	// 构造方法
-	// @param:上下文，结点的权重列表,view放置的坐标
+	// @param:上下文，结点的权重列表,view放置的坐标,结点层级
 	public SinGraph(Context context, List<Integer> weightList, MyPoint point,int level) {
 		super(context);
 		this.weightList = weightList;
@@ -106,12 +108,20 @@ public class SinGraph extends View {
 			height = 1;
 		}
 
-		height *= (Constant.getScreenWidth() / 10);
-		return height+10;
+		height *= (Constant.getScreenWidth() / 5);
+		return (int)(height+10+paint.getStrokeWidth());
 	}
 
 	public int getSinWidth() {
 		return 180;
+	}
+	
+	public MyPoint getStart_point() {
+		return start_point;
+	}
+
+	public void setStart_point(MyPoint start_point) {
+		this.start_point = start_point;
 	}
 
 	public List<MyPoint> getPointList() {
@@ -120,7 +130,7 @@ public class SinGraph extends View {
 			weightSum += weightList.get(i);
 		}
 		int type = sum % 2;
-		int singleRec = Constant.getScreenWidth() / 20;
+		int singleRec = Constant.getScreenWidth() / 10;
 		int x_start = 0;
 		int y_start = this.getSinHeight() / 2;
 
@@ -161,15 +171,14 @@ public class SinGraph extends View {
 		for (int i = 0; i < weightList.size(); i++) {
 			weightSum += weightList.get(i);
 		}
-		int type = sum % 2;
-		int singleRec = Constant.getScreenWidth() / 20;
+		int singleRec = Constant.getScreenWidth() / 10;
 		int x_start = 0;
 		int y_start = this.getSinHeight() / 2;
 
 		for (int i = 0; i < sum; i++) {
 			float x_value = x_start;
-			float y_value = y_start;
-			float y_next_value = y_start;
+			float y_value ;
+			float y_next_value;
 
 			float Ai = 0;
 			float weight = 0;
@@ -187,12 +196,13 @@ public class SinGraph extends View {
 			for (int j = 0; j < 180; j++) {
 				if (i < sum / 2) {
 					y_value = (float) (Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start - Ai)+5;
-					y_next_value = (float) (Ai * Math.sin(Math.PI * (j + 1 + 90) / 180) + y_start - Ai);
+					y_next_value = (float) (Ai * Math.sin(Math.PI * (j + 1 + 90) / 180) + y_start - Ai)+5;
 				} else {
 					y_value = (float) (-Ai * Math.sin(Math.PI * (j + 90) / 180) + y_start + Ai)+5;
-					y_next_value = (float) (-Ai * Math.sin(Math.PI * (j + 1 + 90) / 180) + y_start + Ai);
+					y_next_value = (float) (-Ai * Math.sin(Math.PI * (j + 1 + 90) / 180) + y_start + Ai)+5;
 				}
 				canvas.drawLine(x_value, y_value, x_value + 1, y_next_value, paint);
+//				canvas.drawPoint(x_value,y_value,paint);
 				x_value = x_value + 1;
 			}
 		}

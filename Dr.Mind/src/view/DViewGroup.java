@@ -68,7 +68,7 @@ public class DViewGroup extends ViewGroup {
 		first = true;
 		// refresh();
 
-		myAddView();// Test
+		myAddView();
 		sGestureDetector = new ScaleGestureDetector(this.getContext(), new MyScaleGestureListener());
 	}
 
@@ -85,6 +85,7 @@ public class DViewGroup extends ViewGroup {
 
 		DEditTextView editText = (DEditTextView) getChildAt(0);
 		editText.setText("思维导图");
+		editText.clearFocus();
 		drawTree(editText, editText.getRight(), editText.getBottom() - editText.getMeasuredHeight() / 2);
 
 	}
@@ -118,7 +119,7 @@ public class DViewGroup extends ViewGroup {
 			// new SinGraph
 			int level = nodeList.get(0).getLevel();
 			HeightCompute cal = new HeightCompute(weight);
-			int ys = y - cal.computeHeight() / 2 - 6;
+			int ys = y - cal.computeHeight() / 2 - 11;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
 			addView(sin);
 			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
@@ -135,9 +136,10 @@ public class DViewGroup extends ViewGroup {
 				addView(text);
 				text.measure(0, 0);
 				int t_x = (int) (x + point.getX());
-				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight() + 1;
+				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight() + 3;
 				text.setxPos(t_x);
 				text.setyPos(t_y);
+				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
 				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
 			}
 		}
@@ -179,8 +181,6 @@ public class DViewGroup extends ViewGroup {
 			case MotionEvent.ACTION_MOVE:
 				float stopX = event.getX();
 				float stopY = event.getY();
-				Log.e("TAG", "onTouchEvent-ACTION_MOVE\nstartX is " + startX + " startY is " + startY + " stopX is "
-						+ stopX + " stopY is " + stopY);
 				posX += stopX - startX;
 				posY += stopY - startY;
 				posX = posX > 0 ? 0 : posX;
@@ -218,21 +218,13 @@ public class DViewGroup extends ViewGroup {
 				int x = view.getxPos();
 				int y = view.getyPos();
 				view.layout(x, y, x + view.getMeasuredWidth(), y + view.getMeasuredHeight());
+			} else if (ins instanceof SinGraph) {
+				SinGraph view = (SinGraph) ins;
+				int x = (int) view.getStart_point().getX();
+				int y = (int) view.getStart_point().getY();
+				view.layout(x, y, x + view.getSinWidth(), y + view.getSinHeight());
 			}
 		}
-		// int sin_height = sin.getSinHeight();
-		// int sin_width = sin.getSinWeight();
-		// sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
-		// 2 - sin_height / 2,
-		// s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
-		// 2 + sin_height / 2);
-		// SinGraph sin = (SinGraph) getChildAt(1);
-		// int sin_height = sin.getSinHeight();
-		// int sin_width = sin.getSinWidth();
-		// sin.layout(s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight() /
-		// 2 - sin_height / 2,
-		// s_x + a.getMeasuredWidth() + sin_width, s_y + a.getMeasuredHeight() /
-		// 2 + sin_height / 2);
 	}
 
 	@Override
