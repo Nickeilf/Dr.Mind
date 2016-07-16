@@ -118,7 +118,7 @@ public class DViewGroup extends ViewGroup {
 			int level = nodeList.get(0).getLevel();
 			System.out.println("level is" + level);
 			HeightCompute cal = new HeightCompute(weight);
-			int ys = y - cal.computeHeight()/2-5;
+			int ys = y - cal.computeHeight() / 2 - 6;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
 			addView(sin);
 			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
@@ -135,7 +135,7 @@ public class DViewGroup extends ViewGroup {
 				addView(text);
 				text.measure(0, 0);
 				int t_x = (int) (x + point.getX());
-				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight();
+				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight() + 1;
 				text.setxPos(t_x);
 				text.setyPos(t_y);
 				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
