@@ -19,7 +19,7 @@ public class HeightCompute {
 
 	public int computeHeight() {
 		int height = 0;
-		int singleRec = Constant.getScreenWidth()/10;
+		int singleRec = Constant.getScreenWidth()/5;
 		for (int i = 0; i < listOfWeight.size(); i++) {
 			height += listOfWeight.get(i);
 		}

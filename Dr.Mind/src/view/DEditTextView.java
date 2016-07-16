@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
+
+import util.Constant;
 import vo.Node;
 
 public class DEditTextView extends EditText {
@@ -77,14 +79,13 @@ public class DEditTextView extends EditText {
 			paint_color();
 		}
 		invalidate();
-
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		float height = this.getHeight() - paint.getStrokeWidth() / 2;
-		canvas.drawLine(-1, height, this.getWidth(), height, paint);
+		canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
 
 	private void paint_width() {
