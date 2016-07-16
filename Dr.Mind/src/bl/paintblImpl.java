@@ -9,6 +9,8 @@ import vo.paintInfoVo;
 
 public class paintblImpl implements paintService {
 
+	public int ID=0;
+	
 	// 新建画板
 	public paintInfoVo createPaint() {
 		System.out.println("create");
@@ -17,7 +19,9 @@ public class paintblImpl implements paintService {
 
 	// 插入子结点
 	public Node InsertNode(Node node) {
+		ID++;
 		Node inNode = new Node();
+		inNode.setId(ID);//添加一个唯一的结点编号用于数据保存
 		inNode.setParent(node);
 		if (node.getLeftChild() == null) {
 			node.setLeftChild(inNode);

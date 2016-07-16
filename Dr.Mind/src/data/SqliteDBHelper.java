@@ -9,14 +9,16 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 
 	private static final String DATABASE_NAME ="paint_db";
 	private static final int VERSION = 1;
-	private static final String TABLE_NAME ="diary";
-	
+	private static final String TABLE_NAME ="Paint";
+		
 	//重载构造方法
 	public SqliteDBHelper(Context context) {
 		// TODO Auto-generated constructor stub
 		super(context,DATABASE_NAME,null,VERSION);
 	}
 	
+	public static final String CREATE_PAINT="create table Paint ("+
+	"id integer primary key autoincrement,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer)";
 	
 	/*
 	      * 参数介绍：context 程序上下文环境 即：XXXActivity.this 
@@ -32,15 +34,19 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		String strSQL = "create table "+TABLE_NAME+
-				"(tid integer primary key autoincrement,paintName varchar(80),root Node,parent Node,leftChild Node,rightChild Node)";
+	/*	String strSQL = "create table "+TABLE_NAME+
+				"(id integer primary key autoincrement,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer)"*/;
+		db.execSQL(CREATE_PAINT);		
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
+		db.execSQL("drop table if exists Paint");
+		onCreate(db);
 		
 	}  
+	
 	
 	
 

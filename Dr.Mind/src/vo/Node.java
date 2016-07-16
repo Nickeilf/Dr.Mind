@@ -12,6 +12,7 @@ public class Node {
 	TextType font;//字体类型
 	Bitmap bmp;//图片
 	int level;//结点层数
+	int id;//结点序号
 	
 	public Node(){
 		leftChild=null;
@@ -22,9 +23,26 @@ public class Node {
 	    font=null;
 	    bmp=null;
 	    level=0;
+	    id=0;
 	}
 
 	
+
+
+public int getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+
 public int getLevel() {
 		return level;
 	}
