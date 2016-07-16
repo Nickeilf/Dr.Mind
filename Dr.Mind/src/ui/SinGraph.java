@@ -24,6 +24,8 @@ public class SinGraph extends View {
 	private List<Integer> weightList;
 	private List<MyPoint> pointList;
 	private MyPoint start_point;
+	
+
 	private int level;
 
 	// 构造方法
@@ -112,6 +114,14 @@ public class SinGraph extends View {
 
 	public int getSinWidth() {
 		return 180;
+	}
+	
+	public MyPoint getStart_point() {
+		return start_point;
+	}
+
+	public void setStart_point(MyPoint start_point) {
+		this.start_point = start_point;
 	}
 
 	public List<MyPoint> getPointList() {

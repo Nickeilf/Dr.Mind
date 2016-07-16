@@ -41,27 +41,6 @@ public class TextOnTouchListener implements OnTouchListener {
 		v.requestFocus();
 
 		mGesture.onTouchEvent(event);
-		// if (MotionEvent.ACTION_DOWN == event.getAction()) {
-		// count++;
-		//
-		// if (count == 1) {
-		// firClick = System.currentTimeMillis();
-		//
-		// } else if (count == 2) {
-		// long secClick = System.currentTimeMillis();
-		// if (secClick - firClick < 1000) {
-		// System.out.println("双击啦啦啦啦啦啦");
-		// DEditTextView editText = (DEditTextView) v;
-		// paintService.InsertNode(editText.getNode());
-		// DViewGroup parent = (DViewGroup) editText.getParent();
-		// parent.refresh();
-		// }
-		// count = 0;
-		// firClick = 0;
-		// secClick = 0;
-		//
-		// }
-		// }
 		return true;
 	}
 
@@ -118,7 +97,6 @@ public class TextOnTouchListener implements OnTouchListener {
 
 		public boolean onDoubleTap(MotionEvent e) {
 			Log.i("MyGesture", "onDoubleTap");
-			System.out.println("双击产生");
 			InputMethodManager imm = (InputMethodManager) MindActivity.a.getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
