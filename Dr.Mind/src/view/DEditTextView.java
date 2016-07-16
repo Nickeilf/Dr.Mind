@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
@@ -64,9 +66,7 @@ public class DEditTextView extends EditText {
 				}
 			}
 		});
-		// this.setFocusable(true);
-		// this.setFocusableInTouchMode(true);
-		// this.requestFocus();
+		this.addTextChangedListener(new MyTextWatcher(this));
 	}
 
 	public void setNode(Node node) {
@@ -121,5 +121,26 @@ public class DEditTextView extends EditText {
 			paint.setColor(Color.rgb(137, 157, 192));
 			break;
 		}
+	}
+
+	private class MyTextWatcher implements TextWatcher {
+		DEditTextView v;
+
+		public MyTextWatcher(DEditTextView v) {
+			this.v = v;
+		}
+
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			// TODO Auto-generated method stub
+
+		}
+
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+		}
+
+		public void afterTextChanged(Editable s) {
+		}
+
 	}
 }

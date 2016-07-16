@@ -211,21 +211,20 @@ public class DViewGroup extends ViewGroup {
 			refresh();
 			first = false;
 		}
-		// for (int i = 1; i < getChildCount(); i++) {
-		// View ins = getChildAt(i);
-		// if (ins instanceof DEditTextView) {
-		// DEditTextView view = (DEditTextView) ins;
-		// int x = view.getxPos();
-		// int y = view.getyPos();
-		// view.layout(x, y, x + view.getMeasuredWidth(), y +
-		// view.getMeasuredHeight());
-		// } else if (ins instanceof SinGraph) {
-		// SinGraph view = (SinGraph) ins;
-		// int x = (int) view.getStart_point().getX();
-		// int y = (int) view.getStart_point().getY();
-		// view.layout(x, y, x + view.getSinWidth(), y + view.getSinHeight());
-		// }
-		// }
+		for (int i = 1; i < getChildCount(); i++) {
+			View ins = getChildAt(i);
+			if (ins instanceof DEditTextView) {
+				DEditTextView view = (DEditTextView) ins;
+				int x = view.getxPos();
+				int y = view.getyPos();
+				view.layout(x, y, x + view.getMeasuredWidth(), y + view.getMeasuredHeight());
+			} else if (ins instanceof SinGraph) {
+				SinGraph view = (SinGraph) ins;
+				int x = (int) view.getStart_point().getX();
+				int y = (int) view.getStart_point().getY();
+				view.layout(x, y, x + view.getSinWidth(), y + view.getSinHeight());
+			}
+		}
 	}
 
 	@Override
