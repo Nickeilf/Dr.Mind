@@ -79,6 +79,8 @@ public class MindActivity extends Activity {
 			if (isHideInput(view, ev)) {
 				HideSoftInput(view.getWindowToken());
 				view.clearFocus();
+				DViewGroup parent = (DViewGroup) view.getParent();
+				parent.refresh();
 			}
 		}
 		return super.dispatchTouchEvent(ev);

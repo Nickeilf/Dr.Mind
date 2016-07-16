@@ -122,6 +122,7 @@ public class DViewGroup extends ViewGroup {
 			int ys = y - cal.computeHeight() / 2 - 11;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
 			addView(sin);
+			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
 			// 添加一组DEditText
 			// TODO Node内容
 			List<MyPoint> points = sin.getPointList();
@@ -138,6 +139,7 @@ public class DViewGroup extends ViewGroup {
 				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight() + 3;
 				text.setxPos(t_x);
 				text.setyPos(t_y);
+				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
 				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
 			}
 		}
@@ -209,20 +211,21 @@ public class DViewGroup extends ViewGroup {
 			refresh();
 			first = false;
 		}
-		for (int i = 1; i < getChildCount(); i++) {
-			View ins = getChildAt(i);
-			if (ins instanceof DEditTextView) {
-				DEditTextView view = (DEditTextView) ins;
-				int x = view.getxPos();
-				int y = view.getyPos();
-				view.layout(x, y, x + view.getMeasuredWidth(), y + view.getMeasuredHeight());
-			} else if (ins instanceof SinGraph) {
-				SinGraph view = (SinGraph) ins;
-				int x = (int) view.getStart_point().getX();
-				int y = (int) view.getStart_point().getY();
-				view.layout(x, y, x + view.getSinWidth(), y + view.getSinHeight());
-			}
-		}
+		// for (int i = 1; i < getChildCount(); i++) {
+		// View ins = getChildAt(i);
+		// if (ins instanceof DEditTextView) {
+		// DEditTextView view = (DEditTextView) ins;
+		// int x = view.getxPos();
+		// int y = view.getyPos();
+		// view.layout(x, y, x + view.getMeasuredWidth(), y +
+		// view.getMeasuredHeight());
+		// } else if (ins instanceof SinGraph) {
+		// SinGraph view = (SinGraph) ins;
+		// int x = (int) view.getStart_point().getX();
+		// int y = (int) view.getStart_point().getY();
+		// view.layout(x, y, x + view.getSinWidth(), y + view.getSinHeight());
+		// }
+		// }
 	}
 
 	@Override
