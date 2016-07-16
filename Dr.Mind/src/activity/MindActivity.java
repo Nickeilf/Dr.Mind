@@ -5,17 +5,21 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
 import cn.edu.cn.R;
+import ui.ColorPickerDialog;
 import util.Constant;
 import view.DViewGroup;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
+    private Button btnColorPicker;  
 
 	/** Called when the activity is first created. */
 	@Override
@@ -54,6 +58,16 @@ public class MindActivity extends Activity {
 		findViewById(R.id.viewgroup).setX(0);
 		findViewById(R.id.viewgroup).setY(-height);
 		findViewById(R.id.viewgroup).setLayoutParams(lay);
+		
+		 btnColorPicker = (Button) findViewById(R.id.btn_color_picker);  
+	        btnColorPicker.setOnClickListener(new View.OnClickListener() {  
+	              
+	            public void onClick(View v) {  
+	               System.out.println("woshianniu");
+	            }  
+	        });
+	            
+	        
 	}
 
 	@Override
