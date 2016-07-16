@@ -84,7 +84,10 @@ public class DViewGroup extends ViewGroup {
 		System.out.println("s刷新重新建图");
 
 		DEditTextView editText = (DEditTextView) getChildAt(0);
-		editText.setText("思维导图");
+		if (editText.getNode().getTextValue() == null)
+			editText.setText("思维导图");
+		else
+			editText.setText(editText.getNode().getTextValue());
 		editText.clearFocus();
 		drawTree(editText, editText.getRight(), editText.getBottom() - editText.getMeasuredHeight() / 2);
 
@@ -130,7 +133,10 @@ public class DViewGroup extends ViewGroup {
 				DEditTextView text = new DEditTextView(getContext());
 				MyPoint point = points.get(i);
 				text.setNode(nodeList.get(i));
-				text.setText(text.getNode().getTextValue());
+				if (text.getNode().getTextValue() == null)
+					text.setText("新建节点");
+				else
+					text.setText(text.getNode().getTextValue());
 				text.setIncludeFontPadding(false);
 				text.setOnTouchListener(new TextOnTouchListener());
 				addView(text);

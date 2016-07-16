@@ -39,6 +39,10 @@ public class TextOnTouchListener implements OnTouchListener {
 		v.setFocusable(true);
 		v.setFocusableInTouchMode(true);
 		v.requestFocus();
+		if (v instanceof DEditTextView) {
+			DEditTextView view = (DEditTextView) v;
+			view.setSelection(view.length());
+		}
 
 		mGesture.onTouchEvent(event);
 		return true;
