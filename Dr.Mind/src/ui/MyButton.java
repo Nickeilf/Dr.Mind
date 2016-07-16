@@ -19,7 +19,7 @@ public class MyButton extends Button {
         int height=this.getHeight();
         int width=this.getWidth();
         int paint_width=6;
-        paint.setStrokeWidth(6);
+        paint.setStrokeWidth(paint_width);
         paint.setColor(Color.BLUE);
         canvas.drawLine(0, height / 2, width, height / 2, paint);
         canvas.drawLine(width/2,0,width/2,height,paint);
