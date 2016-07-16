@@ -78,7 +78,6 @@ public class DViewGroup extends ViewGroup {
 
 	public void refresh() {
 		Node root = paintInfo.getbTreeRoot().getRoot();
-		
 
 		// 根据树形结构画图
 		removeViews(1, getChildCount() - 1);
@@ -102,7 +101,7 @@ public class DViewGroup extends ViewGroup {
 		// 如果没有儿子就结束
 		Node node = view.getNode();
 		if (node.getLeftChild() == null) {
-			System.out.println("没有儿砸");
+			// do nothing
 		} else {
 			Node p = node.getLeftChild();
 			// 找出一层所有子节点
@@ -118,7 +117,6 @@ public class DViewGroup extends ViewGroup {
 			}
 			// new SinGraph
 			int level = nodeList.get(0).getLevel();
-			System.out.println("level is" + level);
 			HeightCompute cal = new HeightCompute(weight);
 			int ys = y - cal.computeHeight() / 2 - 6;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
@@ -131,6 +129,7 @@ public class DViewGroup extends ViewGroup {
 				DEditTextView text = new DEditTextView(getContext());
 				MyPoint point = points.get(i);
 				text.setNode(nodeList.get(i));
+				text.setText(text.getNode().getTextValue());
 				text.setIncludeFontPadding(false);
 				text.setOnTouchListener(new TextOnTouchListener());
 				addView(text);

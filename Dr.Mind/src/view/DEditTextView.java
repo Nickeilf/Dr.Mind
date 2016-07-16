@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.EditText;
 import vo.Node;
 
@@ -51,9 +53,18 @@ public class DEditTextView extends EditText {
 	}
 
 	private void init() {
-//		this.setFocusable(true);
-//		this.setFocusableInTouchMode(true);
-//		this.requestFocus();
+		this.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			public void onFocusChange(View v, boolean hasFocus) {
+				DEditTextView f = (DEditTextView) v;
+				if (!hasFocus) {
+					f.node.setTextValue(f.getText().toString());
+				}
+			}
+		});
+		// this.setFocusable(true);
+		// this.setFocusableInTouchMode(true);
+		// this.requestFocus();
 	}
 
 	public void setNode(Node node) {

@@ -33,9 +33,13 @@ public class TextOnTouchListener implements OnTouchListener {
 	public boolean onTouch(View v, MotionEvent event) {
 		gl.setV(v);
 		dtl.setV(v);
+		if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+			System.out.println("夭寿啦！！");
+		}
 		v.setFocusable(true);
 		v.setFocusableInTouchMode(true);
 		v.requestFocus();
+
 		mGesture.onTouchEvent(event);
 		// if (MotionEvent.ACTION_DOWN == event.getAction()) {
 		// count++;
