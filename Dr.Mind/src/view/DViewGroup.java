@@ -78,12 +78,14 @@ public class DViewGroup extends ViewGroup {
 
 	public void refresh() {
 		Node root = paintInfo.getbTreeRoot().getRoot();
+		
 
 		// 根据树形结构画图
 		removeViews(1, getChildCount() - 1);
 		System.out.println("s刷新重新建图");
 
 		DEditTextView editText = (DEditTextView) getChildAt(0);
+		editText.setText("思维导图");
 		drawTree(editText, editText.getRight(), editText.getBottom() - editText.getMeasuredHeight() / 2);
 
 	}
@@ -125,7 +127,6 @@ public class DViewGroup extends ViewGroup {
 			// 添加一组DEditText
 			// TODO Node内容
 			List<MyPoint> points = sin.getPointList();
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa" + nodeList.size());
 			for (int i = 0; i < nodeList.size(); i++) {
 				DEditTextView text = new DEditTextView(getContext());
 				MyPoint point = points.get(i);
