@@ -1,40 +1,5 @@
 package ui;
 
-//import android.content.Context;
-//import android.graphics.Canvas;
-//import android.graphics.Color;
-//import android.graphics.Paint;
-//import android.widget.Button;
-//
-///**
-// * Created by liu on 2016/7/16.
-// */
-//public class MyButton extends Button {
-//    public MyButton(Context context){super(context);};
-//
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
-//        Paint paint=new Paint();
-//        int height=this.getHeight();
-//        int width=this.getWidth();
-//        int paint_width=6;
-//        paint.setStrokeWidth(paint_width);
-//        paint.setColor(Color.BLUE);
-//        canvas.drawLine(0, height / 2, width, height / 2, paint);
-////        canvas.drawLine(width/2,0,width/2,height,paint);
-//    }
-//
-//    public int getButtonWidth(){
-//        return 50;
-//    }
-//
-//    public int getButtonHeight(){
-//        return 50;
-//    }
-//}
-
-
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -46,6 +11,7 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 
 import cn.edu.cn.R;
+import vo.Node;
 
 public class MyButton extends ImageView {
 
@@ -68,9 +34,11 @@ public class MyButton extends ImageView {
     private int defaultColor = Color.BLACK;
     private int pressedColor;
     private ObjectAnimator pressedAnimator;
+    private Node node;
 
-    public MyButton(Context context) {
+    public MyButton(Context context, Node node) {
         super(context);
+        this.node=node;
         init(context, null);
     }
 
@@ -85,11 +53,11 @@ public class MyButton extends ImageView {
     }
 
     public  int getButtonHeight(){
-        return 50;
+        return 80;
     }
 
     public int getButtonWidth(){
-        return 50;
+        return 80;
     }
 
     @Override
@@ -167,7 +135,7 @@ public class MyButton extends ImageView {
         pressedRingWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_PRESSED_RING_WIDTH_DIP, getResources()
                 .getDisplayMetrics());
 
-        int color = Color.BLACK;
+        int color = Color.BLUE;
         if (attrs != null) {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleButton);
             color = a.getColor(R.styleable.CircleButton_cb_color, color);
