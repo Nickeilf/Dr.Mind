@@ -9,8 +9,8 @@ import vo.paintInfoVo;
 
 public class paintblImpl implements paintService {
 
-	public int ID=0;
-	
+	public int ID = 0;
+
 	// 新建画板
 	public paintInfoVo createPaint() {
 		System.out.println("create");
@@ -21,7 +21,7 @@ public class paintblImpl implements paintService {
 	public Node InsertNode(Node node) {
 		ID++;
 		Node inNode = new Node();
-		inNode.setId(ID);//添加一个唯一的结点编号用于数据保存
+		inNode.setId(ID);// 添加一个唯一的结点编号用于数据保存
 		inNode.setParent(node);
 		if (node.getLeftChild() == null) {
 			node.setLeftChild(inNode);
@@ -38,14 +38,13 @@ public class paintblImpl implements paintService {
 			}
 
 		}
-		
-		if(inNode.getParent()==null){
+
+		if (inNode.getParent() == null) {
 			inNode.setLevel(0);
+		} else {
+			inNode.setLevel(inNode.getParent().getLevel() + 1);
 		}
-		else{
-			inNode.setLevel(inNode.getParent().getLevel()+1);
-		}
-		System.out.print("innode="+inNode.getLevel());
+		System.out.print("innode=" + inNode.getLevel());
 		return inNode;// 返回子结点
 	}
 
@@ -133,25 +132,22 @@ public class paintblImpl implements paintService {
 				break;
 			else {
 				node.setParent(parent);// 改变子结点的父结点
-				//修改结点层级
-				if(node.getParent()==null){
+				// 修改结点层级
+				if (node.getParent() == null) {
 					node.setLevel(0);
-				}
-				else{
-					node.setLevel(node.getParent().getLevel()+1);
+				} else {
+					node.setLevel(node.getParent().getLevel() + 1);
 				}
 				node = node.getRightChild();
 			}
-			
-			
+
 		}
 		node.setLeftChild(rNode);
 		rNode.setParent(node);
-		if(rNode.getParent()==null){
+		if (rNode.getParent() == null) {
 			rNode.setLevel(0);
-		}
-		else{
-			rNode.setLevel(rNode.getParent().getLevel()+1);
+		} else {
+			rNode.setLevel(rNode.getParent().getLevel() + 1);
 		}
 
 		return true;

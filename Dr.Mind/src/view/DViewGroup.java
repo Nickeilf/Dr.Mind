@@ -125,12 +125,8 @@ public class DViewGroup extends ViewGroup {
 			HeightCompute cal = new HeightCompute(weight);
 			int ys = y - cal.computeHeight() / 2 - 11;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
-			MyButton button =new MyButton(getContext());
 			addView(sin);
-			addView(button);
 			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
-			button.layout(x,ys,x+button.getButtonWidth(),ys+button.getButtonHeight() );
-			System.out.println("button height="+button.getHeight());
 			// 添加一组DEditText
 			// TODO Node内容
 			List<MyPoint> points = sin.getPointList();
@@ -151,7 +147,12 @@ public class DViewGroup extends ViewGroup {
 				text.setxPos(t_x);
 				text.setyPos(t_y);
 				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
-				drawTree(text, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
+				MyButton button = new MyButton(getContext(), nodeList.get(i));
+				addView(button);
+				int b_x = t_x + text.getMeasuredWidth();
+				int b_y = t_y + text.getMeasuredHeight() - button.getButtonHeight() / 2;
+				button.layout(b_x, b_y, b_x + button.getButtonWidth(), b_y + button.getButtonHeight());
+				drawTree(text, b_x + button.getButtonWidth(), b_y + button.getButtonHeight() / 2);
 			}
 		}
 	}
