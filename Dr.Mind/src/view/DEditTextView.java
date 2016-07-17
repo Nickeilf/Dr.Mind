@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -40,6 +41,12 @@ public class DEditTextView extends EditText {
 	public DEditTextView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init();
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		System.out.println("哇我被调用了");
+		return super.onTouchEvent(event);
 	}
 
 	public DEditTextView(Context context, AttributeSet attrs) {

@@ -8,7 +8,6 @@ import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import service.paintService;
 import ui.MyButton;
 import ui.MyPoint;
 import ui.SinGraph;
-import util.Constant;
 import util.HeightCompute;
 import util.TextOnTouchListener;
 import vo.Node;
