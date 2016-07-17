@@ -5,15 +5,6 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-    <!--
-    <view.DViewGroup
-        android:id="@+id/viewGroup1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:alpha="200" >
-    </view.DViewGroup>
-    -->
-    
     <Button 
 	    android:id="@+id/btn_color_picker"
 	    android:layout_width="wrap_content"
