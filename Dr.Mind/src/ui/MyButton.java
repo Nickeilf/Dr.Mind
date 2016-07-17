@@ -64,6 +64,7 @@ public class MyButton extends ImageView {
 		return 80;
 	}
 
+
 	@Override
 	public void setPressed(boolean pressed) {
 		super.setPressed(pressed);
@@ -87,6 +88,12 @@ public class MyButton extends ImageView {
 		canvas.drawCircle(centerX, centerY, pressedRingRadius + animationProgress, focusPaint);
 		canvas.drawCircle(centerX, centerY, outerRadius - pressedRingWidth, circlePaint);
 		super.onDraw(canvas);
+
+		Paint paint=new Paint();
+		paint.setStrokeWidth(5);
+		paint.setColor(Color.rgb(217,104,61));
+		canvas.drawLine(centerX-pressedRingRadius,centerY, centerX+pressedRingRadius   , centerY, paint);
+
 	}
 
 	@Override
@@ -142,7 +149,7 @@ public class MyButton extends ImageView {
 		pressedRingWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_PRESSED_RING_WIDTH_DIP,
 				getResources().getDisplayMetrics());
 
-		int color = Color.BLUE;
+		int color = Color.rgb(250,227,113);
 		if (attrs != null) {
 			final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleButton);
 			color = a.getColor(R.styleable.CircleButton_cb_color, color);
