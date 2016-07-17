@@ -24,4 +24,12 @@ public class MyButton extends Button {
         canvas.drawLine(0, height / 2, width, height / 2, paint);
         canvas.drawLine(width/2,0,width/2,height,paint);
     }
+
+    public int getButtonWidth(){
+        return 50;
+    }
+
+    public int getButtonHeight(){
+        return 50;
+    }
 }

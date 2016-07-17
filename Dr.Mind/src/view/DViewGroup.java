@@ -15,6 +15,7 @@ import java.util.List;
 
 import bl.paintblImpl;
 import service.paintService;
+import ui.MyButton;
 import ui.MyPoint;
 import ui.SinGraph;
 import util.Constant;
@@ -124,8 +125,12 @@ public class DViewGroup extends ViewGroup {
 			HeightCompute cal = new HeightCompute(weight);
 			int ys = y - cal.computeHeight() / 2 - 11;
 			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
+			MyButton button =new MyButton(getContext());
 			addView(sin);
+			addView(button);
 			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
+			button.layout(x,ys,x+button.getButtonWidth(),ys+button.getButtonHeight() );
+			System.out.println("button height="+button.getHeight());
 			// 添加一组DEditText
 			// TODO Node内容
 			List<MyPoint> points = sin.getPointList();
