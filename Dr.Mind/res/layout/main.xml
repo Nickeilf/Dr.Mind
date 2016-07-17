@@ -5,13 +5,7 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-    <Button 
-	    android:id="@+id/btn_color_picker"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_marginTop="20dp"
-	    android:layout_gravity="center"
-	    android:text="@string/btn_color_picker"/>
+    
 
     <include layout="@layout/dviewgroup" />
 

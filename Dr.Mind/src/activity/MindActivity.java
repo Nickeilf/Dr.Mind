@@ -25,7 +25,7 @@ import view.DViewGroup;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
-    private Button btnColorPicker;  
+	private Button btnColorPicker;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -64,16 +64,7 @@ public class MindActivity extends Activity {
 		findViewById(R.id.viewgroup).setX(0);
 		findViewById(R.id.viewgroup).setY(-height);
 		findViewById(R.id.viewgroup).setLayoutParams(lay);
-		
-		 btnColorPicker = (Button) findViewById(R.id.btn_color_picker);  
-	        btnColorPicker.setOnClickListener(new View.OnClickListener() {  
-	              
-	            public void onClick(View v) {  
-	               System.out.println("woshianniu");
-	            }  
-	        });
-	            
-	        
+
 	}
 
 	@Override
