@@ -116,12 +116,13 @@ public class paintblImpl implements paintService {
 			// Node tempNode=node.getLeftChild();
 			int level = node.getLevel();
 			Node pa = node.getParent();
+			PreorderLevel(node.getLeftChild());
 			node.getParent().setLeftChild(node.getLeftChild());
 			node.getLeftChild().setParent(node.getParent());
 			node.getLeftChild().setLevel(node.getLevel());
 			Node tempNode = node.getRightChild();
 			node = node.getLeftChild();
-			PreorderLevel(node);
+		
 			for (;;) {
 				if (node.getRightChild() == null) {
 					node.setRightChild(tempNode);
@@ -168,9 +169,9 @@ public class paintblImpl implements paintService {
 				}
 
 			}
+			node.setParent(parent);
 			node.setLevel(level);
 			node.setRightChild(rNode);
-			rNode.setParent(node);
 //			if (rNode.getParent() == null) {
 //				rNode.setLevel(0);
 //			} else {
@@ -223,6 +224,7 @@ public class paintblImpl implements paintService {
 		} else {
 			PreorderLevel(node.getLeftChild());
 			node.setLevel(node.getLevel()-1);
+	
 			PreorderLevel(node.getRightChild());
 			// System.out.println("lala"+n);
 		}
