@@ -91,7 +91,7 @@ public class DEditTextView extends EditText {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		float height = this.getHeight() - paint.getStrokeWidth() / 2;
+		float height = this.getHeight() - paint.getStrokeWidth() / 2-1;
 		canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
 

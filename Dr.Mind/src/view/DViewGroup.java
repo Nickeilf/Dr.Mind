@@ -140,8 +140,8 @@ public class DViewGroup extends ViewGroup {
 				text.setOnTouchListener(new TextOnTouchListener());
 				addView(text);
 				text.measure(0, 0);
-				int t_x = (int) (x + point.getX());
-				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight() + 3;
+				int t_x = (int) (x + point.getX()-1);
+				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight()+4;
 				text.setxPos(t_x);
 				text.setyPos(t_y);
 				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
