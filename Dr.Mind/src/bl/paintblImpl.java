@@ -113,8 +113,29 @@ public class paintblImpl implements paintService {
 		}
 
 		if (node.getParent().getLeftChild() == node) {
+			//Node tempNode=node.getLeftChild();
+			int level=node.getLevel();
+			Node pa=node.getParent();
 			node.getParent().setLeftChild(node.getLeftChild());
+			node.getLeftChild().setParent(node.getParent());
+			node.getLeftChild().setLevel(node.getLevel());
+			Node tempNode=node.getRightChild();
+            node=node.getLeftChild();
+			for(;;){
+				if(node.getRightChild()==null){
+					node.setRightChild(tempNode);
+	                break;			
+				}
+				else{
+					node=node.getRightChild();
+					node.setLevel(level);
+					node.setParent(pa);
+				}
+			}
+			
+			
 		} else {
+			int level=node.getLevel();
 			Node tNode = node.getParent().getLeftChild();
 
 			for (;;) {

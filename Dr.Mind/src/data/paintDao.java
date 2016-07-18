@@ -1,5 +1,6 @@
 package data;
 
+import android.R.bool;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,8 +16,8 @@ public class paintDao {
 		db = sqliteDBHelper.getWritableDatabase();
 	}
 	
-	//读操作
-	public String execQuery( ){
+	//根据表名读操作
+	public String execQuery(String paintName ){
 		try{
 			Cursor cursor =db.query("Paint",null,null,null,null,null,null);
 			//始终让cursor指向数据库表的第1行记录
@@ -24,7 +25,7 @@ public class paintDao {
 			//定义一个StringBuffer的对象，用于动态拼接字符串
 			StringBuffer sb = new StringBuffer();
 			//循环游标，如果不是最后一项记录
-			while(!cursor.isAfterLast()){
+			while(!cursor.isAfterLast()&&cursor.getString(cursor.getColumnIndex("paintName")).equals(paintName)){
 				  sb.append(cursor.getInt(cursor.getColumnIndex("id")) + "/" + cursor.getString(cursor.getColumnIndex("paintName")) + "/"
 	                        + cursor.getInt(cursor.getColumnIndex("root")) + "/" + cursor.getInt(cursor.getColumnIndex("parent")) + "/"
 	                        + cursor.getInt(cursor.getColumnIndex("leftChild"))+"/"+cursor.getInt(cursor.getColumnIndex("rightChild"))+"/"
@@ -57,6 +58,14 @@ public class paintDao {
             db.endTransaction();    //结束事务  
         }  
 
+    }
+    
+    //插入
+    public boolean insert(int id,String paintname,int parent,int leftchild,int rightchild,String textvalue){
+		//Content
+    	
+    	return false;
+    	
     }
     
 }

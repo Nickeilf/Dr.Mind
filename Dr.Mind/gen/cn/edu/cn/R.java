@@ -88,7 +88,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cn.edu.cn:cb_color
+          @attr name android:cb_color
         */
         public static final int CircleButton_cb_color = 0;
         /**
@@ -104,7 +104,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cn.edu.cn:cb_pressedRingWidth
+          @attr name android:cb_pressedRingWidth
         */
         public static final int CircleButton_cb_pressedRingWidth = 1;
     };
