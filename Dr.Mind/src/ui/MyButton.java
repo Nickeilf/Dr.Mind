@@ -1,5 +1,6 @@
 package ui;
 
+import activity.MindActivity;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,7 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import bl.paintblImpl;
 import cn.edu.cn.R;
@@ -39,6 +45,9 @@ public class MyButton extends ImageView {
 	private Node node;
 	private paintService service;
 
+	private GestureDetector gd;
+	private gestureListener gl;
+
 	public MyButton(Context context, Node node) {
 		super(context);
 		this.node = node;
@@ -64,7 +73,6 @@ public class MyButton extends ImageView {
 		return 80;
 	}
 
-
 	@Override
 	public void setPressed(boolean pressed) {
 		super.setPressed(pressed);
@@ -75,12 +83,18 @@ public class MyButton extends ImageView {
 
 		if (pressed) {
 			showPressedRing();
-			service.DeleteAllChild(node);
-			DViewGroup parent = (DViewGroup) this.getParent();
-			parent.refresh();
+			// service.DeleteAllChild(node);
+			// DViewGroup parent = (DViewGroup) this.getParent();
+			// parent.refresh();
 		} else {
 			hidePressedRing();
 		}
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		gd.onTouchEvent(event);
+		return super.onTouchEvent(event);
 	}
 
 	@Override
@@ -89,10 +103,10 @@ public class MyButton extends ImageView {
 		canvas.drawCircle(centerX, centerY, outerRadius - pressedRingWidth, circlePaint);
 		super.onDraw(canvas);
 
-		Paint paint=new Paint();
+		Paint paint = new Paint();
 		paint.setStrokeWidth(5);
-		paint.setColor(Color.rgb(217,104,61));
-		canvas.drawLine(centerX-pressedRingRadius,centerY, centerX+pressedRingRadius   , centerY, paint);
+		paint.setColor(Color.rgb(217, 104, 61));
+		canvas.drawLine(centerX - pressedRingRadius, centerY, centerX + pressedRingRadius, centerY, paint);
 
 	}
 
@@ -140,6 +154,10 @@ public class MyButton extends ImageView {
 		this.setScaleType(ScaleType.CENTER_INSIDE);
 		setClickable(true);
 
+		gl = new gestureListener();
+		gl.setV(this);
+		gd = new GestureDetector(gl);
+
 		circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		circlePaint.setStyle(Paint.Style.FILL);
 
@@ -149,7 +167,7 @@ public class MyButton extends ImageView {
 		pressedRingWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_PRESSED_RING_WIDTH_DIP,
 				getResources().getDisplayMetrics());
 
-		int color = Color.rgb(250,227,113);
+		int color = Color.rgb(250, 227, 113);
 		if (attrs != null) {
 			final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleButton);
 			color = a.getColor(R.styleable.CircleButton_cb_color, color);
@@ -169,4 +187,46 @@ public class MyButton extends ImageView {
 		return Color.argb(Math.min(255, Color.alpha(color)), Math.min(255, Color.red(color) + amount),
 				Math.min(255, Color.green(color) + amount), Math.min(255, Color.blue(color) + amount));
 	}
+
+	private class gestureListener implements GestureDetector.OnGestureListener {
+		private View v;
+
+		public void setV(View v) {
+			this.v = v;
+		}
+
+		public boolean onDown(MotionEvent e) {
+			Log.i("MyGesture", "onDown");
+			return true;
+		}
+
+		public void onShowPress(MotionEvent e) {
+			Log.i("MyGesture", "onShowPress");
+		}
+
+		public boolean onSingleTapUp(MotionEvent e) {
+			Log.i("MyGesture", "onSingleTapUp");
+			service.DeleteAllChild(node);
+			DViewGroup parent = (DViewGroup) v.getParent();
+			parent.refresh();
+			return true;
+		}
+
+		public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+			Log.i("MyGesture22", "onScroll:" + (e2.getX() - e1.getX()) + "   " + distanceX);
+			return true;
+		}
+
+		public void onLongPress(MotionEvent e) {
+			Log.i("MyGesture", "onLongPress");
+			service.DeleteAndMerge(node);
+			DViewGroup parent = (DViewGroup) v.getParent();
+			parent.refresh();
+		}
+
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+			Log.i("MyGesture", "onFling");
+			return true;
+		}
+	};
 }

@@ -14,7 +14,6 @@ import view.DEditTextView;
 import view.DViewGroup;
 
 public class TextOnTouchListener implements OnTouchListener {
-	// 存储时间的数组
 	private GestureDetector mGesture;
 	private gestureListener gl;
 	private doubleTapListener dtl;
