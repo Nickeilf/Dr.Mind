@@ -14,9 +14,9 @@ public class paintDataServiceImpl implements paintDataService{
 	public paintInfoPO getData(String paintName) {
 		// TODO Auto-generated method stub
 		paintInfoPO po =new paintInfoPO();
-		try{
-			po=
-		}
+//		try{
+//			po=
+//		}
 		return null;
 	}
 

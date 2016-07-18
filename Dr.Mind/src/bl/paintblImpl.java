@@ -113,29 +113,27 @@ public class paintblImpl implements paintService {
 		}
 
 		if (node.getParent().getLeftChild() == node) {
-			//Node tempNode=node.getLeftChild();
-			int level=node.getLevel();
-			Node pa=node.getParent();
+			// Node tempNode=node.getLeftChild();
+			int level = node.getLevel();
+			Node pa = node.getParent();
 			node.getParent().setLeftChild(node.getLeftChild());
 			node.getLeftChild().setParent(node.getParent());
 			node.getLeftChild().setLevel(node.getLevel());
-			Node tempNode=node.getRightChild();
-            node=node.getLeftChild();
-			for(;;){
-				if(node.getRightChild()==null){
+			Node tempNode = node.getRightChild();
+			node = node.getLeftChild();
+			for (;;) {
+				if (node.getRightChild() == null) {
 					node.setRightChild(tempNode);
-	                break;			
-				}
-				else{
-					node=node.getRightChild();
+					break;
+				} else {
+					node = node.getRightChild();
 					node.setLevel(level);
 					node.setParent(pa);
 				}
 			}
-			
-			
+
 		} else {
-			int level=node.getLevel();
+			int level = node.getLevel();
 			Node tNode = node.getParent().getLeftChild();
 
 			for (;;) {
@@ -144,33 +142,37 @@ public class paintblImpl implements paintService {
 				tNode = tNode.getRightChild();
 			}
 			tNode.setRightChild(node.getLeftChild());
-	
-		Node parent = node.getParent();
-		Node rNode = node.getRightChild();
-		node = node.getLeftChild();
-		for (;;) {
-			if (node.getRightChild() == null)
-				break;
-			else {
-				node.setParent(parent);// 改变子结点的父结点
-				// 修改结点层级
-				if (node.getParent() == null) {
-					node.setLevel(0);
-				} else {
-					node.setLevel(node.getParent().getLevel() + 1);
-				}
-				node = node.getRightChild();
-			}
 
+
+			Node parent = node.getParent();
+			Node rNode = node.getRightChild();
+			node = node.getLeftChild();
+			for (;;) {
+				if (node.getRightChild() == null)
+					break;
+				else {
+					node.setParent(parent);// 改变子结点的父结点
+					// 修改结点层级
+					if (node.getParent() == null) {
+						node.setLevel(0);
+					} else {
+						node.setLevel(level);
+					}
+					node = node.getRightChild();
+
+				}
+
+			}
+			node.setLevel(level);
+			node.setRightChild(rNode);
+			rNode.setParent(node);
+//			if (rNode.getParent() == null) {
+//				rNode.setLevel(0);
+//			} else {
+//				rNode.setLevel(rNode.getParent().getLevel() + 1);
+//			}
 		}
-		node.setLeftChild(rNode);
-		rNode.setParent(node);
-		if (rNode.getParent() == null) {
-			rNode.setLevel(0);
-		} else {
-			rNode.setLevel(rNode.getParent().getLevel() + 1);
-		}
-		}
+
 		return true;
 
 	}

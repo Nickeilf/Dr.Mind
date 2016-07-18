@@ -219,6 +219,7 @@ public class MyButton extends ImageView {
 
 		public void onLongPress(MotionEvent e) {
 			Log.i("MyGesture", "onLongPress");
+			System.out.println("hhhhhhhhhhhhhhhhh");
 			service.DeleteAndMerge(node);
 			DViewGroup parent = (DViewGroup) v.getParent();
 			parent.refresh();
