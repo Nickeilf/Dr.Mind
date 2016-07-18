@@ -144,7 +144,7 @@ public class paintblImpl implements paintService {
 				tNode = tNode.getRightChild();
 			}
 			tNode.setRightChild(node.getLeftChild());
-		}
+	
 		Node parent = node.getParent();
 		Node rNode = node.getRightChild();
 		node = node.getLeftChild();
@@ -170,7 +170,7 @@ public class paintblImpl implements paintService {
 		} else {
 			rNode.setLevel(rNode.getParent().getLevel() + 1);
 		}
-
+		}
 		return true;
 
 	}
