@@ -1,5 +1,8 @@
 package service;
 
+import java.util.ArrayList;
+
+import android.content.Context;
 import android.graphics.Bitmap;
 import vo.Node;
 import vo.TextType;
@@ -10,6 +13,8 @@ public interface paintService {
 	 //paintInfoVo getPaintInfo(Node root);
 	 
 	 paintInfoVo createPaint();//新建画板
+	 
+	 //Node createRoot(int x,int y);//新建根结点
 	 
 	 Node InsertNode(Node node);//插入结点
 	 
@@ -25,8 +30,10 @@ public interface paintService {
 	 
 	 Boolean DeleteAndMerge(Node node);//删除归并
 	 
-	 Boolean SavePaint(String paintName,paintInfoVo paintvo);//存储画图
+	 Boolean SavePaint(String paintName,paintInfoVo paintvo,Context context);//存储画图
 	 
-	paintInfoVo OpenPaint(String  paintName);//打开画图 
+	 paintInfoVo OpenPaint(String  paintName,Context context);//打开画图 
+	 
+	 ArrayList<Node> getAllChild(Node parent);//获取所有子结点
 	 	 	 
 }

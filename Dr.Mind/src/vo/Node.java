@@ -13,7 +13,28 @@ public class Node {
 	Bitmap bmp;//图片
 	int level;//结点层数
 	int id;//结点序号
+	Node root=null;
+	int location=0;//0为左，1为右
 	
+	public Node getRoot() {
+		return root;
+	}
+
+	public int getLocation() {
+		return location;
+	}
+
+	public void setLocation(int location) {
+		this.location = location;
+	}
+
+	public void setRoot(Node root) {
+		this.root = root;
+	}
+
+
+
+
 	public Node(){
 		leftChild=null;
 		rightChild=null;

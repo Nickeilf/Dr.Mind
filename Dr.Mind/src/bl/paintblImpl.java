@@ -1,8 +1,14 @@
 package bl;
 
+import java.util.ArrayList;
+
+import org.junit.runners.ParentRunner;
+
 import android.R.id;
+import android.content.Context;
 import android.graphics.Bitmap;
 import impl.paintDataServiceImpl;
+import po.paintInfoPO;
 import service.paintDataService;
 import service.paintService;
 import vo.Node;
@@ -26,6 +32,7 @@ public class paintblImpl implements paintService {
 		Node inNode = new Node();
 		inNode.setId(ID);// 添加一个唯一的结点编号用于数据保存
 		inNode.setParent(node);
+		inNode.setRoot(node.getRoot());//设置根结点
 		if (node.getLeftChild() == null) {
 			node.setLeftChild(inNode);
 		} //
@@ -234,18 +241,43 @@ public class paintblImpl implements paintService {
 
 	}
 
-	public Boolean SavePaint(String paintName,paintInfoVo paintvo) {
+	public Boolean SavePaint(String paintName,paintInfoVo paintvo,Context context) {
 		// TODO Auto-generated method stub
-     pds.saveData(paintName, paintvo);
+		paintInfoPO po = new paintInfoPO();
+		po.setbTreeRoot(paintvo.getbTreeRoot());
+        pds.saveData(paintName, po,context);
 		return true;
 	}
 
-	public paintInfoVo OpenPaint(String paintName) {
+	public paintInfoVo OpenPaint(String paintName,Context context) {
 		// TODO Auto-generated method stub
 		paintInfoVo vo = new paintInfoVo();
-		vo.setbTreeRoot(pds.getData(paintName).getbTreeRoot());
+		vo.setbTreeRoot(pds.getData(paintName,context).getbTreeRoot());
 		
 		return vo;
 	}
 
+	//获取所有子结点
+
+	public ArrayList<Node> getAllChild(Node parent) {
+		// TODO Auto-generated method stub
+		ArrayList<Node> child= new ArrayList<Node>();
+		Node node = parent.getLeftChild();
+	/*	if(node!=null){
+		   child.add(node);
+		   getAllChild(node.getLeftChild());
+		   getAllChild(node.getRightChild());
+		}*/
+	    PreChild(node, child);	
+		return child;
+	}
+	
+	public void PreChild(Node node,ArrayList<Node> child){
+		if(node!=null){
+			   child.add(node);
+			   getAllChild(node.getLeftChild());
+			   getAllChild(node.getRightChild());
+			}
+	}
 }
+	
