@@ -1,12 +1,10 @@
 package bl;
 
-import java.util.ArrayList;
-
-import org.junit.runners.ParentRunner;
-
-import android.R.id;
 import android.content.Context;
 import android.graphics.Bitmap;
+
+import java.util.ArrayList;
+
 import impl.paintDataServiceImpl;
 import po.paintInfoPO;
 import service.paintDataService;

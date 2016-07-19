@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
+import FloatingButton.FloatingActionButton;
 import cn.edu.cn.R;
 import data.SqliteDBHelper;
 import data.paintDao;
@@ -42,7 +43,8 @@ public class MindActivity extends Activity {
 		
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.main);
+//		setContentView(R.layout.main);
+		setContentView(new FloatingActionButton(this));
 		init();
 	}
 
