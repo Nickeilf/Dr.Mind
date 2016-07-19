@@ -1,8 +1,10 @@
 package activity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.KeyEvent;
@@ -18,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
 import cn.edu.cn.R;
+import data.SqliteDBHelper;
+import data.paintDao;
 import ui.ColorPickerDialog;
 import util.Constant;
 import view.DEditTextView;
@@ -31,6 +35,11 @@ public class MindActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		paintDao a=new paintDao(this);
+//        a.insert(9, "dd", 3,3,3, "dd");
+//		
+//        System.out.println(a.execQuery("dd"));
+		
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);

@@ -1,9 +1,11 @@
 package data;
 
 import android.R.bool;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.SyncStateContract.Columns;
 
 public class paintDao {
 
@@ -62,9 +64,14 @@ public class paintDao {
     
     //插入
     public boolean insert(int id,String paintname,int parent,int leftchild,int rightchild,String textvalue){
-		//Content
-    	
-    	return false;
+		 ContentValues cv =new ContentValues();
+		 cv.put("id",id);
+		 cv.put("paintName", paintname);
+		 cv.put("leftChild", leftchild);
+		 cv.put("rightChild", rightchild);
+		 cv.put("textValue", textvalue);
+    	 db.insert("Paint",null,cv);
+    	return true;
     	
     }
     

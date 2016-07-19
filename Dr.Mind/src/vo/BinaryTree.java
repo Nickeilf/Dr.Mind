@@ -1,21 +1,25 @@
 package vo;
 
+import java.util.ArrayList;
+
 import android.sax.RootElement;
 
 public class BinaryTree {
 
-	Node root;//根结点
+	ArrayList<Node> rootList;//根结点链表
 	
 	public BinaryTree(){
-		root=new Node();
+		rootList=new ArrayList<Node>();
+		Node root =new Node();
+		rootList.add(root);
 	}
 			
-	public Node getRoot(){
-		return root;
+	public ArrayList<Node> getRoot(){
+		return rootList;
 	}
-	
-	public void setRoot(){
-		this.root=new Node();
+
+	public void setRoot(ArrayList<Node> root) {
+		this.rootList = root;
 	}
 	
 }

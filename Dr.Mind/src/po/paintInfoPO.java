@@ -6,7 +6,7 @@ import vo.BinaryTree;
 public class paintInfoPO {
 
 	private String paintName;//图表名称
-	private BinaryTree bTreeRoot;//根结点
+	private BinaryTree bTreeRoot;//根结点链表
 	
 	public String getPaintName() {
 		return paintName;

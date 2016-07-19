@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import bl.paintblImpl;
+import data.SqliteDBHelper;
 import service.paintService;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -102,7 +103,6 @@ public class TextOnTouchListener implements OnTouchListener {
 			Log.i("MyGesture", "onDoubleTap");
 			InputMethodManager imm = (InputMethodManager) MindActivity.a.getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
 			DEditTextView editText = (DEditTextView) v;
 			paintService.InsertNode(editText.getNode());
 			DViewGroup parent = (DViewGroup) editText.getParent();

@@ -76,7 +76,7 @@ public class DViewGroup extends ViewGroup {
 	}
 
 	public void refresh() {
-		Node root = paintInfo.getbTreeRoot().getRoot();
+		Node root = paintInfo.getbTreeRoot().getRoot().get(0);
 
 		// 根据树形结构画图
 		removeViews(1, getChildCount() - 1);
@@ -160,7 +160,7 @@ public class DViewGroup extends ViewGroup {
 	 */
 	public void myAddView() {
 		DEditTextView editText = new DEditTextView(getContext());
-		editText.setNode(paintInfo.getbTreeRoot().getRoot());
+		editText.setNode(paintInfo.getbTreeRoot().getRoot().get(0));
 		editText.setOnTouchListener(new TextOnTouchListener());
 		addView(editText);
 

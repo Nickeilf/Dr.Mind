@@ -10,7 +10,7 @@ public class LogicTest extends TestCase {
 	public static void testBL(){
 		paintService pService = new paintblImpl();
 		paintInfoVo vo=pService.createPaint();
-		Node node=vo.getbTreeRoot().getRoot();
+		Node node=vo.getbTreeRoot().getRoot().get(0);
 		Node A=pService.InsertNode(node);
 		Node B=pService.InsertNode(node);
 		Node C=pService.InsertNode(node);

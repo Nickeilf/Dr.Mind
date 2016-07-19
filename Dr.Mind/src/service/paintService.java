@@ -24,5 +24,9 @@ public interface paintService {
 	 Boolean DeleteAllChild(Node node);//删除所有子结点
 	 
 	 Boolean DeleteAndMerge(Node node);//删除归并
+	 
+	 Boolean SavePaint(String paintName,paintInfoVo paintvo);//存储画图
+	 
+	paintInfoVo OpenPaint(String  paintName);//打开画图 
 	 	 	 
 }

@@ -2,6 +2,8 @@ package bl;
 
 import android.R.id;
 import android.graphics.Bitmap;
+import impl.paintDataServiceImpl;
+import service.paintDataService;
 import service.paintService;
 import vo.Node;
 import vo.TextType;
@@ -10,6 +12,7 @@ import vo.paintInfoVo;
 public class paintblImpl implements paintService {
 
 	public int ID = 0;
+	paintDataService pds = new paintDataServiceImpl();
 
 	// 新建画板
 	public paintInfoVo createPaint() {
@@ -229,6 +232,20 @@ public class paintblImpl implements paintService {
 			// System.out.println("lala"+n);
 		}
 
+	}
+
+	public Boolean SavePaint(String paintName,paintInfoVo paintvo) {
+		// TODO Auto-generated method stub
+     pds.saveData(paintName, paintvo);
+		return true;
+	}
+
+	public paintInfoVo OpenPaint(String paintName) {
+		// TODO Auto-generated method stub
+		paintInfoVo vo = new paintInfoVo();
+		vo.setbTreeRoot(pds.getData(paintName).getbTreeRoot());
+		
+		return vo;
 	}
 
 }
