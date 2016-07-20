@@ -1,18 +1,11 @@
 package activity;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.KeyEvent;
-
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
-
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -21,9 +14,6 @@ import android.widget.LinearLayout.LayoutParams;
 
 import FloatingButton.FloatingActionButton;
 import cn.edu.cn.R;
-import data.SqliteDBHelper;
-import data.paintDao;
-import ui.ColorPickerDialog;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;

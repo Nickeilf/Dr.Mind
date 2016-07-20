@@ -1,6 +1,5 @@
 package po;
 
-import android.provider.ContactsContract.CommonDataKinds.Note;
 import vo.BinaryTree;
 
 public class paintInfoPO {
