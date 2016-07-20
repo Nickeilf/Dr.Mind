@@ -30,38 +30,43 @@ public class MindActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		paintDao a=new paintDao(this);
-//        a.insert(9, "dd", 3,3,3, "dd");
-//		
-//        System.out.println(a.execQuery("dd"));
 		
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);
+		init();
 
+		//中心图标
 		ImageView icon = new ImageView(this); // Create an icon
-		icon.setImageDrawable( this.getResources().getDrawable(R.drawable.plus));
+		icon.setImageDrawable( this.getResources().getDrawable(R.drawable.ic_add));
 		FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
 				.setContentView(icon)
 				.build();
 
+		//分散式图标
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
-		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.tag));
+		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.voice));
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
 
 		ImageView itemIcon2 = new ImageView(this);
-		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.voice));
+		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 
+		ImageView itemIcon3 = new ImageView(this);
+		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.plus));
+		SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
+
+		//整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1)
 				.addSubActionView(button2)
+				.addSubActionView(button3)
 						// ...
 				.attachTo(actionButton)
 				.build();
 
-		init();
+
 	}
 
 	@Override
