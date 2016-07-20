@@ -1,29 +1,27 @@
 package activity;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.KeyEvent;
-
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
-
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+
 import bl.paintblImpl;
 import cn.edu.cn.R;
 import data.SqliteDBHelper;
 import data.paintDao;
 import service.paintService;
 import ui.ColorPickerDialog;
+
+
+import FloatingButton.FloatingActionButton;
+
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -53,7 +51,8 @@ public class MindActivity extends Activity {
 //		System.out.println(vo2.getbTreeRoot().getRoot().get(0).getLeftChild().getTextValue());
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.main);
+//		setContentView(R.layout.main);
+		setContentView(new FloatingActionButton(this));
 		init();
 	}
 
@@ -66,8 +65,10 @@ public class MindActivity extends Activity {
 	/**
 	 * 初始化：设定viewGroup大小为3*3倍屏幕大小
 	 */
+	@SuppressWarnings("deprecation")
 	private void init() {
 		WindowManager wm = this.getWindowManager();
+		@SuppressWarnings("deprecation")
 		int width = wm.getDefaultDisplay().getWidth();
 		int height = wm.getDefaultDisplay().getHeight();
 		// 设定常量
