@@ -114,6 +114,7 @@ public class paintDataServiceImpl implements paintDataService{
 
 	//遍历ID获取结点
 	public Node PreorderID(int id,Node root){
+		if(id==-1) return null;
 		if(root==null){
 			
 		}
@@ -154,8 +155,27 @@ public class paintDataServiceImpl implements paintDataService{
 	//遍历保存
 	public void PreOrderSave(Node root,paintDao dao,String paintname){ 
 		if(root!=null){
-			dao.insert(root.getId(), paintname, root.getParent().getId(), root.getLeftChild().getId(), 
-					root.getRightChild().getId(), root.getTextValue(),root.getLevel());
+			int parentID;
+			if(root.getParent()==null){
+				parentID=-1;
+			}else{
+				parentID=root.getParent().getId();
+			}
+			int leftID;
+			if(root.getLeftChild()==null){
+				leftID=-1;
+			}else{
+				leftID=root.getLeftChild().getId();
+			}
+			int rightID;
+			if(root.getRightChild()==null){
+				rightID=-1;
+			}else{
+				rightID=root.getRightChild().getId();
+			}
+			System.out.println(root.getLevel()+"+"+root.getId()+"jjjjjjjjjjjjjjjjjjjjjj");
+			dao.insert(root.getId(), paintname,parentID,leftID, 
+					rightID, root.getTextValue(),root.getLevel());
 			PreOrderSave(root.getLeftChild(),dao,paintname);
 			PreOrderSave(root.getRightChild(),dao,paintname);
 		}

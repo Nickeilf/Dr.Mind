@@ -14,7 +14,7 @@ public class paintDao {
 	
 	//重写构造方法
 	public paintDao(Context context){
-		this.sqliteDBHelper = new SqliteDBHelper(context);
+		sqliteDBHelper = new SqliteDBHelper(context);
 		db = sqliteDBHelper.getWritableDatabase();
 	}
 	
@@ -27,18 +27,21 @@ public class paintDao {
 			//定义一个StringBuffer的对象，用于动态拼接字符串
 			StringBuffer sb = new StringBuffer();
 			//循环游标，如果不是最后一项记录
+			int i=0;
 			while(!cursor.isAfterLast()){
 				if(cursor.getString(cursor.getColumnIndex("paintName")).equals(paintName)){
 				  sb.append(cursor.getInt(cursor.getColumnIndex("id")) + "/" + cursor.getString(cursor.getColumnIndex("paintName")) + "/"
 	                        + cursor.getInt(cursor.getColumnIndex("root")) + "/" + cursor.getInt(cursor.getColumnIndex("parent")) + "/"
 	                        + cursor.getInt(cursor.getColumnIndex("leftChild"))+"/"+cursor.getInt(cursor.getColumnIndex("rightChild"))+"/"
 	                        +cursor.getString(cursor.getColumnIndex("textValue"))+"/"+cursor.getInt(cursor.getColumnIndex("level"))+"#");
+				  i++;
 				}
 				  //cursor游标移动
 			    cursor.moveToNext();
 			}
 			db.close();
 			//return sb.deleteCharAt(sb.length()-1).toString();
+			System.out.println(i+"mmmmm");
 			return sb.toString();
 	 }catch(RuntimeException e){
 		 e.printStackTrace();
@@ -68,12 +71,14 @@ public class paintDao {
     public boolean insert(int id,String paintname,int parent,int leftchild,int rightchild,
     		String textvalue,int level){
 		 ContentValues cv =new ContentValues();
+		 id=20;
 		 cv.put("id",id);
 		 cv.put("paintName", paintname);
 		 cv.put("leftChild", leftchild);
 		 cv.put("rightChild", rightchild);
 		 cv.put("textValue", textvalue);
 		 cv.put("level", level);
+		 System.out.println(id+"+"+paintname+"+"+leftchild+"+"+rightchild+"+"+textvalue+"+"+level+"..................");
     	 db.insert("Paint",null,cv);
     	return true;
     	

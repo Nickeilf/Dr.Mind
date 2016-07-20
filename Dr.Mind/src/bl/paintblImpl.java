@@ -263,11 +263,6 @@ public class paintblImpl implements paintService {
 		// TODO Auto-generated method stub
 		ArrayList<Node> child= new ArrayList<Node>();
 		Node node = parent.getLeftChild();
-	/*	if(node!=null){
-		   child.add(node);
-		   getAllChild(node.getLeftChild());
-		   getAllChild(node.getRightChild());
-		}*/
 	    PreChild(node, child);	
 		return child;
 	}

@@ -34,6 +34,7 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%");
 	/*	String strSQL = "create table "+TABLE_NAME+
 				"(id integer primary key autoincrement,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer)"*/;
 		db.execSQL(CREATE_PAINT);	
