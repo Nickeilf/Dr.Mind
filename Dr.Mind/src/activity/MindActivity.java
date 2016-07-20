@@ -2,6 +2,7 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.MotionEvent;
@@ -9,10 +10,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-import FloatingButton.FloatingActionButton;
+import FAB.FloatingActionButton;
+import FAB.FloatingActionMenu;
+import FAB.SubActionButton;
 import cn.edu.cn.R;
 import util.Constant;
 import view.DEditTextView;
@@ -33,8 +37,30 @@ public class MindActivity extends Activity {
 		
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//		setContentView(R.layout.main);
-		setContentView(new FloatingActionButton(this));
+		setContentView(R.layout.main);
+
+		ImageView icon = new ImageView(this); // Create an icon
+		icon.setImageDrawable( this.getResources().getDrawable(R.drawable.plus));
+		FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
+				.setContentView(icon)
+				.build();
+
+		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
+		ImageView itemIcon1 = new ImageView(this);
+		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.tag));
+		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
+
+		ImageView itemIcon2 = new ImageView(this);
+		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.voice));
+		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
+
+		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+				.addSubActionView(button1)
+				.addSubActionView(button2)
+						// ...
+				.attachTo(actionButton)
+				.build();
+
 		init();
 	}
 
