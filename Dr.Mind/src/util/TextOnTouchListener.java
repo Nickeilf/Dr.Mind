@@ -106,7 +106,7 @@ public class TextOnTouchListener implements OnTouchListener {
 			DEditTextView editText = (DEditTextView) v;
 			paintService.InsertNode(editText.getNode());
 			DViewGroup parent = (DViewGroup) editText.getParent();
-			parent.refresh();
+//			parent.refresh();
 			return true;
 		}
 

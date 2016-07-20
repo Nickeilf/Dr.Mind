@@ -3,12 +3,15 @@ package activity;
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
+import FAB.FloatingActionMenu;
+import FAB.SubActionButton;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -29,55 +32,42 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-//		paintDao a=new paintDao(this);
-//        a.insert(19, "dad", -1,3,3, "dd",8);
-//		
-//        System.out.println(a.execQuery("dad"));
-//		paintService PaintblImpl=new paintblImpl();
-//		paintInfoVo vo=PaintblImpl.createPaint();
-//		Node node=PaintblImpl.InsertNode(vo.getbTreeRoot().getRoot().get(0));
-//		vo.getbTreeRoot().getRoot().get(0).setTextValue("ppppppp");
-//		node.setTextValue("moximoxi");
-//		PaintblImpl.SavePaint("sssqs", vo, this);
-//		paintInfoVo vo2=PaintblImpl.OpenPaint("sssqs", this);
-//		System.out.println(vo2.getbTreeRoot().getRoot().get(0).getId());
-//		System.out.println(vo2.getbTreeRoot().getRoot().get(0).getLeftChild().getTextValue());
-
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);
 		init();
 
-		//中心图标
+		// 中心图标
 		ImageView icon = new ImageView(this); // Create an icon
-		icon.setImageDrawable( this.getResources().getDrawable(R.drawable.ic_add));
-		FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
-				.setContentView(icon)
-				.build();
+		icon.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_add));
+		FloatingActionButton actionButton = new FloatingActionButton.Builder(this).setContentView(icon).build();
 
-		//分散式图标
+		// 分散式图标
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
-		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.voice));
+		itemIcon1.setImageDrawable(this.getResources().getDrawable(R.drawable.voice));
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
 
 		ImageView itemIcon2 = new ImageView(this);
-		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.delete));
+		itemIcon2.setImageDrawable(this.getResources().getDrawable(R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 
 		ImageView itemIcon3 = new ImageView(this);
-		itemIcon1.setImageDrawable( this.getResources().getDrawable(R.drawable.plus));
+		itemIcon3.setImageDrawable(this.getResources().getDrawable(R.drawable.plus));
 		SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
+		button3.setOnClickListener(new OnClickListener() {
 
-		//整合在一起
-		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
-				.addSubActionView(button1)
-				.addSubActionView(button2)
-				.addSubActionView(button3)
-						// ...
-				.attachTo(actionButton)
-				.build();
+			public void onClick(View arg0) {
+				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+				group.insertNode();
+			}
+		});
 
+		// 整合在一起
+		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
+				.addSubActionView(button2).addSubActionView(button3)
+				// ...
+				.attachTo(actionButton).build();
 
 	}
 
@@ -130,9 +120,6 @@ public class MindActivity extends Activity {
 			View view = getCurrentFocus();
 			if (isHideInput(view, ev)) {
 				HideSoftInput(view.getWindowToken());
-				view.clearFocus();
-				DViewGroup parent = (DViewGroup) view.getParent();
-				parent.refresh();
 			}
 		}
 		return super.dispatchTouchEvent(ev);

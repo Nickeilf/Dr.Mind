@@ -2,6 +2,7 @@ package util;
 
 /**
  * 常量类用于存储常量信息
+ * 
  * @author nick
  *
  */
@@ -9,6 +10,7 @@ public class Constant {
 	private static int screenWidth;
 	private static int screenHeight;
 	private static int singleRec;
+	public static int SIN_WIDTH = 180;
 
 	public static int getScreenWidth() {
 		return screenWidth;
@@ -26,9 +28,8 @@ public class Constant {
 		screenHeight = height;
 	}
 
-	public static int getSingleRec(){
-		return screenWidth/5;
+	public static int getSingleRec() {
+		return screenWidth / 5;
 	}
-
 
 }

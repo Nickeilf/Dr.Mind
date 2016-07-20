@@ -208,7 +208,7 @@ public class MyButton extends ImageView {
 			Log.i("MyGesture", "onSingleTapUp");
 			service.DeleteAllChild(node);
 			DViewGroup parent = (DViewGroup) v.getParent();
-			parent.refresh();
+//			parent.refresh();
 			return true;
 		}
 
@@ -222,7 +222,7 @@ public class MyButton extends ImageView {
 			System.out.println("hhhhhhhhhhhhhhhhh");
 			service.DeleteAndMerge(node);
 			DViewGroup parent = (DViewGroup) v.getParent();
-			parent.refresh();
+//			parent.refresh();
 		}
 
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {

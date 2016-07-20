@@ -1,32 +1,32 @@
 package view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
-import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import bl.paintblImpl;
 import service.paintService;
 import ui.MyButton;
-import ui.MyPoint;
-import ui.SinGraph;
-import util.HeightCompute;
-import util.TextOnTouchListener;
+import util.Constant;
 import vo.Node;
 import vo.paintInfoVo;
 
 public class DViewGroup extends ViewGroup {
 	private paintService paintService;
 	private paintInfoVo paintInfo;
-	private ScaleGestureDetector sGestureDetector;
-	private boolean first;
+	private ArrayList<DEditTextView> editTexts;
+	private HashMap<Node, DEditTextView> maps;
 
 	private float posX = this.getX();
 	private float posY = this.getY();
@@ -34,6 +34,7 @@ public class DViewGroup extends ViewGroup {
 	private float startY;
 	private int screenWidth;
 	private int screenHeight;
+	private int singleRec;
 
 	public int getScreenWidth() {
 		return screenWidth;
@@ -58,121 +59,162 @@ public class DViewGroup extends ViewGroup {
 	 */
 	public DViewGroup(Context context) {
 		super(context);
+		paintService = new paintblImpl();
+		paintInfo = paintService.createPaint();
+		init();
 	}
 
 	public DViewGroup(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-		first = true;
-		// refresh();
-
-		myAddView();
-		sGestureDetector = new ScaleGestureDetector(this.getContext(), new MyScaleGestureListener());
+		init();
 	}
 
 	public DViewGroup(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		paintService = new paintblImpl();
+		paintInfo = paintService.createPaint();
+		init();
 	}
 
-	public void refresh() {
-		Node root = paintInfo.getbTreeRoot().getRoot().get(0);
+	public void TestFocus() {
+		View v = getFocusedChild();
+		System.out.println(v == null);
+		System.out.println(v instanceof DEditTextView);
+	}
+	
+	/**
+	 * 初始化建立一个跟节点
+	 */
+	public void init() {
+		WindowManager wm = ((Activity) this.getContext()).getWindowManager();
+		int width = wm.getDefaultDisplay().getWidth();
+		int height = wm.getDefaultDisplay().getHeight();
+		screenWidth = width;
+		screenHeight = height;
+		singleRec = width / 10;
+		editTexts = new ArrayList<DEditTextView>();
+		maps = new HashMap<Node, DEditTextView>();
 
-		// 根据树形结构画图
-		removeViews(1, getChildCount() - 1);
-		System.out.println("s刷新重新建图");
+		DEditTextView root = new DEditTextView(getContext());
+		root.setNode(paintInfo.getbTreeRoot().getRoot().get(0));
+		root.setText("思维导图");
+		root.measure(0, 0);
+		int s_x = 3 * width / 2 - root.getMeasuredWidth() / 2;
+		int s_y = 3 * height / 2 - root.getMeasuredHeight() / 2;
+		root.setxPos(s_x);
+		root.setyPos(s_y);
+		addView(root);
+		maps.put(root.getNode(), root);
 
-		DEditTextView editText = (DEditTextView) getChildAt(0);
-		if (editText.getNode().getTextValue() == null)
-			editText.setText("思维导图");
-		else
-			editText.setText(editText.getNode().getTextValue());
-		editText.clearFocus();
-		drawTree(editText, editText.getRight(), editText.getBottom() - editText.getMeasuredHeight() / 2);
+	}
 
+	/**
+	 * 读取跟节点们
+	 */
+	public void load(Node root) {
+		// 先清空
+		this.removeAllViews();
+		// 读取
+		DEditTextView rootText = new DEditTextView(getContext());
+		rootText.setNode(root);
+
+	}
+
+	public void move(DEditTextView text, float x_dis, float y_dis) {
+
+		ArrayList<Node> sons = paintService.getAllChild(text.getNode());
+		for (Node son : sons) {
+			DEditTextView v = maps.get(son);
+			int x = (int) (v.getxPos() + x_dis);
+			int y = (int) (v.getyPos() + y_dis);
+			v.setxPos(x);
+			v.setyPos(y);
+			v.layout(x, y, x + v.getMeasuredWidth(), y + v.getMeasuredHeight());
+		}
+	}
+
+	// 判定是否需要隐藏
+	private boolean isHideInput(View v, MotionEvent ev) {
+		if (v != null && (v instanceof DEditTextView)) {
+			int[] l = { 0, 0 };
+			v.getLocationInWindow(l);
+			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
+			if (ev.getX() > left && ev.getX() < right && ev.getY() > top && ev.getY() < bottom) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
 	 * 
-	 * @param view
-	 * @param x
-	 *            是指组件最右边位置
-	 * @param y
-	 *            是指组件y轴最下面位置
 	 */
-	private void drawTree(DEditTextView view, int x, int y) {
-		// 如果没有儿子就结束
-		Node node = view.getNode();
-		if (node.getLeftChild() == null) {
-			// do nothing
+	public void insertNode() {
+		View v = getFocusedChild();
+		if (v instanceof DEditTextView) {
+			// 创建，初始化
+			DEditTextView text = (DEditTextView) v;
+			Node node = paintService.InsertNode(text.getNode());
+			DEditTextView son = new DEditTextView(getContext());
+			son.setDad(text);
+			son.setNode(node);
+			son.setText("新建节点");
+			// 定位
+			DEditTextView little = text.getLittleSon();
+			if (little == null) {
+				// 第一个子节点
+				son.setxPos(text.getxPos() + text.getMeasuredWidth() + Constant.SIN_WIDTH);
+				son.setyPos(text.getyPos());
+				addView(son);
+				editTexts.add(son);
+				maps.put(node, son);
+				son.measure(0, 0);
+				System.out.println("添加大成功");
+				text.setLittleSon(son);
+				requestLayout();
+			} else {
+				// 加到父节点的最后一个
+				son.setxPos(little.getxPos());
+				son.setyPos(little.getyPos() + singleRec / 2);
+				addView(son);
+				editTexts.add(son);
+				maps.put(node, son);
+				son.measure(0, 0);
+				System.out.println("添加大成功");
+				// TODO 移动的动画
+				ArrayList<DEditTextView> moveList = new ArrayList<DEditTextView>();
+				for (int i = 0; i < getChildCount(); i++) {
+					if (getChildAt(i) instanceof DEditTextView) {
+						moveList.add((DEditTextView) getChildAt(i));
+					}
+				}
+				DEditTextView p = son;
+				while (p.getNode() != paintInfo.getbTreeRoot().getRoot().get(0)) {
+					moveList.remove(p);
+					p = p.getDad();
+				}
+				moveList.remove(p);
+				for (DEditTextView dEditTextView : moveList) {
+					int pos = dEditTextView.getyPos() - son.getyPos() > 0 ? singleRec / 2 : -singleRec / 2;
+					int y = dEditTextView.getyPos() + pos;
+					dEditTextView.setyPos(y);
+				}
+				text.setLittleSon(son);
+				requestLayout();
+			}
+
 		} else {
-			Node p = node.getLeftChild();
-			// 找出一层所有子节点
-			List<Node> nodeList = new ArrayList<Node>();
-			nodeList.add(p);
-			while (p.getRightChild() != null) {
-				p = p.getRightChild();
-				nodeList.add(p);
-			}
-			List<Integer> weight = new ArrayList<Integer>();
-			for (Node nod : nodeList) {
-				weight.add(paintService.numNode(nod));
-			}
-			// new SinGraph
-			int level = nodeList.get(0).getLevel();
-			HeightCompute cal = new HeightCompute(weight);
-			int ys = y - cal.computeHeight() / 2 - 11;
-			SinGraph sin = new SinGraph(getContext(), weight, new MyPoint(x, ys), level);
-			addView(sin);
-			sin.layout(x, ys, x + sin.getSinWidth(), ys + sin.getSinHeight());
-			// 添加一组DEditText
-			// TODO Node内容
-			List<MyPoint> points = sin.getPointList();
-			for (int i = 0; i < nodeList.size(); i++) {
-				DEditTextView text = new DEditTextView(getContext());
-				MyPoint point = points.get(i);
-				text.setNode(nodeList.get(i));
-				if (text.getNode().getTextValue() == null)
-					text.setText("新建节点");
-				else
-					text.setText(text.getNode().getTextValue());
-				text.setIncludeFontPadding(false);
-				text.setOnTouchListener(new TextOnTouchListener());
-				addView(text);
-				text.measure(0, 0);
-				int t_x = (int) (x + point.getX()-1);
-				int t_y = (int) (ys + point.getY()) - text.getMeasuredHeight()+4;
-				text.setxPos(t_x);
-				text.setyPos(t_y);
-				text.layout(t_x, t_y, t_x + text.getMeasuredWidth(), t_y + text.getMeasuredHeight());
-				MyButton button = new MyButton(getContext(), nodeList.get(i));
-				addView(button);
-				int b_x = t_x + text.getMeasuredWidth();
-				int b_y = t_y + text.getMeasuredHeight() - button.getButtonHeight() / 2;
-				button.layout(b_x, b_y, b_x + button.getButtonWidth(), b_y + button.getButtonHeight());
-				drawTree(text, b_x + button.getButtonWidth(), b_y + button.getButtonHeight() / 2);
-			}
+			System.out.println("MDZZ");
 		}
 	}
 
-	/**
-	 * 添加View的方法
-	 */
-	public void myAddView() {
-		DEditTextView editText = new DEditTextView(getContext());
-		editText.setNode(paintInfo.getbTreeRoot().getRoot().get(0));
-		editText.setOnTouchListener(new TextOnTouchListener());
-		addView(editText);
-
-		// ArrayList<Integer> listOfWeight = new ArrayList<Integer>();
-		// listOfWeight.add(1);
-		// listOfWeight.add(2);
-		// listOfWeight.add(1);
-		// listOfWeight.add(1);
-		//
-		// SinGraph sin = new SinGraph(getContext(), listOfWeight, new
-		// MyPoint(0, 200));
-		// addView(sin);
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		return super.dispatchTouchEvent(ev);
 	}
 
 	/*
@@ -182,6 +224,10 @@ public class DViewGroup extends ViewGroup {
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		View view = getFocusedChild();
+		if (isHideInput(view, event)) {
+			view.clearFocus();
+		}
 		if (event.getPointerCount() == 1) {
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
@@ -191,6 +237,7 @@ public class DViewGroup extends ViewGroup {
 			case MotionEvent.ACTION_MOVE:
 				float stopX = event.getX();
 				float stopY = event.getY();
+				Log.e("pos", startX + "," + startY);
 				posX += stopX - startX;
 				posY += stopY - startY;
 				posX = posX > 0 ? 0 : posX;
@@ -199,67 +246,60 @@ public class DViewGroup extends ViewGroup {
 				posY = posY < -2 * screenHeight ? -2 * screenHeight : posY;
 				this.setX(posX);
 				this.setY(posY);
+				requestLayout();
 				invalidate();// call onDraw()
 				break;
 			}
-			return true;
-		} else {
-			sGestureDetector.onTouchEvent(event);
-			return true;
+		}
+		return true;
+	}
+
+	/**
+	 * 绘图
+	 */
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		for (int i = 0; i < editTexts.size(); i++) {
+			DEditTextView view = editTexts.get(i);
+			DEditTextView pa = view.getDad();
+			myDraw(pa.getRight(), pa.getBottom(), view.getLeft(), view.getBottom(), canvas);
+		}
+	}
+
+	private void myDraw(int x_start, int y_start, int x_end, int y_end, Canvas canvas) {
+		Paint paint = new Paint();
+		paint.setStrokeWidth(5);
+		paint.setColor(Color.BLUE);
+		int A = (y_end - y_start) / 2;
+		int T = Math.abs(x_start - x_end) * 2;
+		float w = (float) (Math.PI * 2 / T);
+		float x_value;
+		float y_value;
+		float x_newvalue;
+		float y_newvalue;
+		for (int i = 0; i < T / 2; i++) {
+			x_value = i + x_start;
+			y_value = (float) (-A * Math.sin(w * i + Math.PI / 2) + A + y_start);
+			x_newvalue = i + x_start + 1;
+			int j = i + 1;
+			y_newvalue = (float) (-A * Math.sin(w * j + Math.PI / 2) + A + y_start);
+			canvas.drawLine(x_value, y_value, x_newvalue, y_newvalue, paint);
 		}
 	}
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		DEditTextView a = (DEditTextView) getChildAt(0);
-		int s_x = 3 * screenWidth / 2 - a.getMeasuredWidth() / 2;
-		int s_y = 3 * screenHeight / 2 - a.getMeasuredHeight() / 2;
-		a.setxPos(s_x);
-		a.setyPos(s_y);
-		a.layout(s_x, s_y, s_x + a.getMeasuredWidth(), s_y + a.getMeasuredHeight());
-		if (first) {
-			refresh();
-			first = false;
-		}
-		for (int i = 1; i < getChildCount(); i++) {
-			View ins = getChildAt(i);
-			if (ins instanceof DEditTextView) {
-				DEditTextView view = (DEditTextView) ins;
-				int x = view.getxPos();
-				int y = view.getyPos();
-				view.layout(x, y, x + view.getMeasuredWidth(), y + view.getMeasuredHeight());
-			} else if (ins instanceof SinGraph) {
-				SinGraph view = (SinGraph) ins;
-				int x = (int) view.getStart_point().getX();
-				int y = (int) view.getStart_point().getY();
-				view.layout(x, y, x + view.getSinWidth(), y + view.getSinHeight());
+		for (int i = 0; i < getChildCount(); i++) {
+			View v = getChildAt(i);
+			if (v instanceof DEditTextView) {
+				DEditTextView view = (DEditTextView) v;
+				view.measure(0, 0);
+				view.layout(view.getxPos(), view.getyPos(), view.getxPos() + view.getMeasuredWidth(),
+						view.getyPos() + view.getMeasuredHeight());
 			}
 		}
+		invalidate();
 	}
 
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		measureChildren(widthMeasureSpec, heightMeasureSpec);
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-	}
-
-	private class MyScaleGestureListener extends SimpleOnScaleGestureListener {
-		@Override
-		public boolean onScale(ScaleGestureDetector detector) {
-			Log.e("view-缩放", "onScale，" + detector.getScaleFactor());
-			// 缩放待实现，已检测到
-			return super.onScale(detector);
-		}
-
-		@Override
-		public boolean onScaleBegin(ScaleGestureDetector detector) {
-			Log.e("view-缩放", "onScaleBegin");
-			return super.onScaleBegin(detector);
-		}
-
-		@Override
-		public void onScaleEnd(ScaleGestureDetector detector) {
-			Log.e("view-缩放", "onScaleEnd");
-		}
-	}
 }
