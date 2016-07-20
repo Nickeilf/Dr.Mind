@@ -35,5 +35,7 @@ public interface paintService {
 	 paintInfoVo OpenPaint(String  paintName,Context context);//打开画图 
 	 
 	 ArrayList<Node> getAllChild(Node parent);//获取所有子结点
+	 
+	 Boolean MoveNode(Node node,Node newpa,Node lastBro);//移动插入结点，传自己，一个新的父结点，和新的上一个兄弟，若无则null
 	 	 	 
 }

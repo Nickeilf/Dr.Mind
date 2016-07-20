@@ -268,9 +268,51 @@ public class paintblImpl implements paintService {
 	public void PreChild(Node node,ArrayList<Node> child){
 		if(node!=null){
 			   child.add(node);
-			   getAllChild(node.getLeftChild());
-			   getAllChild(node.getRightChild());
+			   PreChild(node.getLeftChild(),child);
+			   PreChild(node.getRightChild(),child);
 			}
+	}
+
+	//移动结点
+	public Boolean MoveNode(Node node, Node newpa, Node lastBro) {
+		// TODO Auto-generated method stub
+        Node oldpa=node.getParent();
+        if(oldpa!=null){
+        	if(oldpa.getLeftChild()==node){
+        		oldpa.setLeftChild(node.getRightChild());
+        	}
+        	else{
+        		oldpa=oldpa.getLeftChild();
+        		while(oldpa.getRightChild()!=node){
+        			oldpa=oldpa.getRightChild();
+        		}
+        		oldpa.setRightChild(node.getRightChild());
+        		
+        	}
+        }
+        
+        if(lastBro==null){
+        	node.setParent(newpa);
+            newpa.setLeftChild(node);       	
+        }
+        else{
+        	node.setParent(lastBro.getParent());
+        	Node nextBro=lastBro.getRightChild();
+        	lastBro.setRightChild(node);
+        	node.setRightChild(nextBro);
+        }
+        changelevel(node);
+		return true;
+	}
+	
+	public void changelevel(Node node){
+		if(node!=null){
+			node.setLevel(node.getParent().getLevel()+1);
+			changelevel(node.getLeftChild());
+			changelevel(node.getRightChild());
+			
+		}
+		
 	}
 }
 	
