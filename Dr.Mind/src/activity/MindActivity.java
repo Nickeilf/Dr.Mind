@@ -48,7 +48,8 @@ public class MindActivity extends Activity {
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
 		button1.setOnClickListener(new OnClickListener() {	
 			public void onClick(View v) {
-				 VoiceToWord voice =new VoiceToWord(MindActivity.this, "57902a05");
+				//别人的讯飞账户，我的待审核
+				 VoiceToWord voice =new VoiceToWord(MindActivity.this, "534e3fe2");
 				 voice.GetWordFromVoice();
 			}
 		});
