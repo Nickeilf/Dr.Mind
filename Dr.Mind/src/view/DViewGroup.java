@@ -121,11 +121,24 @@ public class DViewGroup extends ViewGroup {
 		// 读取
 		DEditTextView rootText = new DEditTextView(getContext());
 		rootText.setNode(root);
+	}
+
+	public void checkMove(DEditTextView view) {
+		System.out.println("diaoyong");
 
 	}
 
+	/**
+	 * 移动节点及其所有后代
+	 * 
+	 * @param text
+	 *            节点Text
+	 * @param x_dis
+	 *            x方向位移
+	 * @param y_dis
+	 *            y方向位移
+	 */
 	public void move(DEditTextView text, float x_dis, float y_dis) {
-
 		ArrayList<Node> sons = paintService.getAllChild(text.getNode());
 		for (Node son : sons) {
 			DEditTextView v = maps.get(son);
@@ -171,6 +184,9 @@ public class DViewGroup extends ViewGroup {
 				editTexts.remove(son);
 				maps.remove(node);
 			}
+			if (text.getDad().getLittleSon() == text) {
+				text.getDad().setLittleSon(null);
+			}
 			removeView(text);
 			editTexts.remove(text);
 			maps.remove(text.getNode());
@@ -179,7 +195,8 @@ public class DViewGroup extends ViewGroup {
 			for (int i = 0; i < editTexts.size(); i++) {
 				DEditTextView view = editTexts.get(i);
 				int y = view.getyPos();
-				if (y > text.getLittleSon().getyPos()) {
+				int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
+				if (y > lowest) {
 					y -= weight * singleRec / 2;
 					view.setyPos(y);
 				} else {
