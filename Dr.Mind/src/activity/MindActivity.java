@@ -51,6 +51,13 @@ public class MindActivity extends Activity {
 		ImageView itemIcon2 = new ImageView(this);
 		itemIcon2.setImageDrawable(this.getResources().getDrawable(R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
+		button2.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+				group.deleteNode();
+			}
+		});
 
 		ImageView itemIcon3 = new ImageView(this);
 		itemIcon3.setImageDrawable(this.getResources().getDrawable(R.drawable.plus));
