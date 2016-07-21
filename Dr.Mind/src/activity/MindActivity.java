@@ -1,5 +1,9 @@
 package activity;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
+import com.iflytek.cloud.ui.RecognizerDialog;
+
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
@@ -9,6 +13,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.speech.SpeechRecognizer;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,7 +41,11 @@ public class MindActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);
 		init();
-
+		
+		//语音对象配置
+		SpeechUtility.createUtility(this, SpeechConstant.APPID+"=57902a05");
+       
+		
 		// 中心图标
 		ImageView icon = new ImageView(this); // Create an icon
 		icon.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_add));
