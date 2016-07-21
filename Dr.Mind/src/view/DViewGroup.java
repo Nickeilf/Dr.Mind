@@ -25,7 +25,9 @@ import vo.paintInfoVo;
 public class DViewGroup extends ViewGroup {
 	private paintService paintService;
 	private paintInfoVo paintInfo;
+	// 存放所有子节点
 	private ArrayList<DEditTextView> editTexts;
+	// 存放所有节点与node对应的hash表
 	private HashMap<Node, DEditTextView> maps;
 
 	private float posX = this.getX();
@@ -83,7 +85,7 @@ public class DViewGroup extends ViewGroup {
 		System.out.println(v == null);
 		System.out.println(v instanceof DEditTextView);
 	}
-	
+
 	/**
 	 * 初始化建立一个跟节点
 	 */
@@ -151,7 +153,47 @@ public class DViewGroup extends ViewGroup {
 	}
 
 	/**
-	 * 
+	 * 删除节点，其他的相应上下浮动
+	 */
+	public void deleteNode() {
+		View v = getFocusedChild();
+		// TODO 考虑删除跟节点的情况
+		System.out.println(v == null);
+		System.out.println(v instanceof DEditTextView);
+		if (v instanceof DEditTextView) {
+			// 移除View
+			DEditTextView text = (DEditTextView) v;
+			int weight = paintService.numNode(text.getNode());
+			ArrayList<Node> sons = paintService.getAllChild(text.getNode());
+			for (Node node : sons) {
+				DEditTextView son = maps.get(node);
+				removeView(son);
+				editTexts.remove(son);
+				maps.remove(node);
+			}
+			removeView(text);
+			editTexts.remove(text);
+			maps.remove(text.getNode());
+			paintService.DeleteAllChild(text.getNode());
+			// 其他View移动
+			for (int i = 0; i < editTexts.size(); i++) {
+				DEditTextView view = editTexts.get(i);
+				int y = view.getyPos();
+				if (y > text.getLittleSon().getyPos()) {
+					y -= weight * singleRec / 2;
+					view.setyPos(y);
+				} else {
+					y += weight * singleRec / 2;
+					view.setyPos(y);
+				}
+			}
+			requestLayout();
+		}
+
+	}
+
+	/**
+	 * 插入节点，其他的相应上下浮动
 	 */
 	public void insertNode() {
 		View v = getFocusedChild();
