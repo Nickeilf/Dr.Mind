@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -24,7 +23,6 @@ import cn.edu.cn.R;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
-	private Button btnColorPicker;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -32,30 +30,44 @@ public class MindActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		// 全屏显示
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);
 		init();
- 
+
 		// 中心图标
 		ImageView icon = new ImageView(this); // Create an icon
-		icon.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_add));
-		FloatingActionButton actionButton = new FloatingActionButton.Builder(this).setContentView(icon).build();
+		icon.setImageDrawable(this.getResources()
+				.getDrawable(R.drawable.ic_add));
+		FloatingActionButton actionButton = new FloatingActionButton.Builder(
+				this).setContentView(icon).build();
 
 		// 分散式图标
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
-		itemIcon1.setImageDrawable(this.getResources().getDrawable(R.drawable.voice));
+		itemIcon1.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.voice));
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
-		button1.setOnClickListener(new OnClickListener() {	
+		button1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				//别人的讯飞账户，我的待审核
-				 VoiceToWord voice =new VoiceToWord(MindActivity.this, "534e3fe2");
-				 voice.GetWordFromVoice();
+				// 别人的讯飞账户，我的待审核
+				VoiceToWord voice = new VoiceToWord(MindActivity.this,
+						"534e3fe2");
+				String voiceText = voice.GetWordFromVoice();
+				if (voiceText != null) {
+					//应获取点击FAB前的控件，下应修改
+					View view = getCurrentFocus();
+					if (view instanceof DEditTextView) {
+						DEditTextView e = (DEditTextView) view;
+						e.setText(voiceText + " Liu");
+					}
+				}
 			}
 		});
 
 		ImageView itemIcon2 = new ImageView(this);
-		itemIcon2.setImageDrawable(this.getResources().getDrawable(R.drawable.delete));
+		itemIcon2.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 		button2.setOnClickListener(new OnClickListener() {
 
@@ -66,7 +78,8 @@ public class MindActivity extends Activity {
 		});
 
 		ImageView itemIcon3 = new ImageView(this);
-		itemIcon3.setImageDrawable(this.getResources().getDrawable(R.drawable.plus));
+		itemIcon3.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.plus));
 		SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
 		button3.setOnClickListener(new OnClickListener() {
 
@@ -77,8 +90,9 @@ public class MindActivity extends Activity {
 		});
 
 		// 整合在一起
-		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
-				.addSubActionView(button2).addSubActionView(button3)
+		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+				.addSubActionView(button1).addSubActionView(button2)
+				.addSubActionView(button3)
 				// ...
 				.attachTo(actionButton).build();
 
@@ -103,7 +117,8 @@ public class MindActivity extends Activity {
 		Constant.setScreenHeight(height);
 		Constant.setScreenWidth(width);
 		DViewGroup dView = (DViewGroup) findViewById(R.id.viewgroup);
-		LinearLayout.LayoutParams lay = (LayoutParams) findViewById(R.id.viewgroup).getLayoutParams();
+		LinearLayout.LayoutParams lay = (LayoutParams) findViewById(
+				R.id.viewgroup).getLayoutParams();
 
 		lay.height = 3 * height;
 		lay.width = 3 * width;
@@ -143,8 +158,10 @@ public class MindActivity extends Activity {
 		if (v != null && (v instanceof DEditTextView)) {
 			int[] l = { 0, 0 };
 			v.getLocationInWindow(l);
-			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
-			if (ev.getX() > left && ev.getX() < right && ev.getY() > top && ev.getY() < bottom) {
+			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left
+					+ v.getWidth();
+			if (ev.getX() > left && ev.getX() < right && ev.getY() > top
+					&& ev.getY() < bottom) {
 				return false;
 			} else {
 				return true;
@@ -157,7 +174,8 @@ public class MindActivity extends Activity {
 	private void HideSoftInput(IBinder token) {
 		if (token != null) {
 			InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-			manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+			manager.hideSoftInputFromWindow(token,
+					InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 	}
 

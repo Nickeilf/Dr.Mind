@@ -28,12 +28,6 @@ public class JsonParser {
 				JSONArray items = words.getJSONObject(i).getJSONArray("cw");
 				JSONObject obj = items.getJSONObject(0);
 				ret.append(obj.getString("w"));
-//				如果需要多候选结果，解析数组其他字段
-//				for(int j = 0; j < items.length(); j++)
-//				{
-//					JSONObject obj = items.getJSONObject(j);
-//					ret.append(obj.getString("w"));
-//				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

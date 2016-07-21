@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.iflytek.cloud.speech.SpeechConstant;
@@ -35,8 +34,6 @@ public class VoiceToWord extends Activity{
 		//初始化听写Dialog,如果只使用有UI听写功能,无需创建SpeechRecognizer
 		iatDialog =new RecognizerDialog(context);
 		mToast = Toast.makeText(context, "", Toast.LENGTH_LONG);
-		//初始化听写Dialog,如果只使用有UI听写功能,无需创建SpeechRecognizer
-		iatDialog =new RecognizerDialog(context);
 		//初始化缓存对象.
 		mSharedPreferences = context.getSharedPreferences(context.getPackageName(),MODE_PRIVATE);
 	}
@@ -49,14 +46,12 @@ public class VoiceToWord extends Activity{
 		//初始化听写Dialog,如果只使用有UI听写功能,无需创建SpeechRecognizer
 		iatDialog =new RecognizerDialog(context);
 		mToast = Toast.makeText(context, "", Toast.LENGTH_LONG);
-		//初始化听写Dialog,如果只使用有UI听写功能,无需创建SpeechRecognizer
-		iatDialog =new RecognizerDialog(context);
 		//初始化缓存对象.
 		mSharedPreferences = context.getSharedPreferences(context.getPackageName(),MODE_PRIVATE);
 		this.recognizerDialogListener = recognizerDialogListener;
 	}
 	
-	public void GetWordFromVoice()
+	public String GetWordFromVoice()
 	{
 		boolean isShowDialog = mSharedPreferences.getBoolean("iat_show",true);
 		if (isShowDialog) {
@@ -68,27 +63,20 @@ public class VoiceToWord extends Activity{
 			}
 			if(iatRecognizer.isListening()) {
 				iatRecognizer.stopListening();
-//				((Button) findViewById(android.R.id.button1)).setEnabled(false);
 			} else {
 			}
 		}
+
+		String result=((MyRecognizerDialogLister)recognizerDialogListener).getVoiceText();	
+		return result;
 	}
-	
-	
-	private void showTip(String str)
-	{
-		if(!TextUtils.isEmpty(str))
-		{
-			mToast.setText(str);
-			mToast.show();
-		}
-	}
+ 
 	/**
 	 * 显示听写对话框.
 	 * @param
 	 */
 	public void showIatDialog()
-	{
+	{ 
 		if(null == iatDialog) {
 		//初始化听写Dialog	
 		iatDialog =new RecognizerDialog(this);
@@ -122,6 +110,7 @@ public class VoiceToWord extends Activity{
 		//显示听写对话框
 		iatDialog.setListener(recognizerDialogListener);
 		iatDialog.show();
+		 
 	}
 	private void getRecognizerDialogListener()
 	{
