@@ -30,7 +30,7 @@ public class paintblImpl implements paintService {
 		Node inNode = new Node();
 		inNode.setId(ID);// 添加一个唯一的结点编号用于数据保存
 		inNode.setParent(node);
-		inNode.setRoot(node.getRoot());//设置根结点
+		inNode.setRoot(node.getRoot());// 设置根结点
 		if (node.getLeftChild() == null) {
 			node.setLeftChild(inNode);
 		} //
@@ -130,20 +130,19 @@ public class paintblImpl implements paintService {
 			node.getLeftChild().setLevel(node.getLevel());
 			Node tempNode = node.getRightChild();
 			node = node.getLeftChild();
-		
+
 			for (;;) {
 				if (node.getRightChild() == null) {
 					node.setRightChild(tempNode);
 					break;
 				} else {
 					node = node.getRightChild();
-					
+
 					node.setLevel(level);
 					node.setParent(pa);
-					
+
 				}
 			}
-		
 
 		} else {
 			int level = node.getLevel();
@@ -155,7 +154,6 @@ public class paintblImpl implements paintService {
 				tNode = tNode.getRightChild();
 			}
 			tNode.setRightChild(node.getLeftChild());
-
 
 			Node parent = node.getParent();
 			Node rNode = node.getRightChild();
@@ -180,11 +178,11 @@ public class paintblImpl implements paintService {
 			node.setParent(parent);
 			node.setLevel(level);
 			node.setRightChild(rNode);
-//			if (rNode.getParent() == null) {
-//				rNode.setLevel(0);
-//			} else {
-//				rNode.setLevel(rNode.getParent().getLevel() + 1);
-//			}
+			// if (rNode.getParent() == null) {
+			// rNode.setLevel(0);
+			// } else {
+			// rNode.setLevel(rNode.getParent().getLevel() + 1);
+			// }
 		}
 
 		return true;
@@ -223,96 +221,93 @@ public class paintblImpl implements paintService {
 		return n;
 
 	}
-	
-	//遍历子结点，修改level
-	public void PreorderLevel(Node node){
+
+	// 遍历子结点，修改level
+	public void PreorderLevel(Node node) {
 		if (node == null) {
 			// System.out.println("here"+n);
-			
+
 		} else {
 			PreorderLevel(node.getLeftChild());
-			node.setLevel(node.getLevel()-1);
-	
+			node.setLevel(node.getLevel() - 1);
+
 			PreorderLevel(node.getRightChild());
 			// System.out.println("lala"+n);
 		}
 
 	}
 
-	public Boolean SavePaint(String paintName,paintInfoVo paintvo,Context context) {
+	public Boolean SavePaint(String paintName, paintInfoVo paintvo, Context context) {
 		// TODO Auto-generated method stub
 		paintInfoPO po = new paintInfoPO();
 		po.setbTreeRoot(paintvo.getbTreeRoot());
-        pds.saveData(paintName, po,context);
+		pds.saveData(paintName, po, context);
 		return true;
 	}
 
-	public paintInfoVo OpenPaint(String paintName,Context context) {
+	public paintInfoVo OpenPaint(String paintName, Context context) {
 		// TODO Auto-generated method stub
 		paintInfoVo vo = new paintInfoVo();
-		vo.setbTreeRoot(pds.getData(paintName,context).getbTreeRoot());
-		
+		vo.setbTreeRoot(pds.getData(paintName, context).getbTreeRoot());
+
 		return vo;
 	}
 
-	//获取所有子结点
+	// 获取所有子结点
 
 	public ArrayList<Node> getAllChild(Node parent) {
 		// TODO Auto-generated method stub
-		ArrayList<Node> child= new ArrayList<Node>();
+		ArrayList<Node> child = new ArrayList<Node>();
 		Node node = parent.getLeftChild();
-	    PreChild(node, child);	
+		PreChild(node, child);
 		return child;
 	}
-	
-	public void PreChild(Node node,ArrayList<Node> child){
-		if(node!=null){
-			   child.add(node);
-			   PreChild(node.getLeftChild(),child);
-			   PreChild(node.getRightChild(),child);
-			}
+
+	public void PreChild(Node node, ArrayList<Node> child) {
+		if (node != null) {
+			child.add(node);
+			PreChild(node.getLeftChild(), child);
+			PreChild(node.getRightChild(), child);
+		}
 	}
 
-	//移动结点
+	// 移动结点
 	public Boolean MoveNode(Node node, Node newpa, Node lastBro) {
 		// TODO Auto-generated method stub
-        Node oldpa=node.getParent();
-        if(oldpa!=null){
-        	if(oldpa.getLeftChild()==node){
-        		oldpa.setLeftChild(node.getRightChild());
-        	}
-        	else{
-        		oldpa=oldpa.getLeftChild();
-        		while(oldpa.getRightChild()!=node){
-        			oldpa=oldpa.getRightChild();
-        		}
-        		oldpa.setRightChild(node.getRightChild());
-        		
-        	}
-        }
-        
-        if(lastBro==null){
-        	node.setParent(newpa);
-            newpa.setLeftChild(node);       	
-        }
-        else{
-        	node.setParent(lastBro.getParent());
-        	Node nextBro=lastBro.getRightChild();
-        	lastBro.setRightChild(node);
-        	node.setRightChild(nextBro);
-        }
-        changelevel(node);
+		Node oldpa = node.getParent();
+		if (oldpa != null) {
+			if (oldpa.getLeftChild() == node) {
+				oldpa.setLeftChild(node.getRightChild());
+			} else {
+				oldpa = oldpa.getLeftChild();
+				while (oldpa.getRightChild() != node) {
+					oldpa = oldpa.getRightChild();
+				}
+				oldpa.setRightChild(node.getRightChild());
+
+			}
+		}
+
+		if (lastBro == null) {
+			node.setParent(newpa);
+			newpa.setLeftChild(node);
+		} else {
+			node.setParent(lastBro.getParent());
+			Node nextBro = lastBro.getRightChild();
+			lastBro.setRightChild(node);
+			node.setRightChild(nextBro);
+		}
+		changelevel(node);
 		return true;
 	}
-	
-	public void changelevel(Node node){
-		if(node!=null){
-			node.setLevel(node.getParent().getLevel()+1);
+
+	public void changelevel(Node node) {
+		if (node != null) {
+			node.setLevel(node.getParent().getLevel() + 1);
 			changelevel(node.getLeftChild());
 			changelevel(node.getRightChild());
-			
+
 		}
-		
+
 	}
 }
-	

@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><view.DViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<view.DViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/viewgroup"
     android:layout_width="0dp"
     android:layout_height="0dp"
     android:layout_gravity="center|center_horizontal|center_vertical"
-    android:background="#FFF8DC" >
-
+    android:background="#FFF8DC"
+    android:focusableInTouchMode="true" >
 
 </view.DViewGroup>
