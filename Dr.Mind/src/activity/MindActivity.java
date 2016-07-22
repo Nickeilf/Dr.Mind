@@ -20,21 +20,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import bl.paintblImpl;
 import cn.edu.cn.R;
-
 import data.paintDao;
-import service.paintService;
-import util.Constant;
-import view.DEditTextView;
-import view.DViewGroup;
-import vo.Node;
-import vo.paintInfoVo;
 
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
-	public static String voiceText;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -42,8 +33,6 @@ public class MindActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		paintDao dao=new paintDao(this);//需要在界面层new dao
-
-
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -66,13 +55,8 @@ public class MindActivity extends Activity {
 			public void onClick(View v) {
 				// 别人的讯飞账户，我的待审核
 				VoiceToWord voice = new VoiceToWord(MindActivity.this,
-						"534e3fe2");
+						"534e3fe2",(DViewGroup)findViewById(R.id.viewgroup));
 				voice.GetWordFromVoice();
-				if (voiceText != null) {
-					//应获取点击FAB前的控件，下应修改
-					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-					group.voice(voiceText);
-				}
 			}
 		});
 
@@ -110,12 +94,16 @@ public class MindActivity extends Activity {
 				}
 			}
 		});
+		
+		ImageView itemIcon5=new ImageView(this);
+		itemIcon5.setImageDrawable(this.getResources().getDrawable(R.drawable.success2));
+		SubActionButton button5=itemBuilder.setContentView(itemIcon5).build();
 	
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
 				.addSubActionView(button3)
-				.addSubActionView(button4)
+				.addSubActionView(button4).addSubActionView(button5)
 				.attachTo(actionButton).build();
 
 	}
