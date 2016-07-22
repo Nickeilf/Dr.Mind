@@ -1,13 +1,11 @@
 package bl;
 
-import android.R.integer;
-import android.content.Context;
+
 import android.graphics.Bitmap;
 import data.paintDao;
 
 import java.util.ArrayList;
 
-import javax.xml.transform.dom.DOMResult;
 
 import impl.paintDataServiceImpl;
 import po.paintInfoPO;
