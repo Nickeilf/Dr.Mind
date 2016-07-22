@@ -2,6 +2,7 @@ package bl;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import data.paintDao;
 
 import java.util.ArrayList;
 
@@ -15,9 +16,8 @@ import vo.paintInfoVo;
 
 public class paintblImpl implements paintService {
 
-	public int ID = 0;
+	public int ID = 1;
 	paintDataService pds = new paintDataServiceImpl();
-
 	// 新建画板
 	public paintInfoVo createPaint() {
 		System.out.println("create");

@@ -16,6 +16,7 @@ public class paintDao {
 	public paintDao(Context context){
 		sqliteDBHelper = new SqliteDBHelper(context);
 		db = sqliteDBHelper.getWritableDatabase();
+		//db1=sqliteDBHelper.getReadableDatabase();
 	}
 	
 	//根据表名读操作
@@ -39,7 +40,8 @@ public class paintDao {
 				  //cursor游标移动
 			    cursor.moveToNext();
 			}
-			db.close();
+			//db.close();
+			cursor.close();
 			//return sb.deleteCharAt(sb.length()-1).toString();
 			System.out.println(i+"mmmmm");
 			return sb.toString();
@@ -71,7 +73,6 @@ public class paintDao {
     public boolean insert(int id,String paintname,int parent,int leftchild,int rightchild,
     		String textvalue,int level){
 		 ContentValues cv =new ContentValues();
-		 id=20;
 		 cv.put("id",id);
 		 cv.put("paintName", paintname);
 		 cv.put("leftChild", leftchild);
@@ -80,6 +81,7 @@ public class paintDao {
 		 cv.put("level", level);
 		 System.out.println(id+"+"+paintname+"+"+leftchild+"+"+rightchild+"+"+textvalue+"+"+level+"..................");
     	 db.insert("Paint",null,cv);
+    	 //db.close();
     	return true;
     	
     }

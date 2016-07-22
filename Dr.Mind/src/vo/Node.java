@@ -44,7 +44,7 @@ public class Node {
 	    font=null;
 	    bmp=null;
 	    level=0;
-	    id=0;
+	    id=1;
 	}
 
 	
