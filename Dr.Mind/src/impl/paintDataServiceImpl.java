@@ -157,19 +157,19 @@ public class paintDataServiceImpl implements paintDataService{
 		if(root!=null){
 			int parentID;
 			if(root.getParent()==null){
-				parentID=-1;
+				parentID=0;
 			}else{
 				parentID=root.getParent().getId();
 			}
 			int leftID;
 			if(root.getLeftChild()==null){
-				leftID=-1;
+				leftID=0;
 			}else{
 				leftID=root.getLeftChild().getId();
 			}
 			int rightID;
 			if(root.getRightChild()==null){
-				rightID=-1;
+				rightID=0;
 			}else{
 				rightID=root.getRightChild().getId();
 			}

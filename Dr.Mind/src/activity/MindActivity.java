@@ -15,10 +15,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import bl.paintblImpl;
 import cn.edu.cn.R;
+import data.paintDao;
+import service.paintService;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
+import vo.Node;
+import vo.paintInfoVo;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
@@ -29,16 +34,16 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-//		paintDao a=new paintDao(this);
-//        a.insert(19, "dad", -1,3,3, "dd",8);
-//		
-//        System.out.println(a.execQuery("dad"));
-//		paintService PaintblImpl=new paintblImpl();
-//		paintInfoVo vo=PaintblImpl.createPaint();
-//		Node node=PaintblImpl.InsertNode(vo.getbTreeRoot().getRoot().get(0));
-//		vo.getbTreeRoot().getRoot().get(0).setTextValue("ppppppp");
-//		node.setTextValue("moximoxi");
-//		PaintblImpl.SavePaint("sssqs", vo, this);
+/*		paintDao a=new paintDao(this);
+        a.insert(19, "dad", 0,3,3, "dd",8);
+		
+        System.out.println(a.execQuery("dad"));*/
+		paintService PaintblImpl=new paintblImpl();
+		paintInfoVo vo=PaintblImpl.createPaint();
+		Node node=PaintblImpl.InsertNode(vo.getbTreeRoot().getRoot().get(0));
+		vo.getbTreeRoot().getRoot().get(0).setTextValue("ppppppp");
+		node.setTextValue("moximoxi");
+		PaintblImpl.SavePaint("sssqs", vo, this);
 //		paintInfoVo vo2=PaintblImpl.OpenPaint("sssqs", this);
 //		System.out.println(vo2.getbTreeRoot().getRoot().get(0).getId());
 //		System.out.println(vo2.getbTreeRoot().getRoot().get(0).getLeftChild().getTextValue());
