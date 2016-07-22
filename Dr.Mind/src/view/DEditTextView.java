@@ -137,9 +137,11 @@ public class DEditTextView extends EditText {
 				group.move(this, stopX - startX, stopY - startY);
 				break;
 			case MotionEvent.ACTION_UP:
+				float stop_y = event.getY();
 				if (moving) {
 					DViewGroup parent = (DViewGroup) getParent();
-					parent.checkMove(this);
+					parent.checkMove(this, stop_y);
+					System.out.println(stop_y);
 					moving = false;
 				}
 				break;

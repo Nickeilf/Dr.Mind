@@ -19,6 +19,7 @@ public class paintblImpl implements paintService {
 
 	public int ID = 1;
 	paintDataService pds = new paintDataServiceImpl();
+
 	// 新建画板
 	public paintInfoVo createPaint() {
 		System.out.println("create");
@@ -292,6 +293,7 @@ public class paintblImpl implements paintService {
 
 		if (lastBro == null) {
 			node.setParent(newpa);
+			node.setRightChild(newpa.getLeftChild());
 			newpa.setLeftChild(node);
 		} else {
 			node.setParent(lastBro.getParent());
