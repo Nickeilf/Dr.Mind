@@ -1,5 +1,6 @@
 package activity;
 
+import ui.ViewToPicture;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -23,6 +24,7 @@ import cn.edu.cn.R;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
+	public static String voiceText;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -37,40 +39,33 @@ public class MindActivity extends Activity {
 
 		// 中心图标
 		ImageView icon = new ImageView(this); // Create an icon
-		icon.setImageDrawable(this.getResources()
-				.getDrawable(R.drawable.ic_add));
+		icon.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_add));
 		FloatingActionButton actionButton = new FloatingActionButton.Builder(
 				this).setContentView(icon).build();
 
 		// 分散式图标
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
-		itemIcon1.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.voice));
+		itemIcon1.setImageDrawable(this.getResources().getDrawable(R.drawable.voice));
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
 		button1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// 别人的讯飞账户，我的待审核
 				VoiceToWord voice = new VoiceToWord(MindActivity.this,
 						"534e3fe2");
-				String voiceText = voice.GetWordFromVoice();
+				voice.GetWordFromVoice();
 				if (voiceText != null) {
 					//应获取点击FAB前的控件，下应修改
-					View view = getCurrentFocus();
-					if (view instanceof DEditTextView) {
-						DEditTextView e = (DEditTextView) view;
-						e.setText(voiceText + " Liu");
-					}
+					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+					group.voice(voiceText);
 				}
 			}
 		});
 
 		ImageView itemIcon2 = new ImageView(this);
-		itemIcon2.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.delete));
+		itemIcon2.setImageDrawable(this.getResources().getDrawable(R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 		button2.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View arg0) {
 				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
 				group.deleteNode();
@@ -78,22 +73,35 @@ public class MindActivity extends Activity {
 		});
 
 		ImageView itemIcon3 = new ImageView(this);
-		itemIcon3.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.plus));
+		itemIcon3.setImageDrawable(this.getResources().getDrawable(R.drawable.plus));
 		SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
 		button3.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View arg0) {
 				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
 				group.insertNode();
 			}
 		});
-
+		
+		ImageView itemIcon4=new ImageView(this);
+		itemIcon4.setImageDrawable(this.getResources().getDrawable(R.drawable.picture));
+		SubActionButton button4=itemBuilder.setContentView(itemIcon4).build();
+		button4.setOnClickListener(new OnClickListener() {	
+			public void onClick(View v) {
+				View view= findViewById(R.layout.dviewgroup);
+				if(view != null){
+					ViewToPicture viewToPic=new ViewToPicture();
+					viewToPic.save(view, "Liu");
+				} else{
+					System.out.println("bitmap null");
+				}
+			}
+		});
+	
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
 				.addSubActionView(button3)
-				// ...
+				.addSubActionView(button4)
 				.attachTo(actionButton).build();
 
 	}

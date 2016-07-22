@@ -51,7 +51,7 @@ public class VoiceToWord extends Activity{
 		this.recognizerDialogListener = recognizerDialogListener;
 	}
 	
-	public String GetWordFromVoice()
+	public void GetWordFromVoice()
 	{
 		boolean isShowDialog = mSharedPreferences.getBoolean("iat_show",true);
 		if (isShowDialog) {
@@ -66,9 +66,7 @@ public class VoiceToWord extends Activity{
 			} else {
 			}
 		}
-
-		String result=((MyRecognizerDialogLister)recognizerDialogListener).getVoiceText();	
-		return result;
+ 
 	}
  
 	/**

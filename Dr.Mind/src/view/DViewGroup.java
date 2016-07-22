@@ -164,6 +164,13 @@ public class DViewGroup extends ViewGroup {
 		}
 		return false;
 	}
+	
+	public void voice(String text){
+		View v = getFocusedChild();
+		System.out.println(v == null);
+		System.out.println(v instanceof DEditTextView);
+		((DEditTextView)v).setText(text);
+	}
 
 	/**
 	 * 删除节点，其他的相应上下浮动
