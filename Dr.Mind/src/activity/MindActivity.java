@@ -10,6 +10,7 @@ import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.MotionEvent;
@@ -23,7 +24,6 @@ import android.widget.LinearLayout.LayoutParams;
 import cn.edu.cn.R;
 import data.paintDao;
 
-
 public class MindActivity extends Activity {
 	public static MindActivity a;
 
@@ -32,7 +32,7 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		paintDao dao=new paintDao(this);//需要在界面层new dao
+		paintDao dao = new paintDao(this);// 需要在界面层new dao
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -40,28 +40,37 @@ public class MindActivity extends Activity {
 		setContentView(R.layout.main);
 		init();
 
+		initButton();
+
+	}
+
+	@SuppressWarnings("deprecation")
+	private void initButton() {
 		// 中心图标
 		ImageView icon = new ImageView(this); // Create an icon
-		icon.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_add));
+		icon.setImageDrawable(this.getResources()
+				.getDrawable(R.drawable.ic_add));
 		FloatingActionButton actionButton = new FloatingActionButton.Builder(
 				this).setContentView(icon).build();
 
 		// 分散式图标
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
-		itemIcon1.setImageDrawable(this.getResources().getDrawable(R.drawable.voice));
+		itemIcon1.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.voice));
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
 		button1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// 别人的讯飞账户，我的待审核
 				VoiceToWord voice = new VoiceToWord(MindActivity.this,
-						"534e3fe2",(DViewGroup)findViewById(R.id.viewgroup));
+						"534e3fe2", (DViewGroup) findViewById(R.id.viewgroup));
 				voice.GetWordFromVoice();
 			}
 		});
 
 		ImageView itemIcon2 = new ImageView(this);
-		itemIcon2.setImageDrawable(this.getResources().getDrawable(R.drawable.delete));
+		itemIcon2.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 		button2.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
@@ -71,7 +80,8 @@ public class MindActivity extends Activity {
 		});
 
 		ImageView itemIcon3 = new ImageView(this);
-		itemIcon3.setImageDrawable(this.getResources().getDrawable(R.drawable.plus));
+		itemIcon3.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.plus));
 		SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
 		button3.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
@@ -79,33 +89,33 @@ public class MindActivity extends Activity {
 				group.insertNode();
 			}
 		});
-		
-		ImageView itemIcon4=new ImageView(this);
-		itemIcon4.setImageDrawable(this.getResources().getDrawable(R.drawable.picture));
-		SubActionButton button4=itemBuilder.setContentView(itemIcon4).build();
-		button4.setOnClickListener(new OnClickListener() {	
+
+		ImageView itemIcon4 = new ImageView(this);
+		itemIcon4.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.picture));
+		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
+		button4.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				View view= findViewById(R.layout.dviewgroup);
-				if(view != null){
-					ViewToPicture viewToPic=new ViewToPicture();
+				View view = findViewById(R.id.viewgroup);
+				if (view != null) {
+					ViewToPicture viewToPic = new ViewToPicture();
 					viewToPic.save(view, "Liu");
-				} else{
+				} else {
 					System.out.println("bitmap null");
 				}
 			}
 		});
-		
-		ImageView itemIcon5=new ImageView(this);
-		itemIcon5.setImageDrawable(this.getResources().getDrawable(R.drawable.success2));
-		SubActionButton button5=itemBuilder.setContentView(itemIcon5).build();
-	
+
+		ImageView itemIcon5 = new ImageView(this);
+		itemIcon5.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.success2));
+		SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
+
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
-				.addSubActionView(button3)
-				.addSubActionView(button4).addSubActionView(button5)
-				.attachTo(actionButton).build();
-
+				.addSubActionView(button3).addSubActionView(button4)
+				.addSubActionView(button5).attachTo(actionButton).build();
 	}
 
 	@Override
@@ -143,10 +153,9 @@ public class MindActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// if(getRequestedOrientation() !=
-		// ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
-		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		// }
+		if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		}
 		super.onResume();
 	}
 
