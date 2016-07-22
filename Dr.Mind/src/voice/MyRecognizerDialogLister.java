@@ -1,26 +1,33 @@
 package voice;
 
+import view.DViewGroup;
 import activity.MindActivity;
 import android.content.Context;
 import android.widget.Toast;
+import cn.edu.cn.R;
 
 import com.iflytek.cloud.speech.RecognizerResult;
 import com.iflytek.cloud.speech.SpeechError;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 
-public class MyRecognizerDialogLister implements RecognizerDialogListener{
- 
+public class MyRecognizerDialogLister implements RecognizerDialogListener {
+
 	private Context context;
-	public MyRecognizerDialogLister(Context context)
-	{
+	private DViewGroup group;
+
+	public MyRecognizerDialogLister(Context context,DViewGroup group) {
 		this.context = context;
+		this.group=group;
 	}
-	//自定义的结果回调函数，成功执行第一个方法，失败执行第二个方法
+
+	// 自定义的结果回调函数，成功执行第一个方法，失败执行第二个方法
 	public void onResult(RecognizerResult results, boolean isLast) {
 		// TODO Auto-generated method stub
 		String text = JsonParser.parseIatResult(results.getResultString());
-		System.out.println(text+"bbb");
-		MindActivity.voiceText=text;
+		char first=text.charAt(0);
+		if (text != null && first!='。' && first!='，' && first!='！') {
+			group.voice(text);
+		}
 		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
 	}
 	
@@ -41,7 +48,5 @@ public class MyRecognizerDialogLister implements RecognizerDialogListener{
 			break;
 		}
 	}
- 
- 
 
 }

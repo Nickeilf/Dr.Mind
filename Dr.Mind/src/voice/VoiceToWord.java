@@ -1,10 +1,13 @@
 package voice;
 
+import view.DEditTextView;
+import view.DViewGroup;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
+import cn.edu.cn.R;
 
 import com.iflytek.cloud.speech.SpeechConstant;
 import com.iflytek.cloud.speech.SpeechError;
@@ -25,10 +28,13 @@ public class VoiceToWord extends Activity{
 	private SharedPreferences mSharedPreferences;
 	private RecognizerDialogListener recognizerDialogListener = null;
 	
-	public VoiceToWord(Context context,String APP_ID) {
+	private DViewGroup group;
+	
+	public VoiceToWord(Context context,String APP_ID,DViewGroup group) {
 		// TODO Auto-generated constructor stub
 		//用户登录
 		this.context = context;
+		this.group=group;
 		SpeechUser.getUser().login(context, null, null
 						, "appid=" + APP_ID, listener);
 		//初始化听写Dialog,如果只使用有UI听写功能,无需创建SpeechRecognizer
@@ -115,7 +121,7 @@ public class VoiceToWord extends Activity{
 		/**
 		 * 识别回调监听器
 		 */
-		recognizerDialogListener=new MyRecognizerDialogLister(context);
+		recognizerDialogListener=new MyRecognizerDialogLister(context, group);
 	}
 	
 	/**

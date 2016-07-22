@@ -167,8 +167,6 @@ public class DViewGroup extends ViewGroup {
 	
 	public void voice(String text){
 		View v = getFocusedChild();
-		System.out.println(v == null);
-		System.out.println(v instanceof DEditTextView);
 		((DEditTextView)v).setText(text);
 	}
 
