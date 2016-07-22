@@ -28,7 +28,7 @@ public class MyRecognizerDialogLister implements RecognizerDialogListener {
 		if (text != null && first!='。' && first!='，' && first!='！') {
 			group.voice(text);
 		}
-		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+//		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
 	}
 	
 	/**

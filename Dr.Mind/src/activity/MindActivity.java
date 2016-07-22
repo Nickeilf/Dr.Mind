@@ -103,7 +103,7 @@ public class MindActivity extends Activity {
 		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
 		button4.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				View view = findViewById(R.layout.dviewgroup);
+				View view = findViewById(R.id.viewgroup);
 				if (view != null) {
 					ViewToPicture viewToPic = new ViewToPicture();
 					viewToPic.save(view, "Liu");
@@ -112,11 +112,18 @@ public class MindActivity extends Activity {
 				}
 			}
 		});
+		
+		ImageView itemIcon5 = new ImageView(this);
+		itemIcon5.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.success2));
+		SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
+		
 
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
 				.addSubActionView(button3).addSubActionView(button4)
+				.addSubActionView(button5)
 				.attachTo(actionButton).build();
 
 	}
