@@ -17,12 +17,17 @@ import vo.paintInfoVo;
 
 public class paintDataServiceImpl implements paintDataService{
 	
+	
+//	 public paintDataServiceImpl(Context context) {
+//	 paintDao dao = new dao
+//	}
+	
 
 	@SuppressWarnings("null")
-	public paintInfoPO getData(String paintName,Context context) {
+	public paintInfoPO getData(String paintName, paintDao dao) {
 		// TODO Auto-generated method stub
 		paintInfoPO po =new paintInfoPO();
-        paintDao dao = new paintDao(context);
+     //   paintDao dao = new paintDao(context);
         String result=dao.execQuery(paintName);
         String[] list=result.split("#");
         ArrayList<Integer> rootID = new ArrayList<Integer>();
@@ -128,14 +133,14 @@ public class paintDataServiceImpl implements paintDataService{
 		return null;
 	}
 	
-	public boolean saveData(String paintName, paintInfoPO paintpo,Context context) {
+	public boolean saveData(String paintName, paintInfoPO paintpo,paintDao dao) {
 		// TODO Auto-generated method stub
 //		paintInfoPO po = new paintInfoPO();
 //		po.setbTreeRoot(paintvo.getbTreeRoot());
 		paintpo.setPaintName(paintName);
-		 paintDao dao =new paintDao(context);		 
+		// paintDao dao =new paintDao(context);		 
 		if(dao.isExistPaint(paintName)){
-			deleteData(paintName, context);//已存在画图，先删除再保存即实现更新
+			deleteData(paintName,dao);//已存在画图，先删除再保存即实现更新
 		}
 		for(int index=0;index<paintpo.getbTreeRoot().getRoot().size();index++){
 		   Node temproot=paintpo.getbTreeRoot().getRoot().get(index);
@@ -145,9 +150,9 @@ public class paintDataServiceImpl implements paintDataService{
 		return true;
 	}
 
-	public boolean deleteData(String paintName, Context context) {
+	public boolean deleteData(String paintName, paintDao dao) {
 		// TODO Auto-generated method stub
-		paintDao dao =new paintDao(context);
+		//paintDao dao =new paintDao(context);
 		dao.delete(paintName);
 		return true;
 	}
@@ -180,5 +185,7 @@ public class paintDataServiceImpl implements paintDataService{
 			PreOrderSave(root.getRightChild(),dao,paintname);
 		}
 	}
+
+
 
 }

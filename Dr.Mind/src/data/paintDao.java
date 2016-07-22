@@ -11,10 +11,13 @@ public class paintDao {
 
 	private SqliteDBHelper sqliteDBHelper;
 	private SQLiteDatabase db;
+	//private DBManager;
 	
 	//重写构造方法
 	public paintDao(Context context){
 		sqliteDBHelper = new SqliteDBHelper(context);
+		DBManager.initializeInstance(sqliteDBHelper);
+		//db = DBManager.getInstance().openDatabase();
 		db = sqliteDBHelper.getWritableDatabase();
 		//db1=sqliteDBHelper.getReadableDatabase();
 	}
@@ -40,8 +43,9 @@ public class paintDao {
 				  //cursor游标移动
 			    cursor.moveToNext();
 			}
-			//db.close();
-			cursor.close();
+			DBManager.getInstance().closeDatabase();
+			db.close();
+			//cursor.close();
 			//return sb.deleteCharAt(sb.length()-1).toString();
 			System.out.println(i+"mmmmm");
 			return sb.toString();
@@ -59,6 +63,7 @@ public class paintDao {
             db.execSQL(strSQL);
             db.setTransactionSuccessful();  //设置事务成功完成 
             db.close();
+            DBManager.getInstance().closeDatabase();
             return true;
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -81,7 +86,8 @@ public class paintDao {
 		 cv.put("level", level);
 		 System.out.println(id+"+"+paintname+"+"+leftchild+"+"+rightchild+"+"+textvalue+"+"+level+"..................");
     	 db.insert("Paint",null,cv);
-    	 //db.close();
+    	 //DBManager.getInstance().closeDatabase();
+    	 db.close();
     	return true;
     	
     }
@@ -113,7 +119,7 @@ public class paintDao {
 				  //cursor游标移动
 			    cursor.moveToNext();
 			}
-			db.close();
+		//	db.close();
 	 }catch(RuntimeException e){
 		 e.printStackTrace();
 	 }

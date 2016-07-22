@@ -41,19 +41,8 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-/*		paintDao a=new paintDao(this);
-        a.insert(19, "dad", 0,3,3, "dd",8);
-		
-        System.out.println(a.execQuery("dad"));*/
-		paintService PaintblImpl=new paintblImpl();
-		paintInfoVo vo=PaintblImpl.createPaint();
-		Node node=PaintblImpl.InsertNode(vo.getbTreeRoot().getRoot().get(0));
-		vo.getbTreeRoot().getRoot().get(0).setTextValue("ppppppp");
-		node.setTextValue("moximoxi");
-		PaintblImpl.SavePaint("sssqs", vo, this);
-//		paintInfoVo vo2=PaintblImpl.OpenPaint("sssqs", this);
-//		System.out.println(vo2.getbTreeRoot().getRoot().get(0).getId());
-//		System.out.println(vo2.getbTreeRoot().getRoot().get(0).getLeftChild().getTextValue());
+		paintDao dao=new paintDao(this);//需要在界面层new dao
+
 
 
 		// 全屏显示

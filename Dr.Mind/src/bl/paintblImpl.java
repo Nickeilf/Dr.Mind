@@ -1,10 +1,13 @@
 package bl;
 
+import android.R.integer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import data.paintDao;
 
 import java.util.ArrayList;
+
+import javax.xml.transform.dom.DOMResult;
 
 import impl.paintDataServiceImpl;
 import po.paintInfoPO;
@@ -237,18 +240,19 @@ public class paintblImpl implements paintService {
 
 	}
 
-	public Boolean SavePaint(String paintName, paintInfoVo paintvo, Context context) {
+	public Boolean SavePaint(String paintName, paintInfoVo paintvo, paintDao dao) {
 		// TODO Auto-generated method stub
+		//paintDao dao = new paintDao(context);
 		paintInfoPO po = new paintInfoPO();
 		po.setbTreeRoot(paintvo.getbTreeRoot());
-		pds.saveData(paintName, po, context);
+		pds.saveData(paintName, po,dao);
 		return true;
 	}
 
-	public paintInfoVo OpenPaint(String paintName, Context context) {
+	public paintInfoVo OpenPaint(String paintName, paintDao dao) {
 		// TODO Auto-generated method stub
 		paintInfoVo vo = new paintInfoVo();
-		vo.setbTreeRoot(pds.getData(paintName, context).getbTreeRoot());
+		vo.setbTreeRoot(pds.getData(paintName, dao).getbTreeRoot());
 
 		return vo;
 	}
@@ -309,5 +313,27 @@ public class paintblImpl implements paintService {
 
 		}
 
+	}
+
+
+//删除根结点
+	public Boolean DeleteRoot(Node root, paintInfoVo vo) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<vo.getbTreeRoot().getRoot().size();i++){
+			if(root==vo.getbTreeRoot().getRoot().get(i)){
+				vo.getbTreeRoot().getRoot().remove(i);
+				return true;
+			}
+		}
+		System.out.println(" no this root in the list !");
+		return false;
+	}
+
+	//新建根结点
+	public Node NewRoot(paintInfoVo vo) {
+		// TODO Auto-generated method stub
+		Node newRoot=new Node();
+		vo.getbTreeRoot().getRoot().add(newRoot);
+		return newRoot;
 	}
 }
