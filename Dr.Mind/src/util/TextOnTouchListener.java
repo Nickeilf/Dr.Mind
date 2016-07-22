@@ -1,5 +1,8 @@
 package util;
 
+import service.paintService;
+import view.DEditTextView;
+import view.DViewGroup;
 import activity.MindActivity;
 import android.content.Context;
 import android.util.Log;
@@ -9,10 +12,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import bl.paintblImpl;
-import data.SqliteDBHelper;
-import service.paintService;
-import view.DEditTextView;
-import view.DViewGroup;
 
 public class TextOnTouchListener implements OnTouchListener {
 	private GestureDetector mGesture;

@@ -1,9 +1,7 @@
 package voice;
 
 import view.DViewGroup;
-import activity.MindActivity;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.iflytek.cloud.speech.RecognizerResult;
 import com.iflytek.cloud.speech.SpeechError;

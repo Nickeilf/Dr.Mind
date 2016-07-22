@@ -1,5 +1,12 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import service.paintService;
+import util.Constant;
+import vo.Node;
+import vo.paintInfoVo;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,16 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import bl.paintblImpl;
-import service.paintService;
-import ui.MyButton;
-import util.Constant;
-import vo.Node;
-import vo.paintInfoVo;
 
 public class DViewGroup extends ViewGroup {
 	private paintService paintService;

@@ -2,8 +2,6 @@ package vo;
 
 import java.util.ArrayList;
 
-import android.sax.RootElement;
-
 public class BinaryTree {
 
 	ArrayList<Node> rootList;//根结点链表
