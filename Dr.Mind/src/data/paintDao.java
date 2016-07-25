@@ -87,7 +87,7 @@ public class paintDao {
 		 System.out.println(id+"+"+paintname+"+"+leftchild+"+"+rightchild+"+"+textvalue+"+"+level+"..................");
     	 db.insert("Paint",null,cv);
     	 //DBManager.getInstance().closeDatabase();
-    	 db.close();
+    	 //db.close();
     	return true;
     	
     }

@@ -256,7 +256,7 @@ public class paintblImpl implements paintService {
 		return vo;
 	}
 
-	// 获取所有子结点
+	// 获取所有子孙结点
 
 	public ArrayList<Node> getAllChild(Node parent) {
 		// TODO Auto-generated method stub
@@ -301,16 +301,20 @@ public class paintblImpl implements paintService {
 			lastBro.setRightChild(node);
 			node.setRightChild(nextBro);
 		}
+		node.setLevel(node.getParent().getLevel() + 1);
 		changelevel(node);
+		System.out.println("changelevel finish");
 		return true;
 	}
 
 	public void changelevel(Node node) {
 		if (node != null) {
-			node.setLevel(node.getParent().getLevel() + 1);
+		
 			changelevel(node.getLeftChild());
+			node.setLevel(node.getParent().getLevel() + 1);
+			System.out.println("level= "+node.getLevel());
 			changelevel(node.getRightChild());
-
+			
 		}
 
 	}
@@ -336,4 +340,20 @@ public class paintblImpl implements paintService {
 		vo.getbTreeRoot().getRoot().add(newRoot);
 		return newRoot;
 	}
+	
+
+	// 获取所有子结点
+
+	public ArrayList<Node> getAllSon(Node parent) {
+		// TODO Auto-generated method stub
+		ArrayList<Node> child = new ArrayList<Node>();
+		Node node = parent.getLeftChild();
+        do{
+		child.add(node);
+		node=node.getRightChild();
+        }while(node!=null);
+		return child;
+	}
+
+
 }

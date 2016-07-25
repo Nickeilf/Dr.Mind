@@ -32,7 +32,7 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		paintDao dao = new paintDao(this);// 需要在界面层new dao
+		//paintDao dao = new paintDao(this);// 需要在界面层new dao
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

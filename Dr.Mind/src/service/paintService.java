@@ -35,12 +35,13 @@ public interface paintService {
 	 
 	 paintInfoVo OpenPaint(String  paintName,paintDao dao);//打开画图 
 	 
-	 ArrayList<Node> getAllChild(Node parent);//获取所有子结点
+	 ArrayList<Node> getAllChild(Node parent);//获取所有子孙结点
 	 
 	 Boolean MoveNode(Node node,Node newpa,Node lastBro);//移动插入结点，传自己，一个新的父结点，和新的上一个兄弟，若无则null
 	 
 	 Boolean DeleteRoot(Node root,paintInfoVo vo);//删除根结点。传该根结点和当前vo
 	 
 	 Node NewRoot(paintInfoVo vo);//新建根结点,传一个当前的vo
-	 	 	 
+	
+	 ArrayList<Node> getAllSon(Node parent);//返回所有子结点
 }

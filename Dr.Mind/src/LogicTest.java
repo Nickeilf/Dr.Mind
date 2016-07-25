@@ -14,16 +14,11 @@ public class LogicTest extends TestCase {
 		Node A=pService.InsertNode(node);
 		Node B=pService.InsertNode(node);
 		Node C=pService.InsertNode(node);
-		//Node D=pService.InsertNode(node);
-		System.out.println(pService.countNode(node));
-		pService.InsertNode(node.getLeftChild());
-		node.getLeftChild().getRightChild().setTextValue("mmmm");
-		pService.InsertNode(node.getLeftChild().getLeftChild());
-		//pService.InsertNode(node.getLeftChild().getRightChild());
-		//pService.InsertNode(node.getLeftChild().getRightChild());
-		node.getRightChild();
-		//B.getLeftChild().setTextValue("llll");
-
+        Node D=pService.InsertNode(A);
+        Node E=pService.InsertNode(D);
+        Node F=pService.InsertNode(B);
+        pService.MoveNode(B,A,D);
+        System.out.println(B.getLevel()+"lalal");
 	//	System.out.println(node.getTextValue());
 	//	System.out.println(node.getTextLength());
 	//	System.out.println(pService.countNode(node));
@@ -39,6 +34,8 @@ public class LogicTest extends TestCase {
 //		}
 	    
 		System.out.println("num="+pService.numNode(node));
+		
+		
 		
 	}
 	
