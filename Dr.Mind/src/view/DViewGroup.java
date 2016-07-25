@@ -19,10 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import bl.paintblImpl;
+import data.paintDao;
 
 public class DViewGroup extends ViewGroup {
 	private paintService paintService;
 	private paintInfoVo paintInfo;
+	private paintDao dao;
 	// 存放所有子节点
 	private ArrayList<DEditTextView> editTexts;
 	// 存放所有节点与node对应的hash表
@@ -61,6 +63,7 @@ public class DViewGroup extends ViewGroup {
 		super(context);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
+		dao =new paintDao(getContext());
 		init();
 	}
 
@@ -68,6 +71,7 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
+		dao =new paintDao(getContext());
 		init();
 	}
 
@@ -75,9 +79,15 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs, defStyle);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
+		dao =new paintDao(getContext());
 		init();
 	}
 
+	public void save(){
+		//TODO getName
+		paintService.SavePaint("Mind1", paintInfo, dao);
+	}
+	
 	public void TestFocus() {
 		View v = getFocusedChild();
 		System.out.println(v == null);

@@ -21,8 +21,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import bl.paintblImpl;
 import cn.edu.cn.R;
 import data.paintDao;
+import service.paintService;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
@@ -110,6 +112,14 @@ public class MindActivity extends Activity {
 		itemIcon5.setImageDrawable(this.getResources().getDrawable(
 				R.drawable.success2));
 		SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
+		button5.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				DViewGroup group=(DViewGroup) findViewById(R.id.viewgroup);
+				group.save();
+			}
+		});
+		
 
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)

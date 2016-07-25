@@ -34,8 +34,10 @@ public class LogicTest extends TestCase {
 //		}
 	    
 		System.out.println("num="+pService.numNode(node));
-		
-		
+		System.out.println(A.getRightChild().getId());
+		System.out.println(C.getId());
+		System.out.println(D.getRightChild().getId());
+		System.out.println(B.getId());
 		
 	}
 	
