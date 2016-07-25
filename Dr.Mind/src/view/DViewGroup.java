@@ -2,6 +2,9 @@ package view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import service.paintService;
 import util.Constant;
@@ -85,7 +88,15 @@ public class DViewGroup extends ViewGroup {
 
 	public void save(){
 		//TODO getName
-		paintService.SavePaint("Mind1", paintInfo, dao);
+		Iterator itr= maps.entrySet().iterator();
+		while(itr.hasNext()){
+			Map.Entry<Node,DEditTextView> entry=(Entry<Node, DEditTextView>) itr.next();
+			DEditTextView textView =  entry.getValue();
+			Node node= entry.getKey();
+			node.setTextValue(textView.getText().toString());
+		}
+		dao.delete("Mind1");
+		paintService.SavePaint("Mind2", paintInfo, dao);
 	}
 	
 	public void TestFocus() {
