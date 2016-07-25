@@ -1,11 +1,9 @@
 package bl;
 
-
 import android.graphics.Bitmap;
 import data.paintDao;
 
 import java.util.ArrayList;
-
 
 import impl.paintDataServiceImpl;
 import po.paintInfoPO;
@@ -241,10 +239,10 @@ public class paintblImpl implements paintService {
 
 	public Boolean SavePaint(String paintName, paintInfoVo paintvo, paintDao dao) {
 		// TODO Auto-generated method stub
-		//paintDao dao = new paintDao(context);
+		// paintDao dao = new paintDao(context);
 		paintInfoPO po = new paintInfoPO();
 		po.setbTreeRoot(paintvo.getbTreeRoot());
-		pds.saveData(paintName, po,dao);
+		pds.saveData(paintName, po, dao);
 		return true;
 	}
 
@@ -301,30 +299,25 @@ public class paintblImpl implements paintService {
 			lastBro.setRightChild(node);
 			node.setRightChild(nextBro);
 		}
-		node.setLevel(node.getParent().getLevel() + 1);
 		changelevel(node);
-		System.out.println("changelevel finish");
 		return true;
 	}
 
 	public void changelevel(Node node) {
 		if (node != null) {
-		
-			changelevel(node.getLeftChild());
 			node.setLevel(node.getParent().getLevel() + 1);
-			System.out.println("level= "+node.getLevel());
+			changelevel(node.getLeftChild());
 			changelevel(node.getRightChild());
-			
+
 		}
 
 	}
 
-
-//删除根结点
+	// 删除根结点
 	public Boolean DeleteRoot(Node root, paintInfoVo vo) {
 		// TODO Auto-generated method stub
-		for(int i=0;i<vo.getbTreeRoot().getRoot().size();i++){
-			if(root==vo.getbTreeRoot().getRoot().get(i)){
+		for (int i = 0; i < vo.getbTreeRoot().getRoot().size(); i++) {
+			if (root == vo.getbTreeRoot().getRoot().get(i)) {
 				vo.getbTreeRoot().getRoot().remove(i);
 				return true;
 			}
@@ -333,14 +326,13 @@ public class paintblImpl implements paintService {
 		return false;
 	}
 
-	//新建根结点
+	// 新建根结点
 	public Node NewRoot(paintInfoVo vo) {
 		// TODO Auto-generated method stub
-		Node newRoot=new Node();
+		Node newRoot = new Node();
 		vo.getbTreeRoot().getRoot().add(newRoot);
 		return newRoot;
 	}
-	
 
 	// 获取所有子结点
 
@@ -348,12 +340,11 @@ public class paintblImpl implements paintService {
 		// TODO Auto-generated method stub
 		ArrayList<Node> child = new ArrayList<Node>();
 		Node node = parent.getLeftChild();
-        do{
-		child.add(node);
-		node=node.getRightChild();
-        }while(node!=null);
+		do {
+			child.add(node);
+			node = node.getRightChild();
+		} while (node != null);
 		return child;
 	}
-
 
 }

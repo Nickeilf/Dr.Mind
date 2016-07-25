@@ -129,7 +129,7 @@ public class DViewGroup extends ViewGroup {
 			return;
 		} else {
 			int weight = paintService.numNode(view.getNode());
-			ArrayList<Node> nodes = paintService.getAllChild(view.getNode().getParent());
+			ArrayList<Node> nodes = paintService.getAllSon(view.getNode().getParent());
 			int new_pos = 0;
 			for (; new_pos < nodes.size(); new_pos++) {
 				DEditTextView v = maps.get(nodes.get(new_pos));
@@ -139,20 +139,27 @@ public class DViewGroup extends ViewGroup {
 			}
 			int position = nodes.indexOf(view.getNode());
 			// 没有移动超过临界
-			if (new_pos - position == 1)
+			if (new_pos - position == 1) {
 				return;
+			}
 			boolean up = new_pos < position;
 			if (up) {
 				// 上行
 				for (int i = new_pos; i < position; i++) {
 					DEditTextView v = maps.get(nodes.get(i));
 					v.setyPos(v.getyPos() + weight * singleRec);
+					move(v, 0, weight * singleRec);
 				}
 				Node next = nodes.get(new_pos);
 				DEditTextView next_text = maps.get(next);
+				float y_dis = view.getyPos();
+				float x_dis = view.getxPos();
 				view.setyPos(next_text.getLittleSon().getyPos() - singleRec * paintService.numNode(next)
 						- (weight - 1) * singleRec / 2);
 				view.setxPos(next_text.getxPos());
+				y_dis = view.getyPos() - y_dis;
+				x_dis = view.getxPos() - x_dis;
+				move(view, x_dis, y_dis);
 				requestLayout();
 				// 树形结构更新
 				if (new_pos == 0) {
@@ -169,16 +176,20 @@ public class DViewGroup extends ViewGroup {
 						break;
 					}
 				}
-
 				for (int i = new_pos; i > position; i--) {
 					DEditTextView v = maps.get(nodes.get(i));
-					System.out.println(v.getText().toString());
 					v.setyPos(v.getyPos() - weight * singleRec);
+					move(v, 0, -weight * singleRec);
 				}
 				Node last = nodes.get(new_pos);
 				DEditTextView last_text = maps.get(last);
+				float y_dis = view.getyPos();
+				float x_dis = view.getxPos();
 				view.setyPos(last_text.getLittleSon().getyPos() + singleRec + (weight - 1) * singleRec / 2);
 				view.setxPos(last_text.getxPos());
+				y_dis = view.getyPos() - y_dis;
+				x_dis = view.getxPos() - x_dis;
+				move(view, x_dis, y_dis);
 				requestLayout();
 				paintService.MoveNode(view.getNode(), view.getNode().getParent(), last);
 			}
