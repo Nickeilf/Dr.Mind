@@ -1,12 +1,15 @@
 package view;
 
 import vo.Node;
+import activity.MindActivity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 public class DEditTextView extends EditText {
@@ -22,6 +25,8 @@ public class DEditTextView extends EditText {
 	private float startY;
 
 	private boolean moving;
+	private boolean focusing;
+	private boolean editing;
 
 	public DEditTextView getLittleSon() {
 		return littleSon;
@@ -75,6 +80,9 @@ public class DEditTextView extends EditText {
 	}
 
 	private void init() {
+		this.setInputType(InputType.TYPE_NULL);
+		focusing = false;
+		editing = false;
 	}
 
 	public void setNode(Node node) {
@@ -97,6 +105,11 @@ public class DEditTextView extends EditText {
 			canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
 
+	public void clearFocusing() {
+		this.setInputType(InputType.TYPE_NULL);
+		focusing = false;
+		editing = false;
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -104,6 +117,17 @@ public class DEditTextView extends EditText {
 		if (event.getPointerCount() == 1) {
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
+				if (focusing == false) {
+					focusing = true;
+					editing = false;
+				} else
+					this.setInputType(InputType.TYPE_CLASS_TEXT);
+					editing = true;
+//				if (editing) {
+//					InputMethodManager manager = (InputMethodManager) MindActivity.a
+//							.getSystemService(Context.INPUT_METHOD_SERVICE);
+//					manager.showSoftInput(this, InputMethodManager.SHOW_FORCED);
+//				}
 				startX = event.getX();
 				startY = event.getY();
 				break;
@@ -161,7 +185,7 @@ public class DEditTextView extends EditText {
 			break;
 		}
 	}
-	
+
 	private void paint_width() {
 		int width = 8 - level;
 		if (width <= 0) {
