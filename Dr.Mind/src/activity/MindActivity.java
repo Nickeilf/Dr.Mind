@@ -1,6 +1,6 @@
 package activity;
 
-import ui.ViewToPicture;
+import swipemenulistview.SimpleActivity;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -10,6 +10,7 @@ import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -31,7 +32,7 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//paintDao dao = new paintDao(this);// 需要在界面层new dao
+		// paintDao dao = new paintDao(this);// 需要在界面层new dao
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -40,6 +41,8 @@ public class MindActivity extends Activity {
 		init();
 
 		initButton();
+		
+//		  startActivity(new Intent(this, SimpleActivity.class));
 
 	}
 
