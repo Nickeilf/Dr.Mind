@@ -45,11 +45,11 @@ public class paintDao {
 				  //cursor游标移动
 			    cursor.moveToNext();
 			}
-			DBManager.getInstance().closeDatabase();
+			//DBManager.getInstance().closeDatabase();
 			//db.close();
 			//cursor.close();
 			//return sb.deleteCharAt(sb.length()-1).toString();
-			System.out.println(sb.toString());
+			System.out.println("读到了"+sb.toString());
 			return sb.toString();
 	 }catch(RuntimeException e){
 		 e.printStackTrace();

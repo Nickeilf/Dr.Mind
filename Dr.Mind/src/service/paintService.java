@@ -44,4 +44,6 @@ public interface paintService {
 	 Node NewRoot(paintInfoVo vo);//新建根结点,传一个当前的vo
 	
 	 ArrayList<Node> getAllSon(Node parent);//返回所有子结点
+	 
+	 ArrayList<String> getAllPaintName(paintDao dao);//获取所有数据库中图表的名字
 }

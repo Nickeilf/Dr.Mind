@@ -107,7 +107,7 @@ public class DViewGroup extends ViewGroup {
 		maps = new HashMap<Node, DEditTextView>();
 
 		// 读取
-		paintInfo = paintService.OpenPaint(name, dao);
+		paintInfo = paintService.OpenPaint("name", dao);
 	
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
 

@@ -347,4 +347,10 @@ public class paintblImpl implements paintService {
 		return child;
 	}
 
+	public ArrayList<String> getAllPaintName(paintDao dao) {
+		// TODO Auto-generated method stub
+		
+		return pds.getAllPaintName(dao);
+	}
+
 }
