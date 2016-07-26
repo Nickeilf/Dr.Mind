@@ -21,10 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import bl.paintblImpl;
 import cn.edu.cn.R;
-import data.paintDao;
-import service.paintService;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
@@ -92,21 +89,21 @@ public class MindActivity extends Activity {
 			}
 		});
 
-		ImageView itemIcon4 = new ImageView(this);
-		itemIcon4.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.picture));
-		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
-		button4.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				View view = findViewById(R.id.viewgroup);
-				if (view != null) {
-					ViewToPicture viewToPic = new ViewToPicture();
-					viewToPic.save(view, "Liu");
-				} else {
-					System.out.println("bitmap null");
-				}
-			}
-		});
+//		ImageView itemIcon4 = new ImageView(this);
+//		itemIcon4.setImageDrawable(this.getResources().getDrawable(
+//				R.drawable.picture));
+//		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
+//		button4.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				View view = findViewById(R.id.viewgroup);
+//				if (view != null) {
+//					ViewToPicture viewToPic = new ViewToPicture();
+//					viewToPic.save(view, "Liu");
+//				} else {
+//					System.out.println("bitmap null");
+//				}
+//			}
+//		});
 
 		ImageView itemIcon5 = new ImageView(this);
 		itemIcon5.setImageDrawable(this.getResources().getDrawable(
@@ -124,7 +121,7 @@ public class MindActivity extends Activity {
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
-				.addSubActionView(button3).addSubActionView(button4)
+				.addSubActionView(button3)//.addSubActionView(button4)
 				.addSubActionView(button5).attachTo(actionButton).build();
 	}
 
@@ -140,7 +137,7 @@ public class MindActivity extends Activity {
 	@SuppressWarnings("deprecation")
 	private void init() {
 		WindowManager wm = this.getWindowManager();
-		@SuppressWarnings("deprecation")
+ 
 		int width = wm.getDefaultDisplay().getWidth();
 		int height = wm.getDefaultDisplay().getHeight();
 		// 设定常量
