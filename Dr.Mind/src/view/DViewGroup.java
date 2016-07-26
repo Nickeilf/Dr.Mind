@@ -6,11 +6,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import activity.MindActivity;
 import service.paintService;
 import util.Constant;
 import vo.Node;
 import vo.paintInfoVo;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import bl.paintblImpl;
 import data.paintDao;
 
@@ -73,7 +77,7 @@ public class DViewGroup extends ViewGroup {
 		init();
 	}
 
-	public void save() {
+	public void save(String name) {
 		// TODO getName
 		Iterator itr = maps.entrySet().iterator();
 		while (itr.hasNext()) {
@@ -84,9 +88,10 @@ public class DViewGroup extends ViewGroup {
 			Node node = entry.getKey();
 			node.setTextValue(textView.getText().toString());
 		}
+		
 		//dao.delete("sssqs");
-		//paintService.SavePaint("Mind1", paintInfo, dao);
-		paintService.OpenPaint("Mind1", dao);
+		paintService.SavePaint(name, paintInfo, dao);
+		//paintService.OpenPaint("Mind1", dao);
 		//dao.execQuery("Mind1");
 	}
 

@@ -8,7 +8,9 @@ import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -18,9 +20,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.Toast;
 import cn.edu.cn.R;
 
 public class MindActivity extends Activity {
@@ -108,8 +112,25 @@ public class MindActivity extends Activity {
 		button5.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-				group.save();
+				final EditText editText;
+				new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名").setIcon(
+					     android.R.drawable.ic_dialog_info).setView(
+					     editText=new EditText(MindActivity.this)).setPositiveButton("确定", new DialogInterface.OnClickListener(){
+					    	public void onClick(DialogInterface dialog,int which){
+					    		String name=editText.getText().toString();
+					    	    if (name.equals("")) {  
+					    	        Toast.makeText(getApplicationContext(), "图表名不能为空！" + name, Toast.LENGTH_LONG).show();  
+					    	    } 
+					    	    else{
+					    	     System.out.println("保存的图名： "+name);
+					    		 DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+					    		 group.save(name);
+					    	    }
+					    	}
+					     })
+					     .setNegativeButton("取消", null).show();
+				
+				
 			}
 		});
 
