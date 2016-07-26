@@ -9,6 +9,7 @@ public class BinaryTree {
 	public BinaryTree(){
 		rootList=new ArrayList<Node>();
 		Node root =new Node();
+		root.setRoot(root);
 		rootList.add(root);
 	}
 			

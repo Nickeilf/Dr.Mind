@@ -135,10 +135,7 @@ public class paintDataServiceImpl implements paintDataService{
 	
 	public boolean saveData(String paintName, paintInfoPO paintpo,paintDao dao) {
 		// TODO Auto-generated method stub
-//		paintInfoPO po = new paintInfoPO();
-//		po.setbTreeRoot(paintvo.getbTreeRoot());
-		paintpo.setPaintName(paintName);
-		// paintDao dao =new paintDao(context);		 
+		paintpo.setPaintName(paintName);		 
 		if(dao.isExistPaint(paintName)){
 			deleteData(paintName,dao);//已存在画图，先删除再保存即实现更新
 		}
@@ -178,8 +175,8 @@ public class paintDataServiceImpl implements paintDataService{
 			}else{
 				rightID=root.getRightChild().getId();
 			}
-			System.out.println(root.getLevel()+"+"+root.getId()+"jjjjjjjjjjjjjjjjjjjjjj");
-			dao.insert(root.getId(), paintname,parentID,leftID, 
+			System.out.println(root.getId()+"mmmm"+parentID+"jjjjjjjjjjjjjjjjjjjjjj");
+			dao.insert(root.getId(),paintname,root.getRoot().getId(),parentID,leftID, 
 					rightID, root.getTextValue(),root.getLevel());
 			PreOrderSave(root.getLeftChild(),dao,paintname);
 			PreOrderSave(root.getRightChild(),dao,paintname);

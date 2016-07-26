@@ -93,14 +93,17 @@ public class DViewGroup extends ViewGroup {
 		// TODO getName
 		Iterator itr = maps.entrySet().iterator();
 		while (itr.hasNext()) {
+			@SuppressWarnings("unchecked")
 			Map.Entry<Node, DEditTextView> entry = (Entry<Node, DEditTextView>) itr
 					.next();
 			DEditTextView textView = entry.getValue();
 			Node node = entry.getKey();
 			node.setTextValue(textView.getText().toString());
 		}
-		dao.delete("Mind1");
-		paintService.SavePaint("Mind2", paintInfo, dao);
+		//dao.delete("sssqs");
+		//paintService.SavePaint("Mind1", paintInfo, dao);
+		paintService.OpenPaint("Mind1", dao);
+		//dao.execQuery("Mind1");
 	}
 
 	public void TestFocus() {

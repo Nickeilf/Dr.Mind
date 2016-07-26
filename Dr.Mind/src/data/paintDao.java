@@ -44,10 +44,10 @@ public class paintDao {
 			    cursor.moveToNext();
 			}
 			DBManager.getInstance().closeDatabase();
-			db.close();
+			//db.close();
 			//cursor.close();
 			//return sb.deleteCharAt(sb.length()-1).toString();
-			System.out.println(i+"mmmmm");
+			System.out.println(sb.toString());
 			return sb.toString();
 	 }catch(RuntimeException e){
 		 e.printStackTrace();
@@ -75,17 +75,20 @@ public class paintDao {
     }
     
     //插入
-    public boolean insert(int id,String paintname,int parent,int leftchild,int rightchild,
+    public boolean insert(int id,String paintname,int root,int parent,int leftchild,int rightchild,
     		String textvalue,int level){
 		 ContentValues cv =new ContentValues();
 		 cv.put("id",id);
 		 cv.put("paintName", paintname);
+		 cv.put("root", root);
+		 cv.put("parent", parent);
 		 cv.put("leftChild", leftchild);
 		 cv.put("rightChild", rightchild);
 		 cv.put("textValue", textvalue);
 		 cv.put("level", level);
 		 System.out.println(id+"+"+paintname+"+"+leftchild+"+"+rightchild+"+"+textvalue+"+"+level+"..................");
     	 db.insert("Paint",null,cv);
+    	 System.out.println("Insert successfully!");
     	 //DBManager.getInstance().closeDatabase();
     	 //db.close();
     	return true;
@@ -95,6 +98,7 @@ public class paintDao {
     //delete
     public void delete(String paintName){
     	db.delete("Paint","paintName=?",new String[]{paintName});
+    	System.out.println("delete "+paintName);
     }
     
     //update
@@ -123,6 +127,7 @@ public class paintDao {
 	 }catch(RuntimeException e){
 		 e.printStackTrace();
 	 }
+    	System.out.println("is Exist "+isExist);
 		return isExist;
     	
     }

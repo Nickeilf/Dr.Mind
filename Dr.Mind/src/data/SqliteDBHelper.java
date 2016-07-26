@@ -18,7 +18,8 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 	}
 	
 	public static final String CREATE_PAINT="create table Paint ("+
-	"id integer primary key autoincrement,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer)";
+	"id integer,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer"
+	+ ",constraint pk_paint primary key (id,paintName))";
 	
 	/*
 	      * 参数介绍：context 程序上下文环境 即：XXXActivity.this 
@@ -34,7 +35,7 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%");
+		System.out.println("create db");
 	/*	String strSQL = "create table "+TABLE_NAME+
 				"(id integer primary key autoincrement,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer)"*/;
 		db.execSQL(CREATE_PAINT);	
