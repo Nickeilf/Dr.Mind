@@ -97,13 +97,6 @@ public class DEditTextView extends EditText {
 			canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
 
-	private void paint_width() {
-		int width = 8 - level;
-		if (width <= 0) {
-			width = 1;
-		}
-		paint.setStrokeWidth(width);
-	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -167,5 +160,13 @@ public class DEditTextView extends EditText {
 			paint.setColor(Color.rgb(137, 157, 192));
 			break;
 		}
+	}
+	
+	private void paint_width() {
+		int width = 8 - level;
+		if (width <= 0) {
+			width = 1;
+		}
+		paint.setStrokeWidth(width);
 	}
 }
