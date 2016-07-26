@@ -42,10 +42,9 @@ public class MindActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);
 		init();
-
 		initButton();
 
-//		 startActivity(new Intent(this, SimpleActivity.class));
+		// startActivity(new Intent(this, SimpleActivity.class));
 
 	}
 
@@ -75,21 +74,18 @@ public class MindActivity extends Activity {
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 		button2.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				
-				new AlertDialog.Builder(MindActivity.this).setTitle("您选择删除：").setIcon(
-					     android.R.drawable.ic_dialog_info).setPositiveButton("当前结点", new DialogInterface.OnClickListener(){
-					    	public void onClick(DialogInterface dialog,int which){
-					    		DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-			                          group.deleteNode();
-					    	    }
-					    	})
-				         .setNeutralButton("当前及后代",new DialogInterface.OnClickListener(){
-				        		public void onClick(DialogInterface dialog,int which){
-				        			DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-			                          group.deleteNode();
-					    	    }
-				         })
-					     .setNegativeButton("取消", null).show();
+				new AlertDialog.Builder(MindActivity.this).setTitle("您选择删除：").setIcon(android.R.drawable.ic_dialog_info)
+						.setPositiveButton("当前结点", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+								group.deleteNode();
+							}
+						}).setNeutralButton("当前及后代", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+								group.deleteNode();
+							}
+						}).setNegativeButton("取消", null).show();
 			}
 		});
 
@@ -127,30 +123,29 @@ public class MindActivity extends Activity {
 
 			public void onClick(View v) {
 				final EditText editText;
-				new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名").setIcon(
-					     android.R.drawable.ic_dialog_info).setView(
-					     editText=new EditText(MindActivity.this)).setPositiveButton("确定", new DialogInterface.OnClickListener(){
-					    	public void onClick(DialogInterface dialog,int which){
-					    		String name=editText.getText().toString();
-					    		 DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-					    	    if (name.equals("")) {  
-					    	        Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG).show(); 
-					    	        return;
-					    	    } 
-					    	    if(group.existPaint(name)){
-					    	    	 Toast.makeText(getApplicationContext(), "图表 "+ name+"已存在！", Toast.LENGTH_LONG).show(); 
-					    	    	 return;
-					    	    }
-					    	    else {
-					    	     System.out.println("保存的图名： "+name);
-					    		
-					    		 group.save(name);
-					    	    }
-					    	}
-					     })
-					     .setNegativeButton("取消", null).show();
-				
-				
+				new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
+						.setIcon(android.R.drawable.ic_dialog_info).setView(editText = new EditText(MindActivity.this))
+						.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								String name = editText.getText().toString();
+								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+								if (name.equals("")) {
+									Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
+											.show();
+									return;
+								}
+								if (group.existPaint(name)) {
+									Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
+											.show();
+									return;
+								} else {
+									System.out.println("保存的图名： " + name);
+
+									group.save(name);
+								}
+							}
+						}).setNegativeButton("取消", null).show();
+
 			}
 		});
 

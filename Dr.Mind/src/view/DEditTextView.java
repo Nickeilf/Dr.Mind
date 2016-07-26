@@ -19,6 +19,8 @@ public class DEditTextView extends EditText {
 	private int yPos;
 	private int raw_x;
 	private int raw_y;
+	private int raw_width;
+	
 	private Paint paint;
 	private int level;
 	private float startX;
@@ -81,6 +83,7 @@ public class DEditTextView extends EditText {
 	private void init() {
 		this.setInputType(InputType.TYPE_NULL);
 		focusing = false;
+		this.getMeasuredWidth();
 	}
 
 	public void setNode(Node node) {
@@ -110,8 +113,8 @@ public class DEditTextView extends EditText {
 
 	@Override
 	protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
+		String i =this.getText().toString();
 		super.onTextChanged(text, start, lengthBefore, lengthAfter);
-		
 	}
 
 	@Override
