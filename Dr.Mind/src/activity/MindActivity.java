@@ -39,13 +39,13 @@ public class MindActivity extends Activity {
 		// paintDao dao = new paintDao(this);// 需要在界面层new dao
 
 		// 全屏显示
-//		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//		setContentView(R.layout.main);
-//		init();
-//
-//		initButton();
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.main);
+		init();
 
-		 startActivity(new Intent(this, SimpleActivity.class));
+		initButton();
+
+//		 startActivity(new Intent(this, SimpleActivity.class));
 
 	}
 
