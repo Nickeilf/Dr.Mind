@@ -1,16 +1,12 @@
  
 package swipemenulistview ;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -24,8 +20,8 @@ import android.widget.Toast;
 import cn.edu.cn.R;
  
 public class SimpleActivity extends Activity {
-
-    private List<ApplicationInfo> mAppList;
+ 
+    private List<String> nameOfFile;
     private AppAdapter mAdapter;
     private SwipeMenuListView mListView;
 
@@ -33,8 +29,9 @@ public class SimpleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
-        mAppList = getPackageManager().getInstalledApplications(0);
+ 
+        nameOfFile=new ArrayList<String>();
+        initList();
 
         mListView = (SwipeMenuListView) findViewById(R.id.listView);
 
@@ -82,46 +79,20 @@ public class SimpleActivity extends Activity {
         // step 2. listener item click event
         mListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                ApplicationInfo item = mAppList.get(position);
+                String nameItem=nameOfFile.get(position);
+                Toast.makeText(getApplicationContext(), nameItem, Toast.LENGTH_SHORT).show();
                 switch (index) {
                     case 0:
-                        // open
-                        open(item);
                         break;
                     case 1:
-                        // delete
-//					delete(item);
-                        mAppList.remove(position);
+                        nameOfFile.remove(position);
                         mAdapter.notifyDataSetChanged();
                         break;
                 }
                 return false;
             }
         });
-
-//        // set SwipeListener
-//        mListView.setOnSwipeListener(new SwipeMenuListView.OnSwipeListener() {
-//
-//            public void onSwipeStart(int position) {
-//                // swipe start
-//            }
-//
-//            public void onSwipeEnd(int position) {
-//                // swipe end
-//            }
-//        });
-
-//        // set MenuStateChangeListener
-//        mListView.setOnMenuStateChangeListener(new SwipeMenuListView.OnMenuStateChangeListener() {
-//            public void onMenuOpen(int position) {
-//            }
-//
-//            public void onMenuClose(int position) {
-//            }
-//        });
-
-        // other setting
-//		listView.setCloseInterpolator(new BounceInterpolator());
+ 
 
         // test item long click
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -134,47 +105,23 @@ public class SimpleActivity extends Activity {
         });
 
     }
-
-    private void delete(ApplicationInfo item) {
-        // delete app
-        try {
-            Intent intent = new Intent(Intent.ACTION_DELETE);
-            intent.setData(Uri.fromParts("package", item.packageName, null));
-            startActivity(intent);
-        } catch (Exception e) {
-        }
+    
+    private void initList(){
+    	nameOfFile.add("科比");
+    	nameOfFile.add("乔丹");
+    	nameOfFile.add("保罗");
     }
 
-    private void open(ApplicationInfo item) {
-        // open app
-        Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
-        resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        resolveIntent.setPackage(item.packageName);
-        List<ResolveInfo> resolveInfoList = getPackageManager()
-                .queryIntentActivities(resolveIntent, 0);
-        if (resolveInfoList != null && resolveInfoList.size() > 0) {
-            ResolveInfo resolveInfo = resolveInfoList.get(0);
-            String activityPackageName = resolveInfo.activityInfo.packageName;
-            String className = resolveInfo.activityInfo.name;
-
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            ComponentName componentName = new ComponentName(
-                    activityPackageName, className);
-
-            intent.setComponent(componentName);
-            startActivity(intent);
-        }
-    }
+ 
 
     class AppAdapter extends BaseSwipListAdapter {
 
         public int getCount() {
-            return mAppList.size();
+        	return nameOfFile.size();
         }
  
-        public ApplicationInfo getItem(int position) {
-            return mAppList.get(position);
+        public String getItem(int position) {
+        	return nameOfFile.get(position);
         }
  
         public long getItemId(int position) {
@@ -188,14 +135,10 @@ public class SimpleActivity extends Activity {
                 new ViewHolder(convertView);
             }
             ViewHolder holder = (ViewHolder) convertView.getTag();
-            ApplicationInfo item = getItem(position);
-            
-//            holder.iv_icon.setImageDrawable(item.loadIcon(getPackageManager()));
-//            holder.tv_name.setText(item.loadLabel(getPackageManager()));
-            
             holder.iv_icon.setImageDrawable(SimpleActivity.this.getResources().getDrawable(R.drawable.think_white));
             holder.tv_name.setTextColor(Color.WHITE);
-            holder.tv_name.setText("思维导图");
+            String nameItem =getItem(position);
+            holder.tv_name.setText(nameItem);
             
             holder.iv_icon.setOnClickListener(new View.OnClickListener() {
            

@@ -26,7 +26,6 @@ public class DEditTextView extends EditText {
 
 	private boolean moving;
 	private boolean focusing;
-	private boolean editing;
 
 	public DEditTextView getLittleSon() {
 		return littleSon;
@@ -82,7 +81,6 @@ public class DEditTextView extends EditText {
 	private void init() {
 		this.setInputType(InputType.TYPE_NULL);
 		focusing = false;
-		editing = false;
 	}
 
 	public void setNode(Node node) {
@@ -113,7 +111,7 @@ public class DEditTextView extends EditText {
 	@Override
 	protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
 		super.onTextChanged(text, start, lengthBefore, lengthAfter);
-
+		
 	}
 
 	@Override
