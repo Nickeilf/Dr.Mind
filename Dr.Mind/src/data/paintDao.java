@@ -138,9 +138,9 @@ public class paintDao {
     @SuppressWarnings("null")
 	public ArrayList<String> getAllPaintName(){
     	String[] columns={"paintName"};
-    	ArrayList<String> paintName=null;
+    	ArrayList<String> paintName=new ArrayList<String>();
     	try{
-			Cursor cursor =db.query("Paint",columns,null,null,null,null,null);
+			Cursor cursor =db.query("Paint",columns,null,null,"paintName",null,null);
 			//始终让cursor指向数据库表的第1行记录
 			cursor.moveToFirst();
 			//定义一个StringBuffer的对象，用于动态拼接字符串
@@ -148,10 +148,13 @@ public class paintDao {
 			//循环游标，如果不是最后一项记录
 			int i=0;
 			while(!cursor.isAfterLast()){
-			     paintName.add(cursor.getString(cursor.getColumnIndex("paintName")));
+				 System.out.println(cursor.getString(cursor.getColumnIndex("paintName")));
+			    paintName.add(cursor.getString(cursor.getColumnIndex("paintName")));
+			    //cursor游标移动
+				 cursor.moveToNext();
 				}
-				  //cursor游标移动
-			    cursor.moveToNext();
+				
+			 
 			System.out.println(paintName.toString());
 			return paintName;
 	 }catch(RuntimeException e){

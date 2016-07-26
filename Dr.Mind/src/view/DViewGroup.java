@@ -92,7 +92,7 @@ public class DViewGroup extends ViewGroup {
 
 		
 		paintService.SavePaint(name, paintInfo, dao);
-        load(name);
+       // load(name);
 	}
 	
 	//是否存在相同名字的图表
