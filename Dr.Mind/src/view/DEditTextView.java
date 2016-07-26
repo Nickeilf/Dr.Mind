@@ -110,6 +110,14 @@ public class DEditTextView extends EditText {
 		focusing = false;
 		editing = false;
 	}
+	
+	
+
+	@Override
+	protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
+		super.onTextChanged(text, start, lengthBefore, lengthAfter);
+		
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -123,11 +131,6 @@ public class DEditTextView extends EditText {
 				} else
 					this.setInputType(InputType.TYPE_CLASS_TEXT);
 					editing = true;
-//				if (editing) {
-//					InputMethodManager manager = (InputMethodManager) MindActivity.a
-//							.getSystemService(Context.INPUT_METHOD_SERVICE);
-//					manager.showSoftInput(this, InputMethodManager.SHOW_FORCED);
-//				}
 				startX = event.getX();
 				startY = event.getY();
 				break;
@@ -148,9 +151,9 @@ public class DEditTextView extends EditText {
 			case MotionEvent.ACTION_UP:
 				float stop_y = event.getY();
 				if (moving) {
+					this.clearFocusing();
 					DViewGroup parent = (DViewGroup) getParent();
 					parent.checkMove(this, stop_y);
-					System.out.println(stop_y);
 					moving = false;
 				}
 				break;

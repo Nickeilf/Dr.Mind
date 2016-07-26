@@ -44,22 +44,6 @@ public class DViewGroup extends ViewGroup {
 	private Paint paint;
 	private int level;
 
-	public int getScreenWidth() {
-		return screenWidth;
-	}
-
-	public void setScreenWidth(int screenWidth) {
-		this.screenWidth = screenWidth;
-	}
-
-	public int getScreenHeight() {
-		return screenHeight;
-	}
-
-	public void setScreenHeight(int screenHeight) {
-		this.screenHeight = screenHeight;
-	}
-
 	/**
 	 * 构造函数，继承父类
 	 * 
@@ -100,12 +84,6 @@ public class DViewGroup extends ViewGroup {
 		}
 		dao.delete("Mind1");
 		paintService.SavePaint("Mind2", paintInfo, dao);
-	}
-
-	public void TestFocus() {
-		View v = getFocusedChild();
-		System.out.println(v == null);
-		System.out.println(v instanceof DEditTextView);
 	}
 
 	/**
@@ -243,6 +221,7 @@ public class DViewGroup extends ViewGroup {
 			v.setyPos(y);
 			v.layout(x, y, x + v.getMeasuredWidth(), y + v.getMeasuredHeight());
 		}
+		invalidate();
 	}
 
 	// 判定是否需要隐藏
@@ -271,8 +250,6 @@ public class DViewGroup extends ViewGroup {
 	public void deleteNode() {
 		View v = getFocusedChild();
 		// TODO 考虑删除跟节点的情况
-		System.out.println(v == null);
-		System.out.println(v instanceof DEditTextView);
 		if (v instanceof DEditTextView) {
 			// 移除View
 			DEditTextView text = (DEditTextView) v;
@@ -501,6 +478,22 @@ public class DViewGroup extends ViewGroup {
 			}
 		}
 		invalidate();
+	}
+
+	public int getScreenWidth() {
+		return screenWidth;
+	}
+
+	public void setScreenWidth(int screenWidth) {
+		this.screenWidth = screenWidth;
+	}
+
+	public int getScreenHeight() {
+		return screenHeight;
+	}
+
+	public void setScreenHeight(int screenHeight) {
+		this.screenHeight = screenHeight;
 	}
 
 }
