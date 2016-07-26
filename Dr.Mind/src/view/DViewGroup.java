@@ -90,13 +90,12 @@ public class DViewGroup extends ViewGroup {
 			node.setTextValue(textView.getText().toString());
 		}
 
-		
 		paintService.SavePaint(name, paintInfo, dao);
-        load(name);
+		load(name);
 	}
-	
-	//是否存在相同名字的图表
-	public boolean existPaint(String name){
+
+	// 是否存在相同名字的图表
+	public boolean existPaint(String name) {
 		return dao.isExistPaint(name);
 	}
 
@@ -105,10 +104,8 @@ public class DViewGroup extends ViewGroup {
 		this.removeAllViews();
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
-
 		// 读取
-		paintInfo = paintService.OpenPaint("name", dao);
-	
+		paintInfo = paintService.OpenPaint(name, dao);
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
 
 	}
@@ -141,6 +138,9 @@ public class DViewGroup extends ViewGroup {
 		paint = new Paint();
 	}
 
+	public void textMove(DEditTextView view) {
+
+	}
 
 	public void checkMove(DEditTextView view, float y_pos) {
 		// TODO 动画移动效果
@@ -297,10 +297,12 @@ public class DViewGroup extends ViewGroup {
 			} else if (text.getDad().getLittleSon() == text) {
 				text.getDad().setLittleSon(null);
 				paintService.DeleteAllChild(text.getNode());
+			}else{
+				paintService.DeleteAllChild(text.getNode());
 			}
+			maps.remove(text.getNode());
 			removeView(text);
 			editTexts.remove(text);
-			maps.remove(text.getNode());
 
 			ArrayList<Node> roots = new ArrayList<Node>();
 			roots.addAll(paintInfo.getbTreeRoot().getRoot());
@@ -359,7 +361,6 @@ public class DViewGroup extends ViewGroup {
 				editTexts.add(son);
 				maps.put(node, son);
 				son.measure(0, 0);
-				System.out.println("添加大成功");
 				text.setLittleSon(son);
 				requestLayout();
 			} else {
