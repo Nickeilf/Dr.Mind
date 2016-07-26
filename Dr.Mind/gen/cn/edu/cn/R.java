@@ -103,30 +103,39 @@ containing a value of this type.
         public static final int delete=0x7f02000c;
         public static final int ic_add=0x7f02000d;
         public static final int ic_camera=0x7f02000e;
-        public static final int ic_launcher=0x7f02000f;
-        public static final int icon=0x7f020010;
-        public static final int list=0x7f020011;
-        public static final int picture=0x7f020012;
-        public static final int plus=0x7f020013;
-        public static final int shadow=0x7f020014;
-        public static final int shadow_mini=0x7f020015;
-        public static final int success1=0x7f020016;
-        public static final int success2=0x7f020017;
-        public static final int tag=0x7f020018;
-        public static final int voice=0x7f020019;
-        public static final int warn=0x7f02001a;
+        public static final int ic_delete=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int icon=0x7f020011;
+        public static final int list=0x7f020012;
+        public static final int picture=0x7f020013;
+        public static final int plus=0x7f020014;
+        public static final int shadow=0x7f020015;
+        public static final int shadow_mini=0x7f020016;
+        public static final int success1=0x7f020017;
+        public static final int success2=0x7f020018;
+        public static final int tag=0x7f020019;
+        public static final int voice=0x7f02001a;
+        public static final int warn=0x7f02001b;
     }
     public static final class id {
-        public static final int btn_color_picker=0x7f070002;
+        public static final int action_left=0x7f070008;
+        public static final int action_right=0x7f070009;
+        public static final int btn_color_picker=0x7f070003;
+        public static final int iv_icon=0x7f070006;
+        public static final int listView=0x7f070002;
         public static final int mini=0x7f070000;
         public static final int normal=0x7f070001;
-        public static final int tv_text=0x7f070003;
-        public static final int viewgroup=0x7f070004;
+        public static final int tv_name=0x7f070007;
+        public static final int tv_text=0x7f070004;
+        public static final int viewgroup=0x7f070005;
     }
     public static final class layout {
-        public static final int colorpicker=0x7f030000;
-        public static final int dviewgroup=0x7f030001;
-        public static final int main=0x7f030002;
+        public static final int activity_list=0x7f030000;
+        public static final int colorpicker=0x7f030001;
+        public static final int dviewgroup=0x7f030002;
+        public static final int item_list_app=0x7f030003;
+        public static final int main=0x7f030004;
+        public static final int menu_main=0x7f030005;
     }
     public static final class string {
         public static final int _0=0x7f060002;

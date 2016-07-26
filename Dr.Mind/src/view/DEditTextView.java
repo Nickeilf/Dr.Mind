@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
@@ -16,12 +17,16 @@ public class DEditTextView extends EditText {
 	private Node node;
 	private int xPos;
 	private int yPos;
+	private int raw_x;
+	private int raw_y;
 	private Paint paint;
 	private int level;
 	private float startX;
 	private float startY;
 
 	private boolean moving;
+	private boolean focusing;
+	private boolean editing;
 
 	public DEditTextView getLittleSon() {
 		return littleSon;
@@ -75,6 +80,9 @@ public class DEditTextView extends EditText {
 	}
 
 	private void init() {
+		this.setInputType(InputType.TYPE_NULL);
+		focusing = false;
+		editing = false;
 	}
 
 	public void setNode(Node node) {
@@ -97,6 +105,16 @@ public class DEditTextView extends EditText {
 			canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
 
+	public void clearFocusing() {
+		this.setInputType(InputType.TYPE_NULL);
+		focusing = false;
+	}
+
+	@Override
+	protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
+		super.onTextChanged(text, start, lengthBefore, lengthAfter);
+
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -106,6 +124,8 @@ public class DEditTextView extends EditText {
 			case MotionEvent.ACTION_DOWN:
 				startX = event.getX();
 				startY = event.getY();
+				raw_x = xPos;
+				raw_y = yPos;
 				break;
 			case MotionEvent.ACTION_MOVE:
 				moving = true;
@@ -123,10 +143,21 @@ public class DEditTextView extends EditText {
 				break;
 			case MotionEvent.ACTION_UP:
 				float stop_y = event.getY();
+				if (Math.abs(yPos - raw_y) > 10 || Math.abs(xPos - raw_x) > 10) {
+					if (focusing == false)
+						focusing = true;
+				} else {
+					if (focusing == false)
+						focusing = true;
+					else {
+						this.setCursorVisible(true);
+						this.setInputType(InputType.TYPE_CLASS_TEXT);
+					}
+				}
+
 				if (moving) {
 					DViewGroup parent = (DViewGroup) getParent();
 					parent.checkMove(this, stop_y);
-					System.out.println(stop_y);
 					moving = false;
 				}
 				break;
@@ -161,12 +192,28 @@ public class DEditTextView extends EditText {
 			break;
 		}
 	}
-	
+
 	private void paint_width() {
 		int width = 8 - level;
 		if (width <= 0) {
 			width = 1;
 		}
 		paint.setStrokeWidth(width);
+	}
+
+	public int getRaw_x() {
+		return raw_x;
+	}
+
+	public void setRaw_x(int raw_x) {
+		this.raw_x = raw_x;
+	}
+
+	public int getRaw_y() {
+		return raw_y;
+	}
+
+	public void setRaw_y(int raw_y) {
+		this.raw_y = raw_y;
 	}
 }
