@@ -438,8 +438,8 @@ public class DViewGroup extends ViewGroup {
 			DEditTextView view = editTexts.get(i);
 			DEditTextView pa = view.getDad();
 			level = view.getNode().getLevel();
-			myDraw(pa.getRight(), pa.getBottom(), view.getLeft(),
-					view.getBottom(), canvas);	 
+			myDraw(pa.getRight(), pa.getBottom()-5, view.getLeft(),
+					view.getBottom()-5, canvas);	 
 		}
 	}
 
