@@ -22,11 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.edu.cn.R;
-
-/**
- * SwipeMenuListView
- * Created by baoyz on 15/6/29.
- */
+ 
 public class SimpleActivity extends Activity {
 
     private List<ApplicationInfo> mAppList;
@@ -103,26 +99,26 @@ public class SimpleActivity extends Activity {
             }
         });
 
-        // set SwipeListener
-        mListView.setOnSwipeListener(new SwipeMenuListView.OnSwipeListener() {
+//        // set SwipeListener
+//        mListView.setOnSwipeListener(new SwipeMenuListView.OnSwipeListener() {
+//
+//            public void onSwipeStart(int position) {
+//                // swipe start
+//            }
+//
+//            public void onSwipeEnd(int position) {
+//                // swipe end
+//            }
+//        });
 
-            public void onSwipeStart(int position) {
-                // swipe start
-            }
-
-            public void onSwipeEnd(int position) {
-                // swipe end
-            }
-        });
-
-        // set MenuStateChangeListener
-        mListView.setOnMenuStateChangeListener(new SwipeMenuListView.OnMenuStateChangeListener() {
-            public void onMenuOpen(int position) {
-            }
-
-            public void onMenuClose(int position) {
-            }
-        });
+//        // set MenuStateChangeListener
+//        mListView.setOnMenuStateChangeListener(new SwipeMenuListView.OnMenuStateChangeListener() {
+//            public void onMenuOpen(int position) {
+//            }
+//
+//            public void onMenuClose(int position) {
+//            }
+//        });
 
         // other setting
 //		listView.setCloseInterpolator(new BounceInterpolator());
@@ -193,18 +189,24 @@ public class SimpleActivity extends Activity {
             }
             ViewHolder holder = (ViewHolder) convertView.getTag();
             ApplicationInfo item = getItem(position);
-            holder.iv_icon.setImageDrawable(item.loadIcon(getPackageManager()));
-            holder.tv_name.setText(item.loadLabel(getPackageManager()));
+            
+//            holder.iv_icon.setImageDrawable(item.loadIcon(getPackageManager()));
+//            holder.tv_name.setText(item.loadLabel(getPackageManager()));
+            
+            holder.iv_icon.setImageDrawable(SimpleActivity.this.getResources().getDrawable(R.drawable.think_white));
+            holder.tv_name.setTextColor(Color.WHITE);
+            holder.tv_name.setText("思维导图");
+            
             holder.iv_icon.setOnClickListener(new View.OnClickListener() {
            
                 public void onClick(View v) {
-                    Toast.makeText(SimpleActivity.this, "iv_icon_click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SimpleActivity.this, "你点我(图片)干嘛？！", Toast.LENGTH_SHORT).show();
                 }
             });
             holder.tv_name.setOnClickListener(new View.OnClickListener() {
           
                 public void onClick(View v) {
-                    Toast.makeText(SimpleActivity.this,"iv_icon_click",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SimpleActivity.this,"你点我(名字)干嘛？！",Toast.LENGTH_SHORT).show();
                 }
             });
             return convertView;
@@ -223,9 +225,9 @@ public class SimpleActivity extends Activity {
 
         @Override
         public boolean getSwipEnableByPosition(int position) {
-            if(position % 2 == 0){
-                return false;
-            }
+//            if(position % 2 == 0){
+//                return false;
+//            }
             return true;
         }
     }
