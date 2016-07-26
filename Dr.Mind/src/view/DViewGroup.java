@@ -89,10 +89,13 @@ public class DViewGroup extends ViewGroup {
 			node.setTextValue(textView.getText().toString());
 		}
 		
-		//dao.delete("sssqs");
 		paintService.SavePaint(name, paintInfo, dao);
-		//paintService.OpenPaint("Mind1", dao);
-		//dao.execQuery("Mind1");
+	    
+	}
+	
+	//是否存在相同名字的图表
+	public boolean existPaint(String name){
+		return dao.isExistPaint(name);
 	}
 
 	/**

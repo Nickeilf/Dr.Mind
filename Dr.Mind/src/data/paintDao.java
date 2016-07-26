@@ -1,5 +1,7 @@
 package data;
 
+import java.util.ArrayList;
+
 import android.R.bool;
 import android.content.ContentValues;
 import android.content.Context;
@@ -129,6 +131,33 @@ public class paintDao {
 	 }
     	System.out.println("is Exist "+isExist);
 		return isExist;
+    	
+    }
+    
+    //获取所有表名
+    @SuppressWarnings("null")
+	public ArrayList<String> getAllPaintName(){
+    	String[] columns={"paintName"};
+    	ArrayList<String> paintName=null;
+    	try{
+			Cursor cursor =db.query("Paint",columns,null,null,null,null,null);
+			//始终让cursor指向数据库表的第1行记录
+			cursor.moveToFirst();
+			//定义一个StringBuffer的对象，用于动态拼接字符串
+			StringBuffer sb = new StringBuffer();
+			//循环游标，如果不是最后一项记录
+			int i=0;
+			while(!cursor.isAfterLast()){
+			     paintName.add(cursor.getString(cursor.getColumnIndex("paintName")));
+				}
+				  //cursor游标移动
+			    cursor.moveToNext();
+			System.out.println(paintName.toString());
+			return paintName;
+	 }catch(RuntimeException e){
+		 e.printStackTrace();
+		 return null;
+	 }
     	
     }
     

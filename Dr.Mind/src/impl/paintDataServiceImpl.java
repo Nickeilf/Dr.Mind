@@ -183,6 +183,12 @@ public class paintDataServiceImpl implements paintDataService{
 		}
 	}
 
+	public ArrayList<String> getAllPaintName(paintDao dao) {
+		// TODO Auto-generated method stub
+         		
+		return null;
+	}
+
 
 
 }
