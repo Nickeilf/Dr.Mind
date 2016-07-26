@@ -5,8 +5,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
@@ -20,7 +24,7 @@ public class DEditTextView extends EditText {
 	private int raw_x;
 	private int raw_y;
 	private int raw_width;
-	
+
 	private Paint paint;
 	private int level;
 	private float startX;
@@ -28,6 +32,7 @@ public class DEditTextView extends EditText {
 
 	private boolean moving;
 	private boolean focusing;
+	boolean init = true;
 
 	public DEditTextView getLittleSon() {
 		return littleSon;
@@ -83,7 +88,6 @@ public class DEditTextView extends EditText {
 	private void init() {
 		this.setInputType(InputType.TYPE_NULL);
 		focusing = false;
-		this.getMeasuredWidth();
 	}
 
 	public void setNode(Node node) {
@@ -98,6 +102,16 @@ public class DEditTextView extends EditText {
 		invalidate();
 	}
 
+
+	@Override
+	protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+		if(!focused){
+			DViewGroup pa = (DViewGroup) getParent();
+			pa.textMove(this);
+		}
+		super.onFocusChanged(focused, direction, previouslyFocusedRect);
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -109,12 +123,6 @@ public class DEditTextView extends EditText {
 	public void clearFocusing() {
 		this.setInputType(InputType.TYPE_NULL);
 		focusing = false;
-	}
-
-	@Override
-	protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
-		String i =this.getText().toString();
-		super.onTextChanged(text, start, lengthBefore, lengthAfter);
 	}
 
 	@Override
@@ -217,4 +225,13 @@ public class DEditTextView extends EditText {
 	public void setRaw_y(int raw_y) {
 		this.raw_y = raw_y;
 	}
+
+	public void setRaw_width(int raw_width) {
+		this.raw_width = raw_width;
+	}
+
+	public int getRaw_width() {
+		return raw_width;
+	}
+
 }

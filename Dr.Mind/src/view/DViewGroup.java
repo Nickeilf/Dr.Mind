@@ -129,6 +129,7 @@ public class DViewGroup extends ViewGroup {
 		root.setText("思维导图");
 		root.setLittleSon(root);
 		root.measure(0, 0);
+		root.setRaw_width(root.getMeasuredWidth());
 		int s_x = 3 * width / 2 - root.getMeasuredWidth() / 2;
 		int s_y = 3 * height / 2 - root.getMeasuredHeight() / 2;
 		root.setxPos(s_x);
@@ -140,7 +141,10 @@ public class DViewGroup extends ViewGroup {
 	}
 
 	public void textMove(DEditTextView view) {
-
+		view.measure(0, 0);
+		int dis = view.getMeasuredWidth()-view.getRaw_width();
+		//DO
+		view.setRaw_width(view.getMeasuredWidth());
 	}
 
 	public void checkMove(DEditTextView view, float y_pos) {
@@ -298,7 +302,7 @@ public class DViewGroup extends ViewGroup {
 			} else if (text.getDad().getLittleSon() == text) {
 				text.getDad().setLittleSon(null);
 				paintService.DeleteAllChild(text.getNode());
-			}else{
+			} else {
 				paintService.DeleteAllChild(text.getNode());
 			}
 			maps.remove(text.getNode());
@@ -362,6 +366,7 @@ public class DViewGroup extends ViewGroup {
 				editTexts.add(son);
 				maps.put(node, son);
 				son.measure(0, 0);
+				 son.setRaw_width(son.getMeasuredWidth());
 				text.setLittleSon(son);
 				requestLayout();
 			} else {
@@ -372,6 +377,7 @@ public class DViewGroup extends ViewGroup {
 				editTexts.add(son);
 				maps.put(node, son);
 				son.measure(0, 0);
+				 son.setRaw_width(son.getMeasuredWidth());
 				System.out.println("添加大成功");
 				// TODO 移动的动画
 				ArrayList<DEditTextView> moveList = new ArrayList<DEditTextView>();
@@ -403,6 +409,7 @@ public class DViewGroup extends ViewGroup {
 			root.setText("思维导图");
 			root.setLittleSon(root);
 			root.measure(0, 0);
+			 root.setRaw_width(root.getMeasuredWidth());
 			int s_x = 3 * screenWidth / 2 - root.getMeasuredWidth() / 2;
 			int s_y = 3 * screenHeight / 2 - root.getMeasuredHeight() / 2;
 			s_x += singleRec * (paintInfo.getbTreeRoot().getRoot().size() - 1);
