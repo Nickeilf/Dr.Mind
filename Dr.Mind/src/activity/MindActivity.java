@@ -3,6 +3,7 @@ package activity;
 import java.util.Calendar;
 
 import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.Position;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -34,6 +35,10 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import cn.edu.cn.R;
+import util.Constant;
+import view.DEditTextView;
+import view.DViewGroup;
+import voice.VoiceToWord;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
@@ -46,7 +51,7 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		mDrawer = MenuDrawer.attach(this);
+		mDrawer = MenuDrawer.attach(this,MenuDrawer.Type.BEHIND,Position.LEFT);
 		mDrawer.setContentView(R.layout.main);
 
 
@@ -63,6 +68,9 @@ public class MindActivity extends Activity {
 		init();
 		initButton();
  
+
+		// startActivity(new Intent(this, SampleActivity.class));
+
 	}
 
 	@SuppressWarnings("deprecation")
@@ -147,8 +155,7 @@ public class MindActivity extends Activity {
 
 		// 提示闹钟
 		ImageView itemIcon4 = new ImageView(this);
-		itemIcon4.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.picture));
+		itemIcon4.setImageDrawable(this.getResources().getDrawable(R.drawable.picture));
 		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
 		button4.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -173,7 +180,6 @@ public class MindActivity extends Activity {
 							}
 						}, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
 								.get(Calendar.MINUTE), false).show();
-
 			}
 		});
 

@@ -94,30 +94,33 @@ public class DEditTextView extends EditText {
 		this.node = node;
 		this.level = node.getLevel();
 		paint = new Paint();
-		if (level > 0) {
-			this.getBackground().setAlpha(0);
-			paint_width();
-			paint_color();
-		}
+		// if (level > 0) {
+		this.getBackground().setAlpha(0);
+		paint_width();
+		paint_color();
+		// }
 		invalidate();
 	}
 
-
 	@Override
 	protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-		if(!focused){
+		super.onFocusChanged(focused, direction, previouslyFocusedRect);
+		if (!focused) {
+			this.clearFocusing();
 			DViewGroup pa = (DViewGroup) getParent();
 			pa.textMove(this);
+			this.getBackground().setAlpha(0);
+		} else {
+			this.getBackground().setAlpha(100);
 		}
-		super.onFocusChanged(focused, direction, previouslyFocusedRect);
+
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		float height = this.getHeight() - paint.getStrokeWidth() / 2 - 1;
-		if (level != 0)
-			canvas.drawLine(0, height, this.getWidth(), height, paint);
+		canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
 
 	public void clearFocusing() {
@@ -153,8 +156,10 @@ public class DEditTextView extends EditText {
 			case MotionEvent.ACTION_UP:
 				float stop_y = event.getY();
 				if (Math.abs(yPos - raw_y) > 10 || Math.abs(xPos - raw_x) > 10) {
-					if (focusing == false)
+					if (focusing == false) {
 						focusing = true;
+						this.requestFocus();
+					}
 				} else {
 					if (focusing == false)
 						focusing = true;
@@ -179,7 +184,7 @@ public class DEditTextView extends EditText {
 		int index = level % 7;
 		switch (index) {
 		case 0:
-			paint.setColor(Color.rgb(3, 22, 52));
+			paint.setColor(Color.rgb(212, 44, 103));
 			break;
 		case 1:
 			paint.setColor(Color.rgb(131, 175, 155));

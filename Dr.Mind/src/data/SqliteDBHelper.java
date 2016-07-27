@@ -49,6 +49,7 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 		onCreate(db);
 		
 	}  
+
 	
 	public boolean deleteDatabase(Context context){
 		return context.deleteDatabase("paint_db");
