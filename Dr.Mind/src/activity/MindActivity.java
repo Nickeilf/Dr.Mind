@@ -3,6 +3,7 @@ package activity;
 import java.util.Calendar;
 
 import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.Position;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -50,7 +51,7 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		mDrawer = MenuDrawer.attach(this);
+		mDrawer = MenuDrawer.attach(this,MenuDrawer.Type.BEHIND,Position.LEFT);
 		mDrawer.setContentView(R.layout.main);
 
 
