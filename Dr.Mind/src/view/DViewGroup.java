@@ -27,6 +27,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 import bl.paintblImpl;
+import data.DBManager;
 import data.paintDao;
 
 public class DViewGroup extends ViewGroup {
@@ -89,7 +90,8 @@ public class DViewGroup extends ViewGroup {
 			Node node = entry.getKey();
 			node.setTextValue(textView.getText().toString());
 		}
-
+         
+	//	dao.deleteDatabase();
 		paintService.SavePaint(name, paintInfo, dao);
 		load(name);
 

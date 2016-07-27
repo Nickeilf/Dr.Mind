@@ -13,14 +13,16 @@ public class paintDao {
 
 	private SqliteDBHelper sqliteDBHelper;
 	private SQLiteDatabase db;
+	private Context mContext;
 	//private DBManager;
 	
 	//重写构造方法
 	public paintDao(Context context){
 		sqliteDBHelper = new SqliteDBHelper(context);
-		DBManager.initializeInstance(sqliteDBHelper);
+		//DBManager.initializeInstance(sqliteDBHelper);
 		//db = DBManager.getInstance().openDatabase();
 		db = sqliteDBHelper.getWritableDatabase();
+		mContext=context;
 		//db1=sqliteDBHelper.getReadableDatabase();
 	}
 	
@@ -164,5 +166,14 @@ public class paintDao {
     	
     }
     
+    //删除表
+    public void drop( ){
+    	db.execSQL("DROP Table Paint");
+    }
+    
+    //删除数据库
+    public void  deleteDatabase( ){
+    	sqliteDBHelper.deleteDatabase(mContext);
+    }
 }
 

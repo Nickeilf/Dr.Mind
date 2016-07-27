@@ -50,6 +50,11 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 		
 	}  
 	
+	public boolean deleteDatabase(Context context){
+		return context.deleteDatabase("paint_db");
+		
+	}
+	
 	
 	
 

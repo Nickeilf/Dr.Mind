@@ -4,11 +4,18 @@ import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
 import voice.VoiceToWord;
+
+import java.util.Calendar;
+
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
@@ -23,18 +30,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import cn.edu.cn.R;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
+	private AlarmManager alarmManager;
+	private PendingIntent pi;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		// ①获取AlarmManager对象:
+				alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+	    // 指定要启动的是Activity组件,通过PendingIntent调用getActivity来设置
+				Intent intent = new Intent(MindActivity.this, ClockActivity.class);
+				pi = PendingIntent.getActivity(MindActivity.this, 0, intent, 0);
 
-		// paintDao dao = new paintDao(this);// 需要在界面层new dao
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -97,22 +112,57 @@ public class MindActivity extends Activity {
 			}
 		});
 
-		// ImageView itemIcon4 = new ImageView(this);
-		// itemIcon4.setImageDrawable(this.getResources().getDrawable(
-		// R.drawable.picture));
-		// SubActionButton button4 =
-		// itemBuilder.setContentView(itemIcon4).build();
-		// button4.setOnClickListener(new OnClickListener() {
-		// public void onClick(View v) {
-		// View view = findViewById(R.id.viewgroup);
-		// if (view != null) {
-		// ViewToPicture viewToPic = new ViewToPicture();
-		// viewToPic.save(view, "Liu");
-		// } else {
-		// System.out.println("bitmap null");
-		// }
-		// }
-		// });
+//		 ImageView itemIcon4 = new ImageView(this);
+//		 itemIcon4.setImageDrawable(this.getResources().getDrawable(
+//		 R.drawable.picture));
+//		 SubActionButton button4 =
+//		 itemBuilder.setContentView(itemIcon4).build();
+//		 button4.setOnClickListener(new OnClickListener() {
+//		 public void onClick(View v) {
+//		 View view = findViewById(R.id.viewgroup);
+//		 if (view != null) {
+//		 ViewToPicture viewToPic = new ViewToPicture();
+//		 viewToPic.save(view, "Liu");
+//		 } else {
+//		 System.out.println("bitmap null");
+//		 }
+//		 }
+//		 });
+		
+		
+		//提示闹钟
+		 ImageView itemIcon4 = new ImageView(this);
+		 itemIcon4.setImageDrawable(this.getResources().getDrawable(
+		 R.drawable.picture));
+		 SubActionButton button4 =
+		 itemBuilder.setContentView(itemIcon4).build();
+		 button4.setOnClickListener(new OnClickListener() {
+		     public void onClick(View v) {
+		 		Calendar currentTime = Calendar.getInstance();
+				// 弹出一个时间设置的对话框,供用户选择时间
+				new TimePickerDialog(MindActivity.this, 0,
+						new OnTimeSetListener() {
+							public void onTimeSet(TimePicker view,
+									int hourOfDay, int minute) {
+								//设置当前时间
+								Calendar c = Calendar.getInstance();
+								c.setTimeInMillis(System.currentTimeMillis());
+								// 根据用户选择的时间来设置Calendar对象
+								c.set(Calendar.HOUR, hourOfDay);
+								c.set(Calendar.MINUTE, minute);
+								// ②设置AlarmManager在Calendar对应的时间启动Activity
+								alarmManager.set(AlarmManager.RTC_WAKEUP,
+										c.getTimeInMillis(), pi);
+								// 提示闹钟设置完毕:
+								Toast.makeText(MindActivity.this, "闹钟设置完毕~",
+										Toast.LENGTH_SHORT).show();
+							}
+						}, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
+								.get(Calendar.MINUTE), false).show();
+                  	
+		 
+		 }
+		 });
 
 		ImageView itemIcon5 = new ImageView(this);
 		itemIcon5.setImageDrawable(this.getResources().getDrawable(R.drawable.success2));
@@ -149,7 +199,7 @@ public class MindActivity extends Activity {
 
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
-				.addSubActionView(button2).addSubActionView(button3)// .addSubActionView(button4)
+				.addSubActionView(button2).addSubActionView(button3) .addSubActionView(button4)
 				.addSubActionView(button5).attachTo(actionButton).build();
 	}
 
