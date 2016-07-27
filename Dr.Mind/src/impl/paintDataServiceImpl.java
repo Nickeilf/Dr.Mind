@@ -89,7 +89,7 @@ public class paintDataServiceImpl implements paintDataService{
         
         
         //链接结点，填充内容
-    	/*id/paintName/root/parent/leftchild/rightchild/textvalue/level# */
+    	/*id/paintName/root/parent/leftchild/rightchild/textvalue/level/x/y# */
         for(int i=0;i<list.length;i++){
         	String[] list1=list[i].split("/");
         	//查找根结点
@@ -108,6 +108,8 @@ public class paintDataServiceImpl implements paintDataService{
         	tempNode.setRightChild(tempright);
         	tempNode.setTextValue(list1[6]);
         	tempNode.setLevel(Integer.parseInt(list1[7]));
+        	tempNode.setX(Integer.parseInt(list1[8]));
+        	tempNode.setY(Integer.parseInt(list1[9]));
         }
         
     	BinaryTree bTreeRoot = new BinaryTree();
@@ -177,7 +179,7 @@ public class paintDataServiceImpl implements paintDataService{
 			}
 			System.out.println(root.getId()+"mmmm"+parentID+"jjjjjjjjjjjjjjjjjjjjjj");
 			dao.insert(root.getId(),paintname,root.getRoot().getId(),parentID,leftID, 
-					rightID, root.getTextValue(),root.getLevel());
+					rightID, root.getTextValue(),root.getLevel(),root.getX(),root.getY());
 			PreOrderSave(root.getLeftChild(),dao,paintname);
 			PreOrderSave(root.getRightChild(),dao,paintname);
 		}

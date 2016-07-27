@@ -15,7 +15,25 @@ public class Node {
 	int id;//结点序号
 	Node root=null;
 	int location=0;//0为左，1为右
+	int x;//位置
+	int y;//位置
 	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public Node getRoot() {
 		return root;
 	}

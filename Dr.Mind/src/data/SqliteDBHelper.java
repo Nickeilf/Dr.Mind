@@ -18,7 +18,7 @@ public class SqliteDBHelper extends SQLiteOpenHelper{
 	}
 	
 	public static final String CREATE_PAINT="create table Paint ("+
-	"id integer,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer"
+	"id integer,paintName text,root integer,parent integer,leftChild integer,rightChild integer,textValue text,level integer,x integer,y integer"
 	+ ",constraint pk_paint primary key (id,paintName))";
 	
 	/*

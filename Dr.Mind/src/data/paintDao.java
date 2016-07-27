@@ -41,7 +41,8 @@ public class paintDao {
 				  sb.append(cursor.getInt(cursor.getColumnIndex("id")) + "/" + cursor.getString(cursor.getColumnIndex("paintName")) + "/"
 	                        + cursor.getInt(cursor.getColumnIndex("root")) + "/" + cursor.getInt(cursor.getColumnIndex("parent")) + "/"
 	                        + cursor.getInt(cursor.getColumnIndex("leftChild"))+"/"+cursor.getInt(cursor.getColumnIndex("rightChild"))+"/"
-	                        +cursor.getString(cursor.getColumnIndex("textValue"))+"/"+cursor.getInt(cursor.getColumnIndex("level"))+"#");
+	                        +cursor.getString(cursor.getColumnIndex("textValue"))+"/"+cursor.getInt(cursor.getColumnIndex("level"))+
+	                        "/"+cursor.getInt(cursor.getColumnIndex("x"))+"/"+cursor.getInt(cursor.getColumnIndex("y"))+"#");
 				  i++;
 				}
 				  //cursor游标移动
@@ -80,7 +81,7 @@ public class paintDao {
     
     //插入
     public boolean insert(int id,String paintname,int root,int parent,int leftchild,int rightchild,
-    		String textvalue,int level){
+    		String textvalue,int level,int x,int y){
 		 ContentValues cv =new ContentValues();
 		 cv.put("id",id);
 		 cv.put("paintName", paintname);
@@ -90,7 +91,9 @@ public class paintDao {
 		 cv.put("rightChild", rightchild);
 		 cv.put("textValue", textvalue);
 		 cv.put("level", level);
-		 System.out.println(id+"+"+paintname+"+"+leftchild+"+"+rightchild+"+"+textvalue+"+"+level+"..................");
+		 cv.put("x", x);
+		 cv.put("y", y);
+		 System.out.println(id+"+"+paintname+"+"+leftchild+"+"+rightchild+"+"+textvalue+"+"+level+"+"+x+"+"+y+"..................");
     	 db.insert("Paint",null,cv);
     	 System.out.println("Insert successfully!");
     	 //DBManager.getInstance().closeDatabase();
