@@ -4,7 +4,12 @@ package swipemenulistview ;
 import java.util.ArrayList;
 import java.util.List;
 
+import bl.paintblImpl;
+import service.paintService;
+import view.DViewGroup;
+import activity.MindActivity;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.edu.cn.R;
+import data.paintDao;
  
 public class SimpleActivity extends Activity {
  
@@ -80,9 +86,10 @@ public class SimpleActivity extends Activity {
         mListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 String nameItem=nameOfFile.get(position);
-                Toast.makeText(getApplicationContext(), nameItem, Toast.LENGTH_SHORT).show();
                 switch (index) {
                     case 0:
+                    	DViewGroup group=(DViewGroup)findViewById(R.id.viewgroup);
+                       	group.load(nameItem);
                         break;
                     case 1:
                         nameOfFile.remove(position);
@@ -106,10 +113,15 @@ public class SimpleActivity extends Activity {
 
     }
     
+    //图表列表内容
     private void initList(){
-    	nameOfFile.add("科比");
-    	nameOfFile.add("乔丹");
-    	nameOfFile.add("保罗");
+    	
+    	paintService service=new paintblImpl();
+    	paintDao dao=new paintDao(this);
+    	ArrayList<String> list=service.getAllPaintName(dao);
+    	for(int i=0;i<list.size();i++){
+    		nameOfFile.add(list.get(i));
+    	}
     }
 
  
