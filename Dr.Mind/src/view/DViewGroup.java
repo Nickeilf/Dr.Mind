@@ -94,8 +94,8 @@ public class DViewGroup extends ViewGroup {
 		}
 
 //		 dao.deleteDatabase();
-		paintService.SavePaint(name, paintInfo, dao);
-//		load(name);
+//		paintService.SavePaint(name, paintInfo, dao);
+		load(name);
 	}
 
 	// 是否存在相同名字的图表
@@ -121,9 +121,11 @@ public class DViewGroup extends ViewGroup {
 			view.measure(0, 0);
 			view.setRaw_width(view.getMeasuredWidth());
 			maps.put(node, view);
+			System.out.println(node.getTextValue()+"genjiedian");
 		}
 		requestLayout();
 		System.out.println("读取成功");
+		
 
 	}
 
