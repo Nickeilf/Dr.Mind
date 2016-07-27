@@ -94,7 +94,7 @@ public class DViewGroup extends ViewGroup {
 		}
 
 //		 dao.deleteDatabase();
-//		paintService.SavePaint(name, paintInfo, dao);
+		paintService.SavePaint(name, paintInfo, dao);
 		load(name);
 	}
 
