@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
+import ui.ViewToPicture;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -136,22 +137,6 @@ public class MindActivity extends Activity {
 			}
 		});
 
-		// ImageView itemIcon4 = new ImageView(this);
-		// itemIcon4.setImageDrawable(this.getResources().getDrawable(
-		// R.drawable.picture));
-		// SubActionButton button4 =
-		// itemBuilder.setContentView(itemIcon4).build();
-		// button4.setOnClickListener(new OnClickListener() {
-		// public void onClick(View v) {
-		// View view = findViewById(R.id.viewgroup);
-		// if (view != null) {
-		// ViewToPicture viewToPic = new ViewToPicture();
-		// viewToPic.save(view, "Liu");
-		// } else {
-		// System.out.println("bitmap null");
-		// }
-		// }
-		// });
 
 		// 提示闹钟
 		ImageView itemIcon4 = new ImageView(this);
@@ -226,12 +211,28 @@ public class MindActivity extends Activity {
 
 			}
 		});
+		
+		ImageView itemIcon6 = new ImageView(this);
+		itemIcon6.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.picture));
+		SubActionButton button6 = itemBuilder.setContentView(itemIcon6).build();
+		button6.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				View view = findViewById(R.id.viewgroup);
+				if (view != null) {
+					ViewToPicture viewToPic = new ViewToPicture();
+					viewToPic.save(view, "Liu");
+				} else {
+					System.out.println("view null");
+				}
+			}
+		});
 
 		// 整合在一起
 		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
 				.addSubActionView(button3).addSubActionView(button4)
-				.addSubActionView(button5).attachTo(actionButton).build();
+				.addSubActionView(button5).addSubActionView(button6).attachTo(actionButton).build();
 	}
 
 	@Override
