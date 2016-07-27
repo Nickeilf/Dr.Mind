@@ -343,16 +343,16 @@ public class paintblImpl implements paintService {
 		// TODO Auto-generated method stub
 		ArrayList<Node> child = new ArrayList<Node>();
 		Node node = parent.getLeftChild();
-		do {
+		while (node != null) {
 			child.add(node);
 			node = node.getRightChild();
-		} while (node != null);
+		}
 		return child;
 	}
 
 	public ArrayList<String> getAllPaintName(paintDao dao) {
 		// TODO Auto-generated method stub
-		
+
 		return pds.getAllPaintName(dao);
 	}
 
