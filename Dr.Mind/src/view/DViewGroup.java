@@ -88,12 +88,14 @@ public class DViewGroup extends ViewGroup {
 
 			DEditTextView textView = entry.getValue();
 			Node node = entry.getKey();
+			node.setX(textView.getxPos());
+			node.setY(textView.getyPos());
 			node.setTextValue(textView.getText().toString());
 		}
 
 //		 dao.deleteDatabase();
 		paintService.SavePaint(name, paintInfo, dao);
-		load(name);
+//		load(name);
 	}
 
 	// 是否存在相同名字的图表
@@ -109,7 +111,23 @@ public class DViewGroup extends ViewGroup {
 		// 读取
 		paintInfo = paintService.OpenPaint(name, dao);
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
+		for (Node node : roots) {
+			DEditTextView view = new DEditTextView(getContext());
+			view.setNode(node);
+			view.setText(node.getTextValue());
+			view.setxPos(node.getX());
+			view.setyPos(node.getY());
+			addView(view);
+			view.measure(0, 0);
+			view.setRaw_width(view.getMeasuredWidth());
+			maps.put(node, view);
+		}
+		requestLayout();
 		System.out.println("读取成功");
+
+	}
+
+	private void addSons() {
 
 	}
 
@@ -370,16 +388,16 @@ public class DViewGroup extends ViewGroup {
 							view.setyPos(y);
 						}
 					}
-				}else{
+				} else {
 					for (int i = 0; i < relatives.size(); i++) {
 						DEditTextView view = maps.get(relatives.get(i));
 						int y = view.getyPos();
 						int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
 						if (y > lowest) {
-							y -= (weight-1) * singleRec / 2;
+							y -= (weight - 1) * singleRec / 2;
 							view.setyPos(y);
 						} else {
-							y += (weight-1) * singleRec / 2;
+							y += (weight - 1) * singleRec / 2;
 							view.setyPos(y);
 						}
 					}
@@ -388,10 +406,10 @@ public class DViewGroup extends ViewGroup {
 						int y = view.getyPos();
 						int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
 						if (y > lowest) {
-							y -= (weight-1) * singleRec / 2;
+							y -= (weight - 1) * singleRec / 2;
 							view.setyPos(y);
 						} else {
-							y += (weight-1) * singleRec / 2;
+							y += (weight - 1) * singleRec / 2;
 							view.setyPos(y);
 						}
 					}
