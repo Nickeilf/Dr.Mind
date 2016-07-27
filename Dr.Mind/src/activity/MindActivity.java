@@ -1,5 +1,6 @@
 package activity;
 
+import swipemenulistview.SampleActivity;
 import swipemenulistview.SimpleActivity;
 import util.Constant;
 import view.DEditTextView;
@@ -44,7 +45,7 @@ public class MindActivity extends Activity {
 		init();
 		initButton();
 
-		// startActivity(new Intent(this, SimpleActivity.class));
+//		 startActivity(new Intent(this, SampleActivity.class));
 
 	}
 
