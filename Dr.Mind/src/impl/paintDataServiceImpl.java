@@ -143,6 +143,7 @@ public class paintDataServiceImpl implements paintDataService{
 		}
 		for(int index=0;index<paintpo.getbTreeRoot().getRoot().size();index++){
 		   Node temproot=paintpo.getbTreeRoot().getRoot().get(index);
+		   System.out.println(temproot.getTextValue());
 		   PreOrderSave(temproot, dao, paintName);
 		}
 		
@@ -178,6 +179,7 @@ public class paintDataServiceImpl implements paintDataService{
 				rightID=root.getRightChild().getId();
 			}
 			System.out.println(root.getId()+"mmmm"+parentID+"jjjjjjjjjjjjjjjjjjjjjj");
+			System.out.println(root.getX()+"hhhh"+root.getY());
 			dao.insert(root.getId(),paintname,root.getRoot().getId(),parentID,leftID, 
 					rightID, root.getTextValue(),root.getLevel(),root.getX(),root.getY());
 			PreOrderSave(root.getLeftChild(),dao,paintname);

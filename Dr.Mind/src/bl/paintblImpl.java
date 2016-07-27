@@ -329,7 +329,10 @@ public class paintblImpl implements paintService {
 	// 新建根结点
 	public Node NewRoot(paintInfoVo vo) {
 		// TODO Auto-generated method stub
+		ID++;
 		Node newRoot = new Node();
+		newRoot.setId(ID);
+		newRoot.setRoot(newRoot);
 		vo.getbTreeRoot().getRoot().add(newRoot);
 		return newRoot;
 	}
