@@ -1,14 +1,12 @@
 package activity;
 
+import java.util.Calendar;
+
+import net.simonvt.menudrawer.MenuDrawer;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
 import voice.VoiceToWord;
-
-import java.util.Calendar;
-
-import net.simonvt.menudrawer.MenuDrawer;
-import menudrawer.SampleActivity;
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
@@ -47,70 +45,81 @@ public class MindActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 
 		mDrawer = MenuDrawer.attach(this);
-        mDrawer.setContentView(R.layout.main);
-		
-		// ①获取AlarmManager对象:
-				alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-	    // 指定要启动的是Activity组件,通过PendingIntent调用getActivity来设置
-				Intent intent = new Intent(MindActivity.this, ClockActivity.class);
-				pi = PendingIntent.getActivity(MindActivity.this, 0, intent, 0);
+		mDrawer.setContentView(R.layout.main);
 
+
+		// ①获取AlarmManager对象:
+		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+		// 指定要启动的是Activity组件,通过PendingIntent调用getActivity来设置
+		Intent intent = new Intent(MindActivity.this, ClockActivity.class);
+		pi = PendingIntent.getActivity(MindActivity.this, 0, intent, 0);
 
 		// 全屏显示
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//		setContentView(R.layout.main);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		// setContentView(R.layout.main);
 		init();
 		initButton();
  
-
 	}
 
 	@SuppressWarnings("deprecation")
 	private void initButton() {
 		// 中心图标
 		ImageView icon = new ImageView(this); // Create an icon
-		icon.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_add));
-		FloatingActionButton actionButton = new FloatingActionButton.Builder(this).setContentView(icon).build();
+		icon.setImageDrawable(this.getResources()
+				.getDrawable(R.drawable.ic_add));
+		FloatingActionButton actionButton = new FloatingActionButton.Builder(
+				this).setContentView(icon).build();
 
 		// 分散式图标
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
-		itemIcon1.setImageDrawable(this.getResources().getDrawable(R.drawable.voice));
+		itemIcon1.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.voice));
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
 		button1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// 别人的讯飞账户，我的待审核
-				VoiceToWord voice = new VoiceToWord(MindActivity.this, "534e3fe2",
-						(DViewGroup) findViewById(R.id.viewgroup));
+				VoiceToWord voice = new VoiceToWord(MindActivity.this,
+						"534e3fe2", (DViewGroup) findViewById(R.id.viewgroup));
 				voice.GetWordFromVoice();
 			}
 		});
 
 		ImageView itemIcon2 = new ImageView(this);
-		itemIcon2.setImageDrawable(this.getResources().getDrawable(R.drawable.delete));
+		itemIcon2.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 		button2.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				new AlertDialog.Builder(MindActivity.this).setTitle("您选择删除：").setIcon(android.R.drawable.ic_dialog_info)
-						.setPositiveButton("当前结点", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-								group.deleteNode();
-							}
-						}).setNeutralButton("当前及后代", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-								group.deleteNode();
-							}
-						}).setNegativeButton("取消", null).show();
+				new AlertDialog.Builder(MindActivity.this)
+						.setTitle("您选择删除：")
+						.setIcon(android.R.drawable.ic_dialog_info)
+						.setPositiveButton("当前结点",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+										group.deleteNode();
+									}
+								})
+						.setNeutralButton("当前及后代",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+										group.deleteNode();
+									}
+								}).setNegativeButton("取消", null).show();
 			}
 		});
 
 		ImageView itemIcon3 = new ImageView(this);
-		itemIcon3.setImageDrawable(this.getResources().getDrawable(R.drawable.plus));
+		itemIcon3.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.plus));
 		SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
 		button3.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
@@ -119,39 +128,37 @@ public class MindActivity extends Activity {
 			}
 		});
 
-//		 ImageView itemIcon4 = new ImageView(this);
-//		 itemIcon4.setImageDrawable(this.getResources().getDrawable(
-//		 R.drawable.picture));
-//		 SubActionButton button4 =
-//		 itemBuilder.setContentView(itemIcon4).build();
-//		 button4.setOnClickListener(new OnClickListener() {
-//		 public void onClick(View v) {
-//		 View view = findViewById(R.id.viewgroup);
-//		 if (view != null) {
-//		 ViewToPicture viewToPic = new ViewToPicture();
-//		 viewToPic.save(view, "Liu");
-//		 } else {
-//		 System.out.println("bitmap null");
-//		 }
-//		 }
-//		 });
-		
-		
-		//提示闹钟
-		 ImageView itemIcon4 = new ImageView(this);
-		 itemIcon4.setImageDrawable(this.getResources().getDrawable(
-		 R.drawable.picture));
-		 SubActionButton button4 =
-		 itemBuilder.setContentView(itemIcon4).build();
-		 button4.setOnClickListener(new OnClickListener() {
-		     public void onClick(View v) {
-		 		Calendar currentTime = Calendar.getInstance();
+		// ImageView itemIcon4 = new ImageView(this);
+		// itemIcon4.setImageDrawable(this.getResources().getDrawable(
+		// R.drawable.picture));
+		// SubActionButton button4 =
+		// itemBuilder.setContentView(itemIcon4).build();
+		// button4.setOnClickListener(new OnClickListener() {
+		// public void onClick(View v) {
+		// View view = findViewById(R.id.viewgroup);
+		// if (view != null) {
+		// ViewToPicture viewToPic = new ViewToPicture();
+		// viewToPic.save(view, "Liu");
+		// } else {
+		// System.out.println("bitmap null");
+		// }
+		// }
+		// });
+
+		// 提示闹钟
+		ImageView itemIcon4 = new ImageView(this);
+		itemIcon4.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.picture));
+		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
+		button4.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Calendar currentTime = Calendar.getInstance();
 				// 弹出一个时间设置的对话框,供用户选择时间
 				new TimePickerDialog(MindActivity.this, 0,
 						new OnTimeSetListener() {
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
-								//设置当前时间
+								// 设置当前时间
 								Calendar c = Calendar.getInstance();
 								c.setTimeInMillis(System.currentTimeMillis());
 								// 根据用户选择的时间来设置Calendar对象
@@ -166,47 +173,58 @@ public class MindActivity extends Activity {
 							}
 						}, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
 								.get(Calendar.MINUTE), false).show();
-                  	
-		 
-		 }
-		 });
+
+			}
+		});
 
 		ImageView itemIcon5 = new ImageView(this);
-		itemIcon5.setImageDrawable(this.getResources().getDrawable(R.drawable.success2));
+		itemIcon5.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.success2));
 		SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
 		button5.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				final EditText editText;
-				new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
-						.setIcon(android.R.drawable.ic_dialog_info).setView(editText = new EditText(MindActivity.this))
-						.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								String name = editText.getText().toString();
-								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-								if (name.equals("")) {
-									Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
-											.show();
-									return;
-								}
-								if (group.existPaint(name)) {
-									Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
-											.show();
-									return;
-								} else {
-									System.out.println("保存的图名： " + name);
+				new AlertDialog.Builder(MindActivity.this)
+						.setTitle("请输入保存的图表名")
+						.setIcon(android.R.drawable.ic_dialog_info)
+						.setView(editText = new EditText(MindActivity.this))
+						.setPositiveButton("确定",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										String name = editText.getText()
+												.toString();
+										DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+										if (name.equals("")) {
+											Toast.makeText(
+													getApplicationContext(),
+													"图表名不能为空哟！" + name,
+													Toast.LENGTH_LONG).show();
+											return;
+										}
+										if (group.existPaint(name)) {
+											Toast.makeText(
+													getApplicationContext(),
+													"图表 " + name + "已存在！",
+													Toast.LENGTH_LONG).show();
+											return;
+										} else {
+											System.out
+													.println("保存的图名： " + name);
 
-									group.save(name);
-								}
-							}
-						}).setNegativeButton("取消", null).show();
+											group.save(name);
+										}
+									}
+								}).setNegativeButton("取消", null).show();
 
 			}
 		});
 
 		// 整合在一起
-		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
-				.addSubActionView(button2).addSubActionView(button3) .addSubActionView(button4)
+		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+				.addSubActionView(button1).addSubActionView(button2)
+				.addSubActionView(button3).addSubActionView(button4)
 				.addSubActionView(button5).attachTo(actionButton).build();
 	}
 
@@ -229,7 +247,8 @@ public class MindActivity extends Activity {
 		Constant.setScreenHeight(height);
 		Constant.setScreenWidth(width);
 		DViewGroup dView = (DViewGroup) findViewById(R.id.viewgroup);
-		LinearLayout.LayoutParams lay = (LayoutParams) findViewById(R.id.viewgroup).getLayoutParams();
+		LinearLayout.LayoutParams lay = (LayoutParams) findViewById(
+				R.id.viewgroup).getLayoutParams();
 
 		lay.height = 3 * height;
 		lay.width = 3 * width;
@@ -268,8 +287,10 @@ public class MindActivity extends Activity {
 		if (v != null && (v instanceof DEditTextView)) {
 			int[] l = { 0, 0 };
 			v.getLocationInWindow(l);
-			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
-			if (ev.getX() > left && ev.getX() < right && ev.getY() > top && ev.getY() < bottom) {
+			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left
+					+ v.getWidth();
+			if (ev.getX() > left && ev.getX() < right && ev.getY() > top
+					&& ev.getY() < bottom) {
 				return false;
 			} else {
 				return true;
@@ -282,7 +303,8 @@ public class MindActivity extends Activity {
 	private void HideSoftInput(IBinder token) {
 		if (token != null) {
 			InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-			manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+			manager.hideSoftInputFromWindow(token,
+					InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 	}
 
