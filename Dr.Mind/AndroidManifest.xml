@@ -30,6 +30,11 @@
             android:name="activity.ColockActivity"
             android:label="@string/app_name" >
         </activity>
+        
+          <activity
+            android:name="menudrawer.SampleActivity">
+        </activity>
+         
     </application>
 
     <!-- 讯飞语音权限开始 -->

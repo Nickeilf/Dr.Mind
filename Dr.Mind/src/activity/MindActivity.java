@@ -7,6 +7,8 @@ import voice.VoiceToWord;
 
 import java.util.Calendar;
 
+import net.simonvt.menudrawer.MenuDrawer;
+import menudrawer.SampleActivity;
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
@@ -39,11 +41,16 @@ public class MindActivity extends Activity {
 	public static MindActivity a;
 	private AlarmManager alarmManager;
 	private PendingIntent pi;
+	private MenuDrawer mDrawer;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+
+		mDrawer = MenuDrawer.attach(this);
+        mDrawer.setContentView(R.layout.main);
 		
 		// ①获取AlarmManager对象:
 				alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -54,11 +61,10 @@ public class MindActivity extends Activity {
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.main);
+//		setContentView(R.layout.main);
 		init();
 		initButton();
-
-//		 startActivity(new Intent(this, SampleActivity.class));
+ 
 
 	}
 
