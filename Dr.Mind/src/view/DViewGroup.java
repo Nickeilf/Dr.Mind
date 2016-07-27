@@ -88,10 +88,12 @@ public class DViewGroup extends ViewGroup {
 
 			DEditTextView textView = entry.getValue();
 			Node node = entry.getKey();
+			node.setX(textView.getxPos());
+			node.setY(textView.getyPos());
 			node.setTextValue(textView.getText().toString());
 		}
 
-//		 dao.deleteDatabase();
+		// dao.deleteDatabase();
 		paintService.SavePaint(name, paintInfo, dao);
 		load(name);
 	}
@@ -104,13 +106,53 @@ public class DViewGroup extends ViewGroup {
 	public void load(String name) {
 		// 先清空
 		this.removeAllViews();
+		this.removeAllViewsInLayout();
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
 		// 读取
 		paintInfo = paintService.OpenPaint(name, dao);
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
+		for (Node node : roots) {
+			DEditTextView view = new DEditTextView(getContext());
+			view.setNode(node);
+			view.setText(node.getTextValue());
+			view.setxPos(node.getX());
+			view.setyPos(node.getY());
+			addView(view);
+			view.measure(0, 0);
+			view.setRaw_width(view.getMeasuredWidth());
+			maps.put(node, view);
+			addSons(view);
+		}
+		requestLayout();
 		System.out.println("读取成功");
 
+	}
+
+	private void addSons(DEditTextView view) {
+		Node node = view.getNode();
+		ArrayList<Node> sons = paintService.getAllSon(node);
+		if (sons.size() == 0) {
+			view.setLittleSon(view);
+		}
+		for (Node son : sons) {
+			DEditTextView text = new DEditTextView(getContext());
+			text.setNode(son);
+			text.setText(son.getTextValue());
+			text.setxPos(son.getX());
+			text.setyPos(son.getY());
+			text.setDad(view);
+			addView(text);
+			text.measure(0, 0);
+			text.setRaw_width(text.getMeasuredWidth());
+			addSons(text);
+			editTexts.add(text);
+			maps.put(son, text);
+		}
+		if (sons.size() != 0) {
+			DEditTextView little = maps.get(sons.get(sons.size() - 1));
+			view.setLittleSon(little);
+		}
 	}
 
 	/**
@@ -202,6 +244,10 @@ public class DViewGroup extends ViewGroup {
 				y_dis = view.getyPos() - y_dis;
 				x_dis = view.getxPos() - x_dis;
 				move(view, x_dis, y_dis);
+				if (position == nodes.size() - 1) {
+					DEditTextView new_little = maps.get(nodes.get(position - 1));
+					view.getDad().setLittleSon(new_little);
+				}
 				requestLayout();
 				// 树形结构更新
 				if (new_pos == 0) {
@@ -232,6 +278,9 @@ public class DViewGroup extends ViewGroup {
 				y_dis = view.getyPos() - y_dis;
 				x_dis = view.getxPos() - x_dis;
 				move(view, x_dis, y_dis);
+				if (new_pos == nodes.size() - 1) {
+					view.getDad().setLittleSon(view);
+				}
 				requestLayout();
 				paintService.MoveNode(view.getNode(), view.getNode().getParent(), last);
 			}
@@ -358,43 +407,45 @@ public class DViewGroup extends ViewGroup {
 							view.setyPos(y);
 						}
 					}
-					for (int i = 0; i < roots.size(); i++) {
-						DEditTextView view = maps.get(roots.get(i));
-						int y = view.getyPos();
-						int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
-						if (y > lowest) {
-							y -= weight * singleRec / 2;
-							view.setyPos(y);
-						} else {
-							y += weight * singleRec / 2;
-							view.setyPos(y);
-						}
-					}
-				}else{
+					// for (int i = 0; i < roots.size(); i++) {
+					// DEditTextView view = maps.get(roots.get(i));
+					// int y = view.getyPos();
+					// int lowest = text.getLittleSon() == null ? text.getyPos()
+					// : text.getLittleSon().getyPos();
+					// if (y > lowest) {
+					// y -= weight * singleRec / 2;
+					// view.setyPos(y);
+					// } else {
+					// y += weight * singleRec / 2;
+					// view.setyPos(y);
+					// }
+					// }
+				} else {
 					for (int i = 0; i < relatives.size(); i++) {
 						DEditTextView view = maps.get(relatives.get(i));
 						int y = view.getyPos();
 						int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
 						if (y > lowest) {
-							y -= (weight-1) * singleRec / 2;
+							y -= (weight - 1) * singleRec / 2;
 							view.setyPos(y);
 						} else {
-							y += (weight-1) * singleRec / 2;
+							y += (weight - 1) * singleRec / 2;
 							view.setyPos(y);
 						}
 					}
-					for (int i = 0; i < roots.size(); i++) {
-						DEditTextView view = maps.get(roots.get(i));
-						int y = view.getyPos();
-						int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
-						if (y > lowest) {
-							y -= (weight-1) * singleRec / 2;
-							view.setyPos(y);
-						} else {
-							y += (weight-1) * singleRec / 2;
-							view.setyPos(y);
-						}
-					}
+					// for (int i = 0; i < roots.size(); i++) {
+					// DEditTextView view = maps.get(roots.get(i));
+					// int y = view.getyPos();
+					// int lowest = text.getLittleSon() == null ? text.getyPos()
+					// : text.getLittleSon().getyPos();
+					// if (y > lowest) {
+					// y -= (weight - 1) * singleRec / 2;
+					// view.setyPos(y);
+					// } else {
+					// y += (weight - 1) * singleRec / 2;
+					// view.setyPos(y);
+					// }
+					// }
 				}
 			}
 			text = null;
