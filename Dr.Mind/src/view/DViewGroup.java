@@ -91,9 +91,9 @@ public class DViewGroup extends ViewGroup {
 			node.setTextValue(textView.getText().toString());
 		}
          
-	//	dao.deleteDatabase();
-		paintService.SavePaint(name, paintInfo, dao);
-		load(name);
+		dao.deleteDatabase();
+		//paintService.SavePaint(name, paintInfo, dao);
+		//load(name);
 
 	}
 
