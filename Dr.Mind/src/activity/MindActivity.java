@@ -85,6 +85,7 @@ public class MindActivity extends Activity {
 				this).setContentView(icon).build();
 
 		// 分散式图标
+		// 语音功能
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
 		itemIcon1.setImageDrawable(this.getResources().getDrawable(
@@ -99,6 +100,7 @@ public class MindActivity extends Activity {
 			}
 		});
 
+		// 删除节点
 		ImageView itemIcon2 = new ImageView(this);
 		itemIcon2.setImageDrawable(this.getResources().getDrawable(
 				R.drawable.delete));
@@ -127,6 +129,7 @@ public class MindActivity extends Activity {
 			}
 		});
 
+		// 增加节点
 		ImageView itemIcon3 = new ImageView(this);
 		itemIcon3.setImageDrawable(this.getResources().getDrawable(
 				R.drawable.plus));
@@ -138,52 +141,34 @@ public class MindActivity extends Activity {
 			}
 		});
 
-//		ImageView itemIcon4 = new ImageView(this);
-//		itemIcon4.setImageDrawable(this.getResources().getDrawable(
-//				R.drawable.list));
-//		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
-//		button4.setOnClickListener(new OnClickListener() {
-//			public void onClick(View v) {
-//				// Calendar currentTime = Calendar.getInstance();
-//				// // 弹出一个时间设置的对话框,供用户选择时间
-//				// new TimePickerDialog(MindActivity.this, 0,
-//				// new OnTimeSetListener() {
-//				// public void onTimeSet(TimePicker view,
-//				// int hourOfDay, int minute) {
-//				// // 设置当前时间
-//				// Calendar c = Calendar.getInstance();
-//				// c.setTimeInMillis(System.currentTimeMillis());
-//				// // 根据用户选择的时间来设置Calendar对象
-//				// c.set(Calendar.HOUR, hourOfDay);
-//				// c.set(Calendar.MINUTE, minute);
-//				// // ②设置AlarmManager在Calendar对应的时间启动Activity
-//				// alarmManager.set(AlarmManager.RTC_WAKEUP,
-//				// c.getTimeInMillis(), pi);
-//				// // 提示闹钟设置完毕:
-//				// Toast.makeText(MindActivity.this, "闹钟设置完毕~",
-//				// Toast.LENGTH_SHORT).show();
-//				// }
-//				// }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
-//				// .get(Calendar.MINUTE), false).show();
-// 
-//			}
-//		});
-		
-		Button button_list=(Button)findViewById(R.id.list);
+		// 任务提醒
+		ImageView itemIcon4 = new ImageView(this);
+		itemIcon4.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.clock));
+		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
+		button4.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+
+			}
+		});
+
+		// 整合在一起
+		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+				.addSubActionView(button1).addSubActionView(button2)
+				.addSubActionView(button3).addSubActionView(button4)
+				.attachTo(actionButton).build();
+
+		Button button_list = (Button) findViewById(R.id.list);
 		button_list.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				startActivity(new Intent(MindActivity.this,
 						SimpleActivity.class));
 			}
 		});
-		
 
-		ImageView itemIcon5 = new ImageView(this);
-		itemIcon5.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.success2));
-		SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
-		button5.setOnClickListener(new OnClickListener() {
+		Button button_save = (Button) findViewById(R.id.save);
+		button_save.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				final EditText editText = new EditText(MindActivity.this);
@@ -226,26 +211,9 @@ public class MindActivity extends Activity {
 
 			}
 		});
-
-//		ImageView itemIcon6 = new ImageView(this);
-//		itemIcon6.setImageDrawable(this.getResources().getDrawable(
-//				R.drawable.picture));
-//		SubActionButton button6 = itemBuilder.setContentView(itemIcon6).build();
-//		button6.setOnClickListener(new OnClickListener() {
-//			public void onClick(View v) {
-//				View view = findViewById(R.id.viewgroup);
-//				if (view != null) {
-//					ViewToPicture viewToPic = new ViewToPicture();
-//					viewToPic.save(view, "Liu");
-//				} else {
-//					System.out.println("view null");
-//				}
-//			}
-//		});
-		
-		Button button_daochu=(Button)findViewById( R.id.picture);
+		Button button_daochu = (Button) findViewById(R.id.picture);
 		button_daochu.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				View view = findViewById(R.id.viewgroup);
 				if (view != null) {
@@ -257,11 +225,6 @@ public class MindActivity extends Activity {
 			}
 		});
 
-		// 整合在一起
-		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
-				.addSubActionView(button1).addSubActionView(button2)
-				.addSubActionView(button3).addSubActionView(button5)
-				.attachTo(actionButton).build();
 	}
 
 	@Override
