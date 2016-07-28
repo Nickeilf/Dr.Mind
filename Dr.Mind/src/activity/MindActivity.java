@@ -119,6 +119,7 @@ public class MindActivity extends Activity {
 									System.out.println("保存的图名： " + name);
 
 									group.save(name);
+									startActivity(new Intent(MindActivity.this,MindActivity.class));
 									Toast.makeText(getApplicationContext(), "图标" + name + "保存成功~", Toast.LENGTH_LONG)
 											.show();
 								}
@@ -148,8 +149,9 @@ public class MindActivity extends Activity {
 		button_new.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-				group.newP();
+//				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+//				group.newP();
+				startActivity(new Intent(MindActivity.this,MindActivity.class));
 				Toast.makeText(getApplicationContext(), "新建图表成功", Toast.LENGTH_LONG).show();
 			}
 		});
