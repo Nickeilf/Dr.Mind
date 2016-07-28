@@ -273,6 +273,7 @@ public class MindActivity extends Activity {
 
 		dView.setScreenWidth(width);
 		dView.setScreenHeight(height);
+		dView.bringToFront();
 		findViewById(R.id.viewgroup).setX(0);
 		findViewById(R.id.viewgroup).setY(-height);
 		findViewById(R.id.viewgroup).setLayoutParams(lay);
