@@ -224,6 +224,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  The default background of the menu. 
          */
         public static final int md__defaultBackground=0x7f050000;
+        public static final int menu_blue=0x7f050003;
     }
     public static final class dimen {
         public static final int action_button_content_margin=0x7f090001;
@@ -302,8 +303,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int md__translationX=0x7f060006;
         public static final int md__translationY=0x7f060007;
         public static final int mini=0x7f06000e;
+        public static final int newp=0x7f06001a;
         public static final int normal=0x7f06000f;
+        public static final int picture=0x7f060019;
         public static final int right=0x7f06000b;
+        public static final int save=0x7f06001b;
         public static final int start=0x7f06000c;
         public static final int top=0x7f06000d;
         public static final int tv_name=0x7f060015;
@@ -331,6 +335,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list=0x7f070006;
         public static final int md__drawerClosedIndicatorDesc=0x7f070001;
         public static final int md__drawerOpenIndicatorDesc=0x7f070000;
+        public static final int newp=0x7f070009;
+        public static final int picture=0x7f070007;
+        public static final int save=0x7f070008;
     }
     public static final class style {
         public static final int Widget=0x7f080000;
