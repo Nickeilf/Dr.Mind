@@ -2,12 +2,11 @@ package service;
 
 import java.util.ArrayList;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import data.paintDao;
 import vo.Node;
 import vo.TextType;
 import vo.paintInfoVo;
+import android.graphics.Bitmap;
+import data.paintDao;
 
 public interface paintService {
     

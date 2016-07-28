@@ -2,9 +2,8 @@ package service;
 
 import java.util.ArrayList;
 
-import android.content.Context;
-import data.paintDao;
 import po.paintInfoPO;
+import data.paintDao;
 
 public interface paintDataService{
 	

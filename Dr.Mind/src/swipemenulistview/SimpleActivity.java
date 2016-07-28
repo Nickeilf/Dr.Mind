@@ -6,10 +6,8 @@ import impl.paintDataServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import bl.paintblImpl;
 import service.paintDataService;
 import service.paintService;
-import view.DViewGroup;
 import activity.MindActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import bl.paintblImpl;
 import cn.edu.cn.R;
 import data.paintDao;
  
@@ -154,7 +153,8 @@ public class SimpleActivity extends Activity {
             return position;
         }
  
-        public View getView(int position, View convertView, ViewGroup parent) {
+        @SuppressWarnings("deprecation")
+		public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = View.inflate(getApplicationContext(),
                         R.layout.item_list_app, null);

@@ -1,22 +1,12 @@
 package impl;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import org.w3c.dom.NodeList;
-
-import android.R.drawable;
-import android.R.integer;
-import android.content.Context;
-import android.provider.ContactsContract.CommonDataKinds.Note;
-import android.provider.DocumentsContract.Root;
-import android.sax.RootElement;
-import data.paintDao;
 import po.paintInfoPO;
 import service.paintDataService;
 import vo.BinaryTree;
 import vo.Node;
-import vo.paintInfoVo;
+import data.paintDao;
 
 public class paintDataServiceImpl implements paintDataService{
 	

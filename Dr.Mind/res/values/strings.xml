@@ -8,4 +8,6 @@
     <string name="picture">导出</string>
     <string name="save">保存</string>
     <string name="newp">新建</string>
+    <string name="name">name</string>
+    <string name="useless">useless</string>
 </resources>

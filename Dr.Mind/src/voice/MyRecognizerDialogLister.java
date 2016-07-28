@@ -9,11 +9,10 @@ import com.iflytek.cloud.ui.RecognizerDialogListener;
 
 public class MyRecognizerDialogLister implements RecognizerDialogListener{
  
-	private Context context;
+//	private Context context;
 	private DViewGroup group;
 	public MyRecognizerDialogLister(Context context,DViewGroup group)
-	{
-		this.context = context;
+	{ 
 		this.group=group;
 	}
 	//自定义的结果回调函数，成功执行第一个方法，失败执行第二个方法
@@ -23,8 +22,7 @@ public class MyRecognizerDialogLister implements RecognizerDialogListener{
 		char first=text.charAt(0); 
 		if(text!=null && first!='。' && first!='，' && first!='！'){
 			group.voice(text);
-		}
-//		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+		} 
 	}
 	
 	/**
@@ -44,7 +42,4 @@ public class MyRecognizerDialogLister implements RecognizerDialogListener{
 			break;
 		}
 	}
- 
- 
-
 }

@@ -266,7 +266,8 @@ public class MindActivity extends Activity {
 		});
 
 		// 整合在一起
-		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+//		FloatingActionMenu actionMenu = 
+				new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
 				.addSubActionView(button3).addSubActionView(button4)
 				.attachTo(actionButton).build();
@@ -300,6 +301,7 @@ public class MindActivity extends Activity {
 
 		dView.setScreenWidth(width);
 		dView.setScreenHeight(height);
+		dView.bringToFront();
 		findViewById(R.id.viewgroup).setX(0);
 		findViewById(R.id.viewgroup).setY(-height);
 		findViewById(R.id.viewgroup).setLayoutParams(lay);

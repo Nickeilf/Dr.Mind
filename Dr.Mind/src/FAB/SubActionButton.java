@@ -1,21 +1,14 @@
-/*
- *   Copyright 2014 Oguz Bilgener
- */
 package FAB;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
-
 import cn.edu.cn.R;
-
-/**
- * A simple button implementation with a similar look an feel
- * to{@link FloatingActionButton}.
- */
+ 
 public class SubActionButton extends FrameLayout {
 
 	public static final int THEME_LIGHT = 0;
@@ -23,6 +16,7 @@ public class SubActionButton extends FrameLayout {
 	public static final int THEME_LIGHTER = 2;
 	public static final int THEME_DARKER = 3;
 
+	@SuppressWarnings("deprecation")
 	public SubActionButton(Context context, LayoutParams layoutParams, int theme, Drawable backgroundDrawable,
 			View contentView, LayoutParams contentParams) {
 		super(context);
@@ -78,6 +72,7 @@ public class SubActionButton extends FrameLayout {
 		setContentView(contentView, null);
 	}
 
+	@SuppressWarnings("deprecation")
 	private void setBackgroundResource(Drawable drawable) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			setBackground(drawable);
@@ -98,6 +93,7 @@ public class SubActionButton extends FrameLayout {
 		private View contentView;
 		private LayoutParams contentParams;
 
+		@SuppressLint("RtlHardcoded")
 		public Builder(Context context) {
 			this.context = context;
 

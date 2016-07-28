@@ -6,10 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import service.paintService;
-import util.Constant;
-import vo.Node;
-import vo.paintInfoVo;
+import android.animation.ValueAnimator;
+import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -25,6 +23,10 @@ import android.view.WindowManager;
 import android.widget.Toast;
 import bl.paintblImpl;
 import data.paintDao;
+import service.paintService;
+import util.Constant;
+import vo.Node;
+import vo.paintInfoVo;
 
 public class DViewGroup extends ViewGroup {
 	private paintService paintService;
@@ -229,8 +231,16 @@ public class DViewGroup extends ViewGroup {
 				view.setyPos(view.getRaw_y());
 				y_dis = view.getyPos() - y_dis;
 				x_dis = view.getxPos() - x_dis;
-				move(view, x_dis, y_dis);
-				requestLayout();
+
+				// ValueAnimator va = new ValueAnimator().ofInt(view.getyPos() -
+				// (int) y_dis, view.getyPos());
+				// va.setTarget(view);
+				// va.setDuration(2000);
+				// va.addUpdateListener(new animatorListener(view));
+				// va.start();
+
+				 move(view, x_dis, y_dis);
+				 requestLayout();
 				return;
 			}
 			boolean up = new_pos < position;
@@ -707,6 +717,21 @@ public class DViewGroup extends ViewGroup {
 
 	public String getCurretFileName() {
 		return curretFileName;
+	}
+
+	private class animatorListener implements AnimatorUpdateListener {
+		private DEditTextView view;
+
+		public animatorListener(DEditTextView view) {
+			super();
+			this.view = view;
+		}
+
+		public void onAnimationUpdate(ValueAnimator arg0) {
+			view.setyPos((Integer) arg0.getAnimatedValue());
+			view.requestLayout();
+		}
+
 	}
 
 }

@@ -1,8 +1,6 @@
-/*
- *   Copyright 2014 Oguz Bilgener
- */
 package FAB;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -13,13 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-
 import cn.edu.cn.R;
-
-/**
- * An alternative Floating Action Button implementation that can be independently placed in
- * one of 8 different places on the screen.
- */
+ 
 public class FloatingActionButton extends FrameLayout {
 
     public static final int THEME_LIGHT = 0;
@@ -34,7 +27,7 @@ public class FloatingActionButton extends FrameLayout {
     public static final int POSITION_LEFT_CENTER = 7;
     public static final int POSITION_TOP_LEFT = 8;
 
-    private View contentView;
+//    private View contentView;
 
     private boolean systemOverlay;
 
@@ -48,7 +41,8 @@ public class FloatingActionButton extends FrameLayout {
      * @param contentView
      * @param contentParams
      */
-    public FloatingActionButton(Context context, ViewGroup.LayoutParams layoutParams, int theme,
+    @SuppressWarnings("deprecation")
+	public FloatingActionButton(Context context, ViewGroup.LayoutParams layoutParams, int theme,
                                 Drawable backgroundDrawable, int position, View contentView,
                                 LayoutParams contentParams,
                                 boolean systemOverlay) {
@@ -83,7 +77,8 @@ public class FloatingActionButton extends FrameLayout {
      * @param position one of 8 specified positions.
      * @param layoutParams should be either FrameLayout.LayoutParams or WindowManager.LayoutParams
      */
-    public void setPosition(int position, ViewGroup.LayoutParams layoutParams) {
+    @SuppressLint("RtlHardcoded")
+	public void setPosition(int position, ViewGroup.LayoutParams layoutParams) {
 
         boolean setDefaultMargin = false;
 
@@ -148,7 +143,7 @@ public class FloatingActionButton extends FrameLayout {
      * @param contentView
      */
     public void setContentView(View contentView, LayoutParams contentParams) {
-        this.contentView = contentView;
+//        this.contentView = contentView;
         LayoutParams params;
         if(contentParams == null ){
             params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER);
@@ -212,7 +207,8 @@ public class FloatingActionButton extends FrameLayout {
         return (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
     }
 
-    private void setBackgroundResource(Drawable drawable) {
+    @SuppressWarnings("deprecation")
+	private void setBackgroundResource(Drawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(drawable);
         }
@@ -235,7 +231,8 @@ public class FloatingActionButton extends FrameLayout {
         private LayoutParams contentParams;
         private boolean systemOverlay;
 
-        public Builder(Context context) {
+        @SuppressLint("RtlHardcoded")
+		public Builder(Context context) {
             this.context = context;
 
             // Default FloatingActionButton settings
@@ -264,7 +261,8 @@ public class FloatingActionButton extends FrameLayout {
             return this;
         }
 
-        public Builder setBackgroundDrawable(int drawableId) {
+        @SuppressWarnings("deprecation")
+		public Builder setBackgroundDrawable(int drawableId) {
             return setBackgroundDrawable(context.getResources().getDrawable(drawableId));
         }
 
@@ -299,7 +297,8 @@ public class FloatingActionButton extends FrameLayout {
                     systemOverlay);
         }
 
-        public static WindowManager.LayoutParams getDefaultSystemWindowParams(Context context) {
+        @SuppressLint("RtlHardcoded")
+		public static WindowManager.LayoutParams getDefaultSystemWindowParams(Context context) {
             int size = context.getResources().getDimensionPixelSize(R.dimen.action_button_size);
             WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                     size,

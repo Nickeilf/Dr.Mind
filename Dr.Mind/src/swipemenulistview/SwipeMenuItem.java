@@ -64,6 +64,7 @@ public class SwipeMenuItem {
 		this.icon = icon;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void setIcon(int resId) {
 		this.icon = mContext.getResources().getDrawable(resId);
 	}
@@ -76,6 +77,7 @@ public class SwipeMenuItem {
 		this.background = background;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void setBackground(int resId) {
 		this.background = mContext.getResources().getDrawable(resId);
 	}
