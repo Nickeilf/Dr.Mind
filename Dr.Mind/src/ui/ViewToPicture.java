@@ -19,33 +19,36 @@ public class ViewToPicture {
 	public void save(View view, String name) {
 
 		Bitmap bitmap = getBitmapFromView(view);
-		System.out.println("bitmap "+saveBitmap(bitmap, name));
+        saveBitmap(bitmap, name);
 	}
-	
-	public  boolean saveBitmap(Bitmap bitmap, String fileName) {  
-	    File file = new File(Environment.getExternalStorageDirectory().getPath());  
-	    System.out.println("bitmap "+Environment.getExternalStorageDirectory().getPath());
-	    if (!file.exists()) {  
-	        file.mkdir();  
-	    }  
-	    File imageFile = new File(file, fileName);  
-	    try {  
-	        imageFile.createNewFile();  
-	        FileOutputStream fos = new FileOutputStream(imageFile);  
-	        bitmap.compress(CompressFormat.JPEG, 50, fos);  
-	        fos.flush();  
-	        fos.close();  
-	    } catch (FileNotFoundException e) {  
-	        e.printStackTrace();  
-	    } catch (IOException e) {  
-	        e.printStackTrace();  
-	    }  
-	    return true;  
-	}  
+
+	public boolean saveBitmap(Bitmap bitmap, String fileName) {
+		String path = Environment.getExternalStorageDirectory().getPath();
+		File file = new File(path);
+		System.out.println("bitmap path :" + path);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+		File imageFile = new File(file, fileName);
+		try {
+			System.out.println("bitmap saveBitmap");
+			imageFile.createNewFile();
+			FileOutputStream fos = new FileOutputStream(imageFile);
+			bitmap.compress(CompressFormat.JPEG, 50, fos);
+			fos.flush();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
 
 	private Bitmap getBitmapFromView(View view) {
 		Bitmap bitmap = null;
 		try {
+			System.out.println("bitmap getBitmapFromView");
 			int width = view.getWidth();
 			int height = view.getHeight();
 			if (width != 0 && height != 0) {
@@ -61,27 +64,6 @@ public class ViewToPicture {
 		}
 
 		return bitmap;
-	}
-
-	public void saveMyBitmap(Bitmap mBitmap, String bitName) {
-		File f = new File(Environment.getExternalStorageDirectory().getPath()+ bitName + ".jpg");
-		FileOutputStream fOut = null;
-		try {
-			fOut = new FileOutputStream(f);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
-		try {
-			fOut.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		try {
-			fOut.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
