@@ -8,6 +8,9 @@ import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
 import voice.VoiceToWord;
+
+import java.util.Calendar;
+
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
@@ -15,6 +18,8 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +36,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import cn.edu.cn.R;
 
@@ -233,6 +239,28 @@ public class MindActivity extends Activity {
 		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
 		button4.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				
+		 		Calendar currentTime = Calendar.getInstance();
+					// 弹出一个时间设置的对话框,供用户选择时间
+					new TimePickerDialog(MindActivity.this, 0,
+							new OnTimeSetListener() {
+								public void onTimeSet(TimePicker view,
+										int hourOfDay, int minute) {
+									//设置当前时间
+									Calendar c = Calendar.getInstance();
+									c.setTimeInMillis(System.currentTimeMillis());
+									// 根据用户选择的时间来设置Calendar对象
+									c.set(Calendar.HOUR, hourOfDay);
+									c.set(Calendar.MINUTE, minute);
+									// ②设置AlarmManager在Calendar对应的时间启动Activity
+									alarmManager.set(AlarmManager.RTC_WAKEUP,
+											c.getTimeInMillis(), pi);
+									// 提示闹钟设置完毕:
+									Toast.makeText(MindActivity.this, "闹钟设置完毕~",
+											Toast.LENGTH_SHORT).show();
+								}
+							}, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
+									.get(Calendar.MINUTE), false).show();
 
 			}
 		});
