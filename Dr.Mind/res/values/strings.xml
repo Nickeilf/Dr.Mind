@@ -5,4 +5,7 @@
     <string name="_0">0</string>
     <string name="btn_color_picker">Color Picker</string>
     <string name="list">目录</string>
+    <string name="picture">导出</string>
+    <string name="save">保存</string>
+    <string name="newp">新建</string>
 </resources>
