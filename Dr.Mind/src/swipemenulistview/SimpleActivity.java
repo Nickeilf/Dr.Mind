@@ -91,8 +91,13 @@ public class SimpleActivity extends Activity {
                 String nameItem=nameOfFile.get(position);
                 switch (index) {
                     case 0:
-                    	DViewGroup group=(DViewGroup)findViewById(R.id.viewgroup);
-                       	group.load(nameItem);
+                    	Bundle bundle=new Bundle();
+                    	bundle.putString("state", "open");
+                    	bundle.putString("name", nameItem);
+                    	Intent intent=new Intent(SimpleActivity.this,MindActivity.class);
+                    	intent.putExtras(bundle);
+                    	startActivity(intent);
+                    	 
                         break;
                     case 1:
                     	//数据库删除
