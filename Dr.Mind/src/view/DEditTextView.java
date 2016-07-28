@@ -100,6 +100,7 @@ public class DEditTextView extends EditText {
 		paint_color();
 		if (level == 0) {
 			paint.setStyle(Paint.Style.STROKE);
+			paint.setAlpha(100);
 		}
 		invalidate();
 	}
@@ -108,12 +109,22 @@ public class DEditTextView extends EditText {
 	protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
 		super.onFocusChanged(focused, direction, previouslyFocusedRect);
 		if (!focused) {
-			this.clearFocusing();
-			DViewGroup pa = (DViewGroup) getParent();
-			pa.textMove(this);
-			this.getBackground().setAlpha(0);
+			if (level != 0) {
+				this.clearFocusing();
+				DViewGroup pa = (DViewGroup) getParent();
+				pa.textMove(this);
+				this.getBackground().setAlpha(0);
+			} else {
+				paint.setAlpha(100);
+				invalidate();
+			}
 		} else {
-			this.getBackground().setAlpha(100);
+			if (level != 0)
+				this.getBackground().setAlpha(100);
+			else {
+				paint.setAlpha(200);
+				invalidate();
+			}
 		}
 
 	}
@@ -123,8 +134,8 @@ public class DEditTextView extends EditText {
 		super.onDraw(canvas);
 		float height = this.getHeight() - paint.getStrokeWidth() / 2 - 1;
 		if (level == 0) {
-			canvas.drawRoundRect(new RectF(paint.getStrokeWidth(), paint.getStrokeWidth(), this.getWidth()-paint.getStrokeWidth(), height-paint.getStrokeWidth()), 10,
-					10, paint);
+			canvas.drawRoundRect(new RectF(paint.getStrokeWidth(), paint.getStrokeWidth(),
+					this.getWidth() - paint.getStrokeWidth(), height - paint.getStrokeWidth()), 10, 10, paint);
 		} else
 			canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
