@@ -2,8 +2,8 @@ package util;
 
 import service.paintService;
 import view.DEditTextView;
-import view.DViewGroup;
 import activity.MindActivity;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -18,9 +18,8 @@ public class TextOnTouchListener implements OnTouchListener {
 	private gestureListener gl;
 	private doubleTapListener dtl;
 	private paintService paintService;
-	private int count = 0;
-	private long firClick;
 
+	@SuppressWarnings("deprecation")
 	public TextOnTouchListener() {
 		gl = new gestureListener();
 		dtl = new doubleTapListener();
@@ -29,6 +28,7 @@ public class TextOnTouchListener implements OnTouchListener {
 		paintService = new paintblImpl();
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	public boolean onTouch(View v, MotionEvent event) {
 		gl.setV(v);
 		dtl.setV(v);
@@ -104,8 +104,6 @@ public class TextOnTouchListener implements OnTouchListener {
 			imm.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			DEditTextView editText = (DEditTextView) v;
 			paintService.InsertNode(editText.getNode());
-			DViewGroup parent = (DViewGroup) editText.getParent();
-//			parent.refresh();
 			return true;
 		}
 

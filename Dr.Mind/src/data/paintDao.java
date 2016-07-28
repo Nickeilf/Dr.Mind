@@ -2,12 +2,10 @@ package data;
 
 import java.util.ArrayList;
 
-import android.R.bool;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.SyncStateContract.Columns;
 
 public class paintDao {
 
@@ -43,7 +41,8 @@ public class paintDao {
 			//定义一个StringBuffer的对象，用于动态拼接字符串
 			StringBuffer sb = new StringBuffer();
 			//循环游标，如果不是最后一项记录
-			int i=0;
+			@SuppressWarnings("unused")
+			int index=0;
 			while(!cursor.isAfterLast()){
 				if(cursor.getString(cursor.getColumnIndex("paintName")).equals(paintName)){
 				  sb.append(cursor.getInt(cursor.getColumnIndex("id")) + "/" + cursor.getString(cursor.getColumnIndex("paintName")) + "/"
@@ -51,7 +50,7 @@ public class paintDao {
 	                        + cursor.getInt(cursor.getColumnIndex("leftChild"))+"/"+cursor.getInt(cursor.getColumnIndex("rightChild"))+"/"
 	                        +cursor.getString(cursor.getColumnIndex("textValue"))+"/"+cursor.getInt(cursor.getColumnIndex("level"))+
 	                        "/"+cursor.getInt(cursor.getColumnIndex("x"))+"/"+cursor.getInt(cursor.getColumnIndex("y"))+"#");
-				  i++;
+				  index++;
 				}
 				  //cursor游标移动
 			    cursor.moveToNext();
@@ -129,7 +128,7 @@ public class paintDao {
 			//始终让cursor指向数据库表的第1行记录
 			cursor.moveToFirst();
 			//定义一个StringBuffer的对象，用于动态拼接字符串
-			StringBuffer sb = new StringBuffer();
+//			StringBuffer sb = new StringBuffer();
 			//循环游标，如果不是最后一项记录
 			while(!cursor.isAfterLast()){
 				if(cursor.getString(cursor.getColumnIndex("paintName")).equals(paintname)){
@@ -148,18 +147,13 @@ public class paintDao {
     }
     
     //获取所有表名
-    @SuppressWarnings("null")
-	public ArrayList<String> getAllPaintName(){
+    public ArrayList<String> getAllPaintName(){
     	String[] columns={"paintName"};
     	ArrayList<String> paintName=new ArrayList<String>();
     	try{
 			Cursor cursor =db.query("Paint",columns,null,null,"paintName",null,null);
 			//始终让cursor指向数据库表的第1行记录
 			cursor.moveToFirst();
-			//定义一个StringBuffer的对象，用于动态拼接字符串
-			StringBuffer sb = new StringBuffer();
-			//循环游标，如果不是最后一项记录
-			int i=0;
 			while(!cursor.isAfterLast()){
 				 System.out.println(cursor.getString(cursor.getColumnIndex("paintName")));
 			    paintName.add(cursor.getString(cursor.getColumnIndex("paintName")));

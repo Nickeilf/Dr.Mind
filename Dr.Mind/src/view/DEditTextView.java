@@ -1,17 +1,15 @@
 package view;
 
 import vo.Node;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
@@ -129,6 +127,7 @@ public class DEditTextView extends EditText {
 
 	}
 
+	@SuppressLint("DrawAllocation")
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -145,6 +144,7 @@ public class DEditTextView extends EditText {
 		focusing = false;
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO 设置3个状态，无焦点，焦点和文本编辑状态，需要重绘处理
