@@ -677,6 +677,13 @@ public class DViewGroup extends ViewGroup {
 		}
 		invalidate();
 	}
+	
+	public void newP(){
+		this.removeAllViews();
+		this.removeAllViewsInLayout();
+		paintInfo = paintService.createPaint();
+		init();
+	}
 
 	public int getScreenWidth() {
 		return screenWidth;
