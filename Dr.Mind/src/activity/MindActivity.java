@@ -238,7 +238,8 @@ public class MindActivity extends Activity {
 		});
 
 		// 整合在一起
-		FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+//		FloatingActionMenu actionMenu = 
+				new FloatingActionMenu.Builder(this)
 				.addSubActionView(button1).addSubActionView(button2)
 				.addSubActionView(button3).addSubActionView(button4)
 				.attachTo(actionButton).build();
