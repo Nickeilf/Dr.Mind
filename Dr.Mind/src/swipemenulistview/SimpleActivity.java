@@ -132,7 +132,7 @@ public class SimpleActivity extends Activity {
 //    	paintDao dao=new paintDao(this);
 		paintDao dao=paintDao.getDao(this);
     	ArrayList<String> list=service.getAllPaintName(dao);
-    	list.add(" 文件目录");
+//    	list.add(" 文件目录");
     	for(int i=0;i<list.size();i++){
     		nameOfFile.add(list.get(i));
     	}

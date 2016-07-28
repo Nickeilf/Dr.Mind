@@ -71,11 +71,13 @@ public class MindActivity extends Activity {
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
 			String state = bundle.getString("state");
-			if (state != null && state.equals("open")) {
+			if (state != null && (state.equals("open") || state.equals("save"))) {
 				String name = bundle.getString("name");
 				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
 				group.load(name);
 			}
+			
+			
 		}
 
 	}
@@ -119,8 +121,15 @@ public class MindActivity extends Activity {
 									System.out.println("保存的图名： " + name);
 
 									group.save(name);
-									startActivity(new Intent(MindActivity.this,MindActivity.class));
-									Toast.makeText(getApplicationContext(), "图标" + name + "保存成功~", Toast.LENGTH_LONG)
+									
+									Intent intent=new Intent(MindActivity.this,MindActivity.class);
+									Bundle bundle=new Bundle();
+									bundle.putString("state", "save");
+									bundle.putString("name", name);
+									intent.putExtras( bundle);
+									startActivity(intent);
+									
+									Toast.makeText(getApplicationContext(), "图表" + name + "保存成功~", Toast.LENGTH_LONG)
 											.show();
 								}
 							}
