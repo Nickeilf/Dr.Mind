@@ -303,11 +303,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int md__translationX=0x7f060006;
         public static final int md__translationY=0x7f060007;
         public static final int mini=0x7f06000e;
-        public static final int newp=0x7f06001a;
+        public static final int newp=0x7f060019;
         public static final int normal=0x7f06000f;
-        public static final int picture=0x7f060019;
+        public static final int picture=0x7f06001b;
         public static final int right=0x7f06000b;
-        public static final int save=0x7f06001b;
+        public static final int save=0x7f06001a;
         public static final int start=0x7f06000c;
         public static final int top=0x7f06000d;
         public static final int tv_name=0x7f060015;

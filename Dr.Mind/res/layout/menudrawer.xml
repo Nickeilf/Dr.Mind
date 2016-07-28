@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:drawableStart="@drawable/list"
         android:background="@color/menu_blue"
+        android:drawableStart="@drawable/mulu"
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -20,42 +20,40 @@
     </Button>
 
     <Button
-        android:id="@+id/picture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:drawableStart="@drawable/picture"
-        android:background="@color/menu_blue"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="5dp"
-        android:text="@string/picture" >
-    </Button>
-    
-    
-    <Button
         android:id="@+id/newp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:drawableStart="@drawable/picture"
         android:background="@color/menu_blue"
+        android:drawableStart="@drawable/xinjian"
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="5dp"
-        android:text="@string/picture" >
+        android:text="@string/newp" >
     </Button>
-    
-    
+
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:drawableStart="@drawable/picture"
         android:background="@color/menu_blue"
+        android:drawableStart="@drawable/save"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/save" >
+    </Button>
+
+    <Button
+        android:id="@+id/picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/menu_blue"
+        android:drawableStart="@drawable/daochu"
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"

@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -137,38 +138,46 @@ public class MindActivity extends Activity {
 			}
 		});
 
-		ImageView itemIcon4 = new ImageView(this);
-		itemIcon4.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.list));
-		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
-		button4.setOnClickListener(new OnClickListener() {
+//		ImageView itemIcon4 = new ImageView(this);
+//		itemIcon4.setImageDrawable(this.getResources().getDrawable(
+//				R.drawable.list));
+//		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
+//		button4.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				// Calendar currentTime = Calendar.getInstance();
+//				// // 弹出一个时间设置的对话框,供用户选择时间
+//				// new TimePickerDialog(MindActivity.this, 0,
+//				// new OnTimeSetListener() {
+//				// public void onTimeSet(TimePicker view,
+//				// int hourOfDay, int minute) {
+//				// // 设置当前时间
+//				// Calendar c = Calendar.getInstance();
+//				// c.setTimeInMillis(System.currentTimeMillis());
+//				// // 根据用户选择的时间来设置Calendar对象
+//				// c.set(Calendar.HOUR, hourOfDay);
+//				// c.set(Calendar.MINUTE, minute);
+//				// // ②设置AlarmManager在Calendar对应的时间启动Activity
+//				// alarmManager.set(AlarmManager.RTC_WAKEUP,
+//				// c.getTimeInMillis(), pi);
+//				// // 提示闹钟设置完毕:
+//				// Toast.makeText(MindActivity.this, "闹钟设置完毕~",
+//				// Toast.LENGTH_SHORT).show();
+//				// }
+//				// }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
+//				// .get(Calendar.MINUTE), false).show();
+// 
+//			}
+//		});
+		
+		Button button_list=(Button)findViewById(R.id.list);
+		button_list.setOnClickListener(new OnClickListener() {
+			
 			public void onClick(View v) {
-				// Calendar currentTime = Calendar.getInstance();
-				// // 弹出一个时间设置的对话框,供用户选择时间
-				// new TimePickerDialog(MindActivity.this, 0,
-				// new OnTimeSetListener() {
-				// public void onTimeSet(TimePicker view,
-				// int hourOfDay, int minute) {
-				// // 设置当前时间
-				// Calendar c = Calendar.getInstance();
-				// c.setTimeInMillis(System.currentTimeMillis());
-				// // 根据用户选择的时间来设置Calendar对象
-				// c.set(Calendar.HOUR, hourOfDay);
-				// c.set(Calendar.MINUTE, minute);
-				// // ②设置AlarmManager在Calendar对应的时间启动Activity
-				// alarmManager.set(AlarmManager.RTC_WAKEUP,
-				// c.getTimeInMillis(), pi);
-				// // 提示闹钟设置完毕:
-				// Toast.makeText(MindActivity.this, "闹钟设置完毕~",
-				// Toast.LENGTH_SHORT).show();
-				// }
-				// }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
-				// .get(Calendar.MINUTE), false).show();
-
 				startActivity(new Intent(MindActivity.this,
 						SimpleActivity.class));
 			}
 		});
+		
 
 		ImageView itemIcon5 = new ImageView(this);
 		itemIcon5.setImageDrawable(this.getResources().getDrawable(
@@ -218,11 +227,25 @@ public class MindActivity extends Activity {
 			}
 		});
 
-		ImageView itemIcon6 = new ImageView(this);
-		itemIcon6.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.picture));
-		SubActionButton button6 = itemBuilder.setContentView(itemIcon6).build();
-		button6.setOnClickListener(new OnClickListener() {
+//		ImageView itemIcon6 = new ImageView(this);
+//		itemIcon6.setImageDrawable(this.getResources().getDrawable(
+//				R.drawable.picture));
+//		SubActionButton button6 = itemBuilder.setContentView(itemIcon6).build();
+//		button6.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				View view = findViewById(R.id.viewgroup);
+//				if (view != null) {
+//					ViewToPicture viewToPic = new ViewToPicture();
+//					viewToPic.save(view, "Liu");
+//				} else {
+//					System.out.println("view null");
+//				}
+//			}
+//		});
+		
+		Button button_daochu=(Button)findViewById( R.id.picture);
+		button_daochu.setOnClickListener(new OnClickListener() {
+			
 			public void onClick(View v) {
 				View view = findViewById(R.id.viewgroup);
 				if (view != null) {
