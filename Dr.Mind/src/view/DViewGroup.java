@@ -176,6 +176,8 @@ public class DViewGroup extends ViewGroup {
 		singleRec = width / 8 + 10;
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
+		openSaved=false;
+		curretFileName="";
 
 		DEditTextView root = new DEditTextView(getContext());
 		root.setNode(paintInfo.getbTreeRoot().getRoot().get(0));

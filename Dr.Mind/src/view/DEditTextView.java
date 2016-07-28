@@ -109,10 +109,10 @@ public class DEditTextView extends EditText {
 	protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
 		super.onFocusChanged(focused, direction, previouslyFocusedRect);
 		if (!focused) {
+			this.clearFocusing();
+			DViewGroup pa = (DViewGroup) getParent();
+			pa.textMove(this);
 			if (level != 0) {
-				this.clearFocusing();
-				DViewGroup pa = (DViewGroup) getParent();
-				pa.textMove(this);
 				this.getBackground().setAlpha(0);
 			} else {
 				paint.setAlpha(100);
