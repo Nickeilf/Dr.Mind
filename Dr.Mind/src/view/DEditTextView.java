@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -94,11 +95,12 @@ public class DEditTextView extends EditText {
 		this.node = node;
 		this.level = node.getLevel();
 		paint = new Paint();
-		// if (level > 0) {
 		this.getBackground().setAlpha(0);
 		paint_width();
 		paint_color();
-		// }
+		if (level == 0) {
+			paint.setStyle(Paint.Style.STROKE);
+		}
 		invalidate();
 	}
 
@@ -120,7 +122,11 @@ public class DEditTextView extends EditText {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		float height = this.getHeight() - paint.getStrokeWidth() / 2 - 1;
-		canvas.drawLine(0, height, this.getWidth(), height, paint);
+		if (level == 0) {
+			canvas.drawRoundRect(new RectF(paint.getStrokeWidth(), paint.getStrokeWidth(), this.getWidth()-paint.getStrokeWidth(), height-paint.getStrokeWidth()), 10,
+					10, paint);
+		} else
+			canvas.drawLine(0, height, this.getWidth(), height, paint);
 	}
 
 	public void clearFocusing() {

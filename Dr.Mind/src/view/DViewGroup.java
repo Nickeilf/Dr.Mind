@@ -6,28 +6,24 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import activity.MindActivity;
 import service.paintService;
 import util.Constant;
 import vo.Node;
 import vo.paintInfoVo;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.Toast;
 import bl.paintblImpl;
-import data.DBManager;
 import data.paintDao;
 
 public class DViewGroup extends ViewGroup {
@@ -47,6 +43,9 @@ public class DViewGroup extends ViewGroup {
 	private int screenHeight;
 	private int singleRec;
 
+	private boolean openSaved;
+	private String curretFileName;
+
 	private Paint paint;
 	private int level;
 
@@ -59,8 +58,8 @@ public class DViewGroup extends ViewGroup {
 		super(context);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-//		dao = new paintDao(getContext());
-		dao=paintDao.getDao(getContext());
+		// dao = new paintDao(getContext());
+		dao = paintDao.getDao(getContext());
 		init();
 	}
 
@@ -68,8 +67,8 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-//		dao = new paintDao(getContext());
-		dao=paintDao.getDao(getContext());
+		// dao = new paintDao(getContext());
+		dao = paintDao.getDao(getContext());
 		init();
 	}
 
@@ -77,8 +76,8 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs, defStyle);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-//		dao = new paintDao(getContext());
-		dao=paintDao.getDao(getContext());
+		// dao = new paintDao(getContext());
+		dao = paintDao.getDao(getContext());
 		init();
 	}
 
@@ -103,7 +102,10 @@ public class DViewGroup extends ViewGroup {
 
 	// 是否存在相同名字的图表
 	public boolean existPaint(String name) {
-		return dao.isExistPaint(name);
+		if (isOpenSaved())
+			return false;
+		else
+			return dao.isExistPaint(name);
 	}
 
 	public void load(String name) {
@@ -129,6 +131,8 @@ public class DViewGroup extends ViewGroup {
 		}
 		requestLayout();
 		System.out.println("读取成功");
+		openSaved = true;
+		curretFileName = name;
 
 	}
 
@@ -476,6 +480,9 @@ public class DViewGroup extends ViewGroup {
 				// 第一个子节点
 				son.setxPos(text.getxPos() + text.getMeasuredWidth() + Constant.SIN_WIDTH);
 				son.setyPos(text.getyPos());
+				if (node.getLevel() == 1) {
+					son.setyPos(text.getyPos() - text.getMeasuredHeight() / 2);
+				}
 				addView(son);
 				editTexts.add(son);
 				maps.put(node, son);
@@ -588,11 +595,17 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+		canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
+
 		for (int i = 0; i < editTexts.size(); i++) {
 			DEditTextView view = editTexts.get(i);
 			DEditTextView pa = view.getDad();
 			level = view.getNode().getLevel();
-			myDraw(pa.getRight(), pa.getBottom() - 5, view.getLeft(), view.getBottom() - 5, canvas);
+			if (level == 1) {
+				myDraw(pa.getRight() - 5, (pa.getBottom() + pa.getTop()) / 2 - 5, view.getLeft(), view.getBottom() - 5,
+						canvas);
+			} else
+				myDraw(pa.getRight() - 5, pa.getBottom() - 5, view.getLeft(), view.getBottom() - 5, canvas);
 		}
 	}
 
@@ -679,6 +692,14 @@ public class DViewGroup extends ViewGroup {
 
 	public void setScreenHeight(int screenHeight) {
 		this.screenHeight = screenHeight;
+	}
+
+	public boolean isOpenSaved() {
+		return openSaved;
+	}
+
+	public String getCurretFileName() {
+		return curretFileName;
 	}
 
 }
