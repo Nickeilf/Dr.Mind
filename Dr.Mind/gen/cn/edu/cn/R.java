@@ -275,6 +275,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int end=0x7f060009;
         public static final int iv_icon=0x7f060014;
         public static final int left=0x7f06000a;
+        public static final int list=0x7f060018;
         public static final int listView=0x7f060010;
         /**  Used with View#setTag(int) to specify a position for the active view. 
          */
@@ -313,6 +314,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int item_list_app=0x7f030004;
         public static final int main=0x7f030005;
         public static final int menu_main=0x7f030006;
+        public static final int menudrawer=0x7f030007;
     }
     public static final class raw {
         public static final int alert=0x7f040000;
@@ -322,6 +324,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_name=0x7f070002;
         public static final int btn_color_picker=0x7f070005;
         public static final int hello=0x7f070003;
+        public static final int list=0x7f070006;
         public static final int md__drawerClosedIndicatorDesc=0x7f070001;
         public static final int md__drawerOpenIndicatorDesc=0x7f070000;
     }

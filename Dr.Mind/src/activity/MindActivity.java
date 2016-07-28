@@ -47,6 +47,7 @@ public class MindActivity extends Activity {
 		mDrawer = MenuDrawer
 				.attach(this, MenuDrawer.Type.BEHIND, Position.LEFT);
 		mDrawer.setContentView(R.layout.main);
+		mDrawer.setMenuView(R.layout.menudrawer);
 
 		// ①获取AlarmManager对象:
 		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
