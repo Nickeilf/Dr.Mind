@@ -15,9 +15,17 @@ public class paintDao {
 	private SQLiteDatabase db;
 	private Context mContext;
 	//private DBManager;
+	private static paintDao single;
+	
+	public static paintDao getDao(Context context){
+		if(single==null ){
+			single=new paintDao(context);
+		}
+		return single;
+	}
 	
 	//重写构造方法
-	public paintDao(Context context){
+	private  paintDao(Context context){
 		sqliteDBHelper = new SqliteDBHelper(context);
 		//DBManager.initializeInstance(sqliteDBHelper);
 		//db = DBManager.getInstance().openDatabase();

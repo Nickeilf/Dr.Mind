@@ -1,10 +1,13 @@
  
 package swipemenulistview ;
 
+import impl.paintDataServiceImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import bl.paintblImpl;
+import service.paintDataService;
 import service.paintService;
 import view.DViewGroup;
 import activity.MindActivity;
@@ -92,6 +95,11 @@ public class SimpleActivity extends Activity {
                        	group.load(nameItem);
                         break;
                     case 1:
+                    	//数据库删除
+                    	paintDataService service=new paintDataServiceImpl();
+                    	paintDao dao=paintDao.getDao(SimpleActivity.this);
+                    	service.deleteData(nameItem, dao);
+                    	//界面删除
                         nameOfFile.remove(position);
                         mAdapter.notifyDataSetChanged();
                         break;
@@ -117,7 +125,8 @@ public class SimpleActivity extends Activity {
     private void initList(){
     	
     	paintService service=new paintblImpl();
-    	paintDao dao=new paintDao(this);
+//    	paintDao dao=new paintDao(this);
+		paintDao dao=paintDao.getDao(this);
     	ArrayList<String> list=service.getAllPaintName(dao);
     	for(int i=0;i<list.size();i++){
     		nameOfFile.add(list.get(i));

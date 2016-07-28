@@ -59,7 +59,8 @@ public class DViewGroup extends ViewGroup {
 		super(context);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-		dao = new paintDao(getContext());
+//		dao = new paintDao(getContext());
+		dao=paintDao.getDao(getContext());
 		init();
 	}
 
@@ -67,7 +68,8 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-		dao = new paintDao(getContext());
+//		dao = new paintDao(getContext());
+		dao=paintDao.getDao(getContext());
 		init();
 	}
 
@@ -75,7 +77,8 @@ public class DViewGroup extends ViewGroup {
 		super(context, attrs, defStyle);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
-		dao = new paintDao(getContext());
+//		dao = new paintDao(getContext());
+		dao=paintDao.getDao(getContext());
 		init();
 	}
 
