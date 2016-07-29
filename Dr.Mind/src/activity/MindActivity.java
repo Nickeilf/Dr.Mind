@@ -58,10 +58,11 @@ public class MindActivity extends Activity {
 		initLeftButton();
 
 		// ①获取AlarmManager对象:
-		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+		//alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+		 alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		// 指定要启动的是Activity组件,通过PendingIntent调用getActivity来设置
-		Intent intent = new Intent(MindActivity.this, ClockActivity.class);
-		pi = PendingIntent.getActivity(MindActivity.this, 0, intent, 0);
+		//Intent intent = new Intent(MindActivity.this, ClockActivity.class);
+//		pi = PendingIntent.getActivity(MindActivity.this, 0, intent, 0);
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -252,15 +253,21 @@ public class MindActivity extends Activity {
 									// 根据用户选择的时间来设置Calendar对象
 									c.set(Calendar.HOUR, hourOfDay);
 									c.set(Calendar.MINUTE, minute);
+									
+								  Intent intent = new Intent(MindActivity.this, AlarmReceiver.class); 
+								  pi = PendingIntent.getActivity(MindActivity.this, 0, intent, 0);
 									// ②设置AlarmManager在Calendar对应的时间启动Activity
 									alarmManager.set(AlarmManager.RTC_WAKEUP,
 											c.getTimeInMillis(), pi);
+									System.out.println(c.getTimeInMillis()+"shijian");
 									// 提示闹钟设置完毕:
 									Toast.makeText(MindActivity.this, "闹钟设置完毕~",
 											Toast.LENGTH_SHORT).show();
+									
 								}
 							}, currentTime.get(Calendar.HOUR_OF_DAY), currentTime
 									.get(Calendar.MINUTE), false).show();
+					System.out.println(Calendar.HOUR_OF_DAY+"mmm"+Calendar.MINUTE);
 
 			}
 		});
