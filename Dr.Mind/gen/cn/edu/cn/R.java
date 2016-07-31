@@ -219,6 +219,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menuDrawerStyle=0x7f010000;
     }
     public static final class color {
+        public static final int black=0x7f050004;
         public static final int material_blue_500=0x7f050001;
         public static final int material_blue_600=0x7f050002;
         /**  The default background of the menu. 

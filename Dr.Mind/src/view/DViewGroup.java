@@ -7,10 +7,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import activity.AlarmReceiver;
-import activity.MindActivity;
-import android.animation.ValueAnimator;
-import android.animation.ValueAnimator.AnimatorUpdateListener;
+
+
+import service.paintService;
+import util.Constant;
+import vo.Node;
+import vo.paintInfoVo;
+import android.annotation.SuppressLint;
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -32,10 +36,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import bl.paintblImpl;
 import data.paintDao;
-import service.paintService;
-import util.Constant;
-import vo.Node;
-import vo.paintInfoVo;
 
 public class DViewGroup extends ViewGroup {
 	private paintService paintService;
@@ -94,10 +94,12 @@ public class DViewGroup extends ViewGroup {
 
 	public void save(String name) {
 		// TODO getName
-		Iterator itr = maps.entrySet().iterator();
+		Iterator<Map.Entry<Node, DEditTextView>> itr = maps.entrySet()
+				.iterator();
 		while (itr.hasNext()) {
 
-			Map.Entry<Node, DEditTextView> entry = (Entry<Node, DEditTextView>) itr.next();
+			Map.Entry<Node, DEditTextView> entry = (Entry<Node, DEditTextView>) itr
+					.next();
 
 			DEditTextView textView = entry.getValue();
 			Node node = entry.getKey();
@@ -126,7 +128,8 @@ public class DViewGroup extends ViewGroup {
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
 		// 读取
-		paintInfo = paintService.OpenPaint(name, dao);
+		int maxID=dao.maxID(name);
+		paintInfo = paintService.OpenPaint(name, dao,maxID);
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
 		for (Node node : roots) {
 			DEditTextView view = new DEditTextView(getContext());
@@ -176,6 +179,7 @@ public class DViewGroup extends ViewGroup {
 	/**
 	 * 初始化建立一个跟节点
 	 */
+	@SuppressWarnings("deprecation")
 	public void init() {
 		WindowManager wm = ((Activity) this.getContext()).getWindowManager();
 		int width = wm.getDefaultDisplay().getWidth();
@@ -185,6 +189,8 @@ public class DViewGroup extends ViewGroup {
 		singleRec = width / 8 + 10;
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
+		openSaved = false;
+		curretFileName = "";
 
 		DEditTextView root = new DEditTextView(getContext());
 		root.setNode(paintInfo.getbTreeRoot().getRoot().get(0));
@@ -223,7 +229,8 @@ public class DViewGroup extends ViewGroup {
 			return;
 		} else {
 			int weight = paintService.numNode(view.getNode());
-			ArrayList<Node> nodes = paintService.getAllSon(view.getNode().getParent());
+			ArrayList<Node> nodes = paintService.getAllSon(view.getNode()
+					.getParent());
 			int new_pos = 0;
 			for (; new_pos < nodes.size(); new_pos++) {
 				DEditTextView v = maps.get(nodes.get(new_pos));
@@ -248,8 +255,8 @@ public class DViewGroup extends ViewGroup {
 				// va.addUpdateListener(new animatorListener(view));
 				// va.start();
 
-				 move(view, x_dis, y_dis);
-				 requestLayout();
+				move(view, x_dis, y_dis);
+				requestLayout();
 				return;
 			}
 			boolean up = new_pos < position;
@@ -264,22 +271,26 @@ public class DViewGroup extends ViewGroup {
 				DEditTextView next_text = maps.get(next);
 				float y_dis = view.getyPos();
 				float x_dis = view.getxPos();
-				view.setyPos(next_text.getLittleSon().getyPos() - singleRec * paintService.numNode(next)
-						- (weight - 1) * singleRec / 2);
+				view.setyPos(next_text.getLittleSon().getyPos() - singleRec
+						* paintService.numNode(next) - (weight - 1) * singleRec
+						/ 2);
 				view.setxPos(next_text.getxPos());
 				y_dis = view.getyPos() - y_dis;
 				x_dis = view.getxPos() - x_dis;
 				move(view, x_dis, y_dis);
 				if (position == nodes.size() - 1) {
-					DEditTextView new_little = maps.get(nodes.get(position - 1));
+					DEditTextView new_little = maps
+							.get(nodes.get(position - 1));
 					view.getDad().setLittleSon(new_little);
 				}
 				requestLayout();
 				// 树形结构更新
 				if (new_pos == 0) {
-					paintService.MoveNode(view.getNode(), view.getNode().getParent(), null);
+					paintService.MoveNode(view.getNode(), view.getNode()
+							.getParent(), null);
 				} else {
-					paintService.MoveNode(view.getNode(), view.getNode().getParent(), nodes.get(new_pos - 1));
+					paintService.MoveNode(view.getNode(), view.getNode()
+							.getParent(), nodes.get(new_pos - 1));
 				}
 			} else {
 				// 下行
@@ -299,7 +310,8 @@ public class DViewGroup extends ViewGroup {
 				DEditTextView last_text = maps.get(last);
 				float y_dis = view.getyPos();
 				float x_dis = view.getxPos();
-				view.setyPos(last_text.getLittleSon().getyPos() + singleRec + (weight - 1) * singleRec / 2);
+				view.setyPos(last_text.getLittleSon().getyPos() + singleRec
+						+ (weight - 1) * singleRec / 2);
 				view.setxPos(last_text.getxPos());
 				y_dis = view.getyPos() - y_dis;
 				x_dis = view.getxPos() - x_dis;
@@ -308,7 +320,8 @@ public class DViewGroup extends ViewGroup {
 					view.getDad().setLittleSon(view);
 				}
 				requestLayout();
-				paintService.MoveNode(view.getNode(), view.getNode().getParent(), last);
+				paintService.MoveNode(view.getNode(), view.getNode()
+						.getParent(), last);
 			}
 		}
 
@@ -342,8 +355,10 @@ public class DViewGroup extends ViewGroup {
 		if (v != null && (v instanceof DEditTextView)) {
 			int[] l = { 0, 0 };
 			v.getLocationInWindow(l);
-			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
-			if (ev.getX() > left && ev.getX() < right && ev.getY() > top && ev.getY() < bottom) {
+			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left
+					+ v.getWidth();
+			if (ev.getX() > left && ev.getX() < right && ev.getY() > top
+					&& ev.getY() < bottom) {
 				return false;
 			} else {
 				return true;
@@ -389,12 +404,14 @@ public class DViewGroup extends ViewGroup {
 				paintService.DeleteRoot(text.getNode(), paintInfo);
 				paintService.DeleteAllChild(text.getNode());
 			} else if (text.getDad().getLittleSon() == text) {
-				ArrayList<Node> cousins = paintService.getAllSon(text.getNode().getParent());
+				ArrayList<Node> cousins = paintService.getAllSon(text.getNode()
+						.getParent());
 				if (cousins.size() == 1) {
 					selfSon = true;
 					text.getDad().setLittleSon(text.getDad());
 				} else {
-					text.getDad().setLittleSon(maps.get(cousins.get(cousins.size() - 2)));
+					text.getDad().setLittleSon(
+							maps.get(cousins.get(cousins.size() - 2)));
 				}
 				scaleWeight = paintService.numNode(text.getNode().getParent());
 				paintService.DeleteAllChild(text.getNode());
@@ -410,7 +427,8 @@ public class DViewGroup extends ViewGroup {
 			roots.addAll(paintInfo.getbTreeRoot().getRoot());
 			roots.remove(ancestor.getNode());
 
-			ArrayList<Node> relatives = paintService.getAllChild(ancestor.getNode());
+			ArrayList<Node> relatives = paintService.getAllChild(ancestor
+					.getNode());
 			Node p = text.getNode();
 			while (p != ancestor.getNode()) {
 				p = p.getParent();
@@ -424,7 +442,8 @@ public class DViewGroup extends ViewGroup {
 					for (int i = 0; i < relatives.size(); i++) {
 						DEditTextView view = maps.get(relatives.get(i));
 						int y = view.getyPos();
-						int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
+						int lowest = text.getLittleSon() == null ? text
+								.getyPos() : text.getLittleSon().getyPos();
 						if (y > lowest) {
 							y -= weight * singleRec / 2;
 							view.setyPos(y);
@@ -450,7 +469,8 @@ public class DViewGroup extends ViewGroup {
 					for (int i = 0; i < relatives.size(); i++) {
 						DEditTextView view = maps.get(relatives.get(i));
 						int y = view.getyPos();
-						int lowest = text.getLittleSon() == null ? text.getyPos() : text.getLittleSon().getyPos();
+						int lowest = text.getLittleSon() == null ? text
+								.getyPos() : text.getLittleSon().getyPos();
 						if (y > lowest) {
 							y -= (weight - 1) * singleRec / 2;
 							view.setyPos(y);
@@ -497,7 +517,8 @@ public class DViewGroup extends ViewGroup {
 			DEditTextView little = text.getLittleSon();
 			if (little == text) {
 				// 第一个子节点
-				son.setxPos(text.getxPos() + text.getMeasuredWidth() + Constant.SIN_WIDTH);
+				son.setxPos(text.getxPos() + text.getMeasuredWidth()
+						+ Constant.SIN_WIDTH);
 				son.setyPos(text.getyPos());
 				if (node.getLevel() == 1) {
 					son.setyPos(text.getyPos() - text.getMeasuredHeight() / 2);
@@ -512,7 +533,9 @@ public class DViewGroup extends ViewGroup {
 			} else {
 				// 加到父节点的最后一个
 				son.setxPos(little.getxPos());
-				son.setyPos(little.getyPos() + (paintService.numNode(little.getNode())) * singleRec / 2);
+				son.setyPos(little.getyPos()
+						+ (paintService.numNode(little.getNode())) * singleRec
+						/ 2);
 				addView(son);
 				editTexts.add(son);
 				maps.put(node, son);
@@ -533,7 +556,8 @@ public class DViewGroup extends ViewGroup {
 				}
 				moveList.remove(p);
 				for (DEditTextView dEditTextView : moveList) {
-					int pos = dEditTextView.getyPos() - son.getyPos() > 0 ? singleRec / 2 : -singleRec / 2;
+					int pos = dEditTextView.getyPos() - son.getyPos() > 0 ? singleRec / 2
+							: -singleRec / 2;
 					int y = dEditTextView.getyPos() + pos;
 					dEditTextView.setyPos(y);
 				}
@@ -572,6 +596,7 @@ public class DViewGroup extends ViewGroup {
 	 * 
 	 * @see android.view.View#onTouchEvent(android.view.MotionEvent)
 	 */
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		View view = getFocusedChild();
@@ -611,24 +636,29 @@ public class DViewGroup extends ViewGroup {
 	/**
 	 * 绘图
 	 */
+	@SuppressLint("DrawAllocation")
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
+		canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG
+				| Paint.FILTER_BITMAP_FLAG));
 
 		for (int i = 0; i < editTexts.size(); i++) {
 			DEditTextView view = editTexts.get(i);
 			DEditTextView pa = view.getDad();
 			level = view.getNode().getLevel();
 			if (level == 1) {
-				myDraw(pa.getRight() - 5, (pa.getBottom() + pa.getTop()) / 2 - 5, view.getLeft(), view.getBottom() - 5,
-						canvas);
+				myDraw(pa.getRight() - 5,
+						(pa.getBottom() + pa.getTop()) / 2 - 5, view.getLeft(),
+						view.getBottom() - 5, canvas);
 			} else
-				myDraw(pa.getRight() - 5, pa.getBottom() - 5, view.getLeft(), view.getBottom() - 5, canvas);
+				myDraw(pa.getRight() - 5, pa.getBottom() - 5, view.getLeft(),
+						view.getBottom() - 5, canvas);
 		}
 	}
 
-	private void myDraw(int x_start, int y_start, int x_end, int y_end, Canvas canvas) {
+	private void myDraw(int x_start, int y_start, int x_end, int y_end,
+			Canvas canvas) {
 		paint_color();
 		paint_width();
 		int A = (y_end - y_start) / 2;
@@ -690,14 +720,15 @@ public class DViewGroup extends ViewGroup {
 			if (v instanceof DEditTextView) {
 				DEditTextView view = (DEditTextView) v;
 				view.measure(0, 0);
-				view.layout(view.getxPos(), view.getyPos(), view.getxPos() + view.getMeasuredWidth(),
+				view.layout(view.getxPos(), view.getyPos(), view.getxPos()
+						+ view.getMeasuredWidth(),
 						view.getyPos() + view.getMeasuredHeight());
 			}
 		}
 		invalidate();
 	}
-	
-	public void newP(){
+
+	public void newP() {
 		this.removeAllViews();
 		this.removeAllViewsInLayout();
 		paintInfo = paintService.createPaint();
@@ -728,20 +759,5 @@ public class DViewGroup extends ViewGroup {
 		return curretFileName;
 	}
 
-	private class animatorListener implements AnimatorUpdateListener {
-		private DEditTextView view;
-
-		public animatorListener(DEditTextView view) {
-			super();
-			this.view = view;
-		}
-
-		public void onAnimationUpdate(ValueAnimator arg0) {
-			view.setyPos((Integer) arg0.getAnimatedValue());
-			view.requestLayout();
-		}
-
-	}
-	
 
 }

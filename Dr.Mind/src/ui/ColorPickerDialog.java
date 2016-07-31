@@ -1,5 +1,6 @@
 package ui;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -55,8 +56,10 @@ public class ColorPickerDialog extends Dialog{
 	    protected void onCreate(Bundle savedInstanceState) {  
 	        super.onCreate(savedInstanceState);  
 	        WindowManager manager = getWindow().getWindowManager();  
-	        int height = (int) (manager.getDefaultDisplay().getHeight() * 0.5f);  
-	        int width = (int) (manager.getDefaultDisplay().getWidth() * 0.7f);  
+	        @SuppressWarnings("deprecation")
+			int height = (int) (manager.getDefaultDisplay().getHeight() * 0.5f);  
+	        @SuppressWarnings("deprecation")
+			int width = (int) (manager.getDefaultDisplay().getWidth() * 0.7f);  
 	        ColorPickerView myView = new ColorPickerView(context, height, width);  
 	        setContentView(myView);  
 	        setTitle(title);  
@@ -126,7 +129,8 @@ public class ColorPickerDialog extends Dialog{
 	            rectBottom = rectTop + 50;  
 	        }  
 	  
-	        @Override  
+	        @SuppressLint("DrawAllocation")
+			@Override  
 	        protected void onDraw(Canvas canvas) {  
 	            //移动中心  
 	            canvas.translate(mWidth / 2, mHeight / 2 - 50);  
@@ -168,7 +172,8 @@ public class ColorPickerDialog extends Dialog{
 	            super.onDraw(canvas);  
 	        }  
 	          
-	        @Override  
+	        @SuppressLint("ClickableViewAccessibility")
+			@Override  
 	        public boolean onTouchEvent(MotionEvent event) {  
 	            float x = event.getX() - mWidth / 2;  
 	            float y = event.getY() - mHeight / 2 + 50;  
