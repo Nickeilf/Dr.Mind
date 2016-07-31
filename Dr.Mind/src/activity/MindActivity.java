@@ -197,15 +197,15 @@ public class MindActivity extends Activity {
 		button2.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				new AlertDialog.Builder(MindActivity.this).setTitle("您选择删除：").setIcon(android.R.drawable.ic_dialog_info)
-						.setPositiveButton("当前结点", new DialogInterface.OnClickListener() {
+						.setPositiveButton("全部删除", new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
 								group.deleteNode();
 							}
-						}).setNeutralButton("当前及后代", new DialogInterface.OnClickListener() {
+						}).setNeutralButton("仅删除此节点", new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-								group.deleteNode();
+								group.deleteMerge();
 							}
 						}).setNegativeButton("取消", null).show();
 			}
