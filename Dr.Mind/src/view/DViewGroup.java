@@ -1,27 +1,18 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
-
 
 import service.paintService;
 import util.Constant;
 import vo.Node;
 import vo.paintInfoVo;
 import android.annotation.SuppressLint;
-
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -32,7 +23,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TimePicker;
 import android.widget.Toast;
 import bl.paintblImpl;
 import data.paintDao;
@@ -126,8 +116,7 @@ public class DViewGroup extends ViewGroup {
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
 		// 读取
-		int maxID=dao.maxID(name);
-		paintInfo = paintService.OpenPaint(name, dao,maxID);
+		paintInfo = paintService.OpenPaint(name, dao);
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
 		for (Node node : roots) {
 			DEditTextView view = new DEditTextView(getContext());
@@ -775,6 +764,5 @@ public class DViewGroup extends ViewGroup {
 	public String getCurretFileName() {
 		return curretFileName;
 	}
-
 
 }

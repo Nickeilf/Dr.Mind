@@ -35,9 +35,6 @@
             android:name="menudrawer.SampleActivity">
         </activity>
          
-         <activity android:name=".AlarmActivity" />
-        <!-- android:process=":remote": 新开一个进程 -->
-        <receiver android:name=".AlarmReceiver" android:process=":remote"/>
     </application>
 
     <!-- 讯飞语音权限开始 -->
