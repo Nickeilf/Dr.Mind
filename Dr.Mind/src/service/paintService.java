@@ -32,7 +32,7 @@ public interface paintService {
 	 
 	 Boolean SavePaint(String paintName,paintInfoVo paintvo,paintDao dao);//存储画图,dao需要在界面上new
 	 
-	 paintInfoVo OpenPaint(String  paintName,paintDao dao);//打开画图 
+	 paintInfoVo OpenPaint(String  paintName,paintDao dao,int maxid);//打开画图 
 	 
 	 ArrayList<Node> getAllChild(Node parent);//获取所有子孙结点
 	 

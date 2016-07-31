@@ -246,11 +246,11 @@ public class paintblImpl implements paintService {
 		return true;
 	}
 
-	public paintInfoVo OpenPaint(String paintName, paintDao dao) {
+	public paintInfoVo OpenPaint(String paintName, paintDao dao,int maxid) {
 		// TODO Auto-generated method stub
 		paintInfoVo vo = new paintInfoVo();
 		vo.setbTreeRoot(pds.getData(paintName, dao).getbTreeRoot());
-
+        ID=maxid;
 		return vo;
 	}
 

@@ -116,7 +116,9 @@ public class DViewGroup extends ViewGroup {
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
 		// 读取
-		paintInfo = paintService.OpenPaint(name, dao);
+		int maxid=dao.maxID(name);
+		System.out.println("max"+maxid);
+		paintInfo = paintService.OpenPaint(name, dao,maxid);
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
 		for (Node node : roots) {
 			DEditTextView view = new DEditTextView(getContext());

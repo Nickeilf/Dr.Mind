@@ -180,5 +180,30 @@ public class paintDao {
     public void  deleteDatabase( ){
     	sqliteDBHelper.deleteDatabase(mContext);
     }
+    
+    //查询最大id
+    public int maxID(String paintName){
+    	Cursor cursor=db.query("Paint", null, null, null, null, null,null);
+    			cursor.moveToFirst();
+    			//定义一个StringBuffer的对象，用于动态拼接字符串
+    			StringBuffer sb = new StringBuffer();
+    			//循环游标，如果不是最后一项记录
+    		
+    	        int maxID=0;
+    			while(!cursor.isAfterLast()){
+    				if(cursor.getString(cursor.getColumnIndex("paintName")).equals(paintName)){
+    				  if(maxID==0){
+    		           maxID=cursor.getInt(cursor.getColumnIndex("id"));
+    				  }
+    				 else{
+    					if(maxID<cursor.getInt(cursor.getColumnIndex("id"))){
+    						maxID=cursor.getInt(cursor.getColumnIndex("id"));
+    					}
+    				 }
+    				}
+    				 cursor.moveToNext();
+                }
+    			return maxID;
+     }
 }
 
