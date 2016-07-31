@@ -26,6 +26,7 @@ public class DEditTextView extends EditText {
 
 	private Paint paint;
 	private int level;
+
 	private float startX;
 	private float startY;
 
@@ -197,6 +198,11 @@ public class DEditTextView extends EditText {
 		return super.onTouchEvent(event);
 	}
 
+	public void levelChanged() {
+		paint_color();
+		paint_width();
+	}
+
 	private void paint_color() {
 		int index = level % 7;
 		switch (index) {
@@ -256,4 +262,11 @@ public class DEditTextView extends EditText {
 		return raw_width;
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 }
