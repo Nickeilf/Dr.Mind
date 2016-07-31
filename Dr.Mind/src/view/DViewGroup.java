@@ -383,16 +383,22 @@ public class DViewGroup extends ViewGroup {
 					childText = maps.get(son);
 					childText.setDad(text.getDad());
 				}
-				// 最后一个儿子设为父亲的小儿子
-				if (text.getDad().getLittleSon() == text) {
+				
+				// 没有儿子，等同于删除
+				if (sons.size() == 0) {
+					deleteNode();
+				} else {
+					// 有儿子
 					childText = maps.get(sons.get(sons.size() - 1));
 					text.getDad().setLittleSon(childText);
+
+					removeView(text);
+					editTexts.remove(text);
+					maps.remove(node);
+					paintService.DeleteAndMerge(node);
+					requestLayout();
 				}
-				removeView(text);
-				editTexts.remove(text);
-				maps.remove(node);
-				paintService.DeleteAndMerge(node);
-				requestLayout();
+
 			}
 		}
 	}
