@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
+
     <string name="app_name">Dr.Mind</string>
     <string name="hello">Hello World, MindActivity!</string>
     <string name="_0">0</string>
@@ -9,5 +10,8 @@
     <string name="save">保存</string>
     <string name="newp">新建</string>
     <string name="name">name</string>
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
     <string name="useless">useless</string>
+
 </resources>
