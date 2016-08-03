@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="material_blue_500">#5677fc</color>
     <color name="material_blue_600">#4e6cef</color>
     <color name="menu_blue">#24a9e1</color>
     <color name="black">#000000</color>
     <color name="base_color_text_gray">#DADADA</color>
-     <color name="selected_gray">#ffdbdbdb</color>
-       <color name="myDrawerBackground">#F2F2F2</color>
-          <color name="myPrimaryColor">#3F51B5</color>
-              <color name="myPrimaryDarkColor">#3F51B5</color>
+    <color name="selected_gray">#ffdbdbdb</color>
+  
 </resources>

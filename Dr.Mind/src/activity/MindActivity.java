@@ -1,5 +1,7 @@
 package activity;
 
+import java.util.Calendar;
+
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
 import swipemenulistview.SimpleActivity;
@@ -8,9 +10,6 @@ import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
 import voice.VoiceToWord;
-
-import java.util.Calendar;
-
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
@@ -26,8 +25,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,15 +38,12 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import cn.edu.cn.R;
-import drawer.NavigationDrawerFragment;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
 	private AlarmManager alarmManager;
 	private PendingIntent pi;
 	private MenuDrawer mDrawer;
-	private NavigationDrawerFragment mNavigationDrawerFragment;
-	private Toolbar mToolbar;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -60,12 +54,6 @@ public class MindActivity extends Activity {
 		mDrawer.setContentView(R.layout.main);
 		mDrawer.setMenuView(R.layout.menudrawer);
 		initLeftButton();
-//		mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-//		setSupportActionBar(mToolbar);
-//		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
-//				.findFragmentById(R.id.fragment_drawer);
-//		mNavigationDrawerFragment.setup(R.id.fragment_drawer,
-//				(DrawerLayout) findViewById(R.id.drawer), mToolbar);
 
 		// ①获取AlarmManager对象:
 		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -87,8 +75,7 @@ public class MindActivity extends Activity {
 				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
 				group.load(name);
 			}
-			
-			
+ 	
 		}
 
 	}
