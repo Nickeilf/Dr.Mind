@@ -6,11 +6,15 @@
     <item
         android:id="@+id/action_left"
         android:orderInCategory="100"
-        android:title="Left"/>
+        android:title="@string/left">
+    </item>
 
     <item
         android:id="@+id/action_right"
         android:orderInCategory="100"
-        android:title="Right"/>
+        android:title="@string/right"/>
+
+    <item>
+    </item>
 
 </menu>
