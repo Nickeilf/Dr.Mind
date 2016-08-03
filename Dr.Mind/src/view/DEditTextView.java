@@ -8,13 +8,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.text.InputType;
 import android.util.AttributeSet;
-import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.widget.EditText;
-import cn.edu.cn.R;
 
 public class DEditTextView extends EditText {
 	private DEditTextView dad;
@@ -35,6 +32,8 @@ public class DEditTextView extends EditText {
 
 	private boolean moving;
 	private boolean focusing;
+	private boolean editing;
+	private boolean down;
 	boolean init = true;
 
 	public DEditTextView getLittleSon() {
@@ -89,9 +88,10 @@ public class DEditTextView extends EditText {
 	}
 
 	private void init() {
-		this.setBackgroundResource(R.drawable.border);
 		this.setInputType(InputType.TYPE_NULL);
 		focusing = false;
+		editing = false;
+		down = false;
 	}
 
 	public void setNode(Node node) {
@@ -101,8 +101,8 @@ public class DEditTextView extends EditText {
 		this.getBackground().setAlpha(0);
 		paint_width();
 		paint_color();
+		paint.setStyle(Paint.Style.STROKE);
 		if (level == 0) {
-			paint.setStyle(Paint.Style.STROKE);
 			paint.setAlpha(100);
 		}
 		invalidate();
@@ -115,19 +115,21 @@ public class DEditTextView extends EditText {
 			this.clearFocusing();
 			DViewGroup pa = (DViewGroup) getParent();
 			pa.textMove(this);
-			if (level != 0) {
-				this.getBackground().setAlpha(0);
-			} else {
-				paint.setAlpha(100);
-				invalidate();
-			}
-		} else {
-			if (level != 0)
-				this.getBackground().setAlpha(100);
-			else {
-				paint.setAlpha(200);
-				invalidate();
-			}
+//			if (level != 0) {
+//				focusing = false;
+//				invalidate();
+//			} else {
+//				paint.setAlpha(100);
+//				invalidate();
+//			}
+//		} else {
+//			if (level != 0) {
+//				paint.setAlpha(255);
+//				invalidate();
+//			} else {
+//				paint.setAlpha(200);
+//				invalidate();
+//			}
 		}
 
 	}
@@ -138,15 +140,40 @@ public class DEditTextView extends EditText {
 		super.onDraw(canvas);
 		float height = this.getHeight() - paint.getStrokeWidth() / 2 - 1;
 		if (level == 0) {
+			if(focusing){
+				paint.setAlpha(200);
+			}else{
+				paint.setAlpha(100);
+			}
 			canvas.drawRoundRect(new RectF(paint.getStrokeWidth(), paint.getStrokeWidth(),
 					this.getWidth() - paint.getStrokeWidth(), height - paint.getStrokeWidth()), 10, 10, paint);
-		} else
+		} else {
+			if (focusing) {
+				paint.setColor(Color.rgb(77, 123, 150));
+				paint.setStrokeWidth(6);
+				if (down) {
+					paint.setAlpha(100);
+				} else {
+					paint.setAlpha(200);
+				}
+				canvas.drawRoundRect(
+						new RectF(paint.getStrokeWidth(), paint.getStrokeWidth(),
+								this.getWidth() - paint.getStrokeWidth(), height - paint.getStrokeWidth() - 5),
+						10, 10, paint);
+				paint.setAlpha(255);
+				paint_color();
+				paint_width();
+			}
 			canvas.drawLine(0, height, this.getWidth(), height, paint);
+		}
+
 	}
 
 	public void clearFocusing() {
 		this.setInputType(InputType.TYPE_NULL);
 		focusing = false;
+		down = false;
+		editing = false;
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -156,10 +183,14 @@ public class DEditTextView extends EditText {
 		if (event.getPointerCount() == 1) {
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
+				this.requestFocus();
 				startX = event.getX();
 				startY = event.getY();
 				raw_x = xPos;
 				raw_y = yPos;
+				down = true;
+				focusing = true;
+				invalidate();
 				break;
 			case MotionEvent.ACTION_MOVE:
 				moving = true;
@@ -174,19 +205,20 @@ public class DEditTextView extends EditText {
 						this.getyPos() + this.getMeasuredHeight());
 				DViewGroup group = (DViewGroup) getParent();
 				group.move(this, stopX - startX, stopY - startY);
-
 				break;
 			case MotionEvent.ACTION_UP:
 				float stop_y = event.getY();
+				down = false;
+				invalidate();
 				if (Math.abs(yPos - raw_y) > 10 || Math.abs(xPos - raw_x) > 10) {
-					if (focusing == false) {
-						focusing = true;
+					if (editing == false) {
+						editing = true;
 						this.requestFocus();
 					}
 				} else {
-					if (focusing == false)
-						focusing = true;
-					else {
+					if (editing == false) {
+						editing = true;
+					} else {
 						this.setCursorVisible(true);
 						this.setInputType(InputType.TYPE_CLASS_TEXT);
 					}
