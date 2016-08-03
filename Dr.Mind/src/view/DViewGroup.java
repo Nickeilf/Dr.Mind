@@ -116,9 +116,9 @@ public class DViewGroup extends ViewGroup {
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
 		// 读取
-		int maxid=dao.maxID(name);
-		System.out.println("max"+maxid);
-		paintInfo = paintService.OpenPaint(name, dao,maxid);
+		int maxid = dao.maxID(name);
+		System.out.println("max" + maxid);
+		paintInfo = paintService.OpenPaint(name, dao, maxid);
 		ArrayList<Node> roots = paintInfo.getbTreeRoot().getRoot();
 		for (Node node : roots) {
 			DEditTextView view = new DEditTextView(getContext());
@@ -383,7 +383,7 @@ public class DViewGroup extends ViewGroup {
 					childText = maps.get(son);
 					childText.setDad(text.getDad());
 				}
-				
+
 				// 没有儿子，等同于删除
 				if (sons.size() == 0) {
 					deleteNode();
@@ -737,6 +737,7 @@ public class DViewGroup extends ViewGroup {
 				view.measure(0, 0);
 				view.layout(view.getxPos(), view.getyPos(), view.getxPos() + view.getMeasuredWidth(),
 						view.getyPos() + view.getMeasuredHeight());
+				System.out.println(view.getMeasuredWidth()+" "+view.getMeasuredHeight());
 			}
 		}
 		invalidate();
