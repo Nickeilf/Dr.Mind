@@ -56,16 +56,16 @@ public class MindActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-//		mDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND, Position.LEFT);
-//		mDrawer.setContentView(R.layout.main);
-//		mDrawer.setMenuView(R.layout.menudrawer);
-//		initLeftButton();
-		mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-		setSupportActionBar(mToolbar);
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
-				.findFragmentById(R.id.fragment_drawer);
-		mNavigationDrawerFragment.setup(R.id.fragment_drawer,
-				(DrawerLayout) findViewById(R.id.drawer), mToolbar);
+		mDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND, Position.LEFT);
+		mDrawer.setContentView(R.layout.main);
+		mDrawer.setMenuView(R.layout.menudrawer);
+		initLeftButton();
+//		mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+//		setSupportActionBar(mToolbar);
+//		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
+//				.findFragmentById(R.id.fragment_drawer);
+//		mNavigationDrawerFragment.setup(R.id.fragment_drawer,
+//				(DrawerLayout) findViewById(R.id.drawer), mToolbar);
 
 		// ①获取AlarmManager对象:
 		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
