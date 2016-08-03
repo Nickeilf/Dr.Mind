@@ -8,10 +8,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.widget.EditText;
+import cn.edu.cn.R;
 
 public class DEditTextView extends EditText {
 	private DEditTextView dad;
@@ -86,6 +89,7 @@ public class DEditTextView extends EditText {
 	}
 
 	private void init() {
+		this.setBackgroundResource(R.drawable.border);
 		this.setInputType(InputType.TYPE_NULL);
 		focusing = false;
 	}
@@ -170,6 +174,7 @@ public class DEditTextView extends EditText {
 						this.getyPos() + this.getMeasuredHeight());
 				DViewGroup group = (DViewGroup) getParent();
 				group.move(this, stopX - startX, stopY - startY);
+
 				break;
 			case MotionEvent.ACTION_UP:
 				float stop_y = event.getY();
