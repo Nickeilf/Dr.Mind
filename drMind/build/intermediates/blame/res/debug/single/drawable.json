@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\button_sub_action_selector.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable\\button_sub_action_selector.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\button_action_selector.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable\\button_action_selector.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\material_drawer_shadow_bottom.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\drawable\\material_drawer_shadow_bottom.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\material_drawer_shadow_top.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\drawable\\material_drawer_shadow_top.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\button_action_dark_selector.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable\\button_action_dark_selector.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\material_drawer_shadow_left.9.png",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\drawable\\material_drawer_shadow_left.9.png"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\button_sub_action_dark_selector.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable\\button_sub_action_dark_selector.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\material_drawer_badge.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\drawable\\material_drawer_badge.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\material_drawer_circle_mask.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\drawable\\material_drawer_circle_mask.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable\\material_drawer_shadow_right.9.png",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\drawable\\material_drawer_shadow_right.9.png"
+    }
+]

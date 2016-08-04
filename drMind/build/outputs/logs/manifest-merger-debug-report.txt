@@ -1,0 +1,103 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:2:1-55:12
+	package
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:3:5-24
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+	android:versionCode
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:2:11-69
+uses-sdk
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:7:5-44
+MERGED from [Dr.Mind:menudrawer:unspecified] E:\android_project\Dr.Mind\drMind\build\intermediates\exploded-aar\Dr.Mind\menudrawer\unspecified\AndroidManifest.xml:7:5-9:41
+	android:targetSdkVersion
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:7:15-41
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
+application
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:9:5-38:19
+	android:label
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:11:9-41
+	android:icon
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:10:9-38
+	android:theme
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:12:9-56
+activity#activity.MindActivity
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:13:9-21:20
+	android:label
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:15:13-45
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:14:13-49
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:16:13-20:29
+action#android.intent.action.MAIN
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:17:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:19:27-74
+activity#activity.ColorPickerActivity
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:22:9-25:20
+	android:label
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:24:13-45
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:23:13-56
+activity#swipemenulistview.SimpleActivity
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:26:9-27:20
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:26:19-66
+activity#activity.ColockActivity
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:29:10-32:20
+	android:label
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:31:13-45
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:30:13-51
+activity#menudrawer.SampleActivity
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:34:11-36:20
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:35:13-53
+uses-permission#android.permission.INTERNET
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:41:5-67
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:41:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:42:5-79
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:42:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:43:5-76
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:43:22-73
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:44:5-71
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:44:22-68
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:45:5-81
+	android:name
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:45:22-78
+supports-screens
+ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:48:5-53:39
+	android:largeScreens
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:50:9-36
+	android:smallScreens
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:53:9-36
+	android:normalScreens
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:51:9-37
+	android:resizeable
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:52:9-34
+	android:anyDensity
+		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:49:9-34

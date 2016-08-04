@@ -1,0 +1,114 @@
+[
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_section.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_section.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_toggle.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_toggle.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_profile_setting.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_profile_setting.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\activity_clock.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\activity_clock.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_secondary_toggle.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_secondary_toggle.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_primary.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_primary.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_compact_header.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_compact_header.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_secondary_switch.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_secondary_switch.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_mini.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_mini.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_switch.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_switch.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_secondary.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_secondary.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_header.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_header.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_app.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\item_list_app.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\dviewgroup.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\dviewgroup.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\activity_list.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\activity_list.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_recycler_view.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_recycler_view.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\colorpicker.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\colorpicker.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_fits_not.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_fits_not.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\menu_main.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\menu_main.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_divider.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_divider.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_mini_profile.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_mini_profile.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_profile.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_profile.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_expandable.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_expandable.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\menudrawer.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\menudrawer.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_item_container.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_item_container.xml"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\material_drawer_slider.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\com.mikepenz\\materialdrawer\\5.4.0\\res\\layout\\material_drawer_slider.xml"
+    }
+]
