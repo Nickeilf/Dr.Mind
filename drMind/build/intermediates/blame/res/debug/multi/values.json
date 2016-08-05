@@ -7,27 +7,8 @@
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endColumn": 53,
-                    "endOffset": 104
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 53,
-                        "endOffset": 104
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 109,
                     "endColumn": 54,
-                    "endOffset": 159
+                    "endOffset": 105
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\colors.xml",
@@ -42,11 +23,11 @@
             },
             {
                 "to": {
-                    "startLine": 4,
+                    "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 164,
+                    "startOffset": 110,
                     "endColumn": 39,
-                    "endOffset": 199
+                    "endOffset": 145
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\colors.xml",
@@ -61,11 +42,11 @@
             },
             {
                 "to": {
-                    "startLine": 5,
+                    "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 204,
+                    "startOffset": 150,
                     "endColumn": 51,
-                    "endOffset": 251
+                    "endOffset": 197
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\colors.xml",
@@ -80,11 +61,11 @@
             },
             {
                 "to": {
-                    "startLine": 6,
+                    "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 256,
+                    "startOffset": 202,
                     "endColumn": 51,
-                    "endOffset": 303
+                    "endOffset": 249
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\colors.xml",
@@ -99,30 +80,11 @@
             },
             {
                 "to": {
-                    "startLine": 7,
+                    "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 308,
-                    "endColumn": 57,
-                    "endOffset": 361
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 109,
-                        "endColumn": 57,
-                        "endOffset": 162
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 366,
+                    "startOffset": 254,
                     "endColumn": 43,
-                    "endOffset": 405
+                    "endOffset": 293
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\colors.xml",
@@ -137,11 +99,11 @@
             },
             {
                 "to": {
-                    "startLine": 9,
+                    "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 410,
+                    "startOffset": 298,
                     "endColumn": 49,
-                    "endOffset": 455
+                    "endOffset": 343
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\colors.xml",
@@ -156,11 +118,11 @@
             },
             {
                 "to": {
-                    "startLine": 13,
+                    "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 2026,
+                    "startOffset": 856,
                     "endColumn": 59,
-                    "endOffset": 2081
+                    "endOffset": 911
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\dimens.xml",
@@ -175,11 +137,11 @@
             },
             {
                 "to": {
-                    "startLine": 14,
+                    "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 2086,
+                    "startOffset": 916,
                     "endColumn": 51,
-                    "endOffset": 2133
+                    "endOffset": 963
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\dimens.xml",
@@ -194,11 +156,11 @@
             },
             {
                 "to": {
-                    "startLine": 15,
+                    "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 2138,
+                    "startOffset": 968,
                     "endColumn": 49,
-                    "endOffset": 2183
+                    "endOffset": 1013
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\dimens.xml",
@@ -213,11 +175,11 @@
             },
             {
                 "to": {
-                    "startLine": 16,
+                    "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 2188,
+                    "startOffset": 1018,
                     "endColumn": 49,
-                    "endOffset": 2233
+                    "endOffset": 1063
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\dimens.xml",
@@ -232,11 +194,11 @@
             },
             {
                 "to": {
-                    "startLine": 17,
+                    "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 2238,
+                    "startOffset": 1068,
                     "endColumn": 62,
-                    "endOffset": 2296
+                    "endOffset": 1126
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\dimens.xml",
@@ -251,11 +213,11 @@
             },
             {
                 "to": {
-                    "startLine": 18,
+                    "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 2301,
+                    "startOffset": 1131,
                     "endColumn": 53,
-                    "endOffset": 2350
+                    "endOffset": 1180
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\dimens.xml",
@@ -270,163 +232,11 @@
             },
             {
                 "to": {
-                    "startLine": 19,
+                    "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 2355,
-                    "endColumn": 49,
-                    "endOffset": 2400
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 1225,
-                        "endColumn": 49,
-                        "endOffset": 1270
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 20,
-                    "startColumn": 4,
-                    "startOffset": 2405,
-                    "endColumn": 38,
-                    "endOffset": 2439
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 1275,
-                        "endColumn": 38,
-                        "endOffset": 1309
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 21,
-                    "startColumn": 4,
-                    "startOffset": 2444,
-                    "endColumn": 35,
-                    "endOffset": 2475
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 1314,
-                        "endColumn": 35,
-                        "endOffset": 1345
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 22,
-                    "startColumn": 4,
-                    "startOffset": 2480,
-                    "endColumn": 40,
-                    "endOffset": 2516
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 1350,
-                        "endColumn": 40,
-                        "endOffset": 1386
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 23,
-                    "startColumn": 4,
-                    "startOffset": 2521,
-                    "endColumn": 39,
-                    "endOffset": 2556
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 1391,
-                        "endColumn": 39,
-                        "endOffset": 1426
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 24,
-                    "startColumn": 4,
-                    "startOffset": 2561,
-                    "endColumn": 37,
-                    "endOffset": 2594
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 1431,
-                        "endColumn": 37,
-                        "endOffset": 1464
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 25,
-                    "startColumn": 4,
-                    "startOffset": 2599,
-                    "endColumn": 45,
-                    "endOffset": 2640
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1469,
-                        "endColumn": 45,
-                        "endOffset": 1510
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 26,
-                    "startColumn": 4,
-                    "startOffset": 2645,
-                    "endColumn": 45,
-                    "endOffset": 2686
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1515,
-                        "endColumn": 45,
-                        "endOffset": 1556
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 27,
-                    "startColumn": 4,
-                    "startOffset": 2691,
+                    "startOffset": 1185,
                     "endColumn": 44,
-                    "endOffset": 2731
+                    "endOffset": 1225
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -441,11 +251,11 @@
             },
             {
                 "to": {
-                    "startLine": 28,
+                    "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 2736,
+                    "startOffset": 1230,
                     "endColumn": 57,
-                    "endOffset": 2789
+                    "endOffset": 1283
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -460,11 +270,11 @@
             },
             {
                 "to": {
-                    "startLine": 29,
+                    "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 2794,
+                    "startOffset": 1288,
                     "endColumn": 52,
-                    "endOffset": 2842
+                    "endOffset": 1336
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -479,11 +289,11 @@
             },
             {
                 "to": {
-                    "startLine": 30,
+                    "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 2847,
+                    "startOffset": 1341,
                     "endColumn": 51,
-                    "endOffset": 2894
+                    "endOffset": 1388
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -498,11 +308,11 @@
             },
             {
                 "to": {
-                    "startLine": 31,
+                    "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 2899,
+                    "startOffset": 1393,
                     "endColumn": 60,
-                    "endOffset": 2955
+                    "endOffset": 1449
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -517,11 +327,11 @@
             },
             {
                 "to": {
-                    "startLine": 32,
+                    "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 2960,
+                    "startOffset": 1454,
                     "endColumn": 37,
-                    "endOffset": 2993
+                    "endOffset": 1487
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -536,11 +346,11 @@
             },
             {
                 "to": {
-                    "startLine": 33,
+                    "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 2998,
+                    "startOffset": 1492,
                     "endColumn": 35,
-                    "endOffset": 3029
+                    "endOffset": 1523
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -555,49 +365,11 @@
             },
             {
                 "to": {
-                    "startLine": 34,
+                    "startLine": 23,
                     "startColumn": 4,
-                    "startOffset": 3034,
-                    "endColumn": 69,
-                    "endOffset": 3099
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1561,
-                        "endColumn": 69,
-                        "endOffset": 1626
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 35,
-                    "startColumn": 4,
-                    "startOffset": 3104,
-                    "endColumn": 68,
-                    "endOffset": 3168
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1631,
-                        "endColumn": 68,
-                        "endOffset": 1695
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 36,
-                    "startColumn": 4,
-                    "startOffset": 3173,
+                    "startOffset": 1528,
                     "endColumn": 37,
-                    "endOffset": 3206
+                    "endOffset": 1561
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -612,11 +384,11 @@
             },
             {
                 "to": {
-                    "startLine": 37,
+                    "startLine": 24,
                     "startColumn": 4,
-                    "startOffset": 3211,
+                    "startOffset": 1566,
                     "endColumn": 35,
-                    "endOffset": 3242
+                    "endOffset": 1597
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -631,11 +403,11 @@
             },
             {
                 "to": {
-                    "startLine": 38,
+                    "startLine": 25,
                     "startColumn": 4,
-                    "startOffset": 3247,
+                    "startOffset": 1602,
                     "endColumn": 38,
-                    "endOffset": 3281
+                    "endOffset": 1636
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -650,11 +422,11 @@
             },
             {
                 "to": {
-                    "startLine": 39,
+                    "startLine": 26,
                     "startColumn": 4,
-                    "startOffset": 3286,
+                    "startOffset": 1641,
                     "endColumn": 39,
-                    "endOffset": 3321
+                    "endOffset": 1676
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -669,11 +441,11 @@
             },
             {
                 "to": {
-                    "startLine": 40,
+                    "startLine": 27,
                     "startColumn": 4,
-                    "startOffset": 3326,
+                    "startOffset": 1681,
                     "endColumn": 35,
-                    "endOffset": 3357
+                    "endOffset": 1712
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -688,11 +460,11 @@
             },
             {
                 "to": {
-                    "startLine": 41,
+                    "startLine": 28,
                     "startColumn": 4,
-                    "startOffset": 3362,
+                    "startOffset": 1717,
                     "endColumn": 43,
-                    "endOffset": 3401
+                    "endOffset": 1756
                 },
                 "from": {
                     "file": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\values\\strings.xml",
@@ -702,46 +474,6 @@
                         "startOffset": 523,
                         "endColumn": 43,
                         "endOffset": 562
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 42,
-                    "startColumn": 4,
-                    "startOffset": 3406,
-                    "endColumn": 26,
-                    "endOffset": 3428
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1700,
-                        "endColumn": 26,
-                        "endOffset": 1722
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 43,
-                    "startColumn": 4,
-                    "startOffset": 3433,
-                    "endLine": 48,
-                    "endColumn": 12,
-                    "endOffset": 3829
-                },
-                "from": {
-                    "file": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\exploded-aar\\Dr.Mind\\menudrawer\\unspecified\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1727,
-                        "endLine": 21,
-                        "endColumn": 12,
-                        "endOffset": 2123
                     }
                 }
             }

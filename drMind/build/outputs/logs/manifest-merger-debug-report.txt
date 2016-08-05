@@ -17,7 +17,6 @@ ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:2:1-55
 		ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml:7:5-44
-MERGED from [Dr.Mind:menudrawer:unspecified] E:\android_project\Dr.Mind\drMind\build\intermediates\exploded-aar\Dr.Mind\menudrawer\unspecified\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
 		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml
 		INJECTED from E:\android_project\Dr.Mind\drMind\src\main\AndroidManifest.xml

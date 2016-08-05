@@ -23,7 +23,6 @@ android {
 }
 
 dependencies {
-    compile project(':menudrawer')
     compile files('src/main/jniLibs/android-support-v4.jar')
     compile files('src/main/jniLibs/Msc.jar')
 }

@@ -17,7 +17,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cb_color=0x7f010001;
+        public static final int cb_color=0x7f010000;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -27,7 +27,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cb_pressedRingWidth=0x7f010002;
+        public static final int cb_pressedRingWidth=0x7f010001;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -36,7 +36,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fab_colorNormal=0x7f010004;
+        public static final int fab_colorNormal=0x7f010003;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -45,7 +45,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fab_colorPressed=0x7f010003;
+        public static final int fab_colorPressed=0x7f010002;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -54,7 +54,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fab_colorRipple=0x7f010005;
+        public static final int fab_colorRipple=0x7f010004;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -62,7 +62,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fab_shadow=0x7f010006;
+        public static final int fab_shadow=0x7f010005;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -73,142 +73,15 @@ containing a value of this type.
 <tr><td><code>mini</code></td><td>1</td><td></td></tr>
 </table>
          */
-        public static final int fab_type=0x7f010007;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int mdActiveIndicator=0x7f01000b;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdAllowIndicatorAnimation=0x7f010011;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int mdContentBackground=0x7f010008;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdDrawOverlay=0x7f010016;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdDrawerClosedUpContentDescription=0x7f010015;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdDrawerOpenUpContentDescription=0x7f010014;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int mdDropShadow=0x7f01000f;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdDropShadowColor=0x7f01000e;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdDropShadowEnabled=0x7f01000c;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdDropShadowSize=0x7f01000d;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdMaxAnimationDuration=0x7f010012;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int mdMenuBackground=0x7f010009;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdMenuSize=0x7f01000a;
-        /** <p>Must be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>left</code></td><td>0</td><td></td></tr>
-<tr><td><code>top</code></td><td>1</td><td></td></tr>
-<tr><td><code>right</code></td><td>2</td><td></td></tr>
-<tr><td><code>bottom</code></td><td>3</td><td></td></tr>
-<tr><td><code>start</code></td><td>4</td><td></td></tr>
-<tr><td><code>end</code></td><td>5</td><td></td></tr>
-</table>
-         */
-        public static final int mdPosition=0x7f010017;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int mdSlideDrawable=0x7f010013;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int mdTouchBezelSize=0x7f010010;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int menuDrawerStyle=0x7f010000;
+        public static final int fab_type=0x7f010006;
     }
     public static final class color {
         public static final int base_color_text_gray=0x7f050000;
         public static final int black=0x7f050001;
         public static final int material_blue_500=0x7f050002;
         public static final int material_blue_600=0x7f050003;
-        public static final int md__defaultBackground=0x7f050004;
-        public static final int menu_blue=0x7f050005;
-        public static final int selected_gray=0x7f050006;
+        public static final int menu_blue=0x7f050004;
+        public static final int selected_gray=0x7f050005;
     }
     public static final class dimen {
         public static final int action_button_content_margin=0x7f060000;
@@ -259,68 +132,57 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int xinjian=0x7f020025;
     }
     public static final class id {
-        public static final int action_left=0x7f070016;
-        public static final int action_right=0x7f070017;
-        public static final int bottom=0x7f07000a;
-        public static final int btn_color_picker=0x7f070011;
-        public static final int end=0x7f07000b;
-        public static final int iv_icon=0x7f070014;
-        public static final int left=0x7f07000c;
-        public static final int list=0x7f070018;
-        public static final int listView=0x7f070010;
-        public static final int mdActiveViewPosition=0x7f070000;
-        public static final int mdContent=0x7f070001;
-        public static final int mdMenu=0x7f070002;
-        public static final int md__content=0x7f070003;
-        public static final int md__drawer=0x7f070004;
-        public static final int md__menu=0x7f070005;
-        public static final int md__translationX=0x7f070006;
-        public static final int md__translationY=0x7f070007;
-        public static final int mini=0x7f070008;
-        public static final int newp=0x7f070019;
-        public static final int normal=0x7f070009;
-        public static final int picture=0x7f07001b;
-        public static final int right=0x7f07000d;
-        public static final int save=0x7f07001a;
-        public static final int start=0x7f07000e;
-        public static final int top=0x7f07000f;
-        public static final int tv_name=0x7f070015;
-        public static final int tv_text=0x7f070012;
-        public static final int viewgroup=0x7f070013;
+        public static final int action_left=0x7f080010;
+        public static final int action_right=0x7f080011;
+        public static final int btn_color_picker=0x7f080003;
+        public static final int drawerlayout=0x7f08000a;
+        public static final int fragment_layout=0x7f08000b;
+        public static final int item_imageview=0x7f080005;
+        public static final int item_textview=0x7f080006;
+        public static final int iv_icon=0x7f080008;
+        public static final int left=0x7f08000c;
+        public static final int left_listview=0x7f08000d;
+        public static final int list=0x7f080012;
+        public static final int listView=0x7f080002;
+        public static final int mini=0x7f080000;
+        public static final int newp=0x7f080013;
+        public static final int normal=0x7f080001;
+        public static final int picture=0x7f080015;
+        public static final int right=0x7f08000e;
+        public static final int right_textview=0x7f08000f;
+        public static final int save=0x7f080014;
+        public static final int tv_name=0x7f080009;
+        public static final int tv_text=0x7f080004;
+        public static final int viewgroup=0x7f080007;
     }
     public static final class layout {
         public static final int activity_clock=0x7f030000;
         public static final int activity_list=0x7f030001;
         public static final int colorpicker=0x7f030002;
-        public static final int dviewgroup=0x7f030003;
-        public static final int item_list_app=0x7f030004;
-        public static final int main=0x7f030005;
-        public static final int menu_main=0x7f030006;
-        public static final int menudrawer=0x7f030007;
+        public static final int content_item=0x7f030003;
+        public static final int dviewgroup=0x7f030004;
+        public static final int item_list_app=0x7f030005;
+        public static final int main=0x7f030006;
+        public static final int menu_main=0x7f030007;
+        public static final int menudrawer=0x7f030008;
     }
     public static final class raw {
         public static final int alert=0x7f040000;
     }
     public static final class string {
-        public static final int app_name=0x7f080000;
-        public static final int btn_color_picker=0x7f080001;
-        public static final int drawer_close=0x7f080002;
-        public static final int drawer_open=0x7f080003;
-        public static final int hello=0x7f080004;
-        public static final int left=0x7f080005;
-        public static final int list=0x7f080006;
-        public static final int md__drawerClosedIndicatorDesc=0x7f080007;
-        public static final int md__drawerOpenIndicatorDesc=0x7f080008;
-        public static final int name=0x7f080009;
-        public static final int newp=0x7f08000a;
-        public static final int picture=0x7f08000b;
-        public static final int right=0x7f08000c;
-        public static final int save=0x7f08000d;
-        public static final int useless=0x7f08000e;
-    }
-    public static final class style {
-        public static final int Widget=0x7f090000;
-        public static final int Widget_MenuDrawer=0x7f090001;
+        public static final int app_name=0x7f070000;
+        public static final int btn_color_picker=0x7f070001;
+        public static final int drawer_close=0x7f070002;
+        public static final int drawer_open=0x7f070003;
+        public static final int hello=0x7f070004;
+        public static final int left=0x7f070005;
+        public static final int list=0x7f070006;
+        public static final int name=0x7f070007;
+        public static final int newp=0x7f070008;
+        public static final int picture=0x7f070009;
+        public static final int right=0x7f07000a;
+        public static final int save=0x7f07000b;
+        public static final int useless=0x7f07000c;
     }
     public static final class styleable {
         /** Attributes that can be used with a CircleButton.
@@ -336,7 +198,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            @see #CircleButton_cb_pressedRingWidth
          */
         public static final int[] CircleButton = {
-            0x7f010001, 0x7f010002
+            0x7f010000, 0x7f010001
         };
         /**
           <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#cb_color}
@@ -388,8 +250,8 @@ containing a value of this type.
            @see #FloatingActionButton_fab_type
          */
         public static final int[] FloatingActionButton = {
-            0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006,
-            0x7f010007
+            0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005,
+            0x7f010006
         };
         /**
           <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#fab_colorNormal}
@@ -467,269 +329,5 @@ containing a value of this type.
           @attr name cn.edu.cn:fab_type
         */
         public static final int FloatingActionButton_fab_type = 4;
-        /** Attributes that can be used with a MenuDrawer.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MenuDrawer_mdActiveIndicator cn.edu.cn:mdActiveIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdAllowIndicatorAnimation cn.edu.cn:mdAllowIndicatorAnimation}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdContentBackground cn.edu.cn:mdContentBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdDrawOverlay cn.edu.cn:mdDrawOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdDrawerClosedUpContentDescription cn.edu.cn:mdDrawerClosedUpContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdDrawerOpenUpContentDescription cn.edu.cn:mdDrawerOpenUpContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdDropShadow cn.edu.cn:mdDropShadow}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdDropShadowColor cn.edu.cn:mdDropShadowColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdDropShadowEnabled cn.edu.cn:mdDropShadowEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdDropShadowSize cn.edu.cn:mdDropShadowSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdMaxAnimationDuration cn.edu.cn:mdMaxAnimationDuration}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdMenuBackground cn.edu.cn:mdMenuBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdMenuSize cn.edu.cn:mdMenuSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdPosition cn.edu.cn:mdPosition}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdSlideDrawable cn.edu.cn:mdSlideDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuDrawer_mdTouchBezelSize cn.edu.cn:mdTouchBezelSize}</code></td><td></td></tr>
-           </table>
-           @see #MenuDrawer_mdActiveIndicator
-           @see #MenuDrawer_mdAllowIndicatorAnimation
-           @see #MenuDrawer_mdContentBackground
-           @see #MenuDrawer_mdDrawOverlay
-           @see #MenuDrawer_mdDrawerClosedUpContentDescription
-           @see #MenuDrawer_mdDrawerOpenUpContentDescription
-           @see #MenuDrawer_mdDropShadow
-           @see #MenuDrawer_mdDropShadowColor
-           @see #MenuDrawer_mdDropShadowEnabled
-           @see #MenuDrawer_mdDropShadowSize
-           @see #MenuDrawer_mdMaxAnimationDuration
-           @see #MenuDrawer_mdMenuBackground
-           @see #MenuDrawer_mdMenuSize
-           @see #MenuDrawer_mdPosition
-           @see #MenuDrawer_mdSlideDrawable
-           @see #MenuDrawer_mdTouchBezelSize
-         */
-        public static final int[] MenuDrawer = {
-            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
-            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f,
-            0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013,
-            0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017
-        };
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdActiveIndicator}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cn.edu.cn:mdActiveIndicator
-        */
-        public static final int MenuDrawer_mdActiveIndicator = 3;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdAllowIndicatorAnimation}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdAllowIndicatorAnimation
-        */
-        public static final int MenuDrawer_mdAllowIndicatorAnimation = 9;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdContentBackground}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cn.edu.cn:mdContentBackground
-        */
-        public static final int MenuDrawer_mdContentBackground = 0;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdDrawOverlay}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdDrawOverlay
-        */
-        public static final int MenuDrawer_mdDrawOverlay = 14;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdDrawerClosedUpContentDescription}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdDrawerClosedUpContentDescription
-        */
-        public static final int MenuDrawer_mdDrawerClosedUpContentDescription = 13;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdDrawerOpenUpContentDescription}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdDrawerOpenUpContentDescription
-        */
-        public static final int MenuDrawer_mdDrawerOpenUpContentDescription = 12;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdDropShadow}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cn.edu.cn:mdDropShadow
-        */
-        public static final int MenuDrawer_mdDropShadow = 7;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdDropShadowColor}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdDropShadowColor
-        */
-        public static final int MenuDrawer_mdDropShadowColor = 6;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdDropShadowEnabled}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdDropShadowEnabled
-        */
-        public static final int MenuDrawer_mdDropShadowEnabled = 4;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdDropShadowSize}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdDropShadowSize
-        */
-        public static final int MenuDrawer_mdDropShadowSize = 5;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdMaxAnimationDuration}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdMaxAnimationDuration
-        */
-        public static final int MenuDrawer_mdMaxAnimationDuration = 10;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdMenuBackground}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cn.edu.cn:mdMenuBackground
-        */
-        public static final int MenuDrawer_mdMenuBackground = 1;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdMenuSize}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdMenuSize
-        */
-        public static final int MenuDrawer_mdMenuSize = 2;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdPosition}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>left</code></td><td>0</td><td></td></tr>
-<tr><td><code>top</code></td><td>1</td><td></td></tr>
-<tr><td><code>right</code></td><td>2</td><td></td></tr>
-<tr><td><code>bottom</code></td><td>3</td><td></td></tr>
-<tr><td><code>start</code></td><td>4</td><td></td></tr>
-<tr><td><code>end</code></td><td>5</td><td></td></tr>
-</table>
-          @attr name cn.edu.cn:mdPosition
-        */
-        public static final int MenuDrawer_mdPosition = 15;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdSlideDrawable}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cn.edu.cn:mdSlideDrawable
-        */
-        public static final int MenuDrawer_mdSlideDrawable = 11;
-        /**
-          <p>This symbol is the offset where the {@link cn.edu.cn.R.attr#mdTouchBezelSize}
-          attribute's value can be found in the {@link #MenuDrawer} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name cn.edu.cn:mdTouchBezelSize
-        */
-        public static final int MenuDrawer_mdTouchBezelSize = 8;
     };
 }

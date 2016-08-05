@@ -1,11 +1,11 @@
 [
     {
-        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\xinjian.png",
-        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-mdpi\\xinjian.png"
-    },
-    {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\think_white.png",
         "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-mdpi\\think_white.png"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\xinjian.png",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-mdpi\\xinjian.png"
     },
     {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\daochu.png",

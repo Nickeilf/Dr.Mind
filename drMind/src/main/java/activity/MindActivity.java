@@ -1,11 +1,11 @@
 package activity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-
-import net.simonvt.menudrawer.MenuDrawer;
-import net.simonvt.menudrawer.Position;
+import java.util.List;
+import drawer.ContentAdapter;
+import drawer.ContentModel;
 import swipemenulistview.SimpleActivity;
-import ui.ViewToPicture;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;
@@ -25,16 +25,18 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.widget.DrawerLayout;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import cn.edu.cn.R;
@@ -43,17 +45,19 @@ public class MindActivity extends Activity {
 	public static MindActivity a;
 	private AlarmManager alarmManager;
 	private PendingIntent pi;
-	private MenuDrawer mDrawer;
+
+	//new drawerlayout
+	private DrawerLayout drawerLayout;
+	private RelativeLayout leftLayout;
+	private RelativeLayout rightLayout;
+	private List<ContentModel> list;
+	private ContentAdapter adapter;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		mDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND, Position.LEFT);
-		mDrawer.setContentView(R.layout.main);
-		mDrawer.setMenuView(R.layout.menudrawer);
-		initLeftButton();
 
 		// ①获取AlarmManager对象:
 		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -63,107 +67,136 @@ public class MindActivity extends Activity {
 
 		// 全屏显示
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// setContentView(R.layout.main);
+		 setContentView(R.layout.main);
 		init();
 		initRightButton();
 
-		Bundle bundle = this.getIntent().getExtras();
-		if (bundle != null) {
-			String state = bundle.getString("state");
-			if (state != null && (state.equals("open") || state.equals("save"))) {
-				String name = bundle.getString("name");
-				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-				group.load(name);
-			}
- 	
-		}
 
-	}
-
-	private void initLeftButton() {
-		// 目录按钮
-		Button button_list = (Button) findViewById(R.id.list);
-		button_list.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				startActivity(new Intent(MindActivity.this, SimpleActivity.class));
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+		leftLayout=(RelativeLayout) findViewById(R.id.left);
+		rightLayout=(RelativeLayout) findViewById(R.id.right);
+		ListView listView=(ListView) leftLayout.findViewById(R.id.left_listview);
+		initData();
+		adapter=new ContentAdapter(this, list);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				String choose=list.get(position).getText();
+				System.out.println("list "+choose);
+				 if( choose.equals("目录")){
+					 System.out.println("list in!");
+					 startActivity(new Intent(MindActivity.this, SimpleActivity.class));
+				 };
 			}
 		});
 
-		// 保存按钮
-		Button button_save = (Button) findViewById(R.id.save);
-		button_save.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				final EditText editText = new EditText(MindActivity.this);
-				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-				if (group.isOpenSaved()) {
-					editText.setText(group.getCurretFileName());
-				}
-				new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
-						.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
-						.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								String name = editText.getText().toString();
-								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-								if (name.equals("")) {
-									Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
-											.show();
-									return;
-								}
-								if (group.existPaint(name)) {
-									Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
-											.show();
-									return;
-								} else {
-									System.out.println("保存的图名： " + name);
-
-									group.save(name);
-									
-									Intent intent=new Intent(MindActivity.this,MindActivity.class);
-									Bundle bundle=new Bundle();
-									bundle.putString("state", "save");
-									bundle.putString("name", name);
-									intent.putExtras( bundle);
-									startActivity(intent);
-									
-									Toast.makeText(getApplicationContext(), "图表" + name + "保存成功~", Toast.LENGTH_LONG)
-											.show();
-								}
-							}
-						}).setNegativeButton("取消", null).show();
-
-			}
-		});
-
-		// 导出按钮
-		Button button_daochu = (Button) findViewById(R.id.picture);
-		button_daochu.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				View view = findViewById(R.id.viewgroup);
-				if (view != null) {
-					ViewToPicture viewToPic = new ViewToPicture();
-					viewToPic.save(view, "Liu");
-				} else {
-					System.out.println("view null");
-				}
-			}
-		});
-
-		// 新建按钮
-		Button button_new = (Button) findViewById(R.id.newp);
-		button_new.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
+//		Bundle bundle = this.getIntent().getExtras();
+//		if (bundle != null) {
+//			String state = bundle.getString("state");
+//			if (state != null && (state.equals("open") || state.equals("save"))) {
+//				String name = bundle.getString("name");
 //				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-//				group.newP();
-				startActivity(new Intent(MindActivity.this,MindActivity.class));
-				Toast.makeText(getApplicationContext(), "新建图表成功", Toast.LENGTH_LONG).show();
-			}
-		});
+//				group.load(name);
+//			}
+//
+//		}
 
 	}
+
+	private void initData() {
+		list=new ArrayList<ContentModel>();
+		list.add(new ContentModel(R.drawable.mulu, "目录"));
+		list.add(new ContentModel(R.drawable.xinjian, "新建"));
+		list.add(new ContentModel(R.drawable.save, "保存"));
+		list.add(new ContentModel(R.drawable.daochu, "导出"));
+		list.add(new ContentModel(R.drawable.clock, "提醒"));
+	}
+
+//	private void initLeftButton() {
+//		// 目录按钮
+//		Button button_list = (Button) findViewById(R.id.list);
+//		button_list.setOnClickListener(new OnClickListener() {
+//
+//			public void onClick(View v) {
+//				startActivity(new Intent(MindActivity.this, SimpleActivity.class));
+//			}
+//		});
+//
+//		// 保存按钮
+//		Button button_save = (Button) findViewById(R.id.save);
+//		button_save.setOnClickListener(new OnClickListener() {
+//
+//			public void onClick(View v) {
+//				final EditText editText = new EditText(MindActivity.this);
+//				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+//				if (group.isOpenSaved()) {
+//					editText.setText(group.getCurretFileName());
+//				}
+//				new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
+//						.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
+//						.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//							public void onClick(DialogInterface dialog, int which) {
+//								String name = editText.getText().toString();
+//								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+//								if (name.equals("")) {
+//									Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
+//											.show();
+//									return;
+//								}
+//								if (group.existPaint(name)) {
+//									Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
+//											.show();
+//									return;
+//								} else {
+//									System.out.println("保存的图名： " + name);
+//
+//									group.save(name);
+//
+//									Intent intent=new Intent(MindActivity.this,MindActivity.class);
+//									Bundle bundle=new Bundle();
+//									bundle.putString("state", "save");
+//									bundle.putString("name", name);
+//									intent.putExtras( bundle);
+//									startActivity(intent);
+//
+//									Toast.makeText(getApplicationContext(), "图表" + name + "保存成功~", Toast.LENGTH_LONG)
+//											.show();
+//								}
+//							}
+//						}).setNegativeButton("取消", null).show();
+//
+//			}
+//		});
+//
+//		// 导出按钮
+//		Button button_daochu = (Button) findViewById(R.id.picture);
+//		button_daochu.setOnClickListener(new OnClickListener() {
+//
+//			public void onClick(View v) {
+//				View view = findViewById(R.id.viewgroup);
+//				if (view != null) {
+//					ViewToPicture viewToPic = new ViewToPicture();
+//					viewToPic.save(view, "Liu");
+//				} else {
+//					System.out.println("view null");
+//				}
+//			}
+//		});
+//
+//		// 新建按钮
+//		Button button_new = (Button) findViewById(R.id.newp);
+//		button_new.setOnClickListener(new OnClickListener() {
+//
+//			public void onClick(View v) {
+////				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+////				group.newP();
+//				startActivity(new Intent(MindActivity.this,MindActivity.class));
+//				Toast.makeText(getApplicationContext(), "新建图表成功", Toast.LENGTH_LONG).show();
+//			}
+//		});
+//
+//	}
 
 	@SuppressWarnings("deprecation")
 	private void initRightButton() {
