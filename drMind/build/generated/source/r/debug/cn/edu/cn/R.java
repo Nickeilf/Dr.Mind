@@ -132,25 +132,24 @@ containing a value of this type.
         public static final int xinjian=0x7f020025;
     }
     public static final class id {
-        public static final int action_left=0x7f080010;
-        public static final int action_right=0x7f080011;
+        public static final int action_left=0x7f08000f;
+        public static final int action_right=0x7f080010;
         public static final int btn_color_picker=0x7f080003;
         public static final int drawerlayout=0x7f08000a;
-        public static final int fragment_layout=0x7f08000b;
         public static final int item_imageview=0x7f080005;
         public static final int item_textview=0x7f080006;
         public static final int iv_icon=0x7f080008;
-        public static final int left=0x7f08000c;
-        public static final int left_listview=0x7f08000d;
-        public static final int list=0x7f080012;
+        public static final int left=0x7f08000b;
+        public static final int left_listview=0x7f08000c;
+        public static final int list=0x7f080011;
         public static final int listView=0x7f080002;
         public static final int mini=0x7f080000;
-        public static final int newp=0x7f080013;
+        public static final int newp=0x7f080012;
         public static final int normal=0x7f080001;
-        public static final int picture=0x7f080015;
-        public static final int right=0x7f08000e;
-        public static final int right_textview=0x7f08000f;
-        public static final int save=0x7f080014;
+        public static final int picture=0x7f080014;
+        public static final int right=0x7f08000d;
+        public static final int right_textview=0x7f08000e;
+        public static final int save=0x7f080013;
         public static final int tv_name=0x7f080009;
         public static final int tv_text=0x7f080004;
         public static final int viewgroup=0x7f080007;
