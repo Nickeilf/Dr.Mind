@@ -198,8 +198,7 @@ public class SwipeMenuLayout extends FrameLayout {
 	public boolean isOpen() {
 		return state == STATE_OPEN;
 	}
-
-	@Override
+ 
 	public boolean onTouchEvent(MotionEvent event) {
 		return super.onTouchEvent(event);
 	}
