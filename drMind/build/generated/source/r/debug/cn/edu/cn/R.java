@@ -141,15 +141,11 @@ containing a value of this type.
         public static final int iv_icon=0x7f080008;
         public static final int left=0x7f08000b;
         public static final int left_listview=0x7f08000c;
-        public static final int list=0x7f080011;
         public static final int listView=0x7f080002;
         public static final int mini=0x7f080000;
-        public static final int newp=0x7f080012;
         public static final int normal=0x7f080001;
-        public static final int picture=0x7f080014;
         public static final int right=0x7f08000d;
         public static final int right_textview=0x7f08000e;
-        public static final int save=0x7f080013;
         public static final int tv_name=0x7f080009;
         public static final int tv_text=0x7f080004;
         public static final int viewgroup=0x7f080007;
@@ -161,9 +157,9 @@ containing a value of this type.
         public static final int content_item=0x7f030003;
         public static final int dviewgroup=0x7f030004;
         public static final int item_list_app=0x7f030005;
-        public static final int main=0x7f030006;
-        public static final int menu_main=0x7f030007;
-        public static final int menudrawer=0x7f030008;
+        public static final int layout=0x7f030006;
+        public static final int main=0x7f030007;
+        public static final int menu_main=0x7f030008;
     }
     public static final class raw {
         public static final int alert=0x7f040000;

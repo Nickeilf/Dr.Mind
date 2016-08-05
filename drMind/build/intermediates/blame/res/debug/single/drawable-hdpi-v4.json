@@ -1,23 +1,23 @@
 [
     {
-        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\save.png",
-        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-hdpi\\save.png"
-    },
-    {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\mulu.png",
         "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-hdpi\\mulu.png"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\save.png",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-hdpi\\save.png"
     },
     {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\button_sub_action.png",
         "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-hdpi\\button_sub_action.png"
     },
     {
-        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\success2.png",
-        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-hdpi\\success2.png"
-    },
-    {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\voice.png",
         "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-hdpi\\voice.png"
+    },
+    {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\success2.png",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\drawable-hdpi\\success2.png"
     },
     {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\shadow_mini.png",

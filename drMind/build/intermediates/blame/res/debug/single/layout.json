@@ -8,6 +8,10 @@
         "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\main.xml"
     },
     {
+        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\layout.xml",
+        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\layout.xml"
+    },
+    {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\content_item.xml",
         "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\content_item.xml"
     },
@@ -26,10 +30,6 @@
     {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\activity_clock.xml",
         "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\activity_clock.xml"
-    },
-    {
-        "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\menudrawer.xml",
-        "source": "E:\\android_project\\Dr.Mind\\drMind\\src\\main\\res\\layout\\menudrawer.xml"
     },
     {
         "merged": "E:\\android_project\\Dr.Mind\\drMind\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_app.xml",
