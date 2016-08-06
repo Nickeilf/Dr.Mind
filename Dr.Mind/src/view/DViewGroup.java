@@ -665,11 +665,20 @@ public class DViewGroup extends ViewGroup {
 			DEditTextView view = editTexts.get(i);
 			DEditTextView pa = view.getDad();
 			level = view.getNode().getLevel();
+			int x_start = pa.getRight() - 5;
+			int x_end = view.getLeft();
+			if (x_end < x_start && x_start - x_end > singleRec) {
+				if (view.getRight() > x_start - singleRec)
+					x_end = x_start - singleRec;
+				else
+					x_end = view.getRight();
+			}
 			if (level == 1) {
-				myDraw(pa.getRight() - 5, (pa.getBottom() + pa.getTop()) / 2 - 5, view.getLeft(), view.getBottom() - 5,
-						canvas);
-			} else
-				myDraw(pa.getRight() - 5, pa.getBottom() - 5, view.getLeft(), view.getBottom() - 5, canvas);
+				myDraw(pa.getRight() - 5, (pa.getBottom() + pa.getTop()) / 2 - 5, x_end, view.getBottom() - 5, canvas);
+			} else {
+
+				myDraw(pa.getRight() - 5, pa.getBottom() - 5, x_end, view.getBottom() - 5, canvas);
+			}
 		}
 	}
 
@@ -683,13 +692,25 @@ public class DViewGroup extends ViewGroup {
 		float y_value;
 		float x_newvalue;
 		float y_newvalue;
-		for (int i = 0; i < T / 2; i++) {
-			x_value = i + x_start;
-			y_value = (float) (-A * Math.sin(w * i + Math.PI / 2) + A + y_start);
-			x_newvalue = i + x_start + 1;
-			int j = i + 1;
-			y_newvalue = (float) (-A * Math.sin(w * j + Math.PI / 2) + A + y_start);
-			canvas.drawLine(x_value, y_value, x_newvalue, y_newvalue, paint);
+		boolean left = x_start >= x_end;
+		if (!left) {
+			for (int i = 0; i < T / 2; i++) {
+				x_value = i + x_start;
+				y_value = (float) (-A * Math.sin(w * i + Math.PI / 2) + A + y_start);
+				x_newvalue = i + x_start + 1;
+				int j = i + 1;
+				y_newvalue = (float) (-A * Math.sin(w * j + Math.PI / 2) + A + y_start);
+				canvas.drawLine(x_value, y_value, x_newvalue, y_newvalue, paint);
+			}
+		} else {
+			for (int i = 0; i < T / 2; i++) {
+				x_value = -i + x_start;
+				y_value = (float) (-A * Math.sin(w * i + Math.PI / 2) + A + y_start);
+				x_newvalue = -i + x_start - 1;
+				int j = i + 1;
+				y_newvalue = (float) (-A * Math.sin(w * j + Math.PI / 2) + A + y_start);
+				canvas.drawLine(x_value, y_value, x_newvalue, y_newvalue, paint);
+			}
 		}
 	}
 
@@ -737,7 +758,7 @@ public class DViewGroup extends ViewGroup {
 				view.measure(0, 0);
 				view.layout(view.getxPos(), view.getyPos(), view.getxPos() + view.getMeasuredWidth(),
 						view.getyPos() + view.getMeasuredHeight());
-				System.out.println(view.getMeasuredWidth()+" "+view.getMeasuredHeight());
+				System.out.println(view.getMeasuredWidth() + " " + view.getMeasuredHeight());
 			}
 		}
 		invalidate();
