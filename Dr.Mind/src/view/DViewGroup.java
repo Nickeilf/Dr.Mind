@@ -83,7 +83,6 @@ public class DViewGroup extends ViewGroup {
 	}
 
 	public void save(String name) {
-		// TODO getName
 		Iterator<Map.Entry<Node, DEditTextView>> itr = maps.entrySet().iterator();
 		while (itr.hasNext()) {
 
@@ -212,102 +211,258 @@ public class DViewGroup extends ViewGroup {
 		view.setRaw_width(view.getMeasuredWidth());
 	}
 
-	public void checkMove(DEditTextView view, float y_pos) {
-		// TODO 动画移动效果
-		if (view.getNode().getLevel() == 0) {
-			// 跟节点不调整
-			return;
-		} else {
-			int weight = paintService.numNode(view.getNode());
-			ArrayList<Node> nodes = paintService.getAllSon(view.getNode().getParent());
-			int new_pos = 0;
-			for (; new_pos < nodes.size(); new_pos++) {
-				DEditTextView v = maps.get(nodes.get(new_pos));
-				if (v.getyPos() > view.getyPos()) {
-					break;
-				}
-			}
-			int position = nodes.indexOf(view.getNode());
-			// 没有移动超过临界
-			if (new_pos - position == 1) {
-				float y_dis = view.getyPos();
-				float x_dis = view.getxPos();
-				view.setxPos(view.getRaw_x());
-				view.setyPos(view.getRaw_y());
-				y_dis = view.getyPos() - y_dis;
-				x_dis = view.getxPos() - x_dis;
+	private boolean isInsideAnyText(DEditTextView text, float x, float y) {
+		float left = text.getxPos();
+		float right = left + text.getMeasuredWidth();
+		float top = text.getyPos();
+		float bottom = top + text.getMeasuredHeight();
+		if (x < right && x > left && y > top && y < bottom)
+			return true;
+		else
+			return false;
+	}
 
-				// ValueAnimator va = new ValueAnimator().ofInt(view.getyPos() -
-				// (int) y_dis, view.getyPos());
-				// va.setTarget(view);
-				// va.setDuration(2000);
-				// va.addUpdateListener(new animatorListener(view));
-				// va.start();
+	private boolean checkInside(DEditTextView view, float x, float y) {
+		DEditTextView ancestorBefore = view;
+		while (ancestorBefore.getDad() != null) {
+			ancestorBefore = ancestorBefore.getDad();
+		}
 
-				move(view, x_dis, y_dis);
-				requestLayout();
-				return;
-			}
-			boolean up = new_pos < position;
-			if (up) {
-				// 上行
-				for (int i = new_pos; i < position; i++) {
-					DEditTextView v = maps.get(nodes.get(i));
-					v.setyPos(v.getyPos() + weight * singleRec);
-					move(v, 0, weight * singleRec);
+		Iterator<Map.Entry<Node, DEditTextView>> itr = maps.entrySet().iterator();
+		while (itr.hasNext()) {
+			Map.Entry<Node, DEditTextView> entry = (Entry<Node, DEditTextView>) itr.next();
+			DEditTextView textView = entry.getValue();
+			if (isInsideAnyText(textView, x, y)) {
+				if (textView == view) {
+					continue;
 				}
-				Node next = nodes.get(new_pos);
-				DEditTextView next_text = maps.get(next);
-				float y_dis = view.getyPos();
-				float x_dis = view.getxPos();
-				view.setyPos(next_text.getLittleSon().getyPos() - singleRec * paintService.numNode(next)
-						- (weight - 1) * singleRec / 2);
-				view.setxPos(next_text.getxPos());
-				y_dis = view.getyPos() - y_dis;
-				x_dis = view.getxPos() - x_dis;
-				move(view, x_dis, y_dis);
-				if (position == nodes.size() - 1) {
-					DEditTextView new_little = maps.get(nodes.get(position - 1));
-					view.getDad().setLittleSon(new_little);
+				System.out.println("换换换");
+				DEditTextView ancestorNow = textView;
+				while (ancestorNow.getDad() != null) {
+					ancestorNow = ancestorNow.getDad();
 				}
-				requestLayout();
-				// 树形结构更新
-				if (new_pos == 0) {
-					paintService.MoveNode(view.getNode(), view.getNode().getParent(), null);
+				boolean hasLastBro = !(textView.getLittleSon() == textView);
+				ArrayList<Node> before = paintService.getAllChild(ancestorBefore.getNode());
+				ArrayList<Node> now = paintService.getAllChild(ancestorNow.getNode());
+				ArrayList<Node> childs = paintService.getAllChild(view.getNode());
+				before.removeAll(childs);
+				now.removeAll(childs);
+				now.remove(view.getNode());
+				// 一脉剔除
+				Node p = view.getNode();
+				while (p != null) {
+					before.remove(p);
+					p = p.getParent();
+				}
+				p = textView.getNode();
+				while (p != null) {
+					now.remove(p);
+					p = p.getParent();
+				}
+				int level_dis = view.getLevel() - textView.getLevel() - 1;
+				view.setLevel(textView.getLevel() + 1);
+				for (Node node : childs) {
+					DEditTextView child = maps.get(node);
+					child.setLevel(child.getLevel() + level_dis);
+				}
+				// if ancestorBefore==ancestorNow
+				// else
+				
+				// 原树的后续(愿父亲的littleson)
+				boolean selfSon = false;
+				if (view.getDad() == null) {
+					editTexts.add(view);
 				} else {
-					paintService.MoveNode(view.getNode(), view.getNode().getParent(), nodes.get(new_pos - 1));
+					DEditTextView pa = view.getDad();
+					ArrayList<Node> cousins = paintService.getAllSon(pa.getNode());
+					if (cousins.size() == 1) {
+						pa.setLittleSon(pa);
+						selfSon = true;
+					} else {
+						if (pa.getLittleSon() == view) {
+							pa.setLittleSon(maps.get(cousins.get(cousins.size() - 2)));
+						}
+					}
 				}
+				int weight = paintService.numNode(view.getNode());
+				if (selfSon) {
+					for (int i = 0; i < before.size(); i++) {
+						DEditTextView temp = maps.get(before.get(i));
+						if(temp.getyPos()>view.getRaw_y()){
+							int tempY=temp.getyPos()-(weight-1)*singleRec/2;
+							temp.setyPos(tempY);
+						}else{
+							int tempY=temp.getyPos()+(weight-1)*singleRec/2;
+							temp.setyPos(tempY);
+						}
+					}
+				} else {
+					for (int i = 0; i < before.size(); i++) {
+						DEditTextView temp = maps.get(before.get(i));
+						if(temp.getyPos()>view.getRaw_y()){
+							int tempY=temp.getyPos()-(weight)*singleRec/2;
+							temp.setyPos(tempY);
+						}else{
+							int tempY=temp.getyPos()+(weight)*singleRec/2;
+							temp.setyPos(tempY);
+						}
+					}
+
+				}
+
+				view.setDad(textView);
+
+				// 移动到新树
+				if (!hasLastBro) {
+					// TODO 插入到跟节点时
+					int x_dis = textView.getxPos() + textView.getMeasuredWidth() + Constant.SIN_WIDTH - view.getxPos();
+					int y_dis = textView.getyPos() - view.getyPos();
+					view.setxPos(textView.getxPos() + textView.getMeasuredWidth() + Constant.SIN_WIDTH);
+					view.setyPos(textView.getyPos());
+					move(view, x_dis, y_dis);
+					for (int i = 0; i < now.size(); i++) {
+						DEditTextView text = maps.get(now.get(i));
+						System.out.println(text.getText().toString());
+						int y_pos = view.getyPos();
+						int y_temp = text.getyPos();
+						if (y_pos > y_temp) {
+							y_temp -= (weight - 1) * singleRec / 2;
+							text.setyPos(y_temp);
+						} else {
+							y_temp += (weight - 1) * singleRec / 2;
+							text.setyPos(y_temp);
+						}
+					}
+					requestLayout();
+					paintService.MoveNode(view.getNode(), textView.getNode(), null);
+				} else {
+					DEditTextView bro = textView.getLittleSon();
+					int x_dis = bro.getxPos() - view.getxPos();
+					int y_dis = bro.getyPos() + singleRec / 2 - view.getyPos();
+					view.setxPos(bro.getxPos());
+					view.setyPos(bro.getyPos() + singleRec / 2);
+					move(view, x_dis, y_dis);
+					for (int i = 0; i < now.size(); i++) {
+						DEditTextView text = maps.get(now.get(i));
+						int y_pos = view.getyPos();
+						int y_temp = text.getyPos();
+						if (y_pos > y_temp) {
+							y_temp -= weight * singleRec / 2;
+							text.setyPos(y_temp);
+						} else {
+							y_temp += weight * singleRec / 2;
+							text.setyPos(y_temp);
+						}
+					}
+					requestLayout();
+					paintService.MoveNode(view.getNode(), textView.getNode(), bro.getNode());
+				}
+				textView.setLittleSon(view);
+
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void checkMove(DEditTextView view, float y_pos, float x_pos) {
+		// TODO 动画移动效果
+		if (!checkInside(view, x_pos, y_pos)) {
+			if (view.getNode().getLevel() == 0) {
+				// 跟节点不调整
+				return;
 			} else {
-				// 下行
-				new_pos = nodes.size() - 1;
-				for (; new_pos >= 0; new_pos--) {
+				int weight = paintService.numNode(view.getNode());
+				ArrayList<Node> nodes = paintService.getAllSon(view.getNode().getParent());
+				int new_pos = 0;
+				for (; new_pos < nodes.size(); new_pos++) {
 					DEditTextView v = maps.get(nodes.get(new_pos));
-					if (v.getyPos() < view.getyPos()) {
+					if (v.getyPos() > view.getyPos()) {
 						break;
 					}
 				}
-				for (int i = new_pos; i > position; i--) {
-					DEditTextView v = maps.get(nodes.get(i));
-					v.setyPos(v.getyPos() - weight * singleRec);
-					move(v, 0, -weight * singleRec);
+				int position = nodes.indexOf(view.getNode());
+				// 没有移动超过临界
+				if (new_pos - position == 1) {
+					float y_dis = view.getyPos();
+					float x_dis = view.getxPos();
+					view.setxPos(view.getRaw_x());
+					view.setyPos(view.getRaw_y());
+					y_dis = view.getyPos() - y_dis;
+					x_dis = view.getxPos() - x_dis;
+
+					// ValueAnimator va = new
+					// ValueAnimator().ofInt(view.getyPos() -
+					// (int) y_dis, view.getyPos());
+					// va.setTarget(view);
+					// va.setDuration(2000);
+					// va.addUpdateListener(new animatorListener(view));
+					// va.start();
+
+					move(view, x_dis, y_dis);
+					requestLayout();
+					return;
 				}
-				Node last = nodes.get(new_pos);
-				DEditTextView last_text = maps.get(last);
-				float y_dis = view.getyPos();
-				float x_dis = view.getxPos();
-				view.setyPos(last_text.getLittleSon().getyPos() + singleRec + (weight - 1) * singleRec / 2);
-				view.setxPos(last_text.getxPos());
-				y_dis = view.getyPos() - y_dis;
-				x_dis = view.getxPos() - x_dis;
-				move(view, x_dis, y_dis);
-				if (new_pos == nodes.size() - 1) {
-					view.getDad().setLittleSon(view);
+				boolean up = new_pos < position;
+				if (up) {
+					// 上行
+					for (int i = new_pos; i < position; i++) {
+						DEditTextView v = maps.get(nodes.get(i));
+						v.setyPos(v.getyPos() + weight * singleRec);
+						move(v, 0, weight * singleRec);
+					}
+					Node next = nodes.get(new_pos);
+					DEditTextView next_text = maps.get(next);
+					float y_dis = view.getyPos();
+					float x_dis = view.getxPos();
+					view.setyPos(next_text.getLittleSon().getyPos() - singleRec * paintService.numNode(next)
+							- (weight - 1) * singleRec / 2);
+					view.setxPos(next_text.getxPos());
+					y_dis = view.getyPos() - y_dis;
+					x_dis = view.getxPos() - x_dis;
+					move(view, x_dis, y_dis);
+					if (position == nodes.size() - 1) {
+						DEditTextView new_little = maps.get(nodes.get(position - 1));
+						view.getDad().setLittleSon(new_little);
+					}
+					requestLayout();
+					// 树形结构更新
+					if (new_pos == 0) {
+						paintService.MoveNode(view.getNode(), view.getNode().getParent(), null);
+					} else {
+						paintService.MoveNode(view.getNode(), view.getNode().getParent(), nodes.get(new_pos - 1));
+					}
+				} else {
+					// 下行
+					new_pos = nodes.size() - 1;
+					for (; new_pos >= 0; new_pos--) {
+						DEditTextView v = maps.get(nodes.get(new_pos));
+						if (v.getyPos() < view.getyPos()) {
+							break;
+						}
+					}
+					for (int i = new_pos; i > position; i--) {
+						DEditTextView v = maps.get(nodes.get(i));
+						v.setyPos(v.getyPos() - weight * singleRec);
+						move(v, 0, -weight * singleRec);
+					}
+					Node last = nodes.get(new_pos);
+					DEditTextView last_text = maps.get(last);
+					float y_dis = view.getyPos();
+					float x_dis = view.getxPos();
+					view.setyPos(last_text.getLittleSon().getyPos() + singleRec + (weight - 1) * singleRec / 2);
+					view.setxPos(last_text.getxPos());
+					y_dis = view.getyPos() - y_dis;
+					x_dis = view.getxPos() - x_dis;
+					move(view, x_dis, y_dis);
+					if (new_pos == nodes.size() - 1) {
+						view.getDad().setLittleSon(view);
+					}
+					requestLayout();
+					paintService.MoveNode(view.getNode(), view.getNode().getParent(), last);
 				}
-				requestLayout();
-				paintService.MoveNode(view.getNode(), view.getNode().getParent(), last);
 			}
 		}
-
 	}
 
 	/**
@@ -408,7 +563,6 @@ public class DViewGroup extends ViewGroup {
 	 */
 	public void deleteNode() {
 		View v = getFocusedChild();
-		// TODO 考虑删除跟节点的情况
 		int scaleWeight = 0;
 		boolean selfSon = false;
 		if (v instanceof DEditTextView) {
@@ -476,19 +630,6 @@ public class DViewGroup extends ViewGroup {
 							view.setyPos(y);
 						}
 					}
-					// for (int i = 0; i < roots.size(); i++) {
-					// DEditTextView view = maps.get(roots.get(i));
-					// int y = view.getyPos();
-					// int lowest = text.getLittleSon() == null ? text.getyPos()
-					// : text.getLittleSon().getyPos();
-					// if (y > lowest) {
-					// y -= weight * singleRec / 2;
-					// view.setyPos(y);
-					// } else {
-					// y += weight * singleRec / 2;
-					// view.setyPos(y);
-					// }
-					// }
 				} else {
 					for (int i = 0; i < relatives.size(); i++) {
 						DEditTextView view = maps.get(relatives.get(i));
@@ -502,19 +643,7 @@ public class DViewGroup extends ViewGroup {
 							view.setyPos(y);
 						}
 					}
-					// for (int i = 0; i < roots.size(); i++) {
-					// DEditTextView view = maps.get(roots.get(i));
-					// int y = view.getyPos();
-					// int lowest = text.getLittleSon() == null ? text.getyPos()
-					// : text.getLittleSon().getyPos();
-					// if (y > lowest) {
-					// y -= (weight - 1) * singleRec / 2;
-					// view.setyPos(y);
-					// } else {
-					// y += (weight - 1) * singleRec / 2;
-					// view.setyPos(y);
-					// }
-					// }
+
 				}
 			}
 			text = null;
@@ -674,10 +803,10 @@ public class DViewGroup extends ViewGroup {
 					x_end = view.getRight();
 			}
 			if (level == 1) {
-				myDraw(pa.getRight() - 5, (pa.getBottom() + pa.getTop()) / 2 - 5, x_end, view.getBottom() - 5, canvas);
+				myDraw(pa.getRight() - 3, (pa.getBottom() + pa.getTop()) / 2 - 5, x_end, view.getBottom() - 5, canvas);
 			} else {
 
-				myDraw(pa.getRight() - 5, pa.getBottom() - 5, x_end, view.getBottom() - 5, canvas);
+				myDraw(pa.getRight() - 3, pa.getBottom() - 5, x_end, view.getBottom() - 5, canvas);
 			}
 		}
 	}
@@ -758,7 +887,6 @@ public class DViewGroup extends ViewGroup {
 				view.measure(0, 0);
 				view.layout(view.getxPos(), view.getyPos(), view.getxPos() + view.getMeasuredWidth(),
 						view.getyPos() + view.getMeasuredHeight());
-				System.out.println(view.getMeasuredWidth() + " " + view.getMeasuredHeight());
 			}
 		}
 		invalidate();

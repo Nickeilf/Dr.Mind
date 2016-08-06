@@ -115,21 +115,21 @@ public class DEditTextView extends EditText {
 			this.clearFocusing();
 			DViewGroup pa = (DViewGroup) getParent();
 			pa.textMove(this);
-//			if (level != 0) {
-//				focusing = false;
-//				invalidate();
-//			} else {
-//				paint.setAlpha(100);
-//				invalidate();
-//			}
-//		} else {
-//			if (level != 0) {
-//				paint.setAlpha(255);
-//				invalidate();
-//			} else {
-//				paint.setAlpha(200);
-//				invalidate();
-//			}
+			// if (level != 0) {
+			// focusing = false;
+			// invalidate();
+			// } else {
+			// paint.setAlpha(100);
+			// invalidate();
+			// }
+			// } else {
+			// if (level != 0) {
+			// paint.setAlpha(255);
+			// invalidate();
+			// } else {
+			// paint.setAlpha(200);
+			// invalidate();
+			// }
 		}
 
 	}
@@ -140,9 +140,9 @@ public class DEditTextView extends EditText {
 		super.onDraw(canvas);
 		float height = this.getHeight() - paint.getStrokeWidth() / 2 - 1;
 		if (level == 0) {
-			if(focusing){
+			if (focusing) {
 				paint.setAlpha(200);
-			}else{
+			} else {
 				paint.setAlpha(100);
 			}
 			canvas.drawRoundRect(new RectF(paint.getStrokeWidth(), paint.getStrokeWidth(),
@@ -226,7 +226,7 @@ public class DEditTextView extends EditText {
 
 				if (moving) {
 					DViewGroup parent = (DViewGroup) getParent();
-					parent.checkMove(this, stop_y);
+					parent.checkMove(this, yPos + event.getY(), xPos + event.getX());
 					moving = false;
 				}
 				break;
