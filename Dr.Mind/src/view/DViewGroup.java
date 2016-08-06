@@ -233,7 +233,7 @@ public class DViewGroup extends ViewGroup {
 			Map.Entry<Node, DEditTextView> entry = (Entry<Node, DEditTextView>) itr.next();
 			DEditTextView textView = entry.getValue();
 			if (isInsideAnyText(textView, x, y)) {
-				if (textView == view) {
+				if (textView == view||textView==view.getDad()) {
 					continue;
 				}
 				System.out.println("换换换");
@@ -259,19 +259,25 @@ public class DViewGroup extends ViewGroup {
 					now.remove(p);
 					p = p.getParent();
 				}
-				int level_dis = view.getLevel() - textView.getLevel() - 1;
-				view.setLevel(textView.getLevel() + 1);
+				int level_dis = textView.getLevel() + 1 - view.getLevel();
+				view.setLevel(view.getLevel()+level_dis);
 				for (Node node : childs) {
 					DEditTextView child = maps.get(node);
 					child.setLevel(child.getLevel() + level_dis);
+//					child.requestFocus();
 				}
+				
 				// if ancestorBefore==ancestorNow
 				// else
-				
-				// 原树的后续(愿父亲的littleson)
+
+				// 原树的后续
 				boolean selfSon = false;
 				if (view.getDad() == null) {
 					editTexts.add(view);
+					for (Node node : childs) {
+						DEditTextView temp = maps.get(node);
+						temp.setyPos(temp.getyPos() + singleRec / 2);
+					}
 				} else {
 					DEditTextView pa = view.getDad();
 					ArrayList<Node> cousins = paintService.getAllSon(pa.getNode());
@@ -288,22 +294,23 @@ public class DViewGroup extends ViewGroup {
 				if (selfSon) {
 					for (int i = 0; i < before.size(); i++) {
 						DEditTextView temp = maps.get(before.get(i));
-						if(temp.getyPos()>view.getRaw_y()){
-							int tempY=temp.getyPos()-(weight-1)*singleRec/2;
+						if (temp.getyPos() > view.getRaw_y()) {
+							int tempY = temp.getyPos() - (weight - 1) * singleRec / 2;
 							temp.setyPos(tempY);
-						}else{
-							int tempY=temp.getyPos()+(weight-1)*singleRec/2;
+						} else {
+							int tempY = temp.getyPos() + (weight - 1) * singleRec / 2;
 							temp.setyPos(tempY);
 						}
 					}
 				} else {
 					for (int i = 0; i < before.size(); i++) {
 						DEditTextView temp = maps.get(before.get(i));
-						if(temp.getyPos()>view.getRaw_y()){
-							int tempY=temp.getyPos()-(weight)*singleRec/2;
+						System.out.println(temp.getText().toString());
+						if (temp.getyPos() > view.getRaw_y()) {
+							int tempY = temp.getyPos() - (weight) * singleRec / 2;
 							temp.setyPos(tempY);
-						}else{
-							int tempY=temp.getyPos()+(weight)*singleRec/2;
+						} else {
+							int tempY = temp.getyPos() + (weight) * singleRec / 2;
 							temp.setyPos(tempY);
 						}
 					}
