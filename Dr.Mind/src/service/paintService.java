@@ -45,4 +45,6 @@ public interface paintService {
 	 ArrayList<Node> getAllSon(Node parent);//返回所有子结点
 	 
 	 ArrayList<String> getAllPaintName(paintDao dao);//获取所有数据库中图表的名字
+	 
+	 public Node getAncestor(Node node);//获得当前结点的根结点
 }

@@ -355,5 +355,9 @@ public class paintblImpl implements paintService {
 
 		return pds.getAllPaintName(dao);
 	}
+	
+	public Node getAncestor(Node node){
+	   return node.getRoot();
+	}
 
 }
