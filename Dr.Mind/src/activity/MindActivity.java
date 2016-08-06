@@ -3,14 +3,7 @@ package activity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import drawer.ContentAdapter;
-import drawer.ContentModel;
-import swipemenulistview.SimpleActivity;
-import util.Constant;
-import view.DEditTextView;
-import view.DViewGroup;
-import voice.VoiceToWord;
-import ui.ViewToPicture;
+
 import FAB.FloatingActionButton;
 import FAB.FloatingActionMenu;
 import FAB.SubActionButton;
@@ -42,6 +35,14 @@ import android.widget.RelativeLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import cn.edu.cn.R;
+import drawer.ContentAdapter;
+import drawer.ContentModel;
+import swipemenulistview.SimpleActivity;
+import ui.ViewToPicture;
+import util.Constant;
+import view.DEditTextView;
+import view.DViewGroup;
+import voice.VoiceToWord;
 
 public class MindActivity extends Activity {
 	public static MindActivity a;
