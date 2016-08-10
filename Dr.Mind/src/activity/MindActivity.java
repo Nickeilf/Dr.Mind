@@ -237,52 +237,63 @@ public class MindActivity extends Activity {
 	}
 
 	@SuppressWarnings("deprecation")
-	//右侧的FAB按钮
+	// 右侧的FAB按钮
 	private void initRightButton() {
 		// 中心图标
 		ImageView icon = new ImageView(this); // Create an icon
 		icon.setImageDrawable(this.getResources().getDrawable(R.drawable.fab));
-		FloatingActionButton actionButton = new FloatingActionButton.Builder(this).setContentView(icon).build();
+		FloatingActionButton actionButton = new FloatingActionButton.Builder(
+				this).setContentView(icon).build();
 
 		// 分散式图标
 		// 语音功能
 		SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 		ImageView itemIcon1 = new ImageView(this);
-		itemIcon1.setImageDrawable(this.getResources().getDrawable(R.drawable.voice));
+		itemIcon1.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.voice));
 		SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
 		button1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// 别人的讯飞账户，我的待审核
-				VoiceToWord voice = new VoiceToWord(MindActivity.this, "534e3fe2",
-						(DViewGroup) findViewById(R.id.viewgroup));
+				VoiceToWord voice = new VoiceToWord(MindActivity.this,
+						"534e3fe2", (DViewGroup) findViewById(R.id.viewgroup));
 				voice.GetWordFromVoice();
 			}
 		});
 
 		// 删除节点
 		ImageView itemIcon2 = new ImageView(this);
-		itemIcon2.setImageDrawable(this.getResources().getDrawable(R.drawable.delete));
+		itemIcon2.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.delete));
 		SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
 		button2.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				new AlertDialog.Builder(MindActivity.this).setTitle("您选择删除：").setIcon(android.R.drawable.ic_dialog_info)
-						.setPositiveButton("全部删除", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-								group.deleteNode();
-							}
-						}).setNeutralButton("仅删除此节点", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-								group.deleteMerge();
-							}
-						}).setNegativeButton("取消", null).show();
+				new AlertDialog.Builder(MindActivity.this)
+						.setTitle("您选择删除：")
+						.setIcon(android.R.drawable.ic_dialog_info)
+						.setPositiveButton("全部删除",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+										group.deleteNode();
+									}
+								})
+						.setNeutralButton("仅删除此节点",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+										group.deleteMerge();
+									}
+								}).setNegativeButton("取消", null).show();
 			}
 		});
 
 		// 增加节点
 		ImageView itemIcon3 = new ImageView(this);
-		itemIcon3.setImageDrawable(this.getResources().getDrawable(R.drawable.plus));
+		itemIcon3.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.plus));
 		SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
 		button3.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
@@ -290,25 +301,72 @@ public class MindActivity extends Activity {
 				group.insertNode();
 			}
 		});
-		
-		//收缩节点
-		ImageView itemIcon4=new ImageView(this);
-		itemIcon4.setImageDrawable(this.getResources().getDrawable(R.drawable.minus));
-		SubActionButton button4=itemBuilder.setContentView(itemIcon4).build();
+
+		// 收缩节点
+		ImageView itemIcon4 = new ImageView(this);
+		itemIcon4.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.minus));
+		SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
 		button4.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
-			 
+
+			}
+		});
+
+		// 测试放大按钮
+		ImageView itemIcon5 = new ImageView(this);
+		itemIcon5.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.big));
+		SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
+		button5.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+				float scaleX = group.getScaleX();
+				float scaleY = group.getScaleY();
+				float scale = 0.1f;
+				scaleX += scale;
+				scaleY += scale;
+				group.setScaleX(scaleX);
+				group.setScaleY(scaleY);
+				Toast.makeText(MindActivity.this,
+						"scaleX=" + scaleX + "  sacleY-" + scaleY,
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		// 测试缩小按钮
+		ImageView itemIcon6 = new ImageView(this);
+		itemIcon6.setImageDrawable(this.getResources().getDrawable(
+				R.drawable.small));
+		SubActionButton button6 = itemBuilder.setContentView(itemIcon6).build();
+		button6.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+				float scaleX = group.getScaleX();
+				float scaleY = group.getScaleY();
+				float scale = 0.1f;
+				scaleX -= scale;
+				scaleY -= scale;
+				if (scaleX <= 0.5) {
+					scaleX = 0.5f;
+					scaleY = 0.5f;
+				}
+
+				group.setScaleX(scaleX);
+				group.setScaleY(scaleY);
+				Toast.makeText(MindActivity.this,
+						"scaleX=" + scaleX + "  sacleY-" + scaleY,
+						Toast.LENGTH_SHORT).show();
 			}
 		});
 
 		// 整合在一起
 		// FloatingActionMenu actionMenu =
-		new FloatingActionMenu.Builder(this)
-		        .addSubActionView(button1)
-		        .addSubActionView(button2)
-				.addSubActionView(button3)
-				.addSubActionView(button4).attachTo(actionButton).build();
+		new FloatingActionMenu.Builder(this).addSubActionView(button1)
+				.addSubActionView(button2).addSubActionView(button3)
+				.addSubActionView(button4).addSubActionView(button5)
+				.addSubActionView(button6).attachTo(actionButton).build();
 
 	}
 
