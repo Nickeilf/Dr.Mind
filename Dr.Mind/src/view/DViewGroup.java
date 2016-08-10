@@ -13,6 +13,8 @@ import vo.paintInfoVo;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -28,6 +30,11 @@ import bl.paintblImpl;
 import data.paintDao;
 
 public class DViewGroup extends ViewGroup {
+	
+	private Canvas	cacheCanvas;
+	public Bitmap	cachebBitmap;
+	
+
 	private paintService paintService;
 	private paintInfoVo paintInfo;
 	private paintDao dao;
@@ -57,6 +64,11 @@ public class DViewGroup extends ViewGroup {
 	 */
 	public DViewGroup(Context context) {
 		super(context);
+//		
+//		cachebBitmap = Bitmap.createBitmap(1000, 1600, Config.ARGB_8888);
+//		cacheCanvas = new Canvas(cachebBitmap);
+		//cacheCanvas.drawColor(Color.WHITE);
+		
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
 		// dao = new paintDao(getContext());
@@ -66,6 +78,8 @@ public class DViewGroup extends ViewGroup {
 
 	public DViewGroup(Context context, AttributeSet attrs) {
 		super(context, attrs);
+//		cachebBitmap = Bitmap.createBitmap(1000, 1600, Config.ARGB_8888);
+//		cacheCanvas = new Canvas(cachebBitmap);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
 		// dao = new paintDao(getContext());
@@ -75,6 +89,8 @@ public class DViewGroup extends ViewGroup {
 
 	public DViewGroup(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+//		cachebBitmap = Bitmap.createBitmap(1000, 1600, Config.ARGB_8888);
+//		cacheCanvas = new Canvas(cachebBitmap);
 		paintService = new paintblImpl();
 		paintInfo = paintService.createPaint();
 		// dao = new paintDao(getContext());
@@ -795,8 +811,10 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
-
+//		canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
+//     //
+//		canvas.drawBitmap(cachebBitmap, 0,0,null);
+		
 		for (int i = 0; i < editTexts.size(); i++) {
 			DEditTextView view = editTexts.get(i);
 			DEditTextView pa = view.getDad();

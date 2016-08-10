@@ -1,5 +1,7 @@
 package activity;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -17,7 +19,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MotionEvent;
@@ -60,6 +65,8 @@ public class MindActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+	
 
 		// ①获取AlarmManager对象:
 		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -172,15 +179,27 @@ public class MindActivity extends Activity {
 							}).setNegativeButton("取消", null).show();
 
 				}else if(choose.equals("导出")){
-					View myview = findViewById(R.id.viewgroup);
-					if (myview != null) {
-						ViewToPicture viewToPic = new ViewToPicture();
-						viewToPic.save(myview, "Liu");
-					} else {
-						System.out.println("myview null");
-					}
+//					View myview = findViewById(R.id.viewgroup);
+//					if (myview != null) {
+//						ViewToPicture viewToPic = new ViewToPicture();
+//						viewToPic.save(myview, "Liu");
+//					} else {
+//						System.out.println("myview null");
+//					}
+					DViewGroup viewGroup=(DViewGroup)findViewById(R.id.viewgroup);
+					Bitmap bm=viewGroup.cachebBitmap;
+					//viewGroup.setDrawingCacheEnabled(false);
+					ViewToPicture viewToPicture=new ViewToPicture();
+					try
+					{
+						viewToPicture.save(viewGroup, "lxc");
 
-				}else if(choose.equals("提醒")){
+						System.out.println("daochu success !");
+						 } catch (Exception e1){e1.printStackTrace();}	
+							
+				 }
+						
+				else if(choose.equals("提醒")){
 
 					Calendar currentTime = Calendar.getInstance();
 					// 弹出一个时间设置的对话框,供用户选择时间

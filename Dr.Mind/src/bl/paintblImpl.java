@@ -300,6 +300,7 @@ public class paintblImpl implements paintService {
 			node.setRightChild(nextBro);
 		}
 		node.setRoot(newpa.getRoot());
+		
 		changelevel(node);
 	
 		return true;
