@@ -280,7 +280,7 @@ public class DViewGroup extends ViewGroup {
 				for (Node node : childs) {
 					DEditTextView child = maps.get(node);
 					child.setLevel(child.getLevel() + level_dis);
-//					child.requestFocus();
+					child.invalidate();
 				}
 				
 				// if ancestorBefore==ancestorNow
@@ -340,8 +340,10 @@ public class DViewGroup extends ViewGroup {
 					// TODO 插入到跟节点时
 					int x_dis = textView.getxPos() + textView.getMeasuredWidth() + Constant.SIN_WIDTH - view.getxPos();
 					int y_dis = textView.getyPos() - view.getyPos();
+					if(textView.getNode().getLevel()==0)
+						y_dis -= textView.getMeasuredHeight()/2;
 					view.setxPos(textView.getxPos() + textView.getMeasuredWidth() + Constant.SIN_WIDTH);
-					view.setyPos(textView.getyPos());
+					view.setyPos(view.getyPos()+y_dis);
 					move(view, x_dis, y_dis);
 					for (int i = 0; i < now.size(); i++) {
 						DEditTextView text = maps.get(now.get(i));
@@ -827,6 +829,7 @@ public class DViewGroup extends ViewGroup {
 				else
 					x_end = view.getRight();
 			}
+			System.out.println(view.getBottom() - 5+"ahhhhhhhhhhh"+paint.getStrokeWidth());
 			if (level == 1) {
 				myDraw(pa.getRight() - 3, (pa.getBottom() + pa.getTop()) / 2 - 5, x_end, view.getBottom() - 5, canvas);
 			} else {

@@ -138,7 +138,8 @@ public class DEditTextView extends EditText {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		float height = this.getHeight() - paint.getStrokeWidth() / 2 - 1;
+		paint_color();
+		float height = this.getHeight() - 5;
 		if (level == 0) {
 			if (focusing) {
 				paint.setAlpha(200);
@@ -164,6 +165,9 @@ public class DEditTextView extends EditText {
 				paint_color();
 				paint_width();
 			}
+			System.out.println("aaaaaaaaaaaaaa"+yPos+"hahhahaha"+height);
+			System.out.println(this.getTop());
+			System.out.println(this.getBottom());
 			canvas.drawLine(0, height, this.getWidth(), height, paint);
 		}
 
