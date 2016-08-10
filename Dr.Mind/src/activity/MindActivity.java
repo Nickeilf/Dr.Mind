@@ -194,16 +194,45 @@ public class MindActivity extends Activity {
 //					} else {
 //						System.out.println("myview null");
 //					}
-					DViewGroup viewGroup=(DViewGroup)findViewById(R.id.viewgroup);
-					Bitmap bm=viewGroup.cachebBitmap;
-					//viewGroup.setDrawingCacheEnabled(false);
-					ViewToPicture viewToPicture=new ViewToPicture();
-					try
-					{
-						viewToPicture.save(viewGroup, "lxc");
+					final EditText editText = new EditText(MindActivity.this);
+					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+					
+					new AlertDialog.Builder(MindActivity.this).setTitle("请输入导出的图片名")
+					.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
+					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							String name = editText.getText().toString();
+							DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+							if (name.equals("")) {
+								Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
+										.show();
+								return;
+							}
+							
+						    else {
+								System.out.println("导出的图片名： " + name);
+								
+				
+								//viewGroup.setDrawingCacheEnabled(false);
+							
+								try
+								{
+								  if(group.exportPicture(name)){
+									System.out.println("daochu success !");
+								  }
+								  else{
+										Toast.makeText(getApplicationContext(), "图片 " + name + "已存在！", Toast.LENGTH_LONG)
+										.show();
+								  }
+									 } catch (Exception e1){e1.printStackTrace();}	
 
-						System.out.println("daochu success !");
-						 } catch (Exception e1){e1.printStackTrace();}	
+								Toast.makeText(getApplicationContext(), "图片" + name + "导出成功~", Toast.LENGTH_LONG)
+										.show();
+							}
+						}
+					}).setNegativeButton("取消", null).show();
+					
+		
 							
 				 }
 						

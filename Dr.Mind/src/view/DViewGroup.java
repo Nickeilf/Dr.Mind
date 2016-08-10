@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import service.paintService;
+import ui.ViewToPicture;
 import util.Constant;
 import vo.Node;
 import vo.paintInfoVo;
@@ -27,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 import bl.paintblImpl;
+import cn.edu.cn.R;
 import data.paintDao;
 
 public class DViewGroup extends ViewGroup {
@@ -949,6 +951,14 @@ public class DViewGroup extends ViewGroup {
 
 	public String getCurretFileName() {
 		return curretFileName;
+	}
+	
+	public boolean exportPicture(String name){
+		DViewGroup viewGroup=(DViewGroup)findViewById(R.id.viewgroup);
+		//Bitmap bm=viewGroup.cachebBitmap;
+		ViewToPicture viewToPicture=new ViewToPicture();
+		if(viewToPicture.save(viewGroup, name,getContext()))return true;
+		return false;
 	}
 
 }
