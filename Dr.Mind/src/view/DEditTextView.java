@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
+import ui.MyPoint;
 
 public class DEditTextView extends EditText {
 	private DEditTextView dad;
@@ -34,6 +35,11 @@ public class DEditTextView extends EditText {
 	private boolean focusing;
 	private boolean editing;
 	private boolean down;
+	private boolean drawable;
+	private boolean folded;
+	private boolean visible;
+	
+
 	boolean init = true;
 
 	public DEditTextView getLittleSon() {
@@ -92,6 +98,8 @@ public class DEditTextView extends EditText {
 		focusing = false;
 		editing = false;
 		down = false;
+		drawable=true;
+		visible=true;
 	}
 
 	public void setNode(Node node) {
@@ -115,21 +123,6 @@ public class DEditTextView extends EditText {
 			this.clearFocusing();
 			DViewGroup pa = (DViewGroup) getParent();
 			pa.textMove(this);
-			// if (level != 0) {
-			// focusing = false;
-			// invalidate();
-			// } else {
-			// paint.setAlpha(100);
-			// invalidate();
-			// }
-			// } else {
-			// if (level != 0) {
-			// paint.setAlpha(255);
-			// invalidate();
-			// } else {
-			// paint.setAlpha(200);
-			// invalidate();
-			// }
 		}
 
 	}
@@ -165,9 +158,6 @@ public class DEditTextView extends EditText {
 				paint_color();
 				paint_width();
 			}
-			System.out.println("aaaaaaaaaaaaaa"+yPos+"hahhahaha"+height);
-			System.out.println(this.getTop());
-			System.out.println(this.getBottom());
 			canvas.drawLine(0, height, this.getWidth(), height, paint);
 		}
 
@@ -233,6 +223,8 @@ public class DEditTextView extends EditText {
 					parent.checkMove(this, yPos + event.getY(), xPos + event.getX());
 					moving = false;
 				}
+				raw_x = xPos;
+				raw_y = yPos;
 				break;
 			}
 		}
@@ -310,4 +302,29 @@ public class DEditTextView extends EditText {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	
+	public boolean isDrawable() {
+		return drawable;
+	}
+
+	public void setDrawable(boolean drawable) {
+		this.drawable = drawable;
+	}
+	
+	public boolean isFolded() {
+		return folded;
+	}
+
+	public void setFolded(boolean folded) {
+		this.folded = folded;
+	}
+	
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
 }

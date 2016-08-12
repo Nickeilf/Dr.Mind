@@ -339,7 +339,8 @@ public class MindActivity extends Activity {
 		button4.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-
+				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+				group.hideOrShow();
 			}
 		});
 
