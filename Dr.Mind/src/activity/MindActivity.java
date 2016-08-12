@@ -343,60 +343,15 @@ public class MindActivity extends Activity {
 				group.hideOrShow();
 			}
 		});
-
-		// 测试放大按钮
-		ImageView itemIcon5 = new ImageView(this);
-		itemIcon5.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.big));
-		SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
-		button5.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-				float scaleX = group.getScaleX();
-				float scaleY = group.getScaleY();
-				float scale = 0.1f;
-				scaleX += scale;
-				scaleY += scale;
-				group.setScaleX(scaleX);
-				group.setScaleY(scaleY);
-				Toast.makeText(MindActivity.this,
-						"scaleX=" + scaleX + "  sacleY-" + scaleY,
-						Toast.LENGTH_SHORT).show();
-			}
-		});
-
-		// 测试缩小按钮
-		ImageView itemIcon6 = new ImageView(this);
-		itemIcon6.setImageDrawable(this.getResources().getDrawable(
-				R.drawable.small));
-		SubActionButton button6 = itemBuilder.setContentView(itemIcon6).build();
-		button6.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-				float scaleX = group.getScaleX();
-				float scaleY = group.getScaleY();
-				float scale = 0.1f;
-				scaleX -= scale;
-				scaleY -= scale;
-				if (scaleX <= 0.5) {
-					scaleX = 0.5f;
-					scaleY = 0.5f;
-				}
-
-				group.setScaleX(scaleX);
-				group.setScaleY(scaleY);
-				Toast.makeText(MindActivity.this,
-						"scaleX=" + scaleX + "  sacleY-" + scaleY,
-						Toast.LENGTH_SHORT).show();
-			}
-		});
+ 
 
 		// 整合在一起
 		// FloatingActionMenu actionMenu =
 		new FloatingActionMenu.Builder(this).addSubActionView(button1)
-				.addSubActionView(button2).addSubActionView(button3)
-				.addSubActionView(button4).addSubActionView(button5)
-				.addSubActionView(button6).attachTo(actionButton).build();
+				.addSubActionView(button2)
+				.addSubActionView(button3)
+				.addSubActionView(button4)
+				.attachTo(actionButton).build();
 
 	}
 
