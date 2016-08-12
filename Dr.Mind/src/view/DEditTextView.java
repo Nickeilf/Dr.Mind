@@ -132,6 +132,7 @@ public class DEditTextView extends EditText {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		paint_color();
+		paint_width();
 		float height = this.getHeight() - 5;
 		if (level == 0) {
 			if (focusing) {
