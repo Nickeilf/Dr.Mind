@@ -36,7 +36,7 @@ import data.paintDao;
 
 public class DViewGroup extends ViewGroup {
 
-	private Canvas cacheCanvas;
+//	private Canvas cacheCanvas;
 	public Bitmap cachebBitmap;
 
 	private paintService paintService;
@@ -65,7 +65,7 @@ public class DViewGroup extends ViewGroup {
 	private float beforeLength;
 	private float afterLength;
 	// 每次变化的大小
-	float oneScale = 0.05f;
+	private float oneScale = 0.02f;
 
 	/**
 	 * 构造函数，继承父类
@@ -284,7 +284,7 @@ public class DViewGroup extends ViewGroup {
 		requestLayout();
 		view.setRaw_width(view.getMeasuredWidth());
 	}
-
+ 
 	private boolean isInsideAnyText(DEditTextView text, float x, float y) {
 		float left = text.getxPos();
 		float right = left + text.getMeasuredWidth();
@@ -946,6 +946,8 @@ public class DViewGroup extends ViewGroup {
 
 			float scaleX = this.getScaleX();
 			float scaleY = this.getScaleY();
+		 
+			
 			if (gapLenght > 0) {
 				scaleX += oneScale;
 				scaleY += oneScale;
@@ -953,6 +955,27 @@ public class DViewGroup extends ViewGroup {
 				scaleX -= oneScale;
 				scaleY -= oneScale;
 			}
+			
+//			int sum=this.getChildCount();
+//			View thisView;
+//			for(int i=0;i<sum;i++){
+//				thisView=this.getChildAt(i);
+//				
+//				float scaleX = thisView.getScaleX();
+//				float scaleY = thisView.getScaleY();
+//				if (gapLenght > 0) {
+//					scaleX += oneScale;
+//					scaleY += oneScale;
+//				} else {
+//					scaleX -= oneScale;
+//					scaleY -= oneScale;
+//				}
+//
+//				thisView.setScaleX(scaleX);
+//				thisView.setScaleY(scaleY);
+//			}
+			 
+
 			this.setScaleX(scaleX);
 			this.setScaleY(scaleY);
 

@@ -1,7 +1,5 @@
 package activity;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -19,10 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MotionEvent;
@@ -43,7 +38,6 @@ import cn.edu.cn.R;
 import drawer.ContentAdapter;
 import drawer.ContentModel;
 import swipemenulistview.SimpleActivity;
-import ui.ViewToPicture;
 import util.Constant;
 import view.DEditTextView;
 import view.DViewGroup;

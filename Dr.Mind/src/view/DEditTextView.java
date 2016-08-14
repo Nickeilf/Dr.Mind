@@ -12,7 +12,6 @@ import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
-import ui.MyPoint;
 
 public class DEditTextView extends EditText {
 	private DEditTextView dad;
@@ -202,7 +201,7 @@ public class DEditTextView extends EditText {
 				group.move(this, stopX - startX, stopY - startY);
 				break;
 			case MotionEvent.ACTION_UP:
-				float stop_y = event.getY();
+//				float stop_y = event.getY();
 				down = false;
 				invalidate();
 				if (Math.abs(yPos - raw_y) > 10 || Math.abs(xPos - raw_x) > 10) {
