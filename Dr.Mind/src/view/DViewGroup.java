@@ -29,14 +29,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.LinearLayout.LayoutParams;
 import bl.paintblImpl;
 import cn.edu.cn.R;
 import data.paintDao;
 
 public class DViewGroup extends ViewGroup {
 
-//	private Canvas cacheCanvas;
+	// private Canvas cacheCanvas;
 	public Bitmap cachebBitmap;
 
 	private paintService paintService;
@@ -158,6 +160,7 @@ public class DViewGroup extends ViewGroup {
 			maps.put(node, view);
 			addSons(view);
 		}
+		adjustScreen();
 		requestLayout();
 		System.out.println("读取成功");
 		openSaved = true;
@@ -281,10 +284,11 @@ public class DViewGroup extends ViewGroup {
 			v.setxPos(v.getxPos() + dis);
 			v.setRaw_x(v.getRaw_x() + dis);
 		}
+		adjustScreen();
 		requestLayout();
 		view.setRaw_width(view.getMeasuredWidth());
 	}
- 
+
 	private boolean isInsideAnyText(DEditTextView text, float x, float y) {
 		float left = text.getxPos();
 		float right = left + text.getMeasuredWidth();
@@ -376,13 +380,13 @@ public class DViewGroup extends ViewGroup {
 						if (temp.getyPos() > view.getRaw_y()) {
 							int tempY = temp.getyPos() - (weight - 1) * singleRec / 2;
 							temp.setyPos(tempY);
-							if(!temp.isVisible()){
+							if (!temp.isVisible()) {
 								temp.setRaw_y(temp.getRaw_y() - (weight - 1) * singleRec / 2);
 							}
 						} else {
 							int tempY = temp.getyPos() + (weight - 1) * singleRec / 2;
 							temp.setyPos(tempY);
-							if(!temp.isVisible()){
+							if (!temp.isVisible()) {
 								temp.setRaw_y(temp.getRaw_y() + (weight - 1) * singleRec / 2);
 							}
 						}
@@ -393,13 +397,13 @@ public class DViewGroup extends ViewGroup {
 						if (temp.getyPos() > view.getRaw_y()) {
 							int tempY = temp.getyPos() - (weight) * singleRec / 2;
 							temp.setyPos(tempY);
-							if(!temp.isVisible()){
+							if (!temp.isVisible()) {
 								temp.setRaw_y(temp.getRaw_y() - (weight) * singleRec / 2);
 							}
 						} else {
 							int tempY = temp.getyPos() + (weight) * singleRec / 2;
 							temp.setyPos(tempY);
-							if(!temp.isVisible()){
+							if (!temp.isVisible()) {
 								temp.setRaw_y(temp.getRaw_y() + (weight) * singleRec / 2);
 							}
 						}
@@ -458,7 +462,7 @@ public class DViewGroup extends ViewGroup {
 					paintService.MoveNode(view.getNode(), textView.getNode(), bro.getNode());
 				}
 				textView.setLittleSon(view);
-
+				adjustScreen();
 				return true;
 			}
 		}
@@ -574,6 +578,7 @@ public class DViewGroup extends ViewGroup {
 					paintService.MoveNode(view.getNode(), view.getNode().getParent(), last);
 				}
 			}
+			adjustScreen();
 		}
 	}
 
@@ -675,6 +680,7 @@ public class DViewGroup extends ViewGroup {
 					maps.remove(node);
 					paintService.DeleteAndMerge(node);
 					requestLayout();
+					adjustScreen();
 				}
 
 			}
@@ -775,6 +781,7 @@ public class DViewGroup extends ViewGroup {
 			}
 			text = null;
 			requestLayout();
+			adjustScreen();
 		}
 	}
 
@@ -873,11 +880,20 @@ public class DViewGroup extends ViewGroup {
 			maps.put(root.getNode(), root);
 			System.out.println("MDZZ");
 		}
+		adjustScreen();
 	}
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		return super.dispatchTouchEvent(ev);
+	}
+
+	@Override
+	public boolean onInterceptTouchEvent(MotionEvent ev) {
+		if (ev.getPointerCount() == 2) {
+			return true;
+		}
+		return super.onInterceptTouchEvent(ev);
 	}
 
 	/*
@@ -905,13 +921,13 @@ public class DViewGroup extends ViewGroup {
 			case MotionEvent.ACTION_MOVE:
 				float stopX = event.getX();
 				float stopY = event.getY();
-				Log.e("pos", startX + "," + startY);
 				posX += stopX - startX;
 				posY += stopY - startY;
+				Log.e("pos", startX + "," + startY);
 				posX = posX > 0 ? 0 : posX;
 				posY = posY > 0 ? 0 : posY;
-				posX = posX < -2 * screenWidth ? -2 * screenWidth : posX;
-				posY = posY < -2 * screenHeight ? -2 * screenHeight : posY;
+				posX = posX < -this.getWidth() + screenWidth ? -this.getWidth() + screenWidth : posX;
+				posY = posY < -this.getHeight() + screenHeight ? -this.getHeight() + screenHeight : posY;
 				this.setX(posX);
 				this.setY(posY);
 				requestLayout();
@@ -946,8 +962,7 @@ public class DViewGroup extends ViewGroup {
 
 			float scaleX = this.getScaleX();
 			float scaleY = this.getScaleY();
-		 
-			
+
 			if (gapLenght > 0) {
 				scaleX += oneScale;
 				scaleY += oneScale;
@@ -955,26 +970,25 @@ public class DViewGroup extends ViewGroup {
 				scaleX -= oneScale;
 				scaleY -= oneScale;
 			}
-			
-//			int sum=this.getChildCount();
-//			View thisView;
-//			for(int i=0;i<sum;i++){
-//				thisView=this.getChildAt(i);
-//				
-//				float scaleX = thisView.getScaleX();
-//				float scaleY = thisView.getScaleY();
-//				if (gapLenght > 0) {
-//					scaleX += oneScale;
-//					scaleY += oneScale;
-//				} else {
-//					scaleX -= oneScale;
-//					scaleY -= oneScale;
-//				}
-//
-//				thisView.setScaleX(scaleX);
-//				thisView.setScaleY(scaleY);
-//			}
-			 
+
+			// int sum=this.getChildCount();
+			// View thisView;
+			// for(int i=0;i<sum;i++){
+			// thisView=this.getChildAt(i);
+			//
+			// float scaleX = thisView.getScaleX();
+			// float scaleY = thisView.getScaleY();
+			// if (gapLenght > 0) {
+			// scaleX += oneScale;
+			// scaleY += oneScale;
+			// } else {
+			// scaleX -= oneScale;
+			// scaleY -= oneScale;
+			// }
+			//
+			// thisView.setScaleX(scaleX);
+			// thisView.setScaleY(scaleY);
+			// }
 
 			this.setScaleX(scaleX);
 			this.setScaleY(scaleY);
@@ -982,6 +996,55 @@ public class DViewGroup extends ViewGroup {
 			beforeLength = afterLength;
 			break;
 		}
+	}
+
+	public void adjustScreen() {
+		LinearLayout.LayoutParams lay = (LinearLayout.LayoutParams) this.getLayoutParams();
+		// lay.height += screenHeight;
+		// lay.width += screenWidth;
+		// this.setLayoutParams(lay);
+
+		int left = 0;
+		int right = 0;
+		int top = 0;
+		int bottom = 0;
+
+		Iterator<Map.Entry<Node, DEditTextView>> itr = maps.entrySet().iterator();
+		while (itr.hasNext()) {
+
+			Map.Entry<Node, DEditTextView> entry = (Entry<Node, DEditTextView>) itr.next();
+
+			DEditTextView textView = entry.getValue();
+			int width = textView.getMeasuredWidth();
+			int height = textView.getMeasuredHeight();
+
+			left = left < textView.getxPos() ? left : textView.getxPos();
+			top = top < textView.getyPos() ? top : textView.getyPos();
+			right = right > textView.getRaw_x() + width ? right : textView.getRaw_x() + width;
+			right = right > textView.getxPos() + width ? right : textView.getxPos() + width;
+			bottom = bottom > textView.getRaw_y() + height ? bottom : textView.getRaw_y() + height;
+			bottom = bottom > textView.getyPos() + height ? bottom : textView.getyPos() + height;
+		}
+		right +=screenWidth/2;
+		bottom +=screenHeight/2;
+		
+
+		int i = right / screenWidth + 1;
+		int j = bottom / screenHeight + 1;
+		
+		if(i>3){
+			lay.width=i*screenWidth;
+		}else{
+			lay.width=3*screenWidth;
+		}
+		if(j>3){
+			lay.height=j*screenHeight;
+		}else{
+			lay.height=3*screenHeight;
+		}
+
+		this.setLayoutParams(lay);
+
 	}
 
 	/**
@@ -995,6 +1058,12 @@ public class DViewGroup extends ViewGroup {
 		// Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
 		// //
 		// canvas.drawBitmap(cachebBitmap, 0,0,null);
+		for (int i = 0; i < this.getWidth() / screenWidth; i++) {
+			canvas.drawLine(screenWidth * i, 0, screenWidth * i, this.getHeight(), paint);
+		}
+		for (int i = 0; i < this.getHeight() / screenHeight; i++) {
+			canvas.drawLine(0, screenHeight * i, this.getWidth(), screenHeight * i, paint);
+		}
 
 		for (int i = 0; i < editTexts.size(); i++) {
 			DEditTextView view = editTexts.get(i);
