@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.edu.nju.drmind.view.DViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewgroup"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_gravity="center|center_horizontal|center_vertical"
+    android:background="#FFF8DC"
+    android:focusableInTouchMode="true" >
+
+</cn.edu.nju.drmind.view.DViewGroup>
