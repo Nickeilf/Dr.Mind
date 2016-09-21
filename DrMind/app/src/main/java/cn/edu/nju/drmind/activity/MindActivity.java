@@ -18,6 +18,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,9 +36,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-
 import cn.edu.cn.R;
 import cn.edu.nju.drmind.FAB.FloatingActionButton;
 import cn.edu.nju.drmind.FAB.FloatingActionMenu;
@@ -65,7 +64,7 @@ public class MindActivity extends Activity {
 	 * ATTENTION: This was auto-generated to implement the App Indexing API.
 	 * See https://g.co/AppIndexing/AndroidStudio for more information.
 	 */
-	private GoogleApiClient client;
+//	private GoogleApiClient client;
 
 	/**
 	 * Called when the activity is first created.
@@ -95,7 +94,7 @@ public class MindActivity extends Activity {
 		initRightButton();
 
 		// 左侧DrawerLayout的初始化
-		initMyDrawer();
+//		initMyDrawer();
 
 		// 跳转时的过滤，需修改
 		Bundle bundle = this.getIntent().getExtras();
@@ -111,164 +110,164 @@ public class MindActivity extends Activity {
 
 		// ATTENTION: This was auto-generated to implement the App Indexing API.
 		// See https://g.co/AppIndexing/AndroidStudio for more information.
-		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+//		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
 	// 左侧drawerlayout的初始化
 	private void initMyDrawer() {
 
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-		leftLayout = (RelativeLayout) findViewById(R.id.left);
+//		leftLayout = (RelativeLayout) findViewById(R.id.left);
 		rightLayout = (RelativeLayout) findViewById(R.id.right);
-		ListView listView = (ListView) leftLayout
-				.findViewById(R.id.left_listview);
-		initData();
-		adapter = new ContentAdapter(this, list);
-		listView.setAdapter(adapter);
-		initDrawerListener();
+//		ListView listView = (ListView) leftLayout
+//				.findViewById(R.id.left_listview);
+//		initData();
+//		adapter = new ContentAdapter(this, list);
+//		listView.setAdapter(adapter);
+//		initDrawerListener();
 
 	}
 
 	// 左侧listview里的数据
-	private void initData() {
-		list = new ArrayList<ContentModel>();
-		list.add(new ContentModel(R.drawable.mulu, "目录"));
-		list.add(new ContentModel(R.drawable.xinjian, "新建"));
-		list.add(new ContentModel(R.drawable.save, "保存"));
-		list.add(new ContentModel(R.drawable.daochu, "导出"));
-		list.add(new ContentModel(R.drawable.clock, "提醒"));
-	}
+//	private void initData() {
+//		list = new ArrayList<ContentModel>();
+//		list.add(new ContentModel(R.drawable.mulu, "目录"));
+//		list.add(new ContentModel(R.drawable.xinjian, "新建"));
+//		list.add(new ContentModel(R.drawable.save, "保存"));
+//		list.add(new ContentModel(R.drawable.daochu, "导出"));
+//		list.add(new ContentModel(R.drawable.clock, "提醒"));
+//	}
 
 	// 左侧ListView里每一个item的监听
-	private void initDrawerListener() {
-		ListView listView = (ListView) leftLayout
-				.findViewById(R.id.left_listview);
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-									int position, long id) {
-				String choose = list.get(position).getText();
-
-				if (choose.equals("目录")) {
-					startActivity(new Intent(MindActivity.this,
-							SimpleActivity.class));
-				} else if (choose.equals("新建")) {
-					startActivity(new Intent(MindActivity.this,
-							MindActivity.class));
-					Toast.makeText(getApplicationContext(), "新建图表成功",
-							Toast.LENGTH_LONG).show();
-				} else if (choose.equals("保存")) {
-					final EditText editText = new EditText(MindActivity.this);
-					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-					if (group.isOpenSaved()) {
-						editText.setText(group.getCurretFileName());
-					}
-
-					new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
-							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
-							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) {
-									String name = editText.getText().toString();
-									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-									if (name.equals("")) {
-										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
-												.show();
-										return;
-									}
-									if (group.existPaint(name)) {
-										Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
-												.show();
-										return;
-									} else {
-										System.out.println("保存的图名： " + name);
-
-										group.save(name);
-
-										Intent intent = new Intent(MindActivity.this, MindActivity.class);
-										Bundle bundle = new Bundle();
-										bundle.putString("state", "save");
-										bundle.putString("name", name);
-										intent.putExtras(bundle);
-										startActivity(intent);
-
-										Toast.makeText(getApplicationContext(), "图表" + name + "保存成功~", Toast.LENGTH_LONG)
-												.show();
-									}
-								}
-							}).setNegativeButton("取消", null).show();
-
-				} else if (choose.equals("导出")) {
-//					View myview = findViewById(R.id.viewgroup);
-//					if (myview != null) {
-//						ViewToPicture viewToPic = new ViewToPicture();
-//						viewToPic.save(myview, "Liu");
-//					} else {
-//						System.out.println("myview null");
+//	private void initDrawerListener() {
+//		ListView listView = (ListView) leftLayout
+//				.findViewById(R.id.left_listview);
+//		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//			public void onItemClick(AdapterView<?> parent, View view,
+//									int position, long id) {
+//				String choose = list.get(position).getText();
+//
+//				if (choose.equals("目录")) {
+//					startActivity(new Intent(MindActivity.this,
+//							SimpleActivity.class));
+//				} else if (choose.equals("新建")) {
+//					startActivity(new Intent(MindActivity.this,
+//							MindActivity.class));
+//					Toast.makeText(getApplicationContext(), "新建图表成功",
+//							Toast.LENGTH_LONG).show();
+//				} else if (choose.equals("保存")) {
+//					final EditText editText = new EditText(MindActivity.this);
+//					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+//					if (group.isOpenSaved()) {
+//						editText.setText(group.getCurretFileName());
 //					}
-					final EditText editText = new EditText(MindActivity.this);
-					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-
-					new AlertDialog.Builder(MindActivity.this).setTitle("请输入导出的图片名")
-							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
-							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) {
-									String name = editText.getText().toString();
-									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-									if (name.equals("")) {
-										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
-												.show();
-										return;
-									} else {
-										System.out.println("导出的图片名： " + name);
-
-
-										//viewGroup.setDrawingCacheEnabled(false);
-
-										try {
-											if (group.exportPicture(name)) {
-												System.out.println("daochu success !");
-											} else {
-												Toast.makeText(getApplicationContext(), "图片 " + name + "已存在！", Toast.LENGTH_LONG)
-														.show();
-											}
-										} catch (Exception e1) {
-											e1.printStackTrace();
-										}
-
-										Toast.makeText(getApplicationContext(), "图片" + name + "导出成功~", Toast.LENGTH_LONG)
-												.show();
-									}
-								}
-							}).setNegativeButton("取消", null).show();
-
-
-				} else if (choose.equals("提醒")) {
-					Calendar currentTime = Calendar.getInstance();
-					// 弹出一个时间设置的对话框,供用户选择时间
-					new TimePickerDialog(MindActivity.this, 0,
-							new OnTimeSetListener() {
-								public void onTimeSet(TimePicker view,
-													  int hourOfDay, int minute) {
-									// 设置当前时间
-									Calendar c = Calendar.getInstance();
-									c.setTimeInMillis(System
-											.currentTimeMillis());
-									// 根据用户选择的时间来设置Calendar对象
-									c.set(Calendar.HOUR, hourOfDay);
-									c.set(Calendar.MINUTE, minute);
-									// ②设置AlarmManager在Calendar对应的时间启动Activity
-									alarmManager.set(AlarmManager.RTC_WAKEUP,
-											c.getTimeInMillis(), pi);
-									// 提示闹钟设置完毕:
-									Toast.makeText(MindActivity.this,
-											"闹钟设置完毕~", Toast.LENGTH_SHORT)
-											.show();
-								}
-							}, currentTime.get(Calendar.HOUR_OF_DAY),
-							currentTime.get(Calendar.MINUTE), false).show();
-				}
-			}
-		});
-	}
+//
+//					new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
+//							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
+//							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//								public void onClick(DialogInterface dialog, int which) {
+//									String name = editText.getText().toString();
+//									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+//									if (name.equals("")) {
+//										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
+//												.show();
+//										return;
+//									}
+//									if (group.existPaint(name)) {
+//										Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
+//												.show();
+//										return;
+//									} else {
+//										System.out.println("保存的图名： " + name);
+//
+//										group.save(name);
+//
+//										Intent intent = new Intent(MindActivity.this, MindActivity.class);
+//										Bundle bundle = new Bundle();
+//										bundle.putString("state", "save");
+//										bundle.putString("name", name);
+//										intent.putExtras(bundle);
+//										startActivity(intent);
+//
+//										Toast.makeText(getApplicationContext(), "图表" + name + "保存成功~", Toast.LENGTH_LONG)
+//												.show();
+//									}
+//								}
+//							}).setNegativeButton("取消", null).show();
+//
+//				} else if (choose.equals("导出")) {
+////					View myview = findViewById(R.id.viewgroup);
+////					if (myview != null) {
+////						ViewToPicture viewToPic = new ViewToPicture();
+////						viewToPic.save(myview, "Liu");
+////					} else {
+////						System.out.println("myview null");
+////					}
+//					final EditText editText = new EditText(MindActivity.this);
+//					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+//
+//					new AlertDialog.Builder(MindActivity.this).setTitle("请输入导出的图片名")
+//							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
+//							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//								public void onClick(DialogInterface dialog, int which) {
+//									String name = editText.getText().toString();
+//									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+//									if (name.equals("")) {
+//										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
+//												.show();
+//										return;
+//									} else {
+//										System.out.println("导出的图片名： " + name);
+//
+//
+//										//viewGroup.setDrawingCacheEnabled(false);
+//
+//										try {
+//											if (group.exportPicture(name)) {
+//												System.out.println("daochu success !");
+//											} else {
+//												Toast.makeText(getApplicationContext(), "图片 " + name + "已存在！", Toast.LENGTH_LONG)
+//														.show();
+//											}
+//										} catch (Exception e1) {
+//											e1.printStackTrace();
+//										}
+//
+//										Toast.makeText(getApplicationContext(), "图片" + name + "导出成功~", Toast.LENGTH_LONG)
+//												.show();
+//									}
+//								}
+//							}).setNegativeButton("取消", null).show();
+//
+//
+//				} else if (choose.equals("提醒")) {
+//					Calendar currentTime = Calendar.getInstance();
+//					// 弹出一个时间设置的对话框,供用户选择时间
+//					new TimePickerDialog(MindActivity.this, 0,
+//							new OnTimeSetListener() {
+//								public void onTimeSet(TimePicker view,
+//													  int hourOfDay, int minute) {
+//									// 设置当前时间
+//									Calendar c = Calendar.getInstance();
+//									c.setTimeInMillis(System
+//											.currentTimeMillis());
+//									// 根据用户选择的时间来设置Calendar对象
+//									c.set(Calendar.HOUR, hourOfDay);
+//									c.set(Calendar.MINUTE, minute);
+//									// ②设置AlarmManager在Calendar对应的时间启动Activity
+//									alarmManager.set(AlarmManager.RTC_WAKEUP,
+//											c.getTimeInMillis(), pi);
+//									// 提示闹钟设置完毕:
+//									Toast.makeText(MindActivity.this,
+//											"闹钟设置完毕~", Toast.LENGTH_SHORT)
+//											.show();
+//								}
+//							}, currentTime.get(Calendar.HOUR_OF_DAY),
+//							currentTime.get(Calendar.MINUTE), false).show();
+//				}
+//			}
+//		});
+//	}
 
 	@SuppressWarnings("deprecation")
 	// 右侧的FAB按钮
@@ -473,7 +472,7 @@ public class MindActivity extends Activity {
 				// TODO: Make sure this auto-generated app URL is correct.
 				Uri.parse("android-app://cn.edu.nju.drmind.activity/http/host/path")
 		);
-		AppIndex.AppIndexApi.end(client, viewAction);
-		client.disconnect();
+//		AppIndex.AppIndexApi.end(client, viewAction);
+//		client.disconnect();
 	}
 }
