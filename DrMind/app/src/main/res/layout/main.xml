@@ -11,22 +11,6 @@
         <include layout="@layout/dviewgroup" />
     </LinearLayout>
 
-
-<!--
-<RelativeLayout
-    android:id="@+id/left"
-    android:layout_width="200dp"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:background="@android:color/white">
-    <ListView
-        android:id="@+id/left_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
-</RelativeLayout>
- -->
-
    <android.support.design.widget.NavigationView
         android:id="@+id/left_navigationview"
         android:layout_width="match_parent"
