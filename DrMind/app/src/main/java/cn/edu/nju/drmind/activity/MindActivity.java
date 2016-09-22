@@ -17,9 +17,12 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -60,11 +63,6 @@ public class MindActivity extends Activity {
 	private RelativeLayout rightLayout;
 	private List<ContentModel> list;
 	private ContentAdapter adapter;
-	/**
-	 * ATTENTION: This was auto-generated to implement the App Indexing API.
-	 * See https://g.co/AppIndexing/AndroidStudio for more information.
-	 */
-//	private GoogleApiClient client;
 
 	/**
 	 * Called when the activity is first created.
@@ -94,7 +92,7 @@ public class MindActivity extends Activity {
 		initRightButton();
 
 		// 左侧DrawerLayout的初始化
-//		initMyDrawer();
+		initDrawerListener();
 
 		// 跳转时的过滤，需修改
 		Bundle bundle = this.getIntent().getExtras();
@@ -105,38 +103,128 @@ public class MindActivity extends Activity {
 				DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
 				group.load(name);
 			}
-
 		}
-
-		// ATTENTION: This was auto-generated to implement the App Indexing API.
-		// See https://g.co/AppIndexing/AndroidStudio for more information.
-//		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
-	// 左侧drawerlayout的初始化
-	private void initMyDrawer() {
-
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-//		leftLayout = (RelativeLayout) findViewById(R.id.left);
-		rightLayout = (RelativeLayout) findViewById(R.id.right);
-//		ListView listView = (ListView) leftLayout
-//				.findViewById(R.id.left_listview);
-//		initData();
-//		adapter = new ContentAdapter(this, list);
-//		listView.setAdapter(adapter);
-//		initDrawerListener();
-
+	//左边侧滑栏的监听
+	private void initDrawerListener(){
+		NavigationView navigationView = (NavigationView) findViewById(R.id.left_navigationview);
+		navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+				@Override
+				public boolean onNavigationItemSelected(MenuItem item) {
+					//切换相应 Fragment 等操作
+					switch(item.getItemId()) {
+						case R.id.mulu_item:
+							init_mulu_listener();
+							break;
+						case R.id.xinjian_item:
+							init_new_listener();
+							break;
+						case R.id.save_item:
+					init_save_lisetener();
+							break;
+						case R.id.daochu_item:
+							init_export_listener();
+							break;
+						case R.id.clock_item:
+							Toast.makeText(MindActivity.this, "" + "提醒", Toast.LENGTH_SHORT).show();
+							System.out.println("hhh" + "  提醒");
+							break;
+					}
+					return false;
+				}
+			});
 	}
 
-	// 左侧listview里的数据
-//	private void initData() {
-//		list = new ArrayList<ContentModel>();
-//		list.add(new ContentModel(R.drawable.mulu, "目录"));
-//		list.add(new ContentModel(R.drawable.xinjian, "新建"));
-//		list.add(new ContentModel(R.drawable.save, "保存"));
-//		list.add(new ContentModel(R.drawable.daochu, "导出"));
-//		list.add(new ContentModel(R.drawable.clock, "提醒"));
-//	}
+	//左侧Navigation的Item监听
+    private void init_mulu_listener(){
+		startActivity(new Intent(MindActivity.this, SimpleActivity.class));
+	}
+
+	private void init_new_listener(){
+		startActivity(new Intent(MindActivity.this, MindActivity.class));
+		Toast.makeText(getApplicationContext(), "新建图表成功", Toast.LENGTH_LONG).show();
+	}
+
+	private void init_save_lisetener(){
+		final EditText editText = new EditText(MindActivity.this);
+					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+					if (group.isOpenSaved()) {
+						editText.setText(group.getCurretFileName());
+					}
+
+					new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
+							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
+							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									String name = editText.getText().toString();
+									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+									if (name.equals("")) {
+										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
+												.show();
+										return;
+									}
+									if (group.existPaint(name)) {
+										Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
+												.show();
+										return;
+									} else {
+										System.out.println("保存的图名： " + name);
+
+										group.save(name);
+
+										Intent intent = new Intent(MindActivity.this, MindActivity.class);
+										Bundle bundle = new Bundle();
+										bundle.putString("state", "save");
+										bundle.putString("name", name);
+										intent.putExtras(bundle);
+										startActivity(intent);
+
+										Toast.makeText(getApplicationContext(), "图表" + name + "保存成功~", Toast.LENGTH_LONG)
+												.show();
+									}
+								}
+							}).setNegativeButton("取消", null).show();
+	}
+
+	private void init_export_listener(){
+		View myview = findViewById(R.id.viewgroup);
+					final EditText editText = new EditText(MindActivity.this);
+					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+
+					new AlertDialog.Builder(MindActivity.this).setTitle("请输入导出的图片名")
+							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
+							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									String name = editText.getText().toString();
+									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
+									if (name.equals("")) {
+										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
+												.show();
+										return;
+									} else {
+										System.out.println("导出的图片名： " + name);
+
+
+										try {
+											if (group.exportPicture(name)) {
+												System.out.println("daochu success !");
+											} else {
+												Toast.makeText(getApplicationContext(), "图片 " + name + "已存在！", Toast.LENGTH_LONG)
+														.show();
+											}
+										} catch (Exception e1) {
+											e1.printStackTrace();
+										}
+
+										Toast.makeText(getApplicationContext(), "图片" + name + "导出成功~", Toast.LENGTH_LONG)
+												.show();
+									}
+								}
+							}).setNegativeButton("取消", null).show();
+	}
+
+
 
 	// 左侧ListView里每一个item的监听
 //	private void initDrawerListener() {
@@ -269,7 +357,6 @@ public class MindActivity extends Activity {
 //		});
 //	}
 
-	@SuppressWarnings("deprecation")
 	// 右侧的FAB按钮
 	private void initRightButton() {
 		// 中心图标
@@ -357,28 +444,6 @@ public class MindActivity extends Activity {
 				.addSubActionView(button4)
 				.attachTo(actionButton).build();
 
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-//		// ATTENTION: This was auto-generated to implement the App Indexing API.
-//		// See https://g.co/AppIndexing/AndroidStudio for more information.
-//		client.connect();
-//		a = this;
-//		// ATTENTION: This was auto-generated to implement the App Indexing API.
-//		// See https://g.co/AppIndexing/AndroidStudio for more information.
-//		Action viewAction = Action.newAction(
-//				Action.TYPE_VIEW, // TODO: choose an action type.
-//				"Mind Page", // TODO: Define a title for the content shown.
-//				// TODO: If you have web page content that matches this app activity's content,
-//				// make sure this auto-generated web page URL is correct.
-//				// Otherwise, set the URL to null.
-//				Uri.parse("http://host/path"),
-//				// TODO: Make sure this auto-generated app URL is correct.
-//				Uri.parse("android-app://cn.edu.nju.drmind.activity/http/host/path")
-//		);
-//		AppIndex.AppIndexApi.start(client, viewAction);
 	}
 
 	/**
