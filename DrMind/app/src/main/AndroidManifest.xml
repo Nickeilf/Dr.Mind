@@ -26,11 +26,6 @@
         <activity android:name="cn.edu.nju.drmind.swipemenulistview.SimpleActivity" >
         </activity>
 
-        <activity
-            android:name="cn.edu.nju.drmind.activity.ClockActivity"
-            android:label="@string/app_name" >
-        </activity>
-
     </application>
 
     <!-- 讯飞语音权限开始 -->

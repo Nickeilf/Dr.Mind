@@ -9,11 +9,9 @@
 
     <ImageView
         android:contentDescription="@string/useless"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="36dp"
-        android:src="@drawable/icon" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android_start" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,15 +1,7 @@
 package cn.edu.nju.drmind.activity;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,34 +10,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
 
 import cn.edu.cn.R;
 import cn.edu.nju.drmind.FAB.FloatingActionButton;
 import cn.edu.nju.drmind.FAB.FloatingActionMenu;
 import cn.edu.nju.drmind.FAB.SubActionButton;
-import cn.edu.nju.drmind.drawer.ContentAdapter;
-import cn.edu.nju.drmind.drawer.ContentModel;
 import cn.edu.nju.drmind.swipemenulistview.SimpleActivity;
 import cn.edu.nju.drmind.util.Constant;
 import cn.edu.nju.drmind.view.DEditTextView;
@@ -55,15 +36,6 @@ import cn.edu.nju.drmind.voice.VoiceToWord;
 
 public class MindActivity extends Activity {
     public static MindActivity a;
-    private AlarmManager alarmManager;
-    private PendingIntent pi;
-
-    // new drawerlayout
-    private DrawerLayout drawerLayout;
-    private RelativeLayout leftLayout;
-    private RelativeLayout rightLayout;
-    private List<ContentModel> list;
-    private ContentAdapter adapter;
 
     /**
      * Called when the activity is first created.
@@ -71,12 +43,6 @@ public class MindActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // ①获取AlarmManager对象:
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        // 指定要启动的是Activity组件,通过PendingIntent调用getActivity来设置
-        Intent intent = new Intent(MindActivity.this, ClockActivity.class);
-        pi = PendingIntent.getActivity(MindActivity.this, 0, intent, 0);
 
         // 全屏显示
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -125,10 +91,6 @@ public class MindActivity extends Activity {
                     case R.id.daochu_item:
                         init_export_listener();
                         break;
-                    case R.id.clock_item:
-                        Toast.makeText(MindActivity.this, "" + "提醒", Toast.LENGTH_SHORT).show();
-                        System.out.println("hhh" + "  提醒");
-                        break;
                 }
                 return false;
             }
@@ -136,15 +98,18 @@ public class MindActivity extends Activity {
     }
 
     //左侧Navigation的Item监听
+    //目录项
     private void init_mulu_listener() {
         startActivity(new Intent(MindActivity.this, SimpleActivity.class));
     }
 
+    //新建项
     private void init_new_listener() {
         startActivity(new Intent(MindActivity.this, MindActivity.class));
         Toast.makeText(getApplicationContext(), "新建图表成功", Toast.LENGTH_LONG).show();
     }
 
+    //保存项
     private void init_save_lisetener() {
         final EditText editText = new EditText(MindActivity.this);
         DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
@@ -186,6 +151,7 @@ public class MindActivity extends Activity {
                 }).setNegativeButton("取消", null).show();
     }
 
+    //导出项
     private void init_export_listener() {
         final EditText editText = new EditText(MindActivity.this);
 
@@ -221,137 +187,6 @@ public class MindActivity extends Activity {
                 }).setNegativeButton("取消", null).show();
     }
 
-
-    // 左侧ListView里每一个item的监听
-//	private void initDrawerListener() {
-//		ListView listView = (ListView) leftLayout
-//				.findViewById(R.id.left_listview);
-//		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//			public void onItemClick(AdapterView<?> parent, View view,
-//									int position, long id) {
-//				String choose = list.get(position).getText();
-//
-//				if (choose.equals("目录")) {
-//					startActivity(new Intent(MindActivity.this,
-//							SimpleActivity.class));
-//				} else if (choose.equals("新建")) {
-//					startActivity(new Intent(MindActivity.this,
-//							MindActivity.class));
-//					Toast.makeText(getApplicationContext(), "新建图表成功",
-//							Toast.LENGTH_LONG).show();
-//				} else if (choose.equals("保存")) {
-//					final EditText editText = new EditText(MindActivity.this);
-//					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-//					if (group.isOpenSaved()) {
-//						editText.setText(group.getCurretFileName());
-//					}
-//
-//					new AlertDialog.Builder(MindActivity.this).setTitle("请输入保存的图表名")
-//							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
-//							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//								public void onClick(DialogInterface dialog, int which) {
-//									String name = editText.getText().toString();
-//									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-//									if (name.equals("")) {
-//										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
-//												.show();
-//										return;
-//									}
-//									if (group.existPaint(name)) {
-//										Toast.makeText(getApplicationContext(), "图表 " + name + "已存在！", Toast.LENGTH_LONG)
-//												.show();
-//										return;
-//									} else {
-//										System.out.println("保存的图名： " + name);
-//
-//										group.save(name);
-//
-//										Intent intent = new Intent(MindActivity.this, MindActivity.class);
-//										Bundle bundle = new Bundle();
-//										bundle.putString("state", "save");
-//										bundle.putString("name", name);
-//										intent.putExtras(bundle);
-//										startActivity(intent);
-//
-//										Toast.makeText(getApplicationContext(), "图表" + name + "保存成功~", Toast.LENGTH_LONG)
-//												.show();
-//									}
-//								}
-//							}).setNegativeButton("取消", null).show();
-//
-//				} else if (choose.equals("导出")) {
-////					View myview = findViewById(R.id.viewgroup);
-////					if (myview != null) {
-////						ViewToPicture viewToPic = new ViewToPicture();
-////						viewToPic.save(myview, "Liu");
-////					} else {
-////						System.out.println("myview null");
-////					}
-//					final EditText editText = new EditText(MindActivity.this);
-//					DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-//
-//					new AlertDialog.Builder(MindActivity.this).setTitle("请输入导出的图片名")
-//							.setIcon(android.R.drawable.ic_dialog_info).setView(editText)
-//							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//								public void onClick(DialogInterface dialog, int which) {
-//									String name = editText.getText().toString();
-//									DViewGroup group = (DViewGroup) findViewById(R.id.viewgroup);
-//									if (name.equals("")) {
-//										Toast.makeText(getApplicationContext(), "图表名不能为空哟！" + name, Toast.LENGTH_LONG)
-//												.show();
-//										return;
-//									} else {
-//										System.out.println("导出的图片名： " + name);
-//
-//
-//										//viewGroup.setDrawingCacheEnabled(false);
-//
-//										try {
-//											if (group.exportPicture(name)) {
-//												System.out.println("daochu success !");
-//											} else {
-//												Toast.makeText(getApplicationContext(), "图片 " + name + "已存在！", Toast.LENGTH_LONG)
-//														.show();
-//											}
-//										} catch (Exception e1) {
-//											e1.printStackTrace();
-//										}
-//
-//										Toast.makeText(getApplicationContext(), "图片" + name + "导出成功~", Toast.LENGTH_LONG)
-//												.show();
-//									}
-//								}
-//							}).setNegativeButton("取消", null).show();
-//
-//
-//				} else if (choose.equals("提醒")) {
-//					Calendar currentTime = Calendar.getInstance();
-//					// 弹出一个时间设置的对话框,供用户选择时间
-//					new TimePickerDialog(MindActivity.this, 0,
-//							new OnTimeSetListener() {
-//								public void onTimeSet(TimePicker view,
-//													  int hourOfDay, int minute) {
-//									// 设置当前时间
-//									Calendar c = Calendar.getInstance();
-//									c.setTimeInMillis(System
-//											.currentTimeMillis());
-//									// 根据用户选择的时间来设置Calendar对象
-//									c.set(Calendar.HOUR, hourOfDay);
-//									c.set(Calendar.MINUTE, minute);
-//									// ②设置AlarmManager在Calendar对应的时间启动Activity
-//									alarmManager.set(AlarmManager.RTC_WAKEUP,
-//											c.getTimeInMillis(), pi);
-//									// 提示闹钟设置完毕:
-//									Toast.makeText(MindActivity.this,
-//											"闹钟设置完毕~", Toast.LENGTH_SHORT)
-//											.show();
-//								}
-//							}, currentTime.get(Calendar.HOUR_OF_DAY),
-//							currentTime.get(Calendar.MINUTE), false).show();
-//				}
-//			}
-//		});
-//	}
 
     // 右侧的FAB按钮
     private void initRightButton() {
@@ -445,7 +280,6 @@ public class MindActivity extends Activity {
     /**
      * 初始化：设定viewGroup大小为3*3倍屏幕大小
      */
-    @SuppressWarnings("deprecation")
     private void init() {
         WindowManager wm = this.getWindowManager();
 

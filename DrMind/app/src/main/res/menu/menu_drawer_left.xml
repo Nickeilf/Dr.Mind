@@ -17,9 +17,5 @@
         android:id="@+id/daochu_item"
         android:icon="@drawable/daochu"
         android:title="@string/daochu" />
-     <item
-        android:id="@+id/clock_item"
-        android:icon="@drawable/clock"
-        android:title="@string/clock" />
 
 </menu>
