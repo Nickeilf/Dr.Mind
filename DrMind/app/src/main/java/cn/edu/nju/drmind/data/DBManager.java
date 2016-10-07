@@ -56,8 +56,7 @@ public class DBManager {
      * 多线程下关闭  
      */  
     public synchronized void closeDatabase() {  
-        if (mOpenCounter.decrementAndGet() == 0) {  
-            // Closing database  
+        if (mOpenCounter.decrementAndGet() == 0) {
             mDatabase.close();  
   
         }  
