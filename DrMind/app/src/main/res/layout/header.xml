@@ -8,7 +8,6 @@
     android:padding="16dp" >
 
     <ImageView
-        android:contentDescription="@string/useless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/android_start" />
@@ -16,11 +15,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/LiuXing" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/website" />
+        android:text="@string/name" />
 
 </LinearLayout>

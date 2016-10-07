@@ -99,6 +99,7 @@ public class DEditTextView extends EditText {
 		down = false;
 		drawable=true;
 		visible=true;
+		this.setTextSize(10);
 	}
 
 	public void setNode(Node node) {

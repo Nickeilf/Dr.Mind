@@ -20,16 +20,4 @@
         app:menu="@menu/menu_drawer_left" />
 
 
-<RelativeLayout
-    android:id="@+id/right"
-    android:layout_width="260dp"
-    android:layout_height="match_parent"
-    android:layout_gravity="end">
-    <TextView
-        android:id="@+id/right_textview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/website" />
-</RelativeLayout>
-
 </android.support.v4.widget.DrawerLayout>

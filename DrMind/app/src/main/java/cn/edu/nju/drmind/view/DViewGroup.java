@@ -962,6 +962,9 @@ public class DViewGroup extends ViewGroup {
 			float scaleX = this.getScaleX();
 			float scaleY = this.getScaleY();
 
+			System.out.println("scale X:"+scaleX);
+			System.out.println("scale Y:"+scaleY);
+
 			if (gapLenght > 0) {
 				scaleX += oneScale;
 				scaleY += oneScale;
@@ -970,24 +973,10 @@ public class DViewGroup extends ViewGroup {
 				scaleY -= oneScale;
 			}
 
-			// int sum=this.getChildCount();
-			// View thisView;
-			// for(int i=0;i<sum;i++){
-			// thisView=this.getChildAt(i);
-			//
-			// float scaleX = thisView.getScaleX();
-			// float scaleY = thisView.getScaleY();
-			// if (gapLenght > 0) {
-			// scaleX += oneScale;
-			// scaleY += oneScale;
-			// } else {
-			// scaleX -= oneScale;
-			// scaleY -= oneScale;
-			// }
-			//
-			// thisView.setScaleX(scaleX);
-			// thisView.setScaleY(scaleY);
-			// }
+			if(scaleX<1 || scaleY<1){
+				scaleX=1;
+				scaleY=1;
+			}
 
 			this.setScaleX(scaleX);
 			this.setScaleY(scaleY);
@@ -999,10 +988,6 @@ public class DViewGroup extends ViewGroup {
 
 	public void adjustScreen() {
 		LinearLayout.LayoutParams lay = (LinearLayout.LayoutParams) this.getLayoutParams();
-		// lay.height += screenHeight;
-		// lay.width += screenWidth;
-		// this.setLayoutParams(lay);
-
 		int left = 0;
 		int right = 0;
 		int top = 0;
@@ -1053,16 +1038,6 @@ public class DViewGroup extends ViewGroup {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		// canvas.setDrawFilter(new PaintFlagsDrawFilter(0,
-		// Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
-		// //
-		// canvas.drawBitmap(cachebBitmap, 0,0,null);
-		for (int i = 0; i < this.getWidth() / screenWidth; i++) {
-			canvas.drawLine(screenWidth * i, 0, screenWidth * i, this.getHeight(), paint);
-		}
-		for (int i = 0; i < this.getHeight() / screenHeight; i++) {
-			canvas.drawLine(0, screenHeight * i, this.getWidth(), screenHeight * i, paint);
-		}
 
 		for (int i = 0; i < editTexts.size(); i++) {
 			DEditTextView view = editTexts.get(i);

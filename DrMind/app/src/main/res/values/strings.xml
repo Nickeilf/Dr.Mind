@@ -8,13 +8,10 @@
     <string name="save">保存</string>
     <string name="xinjian">新建</string>
     <string name="clock">提醒</string>
-    <string name="name">name</string>
+    <string name="name">Dr.Mind</string>
     <string name="drawer_open">Menu opened</string>
     <string name="drawer_close">Menu closed</string>
-    <string name="useless">useless</string>
     <string name="left">Left</string>
     <string name="right">Right</string>
-    <string name="LiuXing">LiuXing</string>
-    <string name="website">http://p.nju.edu.cn</string>
 
 </resources>

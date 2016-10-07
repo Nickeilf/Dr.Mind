@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.NavigationView;
@@ -20,8 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
-
-import com.google.android.gms.appindexing.Action;
 
 import cn.edu.cn.R;
 import cn.edu.nju.drmind.FAB.FloatingActionButton;
@@ -351,23 +348,5 @@ public class MindActivity extends Activity {
         }
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Mind Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://cn.edu.nju.drmind.activity/http/host/path")
-        );
-//		AppIndex.AppIndexApi.end(client, viewAction);
-//		client.disconnect();
-    }
 }
