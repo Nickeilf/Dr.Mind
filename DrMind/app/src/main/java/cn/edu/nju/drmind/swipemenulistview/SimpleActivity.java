@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,11 @@ public class SimpleActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 全屏显示
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_list);
  
         nameOfFile=new ArrayList<String>();
@@ -114,7 +120,7 @@ public class SimpleActivity extends Activity {
 
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
-                Toast.makeText(getApplicationContext(), position + " long click", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), position + " long click", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -162,19 +168,7 @@ public class SimpleActivity extends Activity {
             holder.tv_name.setTextColor(Color.WHITE);
             String nameItem =getItem(position);
             holder.tv_name.setText(nameItem);
-            
-            holder.iv_icon.setOnClickListener(new View.OnClickListener() {
-           
-                public void onClick(View v) {
-                    Toast.makeText(SimpleActivity.this, "你点我(图片)干嘛？！", Toast.LENGTH_SHORT).show();
-                }
-            });
-            holder.tv_name.setOnClickListener(new View.OnClickListener() {
-          
-                public void onClick(View v) {
-                    Toast.makeText(SimpleActivity.this,"你点我(名字)干嘛？！",Toast.LENGTH_SHORT).show();
-                }
-            });
+
             return convertView;
         }
 

@@ -56,6 +56,7 @@ public class DViewGroup extends ViewGroup {
 	private int screenHeight;
 	private int singleRec;
 
+	private boolean twoFinger;
 	private boolean openSaved;
 	private String curretFileName;
 
@@ -66,7 +67,7 @@ public class DViewGroup extends ViewGroup {
 	private float beforeLength;
 	private float afterLength;
 	// 每次变化的大小
-	private float oneScale = 0.02f;
+	private float oneScale = 0.03f;
 
 	/**
 	 * 构造函数，继承父类
@@ -255,6 +256,7 @@ public class DViewGroup extends ViewGroup {
 		editTexts = new ArrayList<DEditTextView>();
 		maps = new HashMap<Node, DEditTextView>();
 		openSaved = false;
+		twoFinger=false;
 		curretFileName = "";
 
 		DEditTextView root = new DEditTextView(getContext());
@@ -918,6 +920,9 @@ public class DViewGroup extends ViewGroup {
 				startY = event.getY();
 				break;
 			case MotionEvent.ACTION_MOVE:
+				if(twoFinger==true){
+					break;
+				}
 				float stopX = event.getX();
 				float stopY = event.getY();
 				posX += stopX - startX;
@@ -932,9 +937,12 @@ public class DViewGroup extends ViewGroup {
 				requestLayout();
 				invalidate();// call onDraw()
 				break;
+				case MotionEvent.ACTION_UP:
+					twoFinger=false;
 			}
 		} else if (event.getPointerCount() == 2) {
 			// 实现对多点触控的监听
+			twoFinger =true;
 			this.scaleWithFinger(event);
 		}
 		return true;

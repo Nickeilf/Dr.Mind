@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import android.widget.ListAdapter;
 import android.widget.ListView;
- 
+import android.widget.Toast;
+
 public class SwipeMenuListView extends ListView {
 
     private static final int TOUCH_STATE_NONE = 0;
@@ -76,6 +77,8 @@ public class SwipeMenuListView extends ListView {
                 if (mTouchView != null && !flag) {
                     mTouchView.smoothCloseMenu();
                 }
+
+
             }
         });
     }
